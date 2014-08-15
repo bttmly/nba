@@ -1,0 +1,20 @@
+{
+  "name": "nba-api-node",
+  "version": "0.1.0",
+  "description": "A Node.js wrapper around the NBA's API",
+  "main": "index.js",
+  "scripts": {
+    "update-teams": "echo \"Not yet impllemented!\" && exit 1"
+    "update-players": "echo \"Not yet impllemented!\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Bottomley",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promise": "^1.0.0",
+    "extend": "^1.3.0",
+    "qs": "^1.2.1",
+    "request": "^2.40.0",
+    "superagent": "^0.18.2"
+  }
+}
