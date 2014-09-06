@@ -10,8 +10,5 @@ I also couldn't find anything on the terms of use. If there is a relevant policy
 ## SportVu
 The NBA's player tracking system, SportVu, provides data in a totally different form.
 
-
-
-/shots
-/rosters
-/lineups
+## Todo
+- Set up scripts to populate default players list and teams list.
