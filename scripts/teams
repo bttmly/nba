@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+// http://stats.nba.com/stats/leaguedashteamstats/?Season=2013-14&AllStarSeason=&SeasonType=Regular%20Season&LeagueID=00&MeasureType=Base&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&DateFrom=&DateTo=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&GameScope=&PlayerExperience=&PlayerPosition=&StarterBench=
+
+var fs = require( "fs" );
+var path = require( "path" );
+var Promise = require( "es6-promise" ).Promise;
+
+var get = require( "../lib/get" );
+var maps = require( "../lib/maps" );
+var util = require( "../lib/util" );
+
+var TEAM_STAT_URL = "http://stats.nba.com/stats/leaguedashteamstats";
+var TEAM_INFO_URL = "http://stats.nba.com/stats/commonteamyears";
+
+var TEAM_STAT_QUERY = maps.teamStatDefaults;
+var TEAM_INFO_QUERY = {
+  "LeagueID": "00"
+};
+
+var statReq = get( TEAM_STAT_URL, TEAM_STAT_QUERY );
+var infoReq = get( TEAM_INFO_URL, TEAM_INFO_QUERY );
+
+Promise.all([ statReq, infoReq ]).then( function ( responses ) {
+  var stats = util.baseResponseTransform( responses[0].body );
+  var info = util.baseResponseTransform( responses[1].body );
+  var combined = util.pickKeys( util.mergeCollections( stats, info, "teamId" ),
+    "teamId", "abbreviation", "teamName" );
+  var fileStr = "module.exports = " + JSON.stringify( combined ) + ";";
+  var filePath = path.join( __dirname, "../data/teams.js" );
+  fs.writeFileSync( filePath, fileStr );
+});
