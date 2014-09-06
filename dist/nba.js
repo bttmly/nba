@@ -39,6 +39,7 @@ module.exports = function jsonp ( url, query ) {
   function cleanup () {
     script.removeEventListener( "error", errorHandler );
     document.body.removeChild( script );
+    script = null;
     delete window[fnName];
   }
 
@@ -61,60 +62,49 @@ module.exports = function jsonp ( url, query ) {
 
 },{"./defer":2,"query-string":18}],4:[function(_dereq_,module,exports){
 var extend = _dereq_( 'extend' );
-// var twoWayMap = require( "./two-way-map" );
 
-// var camelize = function ( str ) {
-//   return str.trim().replace( /[-_\s]+(.)?/g, function ( match, c ){
-//     return c ? c.toUpperCase() : "";
-//   });
-// };
+var nbaParams = Object.freeze(
+  extend( Object.create( null ), {
+    "Season": 1,
+    "AllStarSeason": 1,
+    "SeasonType": 1,
+    "LeagueID": 1,
+    "MeasureType": 1,
+    "PerMode": 1,
+    "PlusMinus": 1,
+    "PaceAdjust": 1,
+    "Rank": 1,
+    "Outcome": 1,
+    "Location": 1,
+    "Month": 1,
+    "SeasonSegment": 1,
+    "DateFrom": 1,
+    "DateTo": 1,
+    "OpponentTeamID": 1,
+    "VsConference": 1,
+    "VsDivision": 1,
+    "GameSegment": 1,
+    "Period": 1,
+    "LastNGames": 1,
+    "GameScope": 1,
+    "PlayerExperience": 1,
+    "PlayerPosition": 1,
+    "StarterBench": 1,
+    "TeamID": 1,
+    "GameID": 1,
+    "Position": 1,
+    "RookieYear": 1,
+    "ContextFilter": 1,
+    "ContextMeasure": 1,
+    "zone-mode": 1,
+    "GroupQuantity": 1,
+    "pageNo": 1,
+    "rowsPerPage": 1
+  })
+);
 
-// var nbaToJs = function ( str ) {
-//   str = camelize( str );
-//   str = str.replace( "ID", "Id" );
-//   return str[0].toLowerCase() + str.slice( 1 );
-// };
-
-var nbaParams = extend( Object.create( null ), {
-  "Season": 1,
-  "AllStarSeason": 1,
-  "SeasonType": 1,
-  "LeagueID": 1,
-  "MeasureType": 1,
-  "PerMode": 1,
-  "PlusMinus": 1,
-  "PaceAdjust": 1,
-  "Rank": 1,
-  "Outcome": 1,
-  "Location": 1,
-  "Month": 1,
-  "SeasonSegment": 1,
-  "DateFrom": 1,
-  "DateTo": 1,
-  "OpponentTeamID": 1,
-  "VsConference": 1,
-  "VsDivision": 1,
-  "GameSegment": 1,
-  "Period": 1,
-  "LastNGames": 1,
-  "GameScope": 1,
-  "PlayerExperience": 1,
-  "PlayerPosition": 1,
-  "StarterBench": 1,
-  "TeamID": 1,
-  "GameID": 1,
-  "Position": 1,
-  "RookieYear": 1,
-  "ContextFilter": 1,
-  "ContextMeasure": 1,
-  "zone-mode": 1,
-  "GroupQuantity": 1,
-  "pageNo": 1,
-  "rowsPerPage": 1
-});
-Object.freeze( nbaParams );
-
-var jsParams = extend( Object.create( null ), {
+var jsParams = Object.freeze(
+  extend( Object.create( null ), {
   "season": 1,
   "allStarSeason": 1,
   "seasonType": 1,
@@ -150,91 +140,120 @@ var jsParams = extend( Object.create( null ), {
   "groupQuantity": 1,
   "pageNo": 1,
   "rowsPerPage": 1
-});
-Object.freeze( jsParams );
+  })
+);
 
-var twoWayMap = extend( Object.create( null ), {
-  "Season": "season",
-  "season": "Season",
-  "AllStarSeason": "allStarSeason",
-  "allStarSeason": "AllStarSeason",
-  "SeasonType": "seasonType",
-  "seasonType": "SeasonType",
-  "LeagueID": "leagueId",
-  "leagueId": "LeagueID",
-  "MeasureType": "measureType",
-  "measureType": "MeasureType",
-  "PerMode": "perMode",
-  "perMode": "PerMode",
-  "PlusMinus": "plusMinus",
-  "plusMinus": "PlusMinus",
-  "PaceAdjust": "paceAdjust",
-  "paceAdjust": "PaceAdjust",
-  "Rank": "rank",
-  "rank": "Rank",
-  "Outcome": "outcome",
-  "outcome": "Outcome",
-  "Location": "location",
-  "location": "Location",
-  "Month": "month",
-  "month": "Month",
-  "SeasonSegment": "seasonSegment",
-  "seasonSegment": "SeasonSegment",
-  "DateFrom": "dateFrom",
-  "dateFrom": "DateFrom",
-  "DateTo": "dateTo",
-  "dateTo": "DateTo",
-  "OpponentTeamID": "opponentTeamId",
-  "opponentTeamId": "OpponentTeamID",
-  "VsConference": "vsConference",
-  "vsConference": "VsConference",
-  "VsDivision": "vsDivision",
-  "vsDivision": "VsDivision",
-  "GameSegment": "gameSegment",
-  "gameSegment": "GameSegment",
-  "Period": "period",
-  "period": "Period",
-  "LastNGames": "lastNGames",
-  "lastNGames": "LastNGames",
-  "GameScope": "gameScope",
-  "gameScope": "GameScope",
-  "PlayerExperience": "playerExperience",
-  "playerExperience": "PlayerExperience",
-  "PlayerPosition": "playerPosition",
-  "playerPosition": "PlayerPosition",
-  "StarterBench": "starterBench",
-  "starterBench": "StarterBench",
-  "TeamID": "teamId",
-  "teamId": "TeamID",
-  "GameID": "gameId",
-  "gameId": "GameID",
-  "Position": "position",
-  "position": "Position",
-  "RookieYear": "rookieYear",
-  "rookieYear": "RookieYear",
-  "ContextFilter": "contextFilter",
-  "contextFilter": "ContextFilter",
-  "ContextMeasure": "contextMeasure",
-  "contextMeasure": "ContextMeasure",
-  "zone-mode": "zoneMode",
-  "zoneMode": "zone-mode",
-  "GroupQuantity": "groupQuantity",
-  "groupQuantity": "GroupQuantity",
-  "pageNo": "pageNo",
-  "rowsPerPage": "rowsPerPage"
-});
-Object.freeze( twoWayMap );
+var twoWayMap = Object.freeze(
+  extend( Object.create( null ), {
+    "Season": "season",
+    "season": "Season",
+    "AllStarSeason": "allStarSeason",
+    "allStarSeason": "AllStarSeason",
+    "SeasonType": "seasonType",
+    "seasonType": "SeasonType",
+    "LeagueID": "leagueId",
+    "leagueId": "LeagueID",
+    "MeasureType": "measureType",
+    "measureType": "MeasureType",
+    "PerMode": "perMode",
+    "perMode": "PerMode",
+    "PlusMinus": "plusMinus",
+    "plusMinus": "PlusMinus",
+    "PaceAdjust": "paceAdjust",
+    "paceAdjust": "PaceAdjust",
+    "Rank": "rank",
+    "rank": "Rank",
+    "Outcome": "outcome",
+    "outcome": "Outcome",
+    "Location": "location",
+    "location": "Location",
+    "Month": "month",
+    "month": "Month",
+    "SeasonSegment": "seasonSegment",
+    "seasonSegment": "SeasonSegment",
+    "DateFrom": "dateFrom",
+    "dateFrom": "DateFrom",
+    "DateTo": "dateTo",
+    "dateTo": "DateTo",
+    "OpponentTeamID": "opponentTeamId",
+    "opponentTeamId": "OpponentTeamID",
+    "VsConference": "vsConference",
+    "vsConference": "VsConference",
+    "VsDivision": "vsDivision",
+    "vsDivision": "VsDivision",
+    "GameSegment": "gameSegment",
+    "gameSegment": "GameSegment",
+    "Period": "period",
+    "period": "Period",
+    "LastNGames": "lastNGames",
+    "lastNGames": "LastNGames",
+    "GameScope": "gameScope",
+    "gameScope": "GameScope",
+    "PlayerExperience": "playerExperience",
+    "playerExperience": "PlayerExperience",
+    "PlayerPosition": "playerPosition",
+    "playerPosition": "PlayerPosition",
+    "StarterBench": "starterBench",
+    "starterBench": "StarterBench",
+    "TeamID": "teamId",
+    "teamId": "TeamID",
+    "GameID": "gameId",
+    "gameId": "GameID",
+    "Position": "position",
+    "position": "Position",
+    "RookieYear": "rookieYear",
+    "rookieYear": "RookieYear",
+    "ContextFilter": "contextFilter",
+    "contextFilter": "ContextFilter",
+    "ContextMeasure": "contextMeasure",
+    "contextMeasure": "ContextMeasure",
+    "zone-mode": "zoneMode",
+    "zoneMode": "zone-mode",
+    "GroupQuantity": "groupQuantity",
+    "groupQuantity": "GroupQuantity",
+    "pageNo": "pageNo",
+    "rowsPerPage": "rowsPerPage"
+  })
+);
+
+var shotDefaults = Object.freeze(
+  extend( Object.create( null ), {
+    'Season': '2013-14',
+    'SeasonType': 'Regular Season',
+    'LeagueID': '00',
+    'PlayerID': '0',
+    'TeamID': '0',
+    'GameID': '',
+    'Outcome': '',
+    'Location': '',
+    'Month': '0',
+    'SeasonSegment': '',
+    'DateFrom': '',
+    'DateTo': '',
+    'OpponentTeamID': '0',
+    'VsConference': '',
+    'VsDivision': '',
+    'Position': '',
+    'RookieYear': '',
+    'GameSegment': '',
+    'Period': '0',
+    'LastNGames': '0',
+    'ContextFilter': '',
+    'ContextMeasure': 'FG_PCT',
+    'zone-mode': 'basic'
+  })
+);
 
 module.exports = {
   nbaParams: nbaParams,
   jsParams: jsParams,
-  twoWayMap: twoWayMap
+  twoWayMap: twoWayMap,
+  shotDefaults: shotDefaults
 };
 
 },{"extend":17}],5:[function(_dereq_,module,exports){
-/*
-SeasonType is required; TeamID is required; PlayerID is required; The GameID property is required.; The Outcome property is required.; The Location property is required.; Month is required; The SeasonSegment property is required.; The DateFrom property is required.; The DateTo property is required.; OpponentTeamID is required; The VsConference property is required.; The VsDivision property is required.; The Position property is required.; The RookieYear property is required.; The GameSegment property is required.; Period is required; LastNGames is required; The ContextMeasure property is required.
- */
+var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
+
 var extend = _dereq_( 'extend' );
 var Promise = _dereq_( 'es6-promise' ).Promise;
 
@@ -244,40 +263,12 @@ var get = _dereq_( "./get" );
 
 var translateOptions = util.partial( util.translateKeys, maps.twoWayMap );
 
-var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
-
-var defaults = {
-  'Season': '2013-14',
-  'SeasonType': 'Regular Season',
-  'LeagueID': '00',
-  'PlayerID': '0',
-  'TeamID': '0',
-  'GameID': '',
-  'Outcome': '',
-  'Location': '',
-  'Month': '0',
-  'SeasonSegment': '',
-  'DateFrom': '',
-  'DateTo': '',
-  'OpponentTeamID': '0',
-  'VsConference': '',
-  'VsDivision': '',
-  'Position': '',
-  'RookieYear': '',
-  'GameSegment': '',
-  'Period': '0',
-  'LastNGames': '0',
-  'ContextFilter': '',
-  'ContextMeasure': 'FG_PCT',
-  'zone-mode': 'basic'
-};
-
 module.exports = function ( options ) {
   if ( options == null ) {
     options = {};
   }
   options = translateOptions( options );
-  return get( SHOT_URL, extend( defaults, options ) )
+  return get( SHOT_URL, extend( maps.shotDefaults, options ) )
     .then( function ( responseBody ) {
       var data = responseBody.resultSets[0];
       var headers = util.jsifyHeaders( data.headers );
