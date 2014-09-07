@@ -3,12 +3,11 @@
 var fs = require( "fs" );
 var path = require( "path" );
 
-var get = require( "../lib/get" );
 var maps = require( "../lib/maps" );
 var util = require( "../lib/util" );
-var getTeams = require( "../lib/get-teams" );
+var teamInfo = require( "../lib/info-teams" );
 
-getTeams().then( function ( teamData ) {
+teamInfo().then( function ( teams ) {
   var filePath = path.join( __dirname, "../data/teams.json" );
-  fs.writeFileSync( filePath, JSON.stringify( teamData ) );
+  fs.writeFileSync( filePath, JSON.stringify( teams ) );
 });

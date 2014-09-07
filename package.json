@@ -8,8 +8,12 @@
     "update-players": "node ./scripts/players",
     "update-data": "npm run update-teams && npm run update-players",
     "build": "browserify -s nba -o ./dist/nba.js ./index.js && uglifyjs -o ./dist/nba-min.js ./dist/nba.js",
+    "build-light": "browserify -s nba -o ./dist/nba-light.js ./index.js && uglifyjs -o ./dist/nba-light-min.js ./dist/nba-light.js",
+    "build-all": "npm run clear-data && npm run build-light && npm run update-data && npm run build",
     "watch": "watchify -s nba -o ./dist/nba.js ./index.js",
-    "postinstall": "npm run update-data"
+    "clear-data": "node ./scripts/clear-data",
+    "postinstall": "npm run update-data",
+    "prepublish": "npm run build-all"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
@@ -17,10 +21,12 @@
     "es6-promise": "^1.0.0",
     "extend": "^1.3.0",
     "query-string": "^1.0.0",
+    "request": "^2.42.0",
     "superagent": "^0.18.2"
   },
   "browser": {
-    "./lib/get.js": "./lib/jsonp.js"
+    "./lib/get-json.js": "./lib/get-jsonp.js",
+    "./lib/get-script.js": "./lib/get-script-tag.js"
   },
   "browserify": {},
   "devDependencies": {
