@@ -2,21 +2,12 @@
 
 var fs = require( "fs" );
 var path = require( "path" );
+
 var get = require( "../lib/get" );
 var util = require( "../lib/util" );
-var CURRENT_SEASON = "2014-15";
-var PLAYERS_URL = "http://stats.nba.com/stats/commonallplayers/";
+var getPlayers = require( "../lib/get-players" );
 
-var query = {
-  LeagueID: "00",
-  IsOnlyCurrentSeason: "1",
-  Season: CURRENT_SEASON
-};
-
-get( PLAYERS_URL, query ).then( function ( res ) {
-  var players = util.playersResponseTransform( res.body );
-  var fileStr = "module.exports = " + JSON.stringify( players ) + ";";
-  var filePath = path.join( __dirname, "../data/players.js" );
-  fs.writeFileSync( filePath, fileStr );
-  console.log( "Done." );
+getPlayers().then( function ( playerInfo ) {
+  var filePath = path.join( __dirname, "../data/players.json" );
+  fs.writeFileSync( filePath, JSON.stringify( playerInfo ) );
 });

@@ -731,7 +731,7 @@ function polyfill() {
     local = self;
   }
 
-  var es6PromiseSupport = 
+  var es6PromiseSupport =
     "Promise" in local &&
     // Some of these methods are missing from
     // Firefox/Chrome experimental implementations

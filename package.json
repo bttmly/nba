@@ -6,8 +6,10 @@
   "scripts": {
     "update-teams": "node ./scripts/teams",
     "update-players": "node ./scripts/players",
+    "update-data": "npm run update-teams && npm run update-players",
     "build": "browserify -s nba -o ./dist/nba.js ./index.js && uglifyjs -o ./dist/nba-min.js ./dist/nba.js",
-    "watch": "watchify -s nba -o ./dist/nba.js ./index.js"
+    "watch": "watchify -s nba -o ./dist/nba.js ./index.js",
+    "postinstall": "npm run update-data"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
@@ -22,6 +24,8 @@
   },
   "browserify": {},
   "devDependencies": {
-    "uglify-js": "^2.4.15"
+    "browserify": "^5.11.1",
+    "uglify-js": "^2.4.15",
+    "watchify": "^1.0.2"
   }
 }

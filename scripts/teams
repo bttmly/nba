@@ -2,29 +2,13 @@
 
 var fs = require( "fs" );
 var path = require( "path" );
-var Promise = require( "es6-promise" ).Promise;
 
 var get = require( "../lib/get" );
 var maps = require( "../lib/maps" );
 var util = require( "../lib/util" );
+var getTeams = require( "../lib/get-teams" );
 
-var TEAM_STAT_URL = "http://stats.nba.com/stats/leaguedashteamstats";
-var TEAM_INFO_URL = "http://stats.nba.com/stats/commonteamyears";
-
-var TEAM_STAT_QUERY = maps.teamStatDefaults;
-var TEAM_INFO_QUERY = {
-  "LeagueID": "00"
-};
-
-var statReq = get( TEAM_STAT_URL, TEAM_STAT_QUERY );
-var infoReq = get( TEAM_INFO_URL, TEAM_INFO_QUERY );
-
-Promise.all([ statReq, infoReq ]).then( function ( responses ) {
-  var stats = util.baseResponseTransform( responses[0].body );
-  var info = util.baseResponseTransform( responses[1].body );
-  var combined = util.pickKeys( util.mergeCollections( stats, info, "teamId" ),
-    "teamId", "abbreviation", "teamName" );
-  var fileStr = "module.exports = " + JSON.stringify( combined ) + ";";
-  var filePath = path.join( __dirname, "../data/teams.js" );
-  fs.writeFileSync( filePath, fileStr );
+getTeams().then( function ( teamData ) {
+  var filePath = path.join( __dirname, "../data/teams.json" );
+  fs.writeFileSync( filePath, JSON.stringify( teamData ) );
 });
