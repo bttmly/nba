@@ -1,3 +1,1 @@
-module.exports = {
-  shots: require( "./lib/shots" )
-};
+module.exports = require( "./lib/nba" );
