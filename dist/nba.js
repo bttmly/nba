@@ -271,6 +271,8 @@ function twoWayMap () {
     "teamId": "TeamID",
     "GameID": "gameId",
     "gameId": "GameID",
+    "PlayerID": "playerId",
+    "playerId": "PlayerID",
     "Position": "position",
     "position": "Position",
     "RookieYear": "rookieYear",
@@ -414,6 +416,7 @@ module.exports = function ( options ) {
     options = {};
   }
   options = translateOptions( options );
+  console.log( options );
   return getJSON( SHOT_URL, extend( maps.shotDefaults(), options ) )
     .then( util.baseResponseTransform );
 };
@@ -458,18 +461,14 @@ var sportVuScripts = {
   pullUpShoot: {
     url: "http://stats.nba.com/js/data/sportvu/pullUpShootData.js",
     varName: "pullUpShootData",
-  },
-  underscore: {
-    url: "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js",
-    varName: "_"
   }
 };
 
 var getSportVu = (function () {
   var cache = {};
-  return function ( key ) {
+  return function ( key, force ) {
     var item, prms;
-    if ( cache[key] === undefined ) {
+    if ( cache[key] === undefined || force ) {
       item = sportVuScripts[key];
       cache[key] = getScript( item.url, item.varName );
     }
@@ -534,7 +533,11 @@ function collectify ( headers, rows ) {
 
 function translateKeys ( keyMap, obj ) {
   return Object.keys( obj ).reduce( function ( result, key ) {
-    result[ keyMap[key] ] = obj[ key ];
+    var newKey = keyMap[key];
+    if ( newKey === undefined ) {
+      throw new Error( "Key not found in translator." );
+    }
+    result[newKey] = obj[ key ];
     return result;
   }, {} );
 }
@@ -600,13 +603,17 @@ function matches ( matcher, against ) {
   return true;
 }
 
-function findWhere ( matcher, arr ) {
+function find ( test, arr ) {
   for ( var i = 0; i < arr.length; i++ ) {
-    if ( matches( matcher, arr[i] ) ) {
+    if ( test( arr[i] ) ) {
       return arr[i];
     }
   }
   return null;
+}
+
+function findWhere ( matcher, arr ) {
+  return find( partial( matches, matcher ), arr );
 }
 
 function mergeCollections ( idProp, collections ) {
@@ -638,6 +645,8 @@ module.exports = {
   mapKeysAndValues: mapKeysAndValues,
   mapValues: mapValues,
   mapKeys: mapKeys,
+  find: find,
+  findWhere: findWhere,
   pickKeys: pickKeys,
   collectify: collectify,
   translateKeys: translateKeys,
@@ -1519,6 +1528,7 @@ require( "./polyfills" );
 var Promise = require( "./promise" );
 var getTeamsInfo = require( "./info-teams" );
 var getPlayersInfo = require( "./info-players" );
+var util = require( "./util" );
 
 var playersPromise, teamsPromise, readyPromise;
 var nba = {};
@@ -1550,6 +1560,10 @@ Object.assign( nba, {
   updateTeamsInfo: updateTeamInfo,
   ready: function ( callback ) {
     readyPromise.then( callback );
+  },
+  playerIdFromName: function ( name ) {
+    var player = util.findWhere({ fullName: name }, this.playersInfo );
+    return player ? player.playerId : null;
   }
 });
 
@@ -1566,5 +1580,5 @@ readyPromise = Promise.all([ playersPromise, teamsPromise ]);
 
 module.exports = nba;
 
-},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./polyfills":8,"./promise":9,"./shots":10,"./sport-vu":11}]},{},[27])(27)
+},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./polyfills":8,"./promise":9,"./shots":10,"./sport-vu":11,"./util":12}]},{},[27])(27)
 });
