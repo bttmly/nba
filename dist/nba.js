@@ -4,7 +4,8 @@ module.exports=[{"personId":203112,"displayLastCommaFirst":"Acy, Quincy","roster
 module.exports=[{"teamId":1610612737,"abbreviation":"ATL","teamName":"Atlanta Hawks"},{"teamId":1610612738,"abbreviation":"BOS","teamName":"Boston Celtics"},{"teamId":1610612751,"abbreviation":"BKN","teamName":"Brooklyn Nets"},{"teamId":1610612766,"abbreviation":"CHA","teamName":"Charlotte Bobcats"},{"teamId":1610612741,"abbreviation":"CHI","teamName":"Chicago Bulls"},{"teamId":1610612739,"abbreviation":"CLE","teamName":"Cleveland Cavaliers"},{"teamId":1610612742,"abbreviation":"DAL","teamName":"Dallas Mavericks"},{"teamId":1610612743,"abbreviation":"DEN","teamName":"Denver Nuggets"},{"teamId":1610612765,"abbreviation":"DET","teamName":"Detroit Pistons"},{"teamId":1610612744,"abbreviation":"GSW","teamName":"Golden State Warriors"},{"teamId":1610612745,"abbreviation":"HOU","teamName":"Houston Rockets"},{"teamId":1610612754,"abbreviation":"IND","teamName":"Indiana Pacers"},{"teamId":1610612746,"abbreviation":"LAC","teamName":"Los Angeles Clippers"},{"teamId":1610612747,"abbreviation":"LAL","teamName":"Los Angeles Lakers"},{"teamId":1610612763,"abbreviation":"MEM","teamName":"Memphis Grizzlies"},{"teamId":1610612748,"abbreviation":"MIA","teamName":"Miami Heat"},{"teamId":1610612749,"abbreviation":"MIL","teamName":"Milwaukee Bucks"},{"teamId":1610612750,"abbreviation":"MIN","teamName":"Minnesota Timberwolves"},{"teamId":1610612740,"abbreviation":"NOP","teamName":"New Orleans Pelicans"},{"teamId":1610612752,"abbreviation":"NYK","teamName":"New York Knicks"},{"teamId":1610612760,"abbreviation":"OKC","teamName":"Oklahoma City Thunder"},{"teamId":1610612753,"abbreviation":"ORL","teamName":"Orlando Magic"},{"teamId":1610612755,"abbreviation":"PHI","teamName":"Philadelphia 76ers"},{"teamId":1610612756,"abbreviation":"PHX","teamName":"Phoenix Suns"},{"teamId":1610612757,"abbreviation":"POR","teamName":"Portland Trail Blazers"},{"teamId":1610612758,"abbreviation":"SAC","teamName":"Sacramento Kings"},{"teamId":1610612759,"abbreviation":"SAS","teamName":"San Antonio Spurs"},{"teamId":1610612761,"abbreviation":"TOR","teamName":"Toronto Raptors"},{"teamId":1610612762,"abbreviation":"UTA","teamName":"Utah Jazz"},{"teamId":1610612764,"abbreviation":"WAS","teamName":"Washington Wizards"}]
 },{}],3:[function(require,module,exports){
 var qs = require( "query-string" );
-var Promise = require( "es6-promise" ).Promise;
+
+var Promise = require( "./promise" );
 
 var PREFIX = "__jsonp__";
 
@@ -41,8 +42,8 @@ module.exports = function jsonpStrategy ( url, query ) {
   });
 };
 
-},{"es6-promise":12,"query-string":23}],4:[function(require,module,exports){
-var Promise = require( "es6-promise" ).Promise;
+},{"./promise":9,"query-string":26}],4:[function(require,module,exports){
+var Promise = require( "./promise" );
 
 module.exports = function scriptTagStrategy ( url, globalName ) {
   return new Promise( function ( resolve, reject ) {
@@ -57,24 +58,24 @@ module.exports = function scriptTagStrategy ( url, globalName ) {
     prev = window[globalName];
     script = document.body.createElement( "script" );
 
-    script.src = url;
-
-    script.onload = function () {
-      temp = window[globalName];
-      cleanup();
-      resolve( temp );
-    };
-
-    script.onerror = function () {
-      cleanup();
-      reject();
-    };
+    Object.assign( script, {
+      src: url,
+      onload: function () {
+        temp = window[globalName];
+        cleanup();
+        resolve( temp );
+      },
+      onerror: function () {
+        cleanup();
+        reject();
+      }
+    });
 
     document.body.appendChild( script );
   });
-}
+};
 
-},{"es6-promise":12}],5:[function(require,module,exports){
+},{"./promise":9}],5:[function(require,module,exports){
 var getJSON = require( "./get-json" );
 var util = require( "./util" );
 
@@ -93,16 +94,15 @@ module.exports = function() {
   });
 };
 
-},{"./get-json":3,"./util":10}],6:[function(require,module,exports){
-var Promise = require( "es6-promise" ).Promise;
-var extend = require( "extend" );
+},{"./get-json":3,"./util":12}],6:[function(require,module,exports){
+var Promise = require( "./promise" );
 
 var getJSON = require( "./get-json" );
 var maps = require( "./maps" );
 var util = require( "./util" );
 
 var TEAM_STAT_URL = "http://stats.nba.com/stats/leaguedashteamstats";
-var TEAM_STAT_QUERY = extend( {}, maps.teamStatDefaults );
+var TEAM_STAT_QUERY = maps.teamStatDefaults();
 
 var TEAM_INFO_URL = "http://stats.nba.com/stats/commonteamyears";
 var TEAM_INFO_QUERY = {
@@ -119,14 +119,24 @@ module.exports = function () {
   });
 };
 
-},{"./get-json":3,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],7:[function(require,module,exports){
+},{"./get-json":3,"./maps":7,"./promise":9,"./util":12}],7:[function(require,module,exports){
 var extend = require( 'extend' );
+
+// all maps are actually map-returning functions.
+// We need to absolutely prevent modules requiring these maps from altering them.
+// Options:
+//  - Return a "frozen" version (Object.freeze)
+//  - Return a copy
+//  - Return a new object
+//
+//  Frozen objects are sub-optimal, primarily since they don't always throw errors.
+//  Also, when 'extending' them you need to pass in a new object first. Not a problem with copies.
 
 // TODO: DRY up params
 // TODO: Settle on how to pass out these objects
 
-var nbaParams = Object.freeze(
-  extend( Object.create( null ), {
+function nbaParams () {
+  return {
     "Season": 1,
     "AllStarSeason": 1,
     "SeasonType": 1,
@@ -162,51 +172,51 @@ var nbaParams = Object.freeze(
     "GroupQuantity": 1,
     "pageNo": 1,
     "rowsPerPage": 1
-  })
-);
+  };
+}
 
-var jsParams = Object.freeze(
-  extend( Object.create( null ), {
-  "season": 1,
-  "allStarSeason": 1,
-  "seasonType": 1,
-  "leagueId": 1,
-  "measureType": 1,
-  "perMode": 1,
-  "plusMinus": 1,
-  "paceAdjust": 1,
-  "rank": 1,
-  "outcome": 1,
-  "location": 1,
-  "month": 1,
-  "seasonSegment": 1,
-  "dateFrom": 1,
-  "dateTo": 1,
-  "opponentTeamId": 1,
-  "vsConference": 1,
-  "vsDivision": 1,
-  "gameSegment": 1,
-  "period": 1 ,
-  "lastNGames": 1,
-  "gameScope": 1,
-  "playerExperience": 1,
-  "playerPosition": 1,
-  "starterBench": 1,
-  "teamId": 1,
-  "gameId": 1,
-  "position": 1,
-  "rookieYear": 1,
-  "contextFilter": 1,
-  "contextMeasure": 1,
-  "zoneMode": 1,
-  "groupQuantity": 1,
-  "pageNo": 1,
-  "rowsPerPage": 1
-  })
-);
+function jsParams () {
+  return {
+    "season": 1,
+    "allStarSeason": 1,
+    "seasonType": 1,
+    "leagueId": 1,
+    "measureType": 1,
+    "perMode": 1,
+    "plusMinus": 1,
+    "paceAdjust": 1,
+    "rank": 1,
+    "outcome": 1,
+    "location": 1,
+    "month": 1,
+    "seasonSegment": 1,
+    "dateFrom": 1,
+    "dateTo": 1,
+    "opponentTeamId": 1,
+    "vsConference": 1,
+    "vsDivision": 1,
+    "gameSegment": 1,
+    "period": 1 ,
+    "lastNGames": 1,
+    "gameScope": 1,
+    "playerExperience": 1,
+    "playerPosition": 1,
+    "starterBench": 1,
+    "teamId": 1,
+    "gameId": 1,
+    "position": 1,
+    "rookieYear": 1,
+    "contextFilter": 1,
+    "contextMeasure": 1,
+    "zoneMode": 1,
+    "groupQuantity": 1,
+    "pageNo": 1,
+    "rowsPerPage": 1
+  };
+}
 
-var twoWayMap = Object.freeze(
-  extend( Object.create( null ), {
+function twoWayMap () {
+  return {
     "Season": "season",
     "season": "Season",
     "AllStarSeason": "allStarSeason",
@@ -275,11 +285,11 @@ var twoWayMap = Object.freeze(
     "groupQuantity": "GroupQuantity",
     "pageNo": "pageNo",
     "rowsPerPage": "rowsPerPage"
-  })
-);
+  };
+}
 
-var shotDefaults = Object.freeze(
-  extend( Object.create( null ), {
+function shotDefaults () {
+  return {
     'Season': '2013-14',
     'SeasonType': 'Regular Season',
     'LeagueID': '00',
@@ -303,11 +313,11 @@ var shotDefaults = Object.freeze(
     'ContextFilter': '',
     'ContextMeasure': 'FG_PCT',
     'zone-mode': 'basic'
-  })
-);
+  };
+}
 
-var teamStatDefaults = Object.freeze(
-  extend( Object.create( null ), {
+function teamStatDefaults () {
+  return {
     'Season': '2013-14',
     'AllStarSeason': '',
     'SeasonType': 'Regular Season',
@@ -333,11 +343,11 @@ var teamStatDefaults = Object.freeze(
     'PlayerExperience': '',
     'PlayerPosition': '',
     'StarterBench': ''
-  })
-);
+  };
+};
 
-var playerSplitsDefaults = Object.freeze(
-  extend( Object.create( null ), {
+function playerSplitsDefaults () {
+  return {
     "Season": "2013-14",
     "SeasonType": "Playoffs",
     "LeagueID": "00",
@@ -359,8 +369,8 @@ var playerSplitsDefaults = Object.freeze(
     "GameSegment": "",
     "Period": "0",
     "LastNGames": "0"
-  })
-);
+  };
+}
 
 
 module.exports = {
@@ -381,29 +391,35 @@ module.exports = {
 //   return result;
 // }, {} );
 
-},{"extend":22}],8:[function(require,module,exports){
+},{"extend":24}],8:[function(require,module,exports){
+Object.assign = require( "object-assign" );
+
+},{"object-assign":25}],9:[function(require,module,exports){
+module.exports = require( 'es6-promise' ).Promise;
+},{"es6-promise":14}],10:[function(require,module,exports){
 var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
 
-var extend = require( 'extend' );
-var Promise = require( 'es6-promise' ).Promise;
+var extend = require( "extend" );
+
+var Promise = require( "./promise" );
 
 var maps = require( "./maps" );
 var util = require( "./util" );
 var getJSON = require( "./get-json" );
 
-var translateOptions = util.partial( util.translateKeys, maps.twoWayMap );
+var translateOptions = util.partial( util.translateKeys, maps.twoWayMap() );
 
 module.exports = function ( options ) {
   if ( options == null ) {
     options = {};
   }
   options = translateOptions( options );
-  return getJSON( SHOT_URL, extend( {}, maps.shotDefaults, options ) )
+  return getJSON( SHOT_URL, extend( maps.shotDefaults(), options ) )
     .then( util.baseResponseTransform );
 };
 
-},{"./get-json":3,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],9:[function(require,module,exports){
-var Promise = require( "es6-promise" ).Promise;
+},{"./get-json":3,"./maps":7,"./promise":9,"./util":12,"extend":24}],11:[function(require,module,exports){
+var Promise = require( "./promise" );
 var getScript = require( "./get-script" );
 
 var sportVuScripts = {
@@ -469,8 +485,7 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   return obj;
 }, {} );
 
-},{"./get-script":4,"es6-promise":12}],10:[function(require,module,exports){
-
+},{"./get-script":4,"./promise":9}],12:[function(require,module,exports){
 function merge ( target ) {
   var source;
   var keys;
@@ -635,7 +650,7 @@ module.exports = {
   playersResponseTransform: playersResponseTransform
 };
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -700,13 +715,13 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 var Promise = require("./promise/promise").Promise;
 var polyfill = require("./promise/polyfill").polyfill;
 exports.Promise = Promise;
 exports.polyfill = polyfill;
-},{"./promise/polyfill":16,"./promise/promise":17}],13:[function(require,module,exports){
+},{"./promise/polyfill":18,"./promise/promise":19}],15:[function(require,module,exports){
 "use strict";
 /* global toString */
 
@@ -800,7 +815,7 @@ function all(promises) {
 }
 
 exports.all = all;
-},{"./utils":21}],14:[function(require,module,exports){
+},{"./utils":23}],16:[function(require,module,exports){
 (function (process,global){
 "use strict";
 var browserGlobal = (typeof window !== 'undefined') ? window : {};
@@ -864,7 +879,7 @@ function asap(callback, arg) {
 
 exports.asap = asap;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":11}],15:[function(require,module,exports){
+},{"_process":13}],17:[function(require,module,exports){
 "use strict";
 var config = {
   instrument: false
@@ -880,7 +895,7 @@ function configure(name, value) {
 
 exports.config = config;
 exports.configure = configure;
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 "use strict";
 /*global self*/
@@ -921,7 +936,7 @@ function polyfill() {
 
 exports.polyfill = polyfill;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./promise":17,"./utils":21}],17:[function(require,module,exports){
+},{"./promise":19,"./utils":23}],19:[function(require,module,exports){
 "use strict";
 var config = require("./config").config;
 var configure = require("./config").configure;
@@ -1133,7 +1148,7 @@ function publishRejection(promise) {
 }
 
 exports.Promise = Promise;
-},{"./all":13,"./asap":14,"./config":15,"./race":18,"./reject":19,"./resolve":20,"./utils":21}],18:[function(require,module,exports){
+},{"./all":15,"./asap":16,"./config":17,"./race":20,"./reject":21,"./resolve":22,"./utils":23}],20:[function(require,module,exports){
 "use strict";
 /* global toString */
 var isArray = require("./utils").isArray;
@@ -1223,7 +1238,7 @@ function race(promises) {
 }
 
 exports.race = race;
-},{"./utils":21}],19:[function(require,module,exports){
+},{"./utils":23}],21:[function(require,module,exports){
 "use strict";
 /**
   `RSVP.reject` returns a promise that will become rejected with the passed
@@ -1271,7 +1286,7 @@ function reject(reason) {
 }
 
 exports.reject = reject;
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 function resolve(value) {
   /*jshint validthis:true */
@@ -1287,7 +1302,7 @@ function resolve(value) {
 }
 
 exports.resolve = resolve;
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 function objectOrFunction(x) {
   return isFunction(x) || (typeof x === "object" && x !== null);
@@ -1310,7 +1325,7 @@ exports.objectOrFunction = objectOrFunction;
 exports.isFunction = isFunction;
 exports.isArray = isArray;
 exports.now = now;
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -1392,7 +1407,46 @@ module.exports = function extend() {
 };
 
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
+'use strict';
+
+function ToObject(val) {
+	if (val == null) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+module.exports = Object.assign || function (target, source) {
+	var pendingException;
+	var from;
+	var keys;
+	var to = ToObject(target);
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = arguments[s];
+		keys = Object.keys(Object(from));
+
+		for (var i = 0; i < keys.length; i++) {
+			try {
+				to[keys[i]] = from[keys[i]];
+			} catch (err) {
+				if (pendingException === undefined) {
+					pendingException = err;
+				}
+			}
+		}
+	}
+
+	if (pendingException) {
+		throw pendingException;
+	}
+
+	return to;
+};
+
+},{}],26:[function(require,module,exports){
 /*!
 	query-string
 	Parse and stringify URL query strings
@@ -1460,14 +1514,15 @@ module.exports = function extend() {
 	}
 })();
 
-},{}],24:[function(require,module,exports){
-var extend = require( "extend" );
-var Promise = require( "es6-promise" ).Promise;
+},{}],27:[function(require,module,exports){
+require( "./polyfills" );
 
+var Promise = require( "./promise" );
 var getTeamsInfo = require( "./info-teams" );
 var getPlayersInfo = require( "./info-players" );
 
-var nba;
+var playersPromise, teamsPromise, readyPromise;
+var nba = {};
 
 function immediatelyResolvedPromise ( value ) {
   return new Promise( function ( resolve ) {
@@ -1487,32 +1542,30 @@ function updateTeamInfo () {
   });
 }
 
-nba = {
+Object.assign( nba, {
   sportVu: require( "./sport-vu" ),
   shots: require( "./shots" ),
   playersInfo: require( "../data/players.json" ),
   updatePlayersInfo: updatePlayerInfo,
   teamsInfo: require( "../data/teams.json" ),
-  updateTeamsInfo: updateTeamInfo
-};
+  updateTeamsInfo: updateTeamInfo,
+  ready: function ( callback ) {
+    readyPromise.then( callback );
+  }
+});
 
-// in order to provide same .ready() API for heavy and light versions...
-//
-var playersPromise = nba.playersInfo.length ?
+// To provide consistent .ready() API for both light & regular versions.
+playersPromise = nba.playersInfo.length ?
   immediatelyResolvedPromise() :
   updatePlayerInfo();
 
-var teamsPromise = nba.teamsInfo.length ?
+teamsPromise = nba.teamsInfo.length ?
   immediatelyResolvedPromise() :
   updateTeamInfo();
 
-var readyPromise = Promise.all([ playersPromise, teamsPromise ]);
-
-nba.ready = function ( callback ) {
-  readyPromise.then( callback );
-};
+readyPromise = Promise.all([ playersPromise, teamsPromise ]);
 
 module.exports = nba;
 
-},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./shots":8,"./sport-vu":9,"es6-promise":12,"extend":22}]},{},[24])(24)
+},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./polyfills":8,"./promise":9,"./shots":10,"./sport-vu":11}]},{},[27])(27)
 });
