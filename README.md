@@ -4,11 +4,21 @@ As far as I can tell, the NBA's stats API does not have public documentation. As
 
 I also couldn't find anything on the terms of use. If you know of a relevant policy, please point me to it.
 
+## Async Methods
+
+### shots([Object params])
+
+### playerSplits([Object params])
+
+
+
 ## Stability Disclaimer
 
 
 ## SportVu
 The NBA's player tracking system, SportVu, provides data in a totally different form.
+
+
 
 ## Todo
 - [x] Set up scripts to populate players list and teams list.

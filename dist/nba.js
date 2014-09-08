@@ -4,8 +4,9 @@ module.exports=[{"personId":203112,"displayLastCommaFirst":"Acy, Quincy","roster
 module.exports=[{"teamId":1610612737,"abbreviation":"ATL","teamName":"Atlanta Hawks"},{"teamId":1610612738,"abbreviation":"BOS","teamName":"Boston Celtics"},{"teamId":1610612751,"abbreviation":"BKN","teamName":"Brooklyn Nets"},{"teamId":1610612766,"abbreviation":"CHA","teamName":"Charlotte Bobcats"},{"teamId":1610612741,"abbreviation":"CHI","teamName":"Chicago Bulls"},{"teamId":1610612739,"abbreviation":"CLE","teamName":"Cleveland Cavaliers"},{"teamId":1610612742,"abbreviation":"DAL","teamName":"Dallas Mavericks"},{"teamId":1610612743,"abbreviation":"DEN","teamName":"Denver Nuggets"},{"teamId":1610612765,"abbreviation":"DET","teamName":"Detroit Pistons"},{"teamId":1610612744,"abbreviation":"GSW","teamName":"Golden State Warriors"},{"teamId":1610612745,"abbreviation":"HOU","teamName":"Houston Rockets"},{"teamId":1610612754,"abbreviation":"IND","teamName":"Indiana Pacers"},{"teamId":1610612746,"abbreviation":"LAC","teamName":"Los Angeles Clippers"},{"teamId":1610612747,"abbreviation":"LAL","teamName":"Los Angeles Lakers"},{"teamId":1610612763,"abbreviation":"MEM","teamName":"Memphis Grizzlies"},{"teamId":1610612748,"abbreviation":"MIA","teamName":"Miami Heat"},{"teamId":1610612749,"abbreviation":"MIL","teamName":"Milwaukee Bucks"},{"teamId":1610612750,"abbreviation":"MIN","teamName":"Minnesota Timberwolves"},{"teamId":1610612740,"abbreviation":"NOP","teamName":"New Orleans Pelicans"},{"teamId":1610612752,"abbreviation":"NYK","teamName":"New York Knicks"},{"teamId":1610612760,"abbreviation":"OKC","teamName":"Oklahoma City Thunder"},{"teamId":1610612753,"abbreviation":"ORL","teamName":"Orlando Magic"},{"teamId":1610612755,"abbreviation":"PHI","teamName":"Philadelphia 76ers"},{"teamId":1610612756,"abbreviation":"PHX","teamName":"Phoenix Suns"},{"teamId":1610612757,"abbreviation":"POR","teamName":"Portland Trail Blazers"},{"teamId":1610612758,"abbreviation":"SAC","teamName":"Sacramento Kings"},{"teamId":1610612759,"abbreviation":"SAS","teamName":"San Antonio Spurs"},{"teamId":1610612761,"abbreviation":"TOR","teamName":"Toronto Raptors"},{"teamId":1610612762,"abbreviation":"UTA","teamName":"Utah Jazz"},{"teamId":1610612764,"abbreviation":"WAS","teamName":"Washington Wizards"}]
 },{}],3:[function(require,module,exports){
 var qs = require( "query-string" );
-var Promise = require( "es6-promise" );
-var JSONP_NAMESPACE = "__jsonp__";
+var Promise = require( "es6-promise" ).Promise;
+
+var PREFIX = "__jsonp__";
 
 module.exports = function jsonpStrategy ( url, query ) {
   return new Promise( function ( resolve, reject ) {
@@ -21,8 +22,8 @@ module.exports = function jsonpStrategy ( url, query ) {
       query = {};
     }
 
-    fnName = JSONP_NAMESPACE + Math.random().toString( 36 ).slice( 2 );
-    script = document.createElement( 'script' );
+    fnName = PREFIX + Math.random().toString( 36 ).slice( 2 );
+    script = document.createElement( "script" );
 
     script.onerror = function () {
       cleanup();
@@ -120,6 +121,9 @@ module.exports = function () {
 
 },{"./get-json":3,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],7:[function(require,module,exports){
 var extend = require( 'extend' );
+
+// TODO: DRY up params
+// TODO: Settle on how to pass out these objects
 
 var nbaParams = Object.freeze(
   extend( Object.create( null ), {
@@ -332,6 +336,33 @@ var teamStatDefaults = Object.freeze(
   })
 );
 
+var playerSplitsDefaults = Object.freeze(
+  extend( Object.create( null ), {
+    "Season": "2013-14",
+    "SeasonType": "Playoffs",
+    "LeagueID": "00",
+    "PlayerID": "201142",
+    "MeasureType": "Base",
+    "PerMode": "PerGame",
+    "PlusMinus": "N",
+    "PaceAdjust": "N",
+    "Rank": "N",
+    "Outcome": "",
+    "Location": "",
+    "Month": "0",
+    "SeasonSegment": "",
+    "DateFrom": "",
+    "DateTo": "",
+    "OpponentTeamID": "0",
+    "VsConference": "",
+    "VsDivision": "",
+    "GameSegment": "",
+    "Period": "0",
+    "LastNGames": "0"
+  })
+);
+
+
 module.exports = {
   nbaParams: nbaParams,
   jsParams: jsParams,
@@ -339,6 +370,16 @@ module.exports = {
   shotDefaults: shotDefaults,
   teamStatDefaults: teamStatDefaults
 };
+
+// alternate method w/o freeze & such
+// assuming a "maps" object with all the maps in it...
+// var maps = {};
+// module.exports = Object.keys( maps ).reduce( function ( result, key ) {
+//   result[key] = function () {
+//     return extend( {}, maps[key] );
+//   };
+//   return result;
+// }, {} );
 
 },{"extend":22}],8:[function(require,module,exports){
 var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
@@ -425,17 +466,28 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   obj[key] = function () {
     return getSportVu( key );
   };
+  return obj;
 }, {} );
 
 },{"./get-script":4,"es6-promise":12}],10:[function(require,module,exports){
-var extend = require( "extend" );
+
+function merge ( target ) {
+  var source;
+  var keys;
+  for ( var i = 1; i < arguments.length; i++ ) {
+    source = arguments[i];
+    keys = Object.keys( source );
+    for ( var j = 0; j < keys.length; j++ ) {
+      target[keys[j]] = source[keys[j]];
+    }
+  }
+  return target;
+}
 
 function shallowCopy ( obj ) {
-  return Object.keys( obj ).reduce( function ( result, key ) {
-    result[key] = obj[key];
-    return result;
-  }, {} );
+  return merge( {}, obj );
 }
+
 
 function mapKeysAndValues ( obj, cb ) {
   return Object.keys( obj ).reduce( function( result, key ) {
@@ -505,6 +557,12 @@ function baseResponseTransform ( resp ) {
   return collectify( headers, data.rowSet );
 }
 
+function generalResponseTransform ( resp ) {
+  return resp.resultSets.map( function ( resultSet ) {
+    return collectify( jsifyHeaders( resultSet.headers ), resultSet.row );
+  });
+}
+
 function playersResponseTransform ( resp ) {
   return baseResponseTransform( resp )
       .map( function ( player ) {
@@ -544,7 +602,7 @@ function mergeCollections ( idProp, collections ) {
     matcher[idProp] = itemA[idProp];
     var findMatch = partial( findWhere, matcher );
     var items = [{}, itemA].concat( collections.map( findMatch ) );
-    return extend.apply( null, items );
+    return merge.apply( null, items );
   });
 }
 
@@ -577,7 +635,7 @@ module.exports = {
   playersResponseTransform: playersResponseTransform
 };
 
-},{"extend":22}],11:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1404,33 +1462,57 @@ module.exports = function extend() {
 
 },{}],24:[function(require,module,exports){
 var extend = require( "extend" );
+var Promise = require( "es6-promise" ).Promise;
 
-var teamsInfo = require( "./info-teams" );
-var playersInfo = require( "./info-players" );
+var getTeamsInfo = require( "./info-teams" );
+var getPlayersInfo = require( "./info-players" );
 
-var nba = {};
+var nba;
+
+function immediatelyResolvedPromise ( value ) {
+  return new Promise( function ( resolve ) {
+    resolve( value );
+  });
+}
 
 function updatePlayerInfo () {
-  return teamsInfo().then( function ( resp ) {
+  return getTeamsInfo().then( function ( resp ) {
     nba.teamInfo = resp;
   });
 }
 
 function updateTeamInfo () {
-  return playersInfo().then( function ( resp ) {
+  return getPlayersInfo().then( function ( resp ) {
     nba.playerInfo = resp;
   });
 }
 
-module.exports = {
+nba = {
   sportVu: require( "./sport-vu" ),
   shots: require( "./shots" ),
-  playerInfo: require( "../data/players.json" ),
-  updatePlayerInfo: updatePlayerInfo,
-  teamInfo: require( "../data/teams.json" ),
-  updateTeamInfo: updateTeamInfo
+  playersInfo: require( "../data/players.json" ),
+  updatePlayersInfo: updatePlayerInfo,
+  teamsInfo: require( "../data/teams.json" ),
+  updateTeamsInfo: updateTeamInfo
 };
 
+// in order to provide same .ready() API for heavy and light versions...
+//
+var playersPromise = nba.playersInfo.length ?
+  immediatelyResolvedPromise() :
+  updatePlayerInfo();
 
-},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./shots":8,"./sport-vu":9,"extend":22}]},{},[24])(24)
+var teamsPromise = nba.teamsInfo.length ?
+  immediatelyResolvedPromise() :
+  updateTeamInfo();
+
+var readyPromise = Promise.all([ playersPromise, teamsPromise ]);
+
+nba.ready = function ( callback ) {
+  readyPromise.then( callback );
+};
+
+module.exports = nba;
+
+},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./shots":8,"./sport-vu":9,"es6-promise":12,"extend":22}]},{},[24])(24)
 });
