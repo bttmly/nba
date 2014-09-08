@@ -56,7 +56,7 @@ module.exports = function scriptTagStrategy ( url, globalName ) {
     }
 
     prev = window[globalName];
-    script = document.body.createElement( "script" );
+    script = document.createElement( "script" );
 
     Object.assign( script, {
       src: url,
@@ -458,23 +458,22 @@ var sportVuScripts = {
   pullUpShoot: {
     url: "http://stats.nba.com/js/data/sportvu/pullUpShootData.js",
     varName: "pullUpShootData",
+  },
+  underscore: {
+    url: "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js",
+    varName: "_"
   }
 };
 
 var getSportVu = (function () {
   var cache = {};
   return function ( key ) {
-    var item;
-    if ( cache[key] ) {
-      return new Promise(function ( resolve, reject ) {
-        resolve( cache[key] );
-      });
+    var item, prms;
+    if ( cache[key] === undefined ) {
+      item = sportVuScripts[key];
+      cache[key] = getScript( item.url, item.varName );
     }
-    item = sportVuScripts[key];
-    return getScript( item.url, item.varName ).then(function ( result ) {
-      cache[key] = result;
-      return result;
-    });
+    return cache[key];
   };
 })();
 
