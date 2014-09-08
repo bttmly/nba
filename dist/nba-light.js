@@ -3,9 +3,6 @@ module.exports=[]
 },{}],2:[function(require,module,exports){
 module.exports=require(1)
 },{"/Users/nickbottomley/Documents/dev/github/nick/nba-api/data/players.json":1}],3:[function(require,module,exports){
-module.exports = require( "./lib/nba" );
-
-},{"./lib/nba":8}],4:[function(require,module,exports){
 var qs = require( "query-string" );
 var Promise = require( "es6-promise" );
 var JSONP_NAMESPACE = "__jsonp__";
@@ -43,7 +40,40 @@ module.exports = function jsonpStrategy ( url, query ) {
   });
 };
 
-},{"es6-promise":12,"query-string":23}],5:[function(require,module,exports){
+},{"es6-promise":12,"query-string":23}],4:[function(require,module,exports){
+var Promise = require( "es6-promise" ).Promise;
+
+module.exports = function scriptTagStrategy ( url, globalName ) {
+  return new Promise( function ( resolve, reject ) {
+    var script, prev, temp;
+
+    function cleanup () {
+      document.body.removeChild( script );
+      script = null;
+      window[globalName] = prev;
+    }
+
+    prev = window[globalName];
+    script = document.body.createElement( "script" );
+
+    script.src = url;
+
+    script.onload = function () {
+      temp = window[globalName];
+      cleanup();
+      resolve( temp );
+    };
+
+    script.onerror = function () {
+      cleanup();
+      reject();
+    };
+
+    document.body.appendChild( script );
+  });
+}
+
+},{"es6-promise":12}],5:[function(require,module,exports){
 var getJSON = require( "./get-json" );
 var util = require( "./util" );
 
@@ -62,7 +92,7 @@ module.exports = function() {
   });
 };
 
-},{"./get-json":4,"./util":10}],6:[function(require,module,exports){
+},{"./get-json":3,"./util":10}],6:[function(require,module,exports){
 var Promise = require( "es6-promise" ).Promise;
 var extend = require( "extend" );
 
@@ -88,7 +118,7 @@ module.exports = function () {
   });
 };
 
-},{"./get-json":4,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],7:[function(require,module,exports){
+},{"./get-json":3,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],7:[function(require,module,exports){
 var extend = require( 'extend' );
 
 var nbaParams = Object.freeze(
@@ -311,35 +341,6 @@ module.exports = {
 };
 
 },{"extend":22}],8:[function(require,module,exports){
-var extend = require( "extend" );
-
-var teamsInfo = require( "./info-teams" );
-var playersInfo = require( "./info-players" );
-
-var nba = {};
-
-function updatePlayerInfo () {
-  return teamsInfo().then( function ( resp ) {
-    nba.teamInfo = resp;
-  });
-}
-
-function updateTeamInfo () {
-  return playersInfo().then( function ( resp ) {
-    nba.playerInfo = resp;
-  });
-}
-
-module.exports = {
-  shots: require( "./shots" ),
-  playerInfo: require( "../data/players.json" ),
-  updatePlayerInfo: updatePlayerInfo,
-  teamInfo: require( "../data/teams.json" ),
-  updateTeamInfo: updateTeamInfo
-};
-
-
-},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./shots":9,"extend":22}],9:[function(require,module,exports){
 var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
 
 var extend = require( 'extend' );
@@ -360,7 +361,73 @@ module.exports = function ( options ) {
     .then( util.baseResponseTransform );
 };
 
-},{"./get-json":4,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],10:[function(require,module,exports){
+},{"./get-json":3,"./maps":7,"./util":10,"es6-promise":12,"extend":22}],9:[function(require,module,exports){
+var Promise = require( "es6-promise" ).Promise;
+var getScript = require( "./get-script" );
+
+var sportVuScripts = {
+  speed: {
+    url: "http://stats.nba.com/js/data/sportvu/speedData.js",
+    varName: "speedData",
+  },
+  touches: {
+    url: "http://stats.nba.com/js/data/sportvu/touchesData.js",
+    varName: "touchesData",
+  },
+  passing: {
+    url: "http://stats.nba.com/js/data/sportvu/passingData.js",
+    varName: "passingData",
+  },
+  defense: {
+    url: "http://stats.nba.com/js/data/sportvu/defenseData.js",
+    varName: "defenseData",
+  },
+  rebounding: {
+    url: "http://stats.nba.com/js/data/sportvu/reboundingData.js",
+    varName: "reboundingData",
+  },
+  drives: {
+    url: "http://stats.nba.com/js/data/sportvu/drivesData.js",
+    varName: "drivesData",
+  },
+  shooting: {
+    url: "http://stats.nba.com/js/data/sportvu/shootingData.js",
+    varName: "shootingData",
+  },
+  catchShoot: {
+    url: "http://stats.nba.com/js/data/sportvu/catchShootData.js",
+    varName: "catchShootData",
+  },
+  pullUpShoot: {
+    url: "http://stats.nba.com/js/data/sportvu/pullUpShootData.js",
+    varName: "pullUpShootData",
+  }
+};
+
+var getSportVu = (function () {
+  var cache = {};
+  return function ( key ) {
+    var item;
+    if ( cache[key] ) {
+      return new Promise(function ( resolve, reject ) {
+        resolve( cache[key] );
+      });
+    }
+    item = sportVuScripts[key];
+    return getScript( item.url, item.varName ).then(function ( result ) {
+      cache[key] = result;
+      return result;
+    });
+  };
+})();
+
+module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
+  obj[key] = function () {
+    return getSportVu( key );
+  };
+}, {} );
+
+},{"./get-script":4,"es6-promise":12}],10:[function(require,module,exports){
 var extend = require( "extend" );
 
 function shallowCopy ( obj ) {
@@ -1335,5 +1402,35 @@ module.exports = function extend() {
 	}
 })();
 
-},{}]},{},[3])(3)
+},{}],24:[function(require,module,exports){
+var extend = require( "extend" );
+
+var teamsInfo = require( "./info-teams" );
+var playersInfo = require( "./info-players" );
+
+var nba = {};
+
+function updatePlayerInfo () {
+  return teamsInfo().then( function ( resp ) {
+    nba.teamInfo = resp;
+  });
+}
+
+function updateTeamInfo () {
+  return playersInfo().then( function ( resp ) {
+    nba.playerInfo = resp;
+  });
+}
+
+module.exports = {
+  sportVu: require( "./sport-vu" ),
+  shots: require( "./shots" ),
+  playerInfo: require( "../data/players.json" ),
+  updatePlayerInfo: updatePlayerInfo,
+  teamInfo: require( "../data/teams.json" ),
+  updateTeamInfo: updateTeamInfo
+};
+
+
+},{"../data/players.json":1,"../data/teams.json":2,"./info-players":5,"./info-teams":6,"./shots":8,"./sport-vu":9,"extend":22}]},{},[24])(24)
 });
