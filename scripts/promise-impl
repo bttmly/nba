@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var fs = require( "fs" );
+var path = require( "path" );
+var which = process.argv[2];
+
+var code = {
+  browser: "module.exports = window.Promise;",
+  node: "module.exports = require( 'es6-promise' ).Promise;"
+};
+
+if ( code[which] === undefined ) {
+  throw new Error( "Pass either 'browser' or 'node' to promise-impl" );
+}
+
+var promisePath = path.join( __dirname, "../lib/promise.js" );
+fs.writeFileSync( promisePath, code[which] );
