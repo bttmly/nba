@@ -12,11 +12,30 @@ The peculiar structure of the NBA stats API enforced some specific design consid
 **Implement methods mapping to various `http://stats.nba.com/stats/{xyz}` endpoints**
 Unfortunately, the endpoints aren't documented, so there's no good way to quickly determine how many of them there might be. So far, I've collected a preliminary list by poking around the Network panel in Dev Tools. 
 
-However, I've written infrastructure code that makes adding a new endpoint really easy. The meat of each method is a single function call to `getJSON` (discussed later) with the URL path, and an object representing the querystring. 
-### Strategies
-This API wrapper gets data in two main ways. Data from NBA stats is accessible over a public JSON REST API. It supports JSONP, so in the browser we just use a tiny, custom, promise-returning implementation for that. In Node we just use the `request` module. The implementations are interchangable. 
+However, I've written infrastructure code that makes adding a new endpoint really easy. The meat of each method is a single function call to `getJSON` (discussed later) with the URL path, and an object representing the querystring.
 
-The SportVu service provides data differently, as actual .js files that expose a global variable. I have no clue why they elected to do it this way. Anyway, there are similar browser/Node strategies for these files also. The browser implementation is similar to the JSONP strategy, while the Node version uses the [`vm` module](). 
+The following endpoints are implemented currently:
+`http://stats.nba.com/stats/playerprofile`
+`http://stats.nba.com/stats/commonplayerinfo`
+`http://stats.nba.com/stats/commonallplayers`
+`http://stats.nba.com/stats/teamdashboardbygeneralsplits`
+`http://stats.nba.com/stats/playerdashboardbygeneralsplits`
+`http://stats.nba.com/stats/shotchartdetail`
+`http://stats.nba.com/stats/scoreboard/`
+`http://stats.nba.com/stats/playbyplay`
+`http://stats.nba.com/stats/boxscorescoring`
+`http://stats.nba.com/stats/boxscoreusage`
+`http://stats.nba.com/stats/boxscoremisc`
+`http://stats.nba.com/stats/boxscoreadvanced`
+`http://stats.nba.com/stats/boxscorefourfactors`
+
+### Strategies
+This API wrapper gets data in two main ways. Data from NBA stats is accessible over a public JSON REST API. It supports JSONP, so in the browser we just use a tiny, custom, promise-returning implementation for that. In Node we delegate to `request` module. The implementations are interchangable.
+
+The SportVu service provides data differently, as actual .js files that expose a global variable. I have no clue why they elected to do it this way. Anyway, there are similar browser/Node strategies for these files also. The browser implementation is similar to the JSONP strategy, while the Node version uses the [`vm` module]().
+
+### The Problem with JSONP
+JSONP is generally miserable at handling errors.
 
 ### Data
 Stats responses generally arrive in an object like so:
