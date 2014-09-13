@@ -4,8 +4,6 @@ module.exports=[]
 module.exports=require(1)
 },{"/Users/nickbottomley/Documents/dev/github/nick/nba-api/data/players.json":1}],3:[function(require,module,exports){
 var endpoints = require( "./endpoints" );
-var Promise = require( "./promise" );
-
 var maps = require( "./maps" );
 var util = require( "./util" );
 var getJSON = require( "./get-json" );
@@ -19,78 +17,112 @@ Object.keys( endpoints ).forEach( function ( key ) {
     if ( options == null ) {
       options = {};
     }
-    options = Object.assign( endpoints[key].defaults(), translateOptions( options ) );
-    return getJSON( endpoints[key].url, options ).then( util.generalResponseTransform );
+    options = util.merge( endpoints[key].defaults(), translateOptions( options ) );
+    return getJSON( endpoints[key].url, options ).then( endpoints[key].transform );
   };
 });
 
 module.exports = api;
 
-},{"./endpoints":4,"./get-json":6,"./maps":10,"./promise":12,"./util":15}],4:[function(require,module,exports){
+},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":14}],4:[function(require,module,exports){
+var util = require( "./util" );
+
+var DEFAULT_SEASON = "2013-14";
+
+function boxScoreDefaults () {
+  return {"GameID":"0","RangeType":"0","StartPeriod":"0","EndPeriod":"0","StartRange":"0","EndRange":"0"};
+}
+
 var endpoints = {
   playerProfile: {
     url: "http://stats.nba.com/stats/playerprofile",
-    defaults: function () { return {"Season":"2013-14","SeasonType":"Regular Season","LeagueID":"00","PlayerID":"0","GraphStartSeason":"2009-10","GraphEndSeason":"2014-15","GraphStat":"PTS"}; }
+    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Regular Season","LeagueID":"00","PlayerID":"0","GraphStartSeason":"2009-10","GraphEndSeason":"2014-15","GraphStat":"PTS"}; },
+    transform: util.generalResponseTransform
   },
   playerInfo: {
     url: "http://stats.nba.com/stats/commonplayerinfo",
-    defaults: function () { return {"PlayerID":"0","SeasonType":"Regular Season","LeagueID":"00","asynchFlag":"true"}; }
+    defaults: function () { return {"PlayerID":"0","SeasonType":"Regular Season","LeagueID":"00","asynchFlag":"true"}; },
+    transform: util.generalResponseTransform
   },
   playersInfo: {
     url: "http://stats.nba.com/stats/commonallplayers",
-    defaults: function () { return {"LeagueID":"00","Season":"2013-14","IsOnlyCurrentSeason":"0"}; }
+    defaults: function () { return {"LeagueID":"00","Season":DEFAULT_SEASON,"IsOnlyCurrentSeason":"1"}; },
+    transform: util.playersResponseTransform
+  },
+  teamStats: {
+    url: "http://stats.nba.com/stats/leaguedashteamstats",
+    defaults: function () { return {"Season":"2013-14","AllStarSeason":"","SeasonType":"Regular Season","LeagueID":"00","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":"","PlayerExperience":"","PlayerPosition":"","StarterBench":""}; },
+    transform: util.baseResponseTransform
   },
   teamSplits: {
     url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits",
-    defaults: function () { return {"Season":"2013-14","SeasonType":"Regular Season","LeagueID":"00","TeamID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":""}; }
+    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Regular Season","LeagueID":"00","TeamID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":""}; },
+    transform: util.generalResponseTransform
+  },
+  teamYears: {
+    url: "http://stats.nba.com/stats/commonteamyears",
+    defaults: function () { return {"LeagueID": "00"}; },
+    transform: util.baseResponseTransform
   },
   playerSplits: {
     url: "http://stats.nba.com/stats/playerdashboardbygeneralsplits",
-    defaults: function () { return { "Season":"2013-14","SeasonType":"Playoffs","LeagueID":"00","PlayerID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0"}; }
+    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Playoffs","LeagueID":"00","PlayerID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0"}; },
+    transform: util.generalResponseTransform
   },
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
-    defaults: function () { return {"Season":"2013-14","AllStarSeason":"","SeasonType":"Regular Season","LeagueID":"00","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":"","PlayerExperience":"","PlayerPosition":"","StarterBench":""}; }
+    defaults: function () { return {"Season":DEFAULT_SEASON,"AllStarSeason":"","SeasonType":"Regular Season","LeagueID":"00","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":"","PlayerExperience":"","PlayerPosition":"","StarterBench":""}; },
+    transform: util.generalResponseTransform
+  },
+  scoreboard: {
+    url: "http://stats.nba.com/stats/scoreboard/",
+    defaults: function () { return {"LeagueID":"00","gameDate":"01/01/2000","DayOffset":"0"}; },
+    transform: util.generalResponseTransform
+  },
+  playByPlay: {
+    url: "http://stats.nba.com/stats/playbyplay",
+    defaults: function () { return {"GameID":"0021300721","StartPeriod":"0","EndPeriod":"0"}; },
+    transform: util.generalResponseTransform
+  },
+  boxScoreScoring: {
+    url: "http://stats.nba.com/stats/boxscorescoring",
+    defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
+  },
+  boxScoreUsage: {
+    url: "http://stats.nba.com/stats/boxscoreusage",
+    defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
+  },
+  boxScoreMisc: {
+    url: "http://stats.nba.com/stats/boxscoremisc",
+    defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
+  },
+  boxScoreAdvanced: {
+    url: "http://stats.nba.com/stats/boxscoreadvanced",
+    defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
+  },
+  boxScoreFourFactors: {
+    url: "http://stats.nba.com/stats/boxscorefourfactors",
+    defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
   }
 };
 
 module.exports = endpoints;
 
-/*
-http://stats.nba.com/stats/playerdashboardbygeneralsplits?Season=2013-14&SeasonType=Playoffs&LeagueID=00&PlayerID=201142&MeasureType=Base&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&DateFrom=&DateTo=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0
-*/
-
-/*
-http://stats.nba.com/stats/commonplayerinfo/?PlayerID=201142&SeasonType=Regular+Season&LeagueID=00&asynchFlag=true
- */
-
-/*
-http://stats.nba.com/stats/commonallplayers/?LeagueID=00&Season=2013-14&IsOnlyCurrentSeason=0&callback=playerinfocallback
- */
-
-/*
-http://stats.nba.com/stats/commonteamyears?LeagueID=00&callback=teaminfocallback
- */
-
-/*
-http://stats.nba.com/stats/teamdashboardbygeneralsplits?Season=2013-14&SeasonType=Regular+Season&LeagueID=00&TeamID=1610612748&MeasureType=Base&PerMode=PerGame&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&DateFrom=&DateTo=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=0&GameScope=
- */
-
-/*
-http://stats.nba.com/stats/playerprofile?Season=2013-14&SeasonType=Regular+Season&LeagueID=00&PlayerID=201939&GraphStartSeason=2009-10&GraphEndSeason=2014-15&GraphStat=PTS
- */
-
-
-
-},{}],5:[function(require,module,exports){
+},{"./util":14}],5:[function(require,module,exports){
 var qs = require( "query-string" );
 
 function RequestError ( url, query ) {
   this.url = url + "?" + qs.stringify( query );
-  this.message = "Request to " + this.url + " failed.";
+  this.message = "Request to failed: " + this.url;
 }
 
 RequestError.prototype = Object.create( Error.prototype );
+RequestError.prototype.constructor = RequestError;
 
 function ParameterError ( url, query, msg ) {
   this.url = url + "?" + qs.stringify( query );
@@ -98,13 +130,14 @@ function ParameterError ( url, query, msg ) {
 }
 
 ParameterError.prototype = Object.create( Error.prototype );
+ParameterError.prototype.constructor = ParameterError;
 
 module.exports = {
   RequestError: RequestError,
   ParameterError: ParameterError
 };
 
-},{"query-string":29}],6:[function(require,module,exports){
+},{"query-string":28}],6:[function(require,module,exports){
 var qs = require( "query-string" );
 
 var Promise = require( "./promise" );
@@ -145,7 +178,7 @@ module.exports = function jsonpStrategy ( url, query ) {
   });
 };
 
-},{"./errors":5,"./promise":12,"query-string":29}],7:[function(require,module,exports){
+},{"./errors":5,"./promise":11,"query-string":28}],7:[function(require,module,exports){
 var Promise = require( "./promise" );
 
 module.exports = function scriptTagStrategy ( url, globalName ) {
@@ -178,39 +211,14 @@ module.exports = function scriptTagStrategy ( url, globalName ) {
   });
 };
 
-},{"./promise":12}],8:[function(require,module,exports){
-var getJSON = require( "./get-json" );
-var util = require( "./util" );
-
-var CURRENT_SEASON = "2014-15";
-var PLAYERS_URL = "http://stats.nba.com/stats/commonallplayers/";
-
-var query = {
-  LeagueID: "00",
-  IsOnlyCurrentSeason: "1",
-  Season: CURRENT_SEASON
-};
-
-module.exports = function() {
-  return getJSON( PLAYERS_URL, query ).then( function ( resp ) {
-    return util.playersResponseTransform( resp );
-  });
-};
-
-},{"./get-json":6,"./util":15}],9:[function(require,module,exports){
+},{"./promise":11}],8:[function(require,module,exports){
 var Promise = require( "./promise" );
 
 var getJSON = require( "./get-json" );
 var maps = require( "./maps" );
 var util = require( "./util" );
 
-var TEAM_STAT_URL = "http://stats.nba.com/stats/leaguedashteamstats";
-var TEAM_STAT_QUERY = maps.teamStatDefaults();
-
-var TEAM_INFO_URL = "http://stats.nba.com/stats/commonteamyears";
-var TEAM_INFO_QUERY = {
-  "LeagueID": "00"
-};
+var api = require( "./api" );
 
 var TWO_WORD_TEAMS = {
   "Portland Trail Blazers": true
@@ -230,17 +238,16 @@ function addExtraTeamData ( team ) {
 }
 
 module.exports = function () {
-  var statReq = getJSON( TEAM_STAT_URL, TEAM_STAT_QUERY );
-  var infoReq = getJSON( TEAM_INFO_URL, TEAM_INFO_QUERY );
+  var statReq = api.teamStats();
+  var infoReq = api.teamYears();
   return Promise.all([ statReq, infoReq ]).then( function ( responses ) {
-    responses = responses.map( util.baseResponseTransform );
     return util.pickKeys( util.mergeCollections( "teamId", responses ),
       "teamId", "abbreviation", "teamName" )
     .map( addExtraTeamData );
   });
 };
 
-},{"./get-json":6,"./maps":10,"./promise":12,"./util":15}],10:[function(require,module,exports){
+},{"./api":3,"./get-json":6,"./maps":9,"./promise":11,"./util":14}],9:[function(require,module,exports){
 var extend = require( 'extend' );
 
 // all maps are actually map-returning functions.
@@ -407,7 +414,13 @@ function twoWayMap () {
     "GroupQuantity": "groupQuantity",
     "groupQuantity": "GroupQuantity",
     "pageNo": "pageNo",
-    "rowsPerPage": "rowsPerPage"
+    "rowsPerPage": "rowsPerPage",
+    "StartPeriod": "startPeriod",
+    "startPeriod": "StartPeriod",
+    "EndPeriod": "endPeriod",
+    "endPeriod": "EndPeriod",
+    "DayOffset": "dayOffset",
+    "dayOffset": "DayOffset"
   };
 }
 
@@ -514,12 +527,16 @@ module.exports = {
 //   return result;
 // }, {} );
 
-},{"extend":27}],11:[function(require,module,exports){
-Object.assign = require( "object-assign" );
+},{"extend":26}],10:[function(require,module,exports){
+Object.assign = Object.assign || require( "object-assign" );
 
-},{"object-assign":28}],12:[function(require,module,exports){
+String.prototype.contains = String.prototype.contains || function () {
+  return String.prototype.indexOf.apply( this, arguments ) !== -1;
+};
+
+},{"object-assign":27}],11:[function(require,module,exports){
 module.exports = require( 'es6-promise' ).Promise;
-},{"es6-promise":17}],13:[function(require,module,exports){
+},{"es6-promise":16}],12:[function(require,module,exports){
 var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
 
 var extend = require( "extend" );
@@ -541,7 +558,7 @@ module.exports = function ( options ) {
     .then( util.baseResponseTransform );
 };
 
-},{"./get-json":6,"./maps":10,"./promise":12,"./util":15,"extend":27}],14:[function(require,module,exports){
+},{"./get-json":6,"./maps":9,"./promise":11,"./util":14,"extend":26}],13:[function(require,module,exports){
 var Promise = require( "./promise" );
 var getScript = require( "./get-script" );
 
@@ -603,7 +620,11 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   return obj;
 }, {} );
 
-},{"./get-script":7,"./promise":12}],15:[function(require,module,exports){
+},{"./get-script":7,"./promise":11}],14:[function(require,module,exports){
+function toString ( obj ) {
+  return Object.prototype.toString.call( obj );
+}
+
 function merge ( target ) {
   var source;
   var keys;
@@ -620,7 +641,6 @@ function merge ( target ) {
 function shallowCopy ( obj ) {
   return merge( {}, obj );
 }
-
 
 function mapKeysAndValues ( obj, cb ) {
   return Object.keys( obj ).reduce( function( result, key ) {
@@ -642,6 +662,8 @@ function mapKeys ( obj, cb ) {
   });
 }
 
+// convert an array of headers and an array of rows
+// into an array of objects
 function collectify ( headers, rows ) {
   return rows.map( function ( item ) {
     return item.reduce( function ( model, val, i ) {
@@ -652,6 +674,10 @@ function collectify ( headers, rows ) {
 }
 
 function translateKeys ( keyMap, obj ) {
+  if ( typeof obj !== "object" ) {
+    console.log( obj );
+    throw new Error("needs an object");
+  }
   return Object.keys( obj ).reduce( function ( result, key ) {
     var newKey = keyMap[key];
     if ( newKey === undefined ) {
@@ -662,6 +688,7 @@ function translateKeys ( keyMap, obj ) {
   }, {} );
 }
 
+// partial application, cribbed from fast.js
 function partial ( fn ) {
   var outerArgs = [];
   for ( var i = 1; i < arguments.length; i++ ) {
@@ -676,16 +703,35 @@ function partial ( fn ) {
   };
 }
 
-function camelize ( str ) {
-  return str.trim().replace( /[-_\s]+(.)?/g, function ( match, c ){
+// detects whether a string contains a hyphen or dash
+// (very rough way of detecting dashed or snake_case strings)
+function hasDashOrHyphen ( str ) {
+  return str.contains( "-" ) || str.contains( "_" );
+}
+
+// downcases the first letter in a string
+// good for converting from PascalCase to camelCase
+function downcaseFirst ( str ) {
+  return str[0].toLowerCase() + str.slice( 1 );
+}
+
+// converts a dash or hypen separated string to camelCase
+function unDashHyphen ( str ) {
+  return str.trim().toLowerCase().replace( /[-_\s]+(.)?/g, function ( match, c ){
     return c ? c.toUpperCase() : "";
   });
 }
 
+// picks which method to use and returns the converted string
+function jsify ( str ) {
+  if ( hasDashOrHyphen( str ) ) {
+    return unDashHyphen( str );
+  }
+  return downcaseFirst( str );
+}
+
 function jsifyHeaders ( arr ) {
-  return arr.map( function ( item ) {
-    return camelize( item.toLowerCase() );
-  });
+  return arr.map( jsify );
 }
 
 function baseResponseTransform ( resp ) {
@@ -694,15 +740,10 @@ function baseResponseTransform ( resp ) {
   return collectify( headers, data.rowSet );
 }
 
-// function generalResponseTransform ( resp ) {
-//   return resp.resultSets.map( function ( resultSet ) {
-//     return collectify( jsifyHeaders( resultSet.headers ), resultSet.rowSet );
-//   });
-// }
-
 function generalResponseTransform ( resp ) {
   return resp.resultSets.reduce( function ( ret, resultSet ) {
-    ret[resultSet.name] = collectify( jsifyHeaders( resultSet.headers ), resultSet.rowSet );
+    var name = downcaseFirst( resultSet.name );
+    ret[name] = collectify( jsifyHeaders( resultSet.headers ), resultSet.rowSet );
     return ret;
   }, {} );
 }
@@ -720,6 +761,7 @@ function playersResponseTransform ( resp ) {
     });
 }
 
+// check if *against* has same values for each key in *matcher*
 function matches ( matcher, against ) {
   var keys = Object.keys( matcher );
   for ( var i = 0; i < keys.length; i++ ) {
@@ -730,6 +772,7 @@ function matches ( matcher, against ) {
   return true;
 }
 
+// check if *against* has same value for any key in *matcher*
 function matchesAny ( matcher, against ) {
   var keys = Object.keys( matcher );
   for ( var i = 0; i < keys.length; i++ ) {
@@ -740,6 +783,7 @@ function matchesAny ( matcher, against ) {
   return false;
 }
 
+// returns first item in *arr* for which test(item) is truthy
 function find ( test, arr ) {
   for ( var i = 0; i < arr.length; i++ ) {
     if ( test( arr[i] ) ) {
@@ -749,14 +793,18 @@ function find ( test, arr ) {
   return null;
 }
 
+// find with matches
 function findWhere ( matcher, arr ) {
   return find( partial( matches, matcher ), arr );
 }
 
+// find with matchesAny
 function findWhereAny ( matcher, arr ) {
   return find( partial( matchesAny, matcher ), arr );
 }
 
+// merges collections (arrays of objects) based on a shared unique identifier
+// current (mediocre) implementation
 function mergeCollections ( idProp, collections ) {
   var first = collections.shift();
   return first.map( function ( itemA ) {
@@ -781,11 +829,25 @@ function pickKeys ( arr ) {
   });
 }
 
+function usDateFormat ( param ) {
+  var date;
+  function padValue ( num ) {
+    num = String( num );
+    return ( num.length === 1 ? "0" : "" ) + num;
+  }
+  date = new Date( param );
+  if ( isNaN( date ) ) {
+    throw new Error( "Invalid Date" );
+  }
+  return [ padValue( date.getMonth() + 1 ), padValue( date.getDate() ), date.getFullYear() ].join( "/" );
+}
+
 module.exports = {
   shallowCopy: shallowCopy,
   mapKeysAndValues: mapKeysAndValues,
   mapValues: mapValues,
   mapKeys: mapKeys,
+  merge: merge,
   find: find,
   findWhere: findWhere,
   findWhereAny: findWhereAny,
@@ -793,7 +855,6 @@ module.exports = {
   collectify: collectify,
   translateKeys: translateKeys,
   partial: partial,
-  camelize: camelize,
   jsifyHeaders: jsifyHeaders,
   mergeCollections: mergeCollections,
   baseResponseTransform: baseResponseTransform,
@@ -801,7 +862,7 @@ module.exports = {
   playersResponseTransform: playersResponseTransform
 };
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -866,13 +927,13 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 var Promise = require("./promise/promise").Promise;
 var polyfill = require("./promise/polyfill").polyfill;
 exports.Promise = Promise;
 exports.polyfill = polyfill;
-},{"./promise/polyfill":21,"./promise/promise":22}],18:[function(require,module,exports){
+},{"./promise/polyfill":20,"./promise/promise":21}],17:[function(require,module,exports){
 "use strict";
 /* global toString */
 
@@ -966,7 +1027,7 @@ function all(promises) {
 }
 
 exports.all = all;
-},{"./utils":26}],19:[function(require,module,exports){
+},{"./utils":25}],18:[function(require,module,exports){
 (function (process,global){
 "use strict";
 var browserGlobal = (typeof window !== 'undefined') ? window : {};
@@ -1030,7 +1091,7 @@ function asap(callback, arg) {
 
 exports.asap = asap;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":16}],20:[function(require,module,exports){
+},{"_process":15}],19:[function(require,module,exports){
 "use strict";
 var config = {
   instrument: false
@@ -1046,7 +1107,7 @@ function configure(name, value) {
 
 exports.config = config;
 exports.configure = configure;
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (global){
 "use strict";
 /*global self*/
@@ -1087,7 +1148,7 @@ function polyfill() {
 
 exports.polyfill = polyfill;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./promise":22,"./utils":26}],22:[function(require,module,exports){
+},{"./promise":21,"./utils":25}],21:[function(require,module,exports){
 "use strict";
 var config = require("./config").config;
 var configure = require("./config").configure;
@@ -1299,7 +1360,7 @@ function publishRejection(promise) {
 }
 
 exports.Promise = Promise;
-},{"./all":18,"./asap":19,"./config":20,"./race":23,"./reject":24,"./resolve":25,"./utils":26}],23:[function(require,module,exports){
+},{"./all":17,"./asap":18,"./config":19,"./race":22,"./reject":23,"./resolve":24,"./utils":25}],22:[function(require,module,exports){
 "use strict";
 /* global toString */
 var isArray = require("./utils").isArray;
@@ -1389,7 +1450,7 @@ function race(promises) {
 }
 
 exports.race = race;
-},{"./utils":26}],24:[function(require,module,exports){
+},{"./utils":25}],23:[function(require,module,exports){
 "use strict";
 /**
   `RSVP.reject` returns a promise that will become rejected with the passed
@@ -1437,7 +1498,7 @@ function reject(reason) {
 }
 
 exports.reject = reject;
-},{}],25:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 "use strict";
 function resolve(value) {
   /*jshint validthis:true */
@@ -1453,7 +1514,7 @@ function resolve(value) {
 }
 
 exports.resolve = resolve;
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 function objectOrFunction(x) {
   return isFunction(x) || (typeof x === "object" && x !== null);
@@ -1476,7 +1537,7 @@ exports.objectOrFunction = objectOrFunction;
 exports.isFunction = isFunction;
 exports.isArray = isArray;
 exports.now = now;
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -1558,7 +1619,7 @@ module.exports = function extend() {
 };
 
 
-},{}],28:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -1597,7 +1658,7 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],29:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /*!
 	query-string
 	Parse and stringify URL query strings
@@ -1665,43 +1726,37 @@ module.exports = Object.assign || function (target, source) {
 	}
 })();
 
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 require( "./polyfills" );
 
 var Promise = require( "./promise" );
 var getTeamsInfo = require( "./info-teams" );
-var getPlayersInfo = require( "./info-players" );
 var util = require( "./util" );
+var api = require( "./api" );
 
 var playersPromise, teamsPromise, readyPromise;
 var nba = {};
 
-// function immediatelyResolvedPromise ( value ) {
-//   return new Promise( function ( resolve ) {
-//     resolve( value );
-//   });
-// }
-
 function updatePlayerInfo () {
-  return getTeamsInfo().then( function ( resp ) {
-    nba.teamInfo = resp;
+  return api.playersInfo().then( function ( resp ) {
+    nba.teamsInfo = resp;
   });
 }
 
 function updateTeamInfo () {
-  return getPlayersInfo().then( function ( resp ) {
-    nba.playerInfo = resp;
+  return getTeamsInfo().then( function ( resp ) {
+    nba.playersInfo = resp;
   });
 }
 
-Object.assign( nba, {
+util.merge( nba, {
   sportVu: require( "./sport-vu" ),
   shots: require( "./shots" ),
   playersInfo: require( "../data/players.json" ),
   updatePlayersInfo: updatePlayerInfo,
   teamsInfo: require( "../data/teams.json" ),
   updateTeamsInfo: updateTeamInfo,
-  api: require( "./api" ),
+  api: api,
   ready: function ( callback ) {
     readyPromise.then( callback );
   },
@@ -1732,5 +1787,5 @@ readyPromise = Promise.all([ playersPromise, teamsPromise ]);
 
 module.exports = nba;
 
-},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-players":8,"./info-teams":9,"./polyfills":11,"./promise":12,"./shots":13,"./sport-vu":14,"./util":15}]},{},[30])(30)
+},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./polyfills":10,"./promise":11,"./shots":12,"./sport-vu":13,"./util":14}]},{},[29])(29)
 });

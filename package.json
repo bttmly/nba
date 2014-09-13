@@ -1,5 +1,5 @@
 {
-  "name": "nba-api-node",
+  "name": "nba",
   "version": "0.1.0",
   "description": "A Node.js wrapper around the NBA's API",
   "main": "./lib",

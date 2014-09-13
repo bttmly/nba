@@ -3,6 +3,7 @@
 var fs = require( "fs" );
 var path = require( "path" );
 
+require( "../lib/polyfills" );
 var maps = require( "../lib/maps" );
 var util = require( "../lib/util" );
 var teamInfo = require( "../lib/info-teams" );
