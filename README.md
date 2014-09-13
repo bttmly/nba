@@ -22,19 +22,19 @@ Unfortunately, the endpoints aren't documented, so there's no good way to quickl
 However, I've written infrastructure code that makes adding a new endpoint really easy. The meat of each method is a single function call to `getJSON` (discussed later) with the URL path, and an object representing the querystring.
 
 The following endpoints are implemented currently:
-`http://stats.nba.com/stats/playerprofile`
-`http://stats.nba.com/stats/commonplayerinfo`
-`http://stats.nba.com/stats/commonallplayers`
-`http://stats.nba.com/stats/teamdashboardbygeneralsplits`
-`http://stats.nba.com/stats/playerdashboardbygeneralsplits`
-`http://stats.nba.com/stats/shotchartdetail`
-`http://stats.nba.com/stats/scoreboard/`
-`http://stats.nba.com/stats/playbyplay`
-`http://stats.nba.com/stats/boxscorescoring`
-`http://stats.nba.com/stats/boxscoreusage`
-`http://stats.nba.com/stats/boxscoremisc`
-`http://stats.nba.com/stats/boxscoreadvanced`
-`http://stats.nba.com/stats/boxscorefourfactors`
+- `http://stats.nba.com/stats/playerprofile`
+- `http://stats.nba.com/stats/commonplayerinfo`
+- `http://stats.nba.com/stats/commonallplayers`
+- `http://stats.nba.com/stats/teamdashboardbygeneralsplits`
+- `http://stats.nba.com/stats/playerdashboardbygeneralsplits`
+- `http://stats.nba.com/stats/shotchartdetail`
+- `http://stats.nba.com/stats/scoreboard/`
+- `http://stats.nba.com/stats/playbyplay`
+- `http://stats.nba.com/stats/boxscorescoring`
+- `http://stats.nba.com/stats/boxscoreusage`
+- `http://stats.nba.com/stats/boxscoremisc`
+- `http://stats.nba.com/stats/boxscoreadvanced`
+- `http://stats.nba.com/stats/boxscorefourfactors`
 
 ### Strategies
 This API wrapper gets data in two main ways. Data from NBA stats is accessible over a public JSON REST API. It supports JSONP, so in the browser we just use a tiny, custom, promise-returning implementation for that. In Node we delegate to `request` module. The implementations are interchangable.
