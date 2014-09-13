@@ -1,4 +1,11 @@
 # NBA API
+*Wrapper for the NBA's stats API for the browser or Node*
+
+## Stability Disclaimer
+
+This project is in heavy development and is subject to breaking changes without notice.
+
+## Intro
 
 As far as I can tell, the NBA's stats API does not have public documentation. As such, it's unclear what the acceptable values are for certain query parameters. Most of what's in here is based on inspecting the parameters [stats.nba.com](http://stats.nba.com/) uses in its own requests. I also took some pointers from the source of [this repo](https://github.com/Caged/nba-player-tracking). Suggestions on a more comprehensive approach, or contributions, are extremely welcome.
 
@@ -39,6 +46,7 @@ JSONP is generally miserable at handling errors.
 
 ### Data
 Stats responses generally arrive in an object like so:
+
 ```js
 {
   resouce: "boxscore",
@@ -71,7 +79,7 @@ function collectify ( headers, rows ) {
 ```
 
 ### Included JSON?
-Players, teams, and games are identified by a unique ID assigned by the NBA. Unfortunately, as far as I can tell, there isn't a way to make queries based on a player's (or team's) name. This wrapper allows queries based on names, but at a cost: it needs an internal list of teams and players to locate the correct ID. The `dist` folder includes two versions of the wrapper: `nba.js` and `nba-light.js`. The `nba.js` file has these lists bundled into the source code. The light version issues requests for these lists when it is loaded (or required). The `nba.ready()` method is provided to give users a way to execute code once these lists are prepared. In the light version, this code is run once both requests return. 
+Players, teams, and games are identified by a unique ID assigned by the NBA. Unfortunately, as far as I can tell, there isn't a way to make queries based on a player's (or team's) name. This wrapper allows queries based on names, but at a cost: it needs an internal list of teams and players to locate the correct ID. The `dist` folder includes two versions of the wrapper: `nba.js` and `nba-light.js`. The `nba.js` file has these lists bundled into the source code. The light version issues requests for these lists when it is loaded (or required). The `nba.ready()` method is provided to give users a way to execute code once these lists are prepared. In the light version, this code is run once both requests return.
 
 ```js
 nba.ready(function () {
@@ -80,23 +88,5 @@ nba.ready(function () {
 ```
 Whether you use the light or full version depends on your use case -- the full version is _substantially_ larger.
 
-## Async Methods
-
-### shots([Object params])
-
-### playerSplits([Object params])
-
-
-
-## Stability Disclaimer
-
-
-## SportVu
-The NBA's player tracking system, SportVu, provides data in a totally different form.
-
-
-
-## Todo
-- [x] Set up scripts to populate players list and teams list.
-- [ ] DRY up player/team list scripts
-- [ ]
+## SportVu Data
+The NBA's player tracking system, SportVu, provides data in a totally different form, and it's not query-able. 
