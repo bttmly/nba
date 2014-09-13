@@ -621,6 +621,8 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
 }, {} );
 
 },{"./get-script":7,"./promise":11}],14:[function(require,module,exports){
+require( "./polyfills" );
+
 function toString ( obj ) {
   return Object.prototype.toString.call( obj );
 }
@@ -862,7 +864,7 @@ module.exports = {
   playersResponseTransform: playersResponseTransform
 };
 
-},{}],15:[function(require,module,exports){
+},{"./polyfills":10}],15:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
