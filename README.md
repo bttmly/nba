@@ -1,5 +1,5 @@
 # NBA API
-*Wrapper for the NBA's stats API for the browser or Node*
+*The NBA's stats API for the browser or Node*
 
 ## Stability Disclaimer
 
