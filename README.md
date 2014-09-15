@@ -1,7 +1,7 @@
 # NBA API
 *The NBA's stats API for the browser or Node*
 
-## Stability Disclaimer
+## Stability Disclaimer [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
 This project is in heavy development and is subject to breaking changes without notice.
 
