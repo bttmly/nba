@@ -6,7 +6,7 @@ var which = process.argv[2];
 
 var code = {
   browser: "module.exports = window.Promise;",
-  node: "module.exports = require( 'es6-promise' ).Promise;"
+  node: "module.exports = require( \"es6-promise\" ).Promise;"
 };
 
 if ( code[which] === undefined ) {
