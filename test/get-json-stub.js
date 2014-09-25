@@ -2,7 +2,7 @@
 
 var spy = require( "sinon" ).spy;
 
-var Promise = require( "./promise" );
+var Promise = require( "../lib/promise" );
 
 var DELAY = 10;
 
@@ -23,6 +23,6 @@ function jsonFailStub () {
 }
 
 module.exports = {
-  jsonGood: spy( jsonStub ),
-  jsonBad: spy( jsonFailStub )
+  success: spy( jsonStub ),
+  fail: spy( jsonFailStub )
 };
