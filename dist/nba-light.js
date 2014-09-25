@@ -3,85 +3,111 @@ module.exports=[]
 },{}],2:[function(require,module,exports){
 module.exports=require(1)
 },{"/Users/nickbottomley/Documents/dev/github/nick/nba-api/data/players.json":1}],3:[function(require,module,exports){
-var endpoints = require( "./endpoints" );
+"use strict";
+
+var ep = require( "./endpoints" );
 var maps = require( "./maps" );
 var util = require( "./util" );
 var getJSON = require( "./get-json" );
 
-var translateOptions = util.partial( util.translateKeys, maps.twoWayMap() );
+var translate = util.partial( util.translateKeys, maps.twoWayMap() );
 
 var api = {};
 
-Object.keys( endpoints ).forEach( function ( key ) {
+Object.keys( ep ).forEach( function ( key ) {
   api[key] = function ( options ) {
     if ( options == null ) {
       options = {};
     }
-    options = util.merge( endpoints[key].defaults(), translateOptions( options ) );
-    return getJSON( endpoints[key].url, options ).then( endpoints[key].transform );
+    options = util.merge( ep[key].defaults(), translate( options ) );
+    return getJSON( ep[key].url, options ).then( ep[key].transform );
   };
 });
 
 module.exports = api;
 
-},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":14}],4:[function(require,module,exports){
+},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":12}],4:[function(require,module,exports){
+// jscs:disable maximumLineLength
+
+"use strict";
+
 var util = require( "./util" );
 
 var DEFAULT_SEASON = "2013-14";
 
 function boxScoreDefaults () {
-  return {"GameID":"0","RangeType":"0","StartPeriod":"0","EndPeriod":"0","StartRange":"0","EndRange":"0"};
+  return { "GameID": "0", "RangeType": "0", "StartPeriod": "0", "EndPeriod": "0", "StartRange": "0", "EndRange": "0" };
 }
 
 var endpoints = {
   playerProfile: {
     url: "http://stats.nba.com/stats/playerprofile",
-    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Regular Season","LeagueID":"00","PlayerID":"0","GraphStartSeason":"2009-10","GraphEndSeason":"2014-15","GraphStat":"PTS"}; },
+    defaults: function () {
+      return { "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "PlayerID": "0", "GraphStartSeason": "2009-10", "GraphEndSeason": "2014-15", "GraphStat": "PTS"};
+    },
     transform: util.generalResponseTransform
   },
   playerInfo: {
     url: "http://stats.nba.com/stats/commonplayerinfo",
-    defaults: function () { return {"PlayerID":"0","SeasonType":"Regular Season","LeagueID":"00","asynchFlag":"true"}; },
+    defaults: function () {
+      return { "PlayerID": "0", "SeasonType": "Regular Season", "LeagueID": "00", "asynchFlag": "true" };
+    },
     transform: util.generalResponseTransform
   },
   playersInfo: {
     url: "http://stats.nba.com/stats/commonallplayers",
-    defaults: function () { return {"LeagueID":"00","Season":DEFAULT_SEASON,"IsOnlyCurrentSeason":"1"}; },
+    defaults: function () {
+      return { "LeagueID": "00", "Season": DEFAULT_SEASON, "IsOnlyCurrentSeason": "1" };
+    },
     transform: util.playersResponseTransform
   },
   teamStats: {
     url: "http://stats.nba.com/stats/leaguedashteamstats",
-    defaults: function () { return {"Season":"2013-14","AllStarSeason":"","SeasonType":"Regular Season","LeagueID":"00","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":"","PlayerExperience":"","PlayerPosition":"","StarterBench":""}; },
+    defaults: function () {
+      return { "Season": "2013-14", "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+    },
     transform: util.baseResponseTransform
   },
   teamSplits: {
     url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits",
-    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Regular Season","LeagueID":"00","TeamID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":""}; },
+    defaults: function () {
+      return { "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "" };
+    },
     transform: util.generalResponseTransform
   },
   teamYears: {
     url: "http://stats.nba.com/stats/commonteamyears",
-    defaults: function () { return {"LeagueID": "00"}; },
+    defaults: function () {
+      return { "LeagueID": "00" };
+    },
     transform: util.baseResponseTransform
   },
   playerSplits: {
     url: "http://stats.nba.com/stats/playerdashboardbygeneralsplits",
-    defaults: function () { return {"Season":DEFAULT_SEASON,"SeasonType":"Playoffs","LeagueID":"00","PlayerID":"0","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0"}; },
+    defaults: function () {
+      return { "Season": DEFAULT_SEASON, "SeasonType": "Playoffs", "LeagueID": "00", "PlayerID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0" };
+    },
     transform: util.generalResponseTransform
   },
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
-    defaults: function () { return {"Season":DEFAULT_SEASON,"AllStarSeason":"","SeasonType":"Regular Season","LeagueID":"00","MeasureType":"Base","PerMode":"PerGame","PlusMinus":"N","PaceAdjust":"N","Rank":"N","Outcome":"","Location":"","Month":"0","SeasonSegment":"","DateFrom":"","DateTo":"","OpponentTeamID":"0","VsConference":"","VsDivision":"","GameSegment":"","Period":"0","LastNGames":"0","GameScope":"","PlayerExperience":"","PlayerPosition":"","StarterBench":""}; },
+    defaults: function () {
+      return { "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+    },
     transform: util.generalResponseTransform
   },
   scoreboard: {
     url: "http://stats.nba.com/stats/scoreboard/",
-    defaults: function () { return {"LeagueID":"00","gameDate":"01/01/2000","DayOffset":"0"}; },
+    defaults: function () {
+      return { "LeagueID": "00", "gameDate": "01/01/2000", "DayOffset": "0" };
+    },
     transform: util.generalResponseTransform
   },
   playByPlay: {
     url: "http://stats.nba.com/stats/playbyplay",
-    defaults: function () { return {"GameID":"0021300721","StartPeriod":"0","EndPeriod":"0"}; },
+    defaults: function () {
+      return { "GameID": "0021300721", "StartPeriod": "0", "EndPeriod": "0" };
+    },
     transform: util.generalResponseTransform
   },
   boxScoreScoring: {
@@ -113,7 +139,11 @@ var endpoints = {
 
 module.exports = endpoints;
 
-},{"./util":14}],5:[function(require,module,exports){
+// jscs: enable
+
+},{"./util":12}],5:[function(require,module,exports){
+"use strict";
+
 var qs = require( "query-string" );
 
 function RequestError ( url, query ) {
@@ -137,7 +167,9 @@ module.exports = {
   ParameterError: ParameterError
 };
 
-},{"query-string":28}],6:[function(require,module,exports){
+},{"query-string":24}],6:[function(require,module,exports){
+"use strict";
+
 var qs = require( "query-string" );
 
 var Promise = require( "./promise" );
@@ -147,7 +179,7 @@ var PREFIX = "__jsonp__";
 
 module.exports = function jsonpStrategy ( url, query ) {
   return new Promise( function ( resolve, reject ) {
-    var fnName, script, src;
+    var fnName, script;
 
     function cleanup () {
       document.body.removeChild( script );
@@ -178,7 +210,9 @@ module.exports = function jsonpStrategy ( url, query ) {
   });
 };
 
-},{"./errors":5,"./promise":11,"query-string":28}],7:[function(require,module,exports){
+},{"./errors":5,"./promise":10,"query-string":24}],7:[function(require,module,exports){
+"use strict";
+
 var Promise = require( "./promise" );
 
 module.exports = function scriptTagStrategy ( url, globalName ) {
@@ -211,20 +245,19 @@ module.exports = function scriptTagStrategy ( url, globalName ) {
   });
 };
 
-},{"./promise":11}],8:[function(require,module,exports){
+},{"./promise":10}],8:[function(require,module,exports){
+"use strict";
+
 var Promise = require( "./promise" );
 
-var getJSON = require( "./get-json" );
-var maps = require( "./maps" );
 var util = require( "./util" );
-
 var api = require( "./api" );
 
 var TWO_WORD_TEAMS = {
   "Portland Trail Blazers": true
 };
 
-// adds location and short name data to team objects.
+// adds location city and short name (i.e. 'Warriors') data to team objects.
 function addExtraTeamData ( team ) {
   team.teamName = team.teamName.trim();
   var splitted = team.teamName.split( " " );
@@ -247,18 +280,20 @@ module.exports = function () {
   });
 };
 
-},{"./api":3,"./get-json":6,"./maps":9,"./promise":11,"./util":14}],9:[function(require,module,exports){
-var extend = require( 'extend' );
+},{"./api":3,"./promise":10,"./util":12}],9:[function(require,module,exports){
+"use strict";
 
-// all maps are actually map-returning functions.
-// We need to absolutely prevent modules requiring these maps from altering them.
+// All maps are actually map-returning functions. We need to absolutely
+// prevent modules requiring these maps from altering them.
+//
 // Options:
 //  - Return a "frozen" version (Object.freeze)
 //  - Return a copy
 //  - Return a new object
 //
-//  Frozen objects are sub-optimal, primarily since they don't always throw errors.
-//  Also, when 'extending' them you need to pass in a new object first. Not a problem with copies.
+//  Frozen objects are sub-optimal, primarily since they don't
+//  always throw errors. Also, when "extending" them you need
+//  to pass in a new object first. Not a problem with copies.
 
 // TODO: DRY up params
 // TODO: Settle on how to pass out these objects
@@ -424,97 +459,10 @@ function twoWayMap () {
   };
 }
 
-function shotDefaults () {
-  return {
-    'Season': '2013-14',
-    'SeasonType': 'Regular Season',
-    'LeagueID': '00',
-    'PlayerID': '0',
-    'TeamID': '0',
-    'GameID': '',
-    'Outcome': '',
-    'Location': '',
-    'Month': '0',
-    'SeasonSegment': '',
-    'DateFrom': '',
-    'DateTo': '',
-    'OpponentTeamID': '0',
-    'VsConference': '',
-    'VsDivision': '',
-    'Position': '',
-    'RookieYear': '',
-    'GameSegment': '',
-    'Period': '0',
-    'LastNGames': '0',
-    'ContextFilter': '',
-    'ContextMeasure': 'FG_PCT',
-    'zone-mode': 'basic'
-  };
-}
-
-function teamStatDefaults () {
-  return {
-    'Season': '2013-14',
-    'AllStarSeason': '',
-    'SeasonType': 'Regular Season',
-    'LeagueID': '00',
-    'MeasureType': 'Base',
-    'PerMode': 'PerGame',
-    'PlusMinus': 'N',
-    'PaceAdjust': 'N',
-    'Rank': 'N',
-    'Outcome': '',
-    'Location': '',
-    'Month': '0',
-    'SeasonSegment': '',
-    'DateFrom': '',
-    'DateTo': '',
-    'OpponentTeamID': '0',
-    'VsConference': '',
-    'VsDivision': '',
-    'GameSegment': '',
-    'Period': '0',
-    'LastNGames': '0',
-    'GameScope': '',
-    'PlayerExperience': '',
-    'PlayerPosition': '',
-    'StarterBench': ''
-  };
-};
-
-function playerSplitsDefaults () {
-  return {
-    "Season": "2013-14",
-    "SeasonType": "Playoffs",
-    "LeagueID": "00",
-    "PlayerID": "201142",
-    "MeasureType": "Base",
-    "PerMode": "PerGame",
-    "PlusMinus": "N",
-    "PaceAdjust": "N",
-    "Rank": "N",
-    "Outcome": "",
-    "Location": "",
-    "Month": "0",
-    "SeasonSegment": "",
-    "DateFrom": "",
-    "DateTo": "",
-    "OpponentTeamID": "0",
-    "VsConference": "",
-    "VsDivision": "",
-    "GameSegment": "",
-    "Period": "0",
-    "LastNGames": "0"
-  };
-}
-
-
 module.exports = {
   nbaParams: nbaParams,
   jsParams: jsParams,
-  twoWayMap: twoWayMap,
-  shotDefaults: shotDefaults,
-  teamStatDefaults: teamStatDefaults
+  twoWayMap: twoWayMap
 };
 
 // alternate method w/o freeze & such
@@ -527,84 +475,57 @@ module.exports = {
 //   return result;
 // }, {} );
 
-},{"extend":26}],10:[function(require,module,exports){
-Object.assign = Object.assign || require( "object-assign" );
+},{}],10:[function(require,module,exports){
+module.exports = require( "es6-promise" ).Promise;
 
-String.prototype.contains = String.prototype.contains || function () {
-  return String.prototype.indexOf.apply( this, arguments ) !== -1;
-};
+},{"es6-promise":14}],11:[function(require,module,exports){
+"use strict";
 
-},{"object-assign":27}],11:[function(require,module,exports){
-module.exports = require( 'es6-promise' ).Promise;
-},{"es6-promise":16}],12:[function(require,module,exports){
-var SHOT_URL = "http://stats.nba.com/stats/shotchartdetail";
-
-var extend = require( "extend" );
-
-var Promise = require( "./promise" );
-
-var maps = require( "./maps" );
-var util = require( "./util" );
-var getJSON = require( "./get-json" );
-
-var translateOptions = util.partial( util.translateKeys, maps.twoWayMap() );
-
-module.exports = function ( options ) {
-  if ( options == null ) {
-    options = {};
-  }
-  options = translateOptions( options );
-  return getJSON( SHOT_URL, extend( maps.shotDefaults(), options ) )
-    .then( util.baseResponseTransform );
-};
-
-},{"./get-json":6,"./maps":9,"./promise":11,"./util":14,"extend":26}],13:[function(require,module,exports){
-var Promise = require( "./promise" );
 var getScript = require( "./get-script" );
 
 var sportVuScripts = {
   speed: {
     url: "http://stats.nba.com/js/data/sportvu/speedData.js",
-    varName: "speedData",
+    varName: "speedData"
   },
   touches: {
     url: "http://stats.nba.com/js/data/sportvu/touchesData.js",
-    varName: "touchesData",
+    varName: "touchesData"
   },
   passing: {
     url: "http://stats.nba.com/js/data/sportvu/passingData.js",
-    varName: "passingData",
+    varName: "passingData"
   },
   defense: {
     url: "http://stats.nba.com/js/data/sportvu/defenseData.js",
-    varName: "defenseData",
+    varName: "defenseData"
   },
   rebounding: {
     url: "http://stats.nba.com/js/data/sportvu/reboundingData.js",
-    varName: "reboundingData",
+    varName: "reboundingData"
   },
   drives: {
     url: "http://stats.nba.com/js/data/sportvu/drivesData.js",
-    varName: "drivesData",
+    varName: "drivesData"
   },
   shooting: {
     url: "http://stats.nba.com/js/data/sportvu/shootingData.js",
-    varName: "shootingData",
+    varName: "shootingData"
   },
   catchShoot: {
     url: "http://stats.nba.com/js/data/sportvu/catchShootData.js",
-    varName: "catchShootData",
+    varName: "catchShootData"
   },
   pullUpShoot: {
     url: "http://stats.nba.com/js/data/sportvu/pullUpShootData.js",
-    varName: "pullUpShootData",
+    varName: "pullUpShootData"
   }
 };
 
 var getSportVu = (function () {
   var cache = {};
   return function ( key, force ) {
-    var item, prms;
+    var item;
     if ( cache[key] === undefined || force ) {
       item = sportVuScripts[key];
       cache[key] = getScript( item.url, item.varName );
@@ -620,12 +541,8 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   return obj;
 }, {} );
 
-},{"./get-script":7,"./promise":11}],14:[function(require,module,exports){
-require( "./polyfills" );
-
-function toString ( obj ) {
-  return Object.prototype.toString.call( obj );
-}
+},{"./get-script":7}],12:[function(require,module,exports){
+"use strict";
 
 function merge ( target ) {
   var source;
@@ -645,8 +562,8 @@ function shallowCopy ( obj ) {
 }
 
 function mapKeysAndValues ( obj, cb ) {
-  return Object.keys( obj ).reduce( function( result, key ) {
-    var pair = cb( obj[key], key );
+  return Object.keys( obj ).reduce( function ( result, key ) {
+    var pair = cb( obj[key], key, obj );
     result[ pair[0] ] = pair[1];
     return result;
   }, {} );
@@ -654,13 +571,13 @@ function mapKeysAndValues ( obj, cb ) {
 
 function mapValues ( obj, cb ) {
   return mapKeysAndValues( obj, function ( value, key ) {
-    return [ key, cb( value, key ) ];
+    return [ key, cb( value, key, obj ) ];
   });
 }
 
 function mapKeys ( obj, cb ) {
   return mapKeysAndValues( obj, function ( value, key ) {
-    return [ cb( value, key ), value ];
+    return [ cb( value, key, obj ), value ];
   });
 }
 
@@ -677,13 +594,19 @@ function collectify ( headers, rows ) {
 
 function translateKeys ( keyMap, obj ) {
   if ( typeof obj !== "object" ) {
-    console.log( obj );
     throw new Error("needs an object");
   }
+  // return mapKeys( obj, function ( value, key, obj ) {
+  //   var newKey = keyMap[key];
+  //   if ( newKey == null ) {
+  //     throw new Error( "Key not found in translator." );
+  //   }
+  //   return newKey;
+  // });
   return Object.keys( obj ).reduce( function ( result, key ) {
     var newKey = keyMap[key];
     if ( newKey === undefined ) {
-      throw new Error( "Key not found in translator." );
+      throw new Error(  );
     }
     result[newKey] = obj[ key ];
     return result;
@@ -708,7 +631,7 @@ function partial ( fn ) {
 // detects whether a string contains a hyphen or dash
 // (very rough way of detecting dashed or snake_case strings)
 function hasDashOrHyphen ( str ) {
-  return str.contains( "-" ) || str.contains( "_" );
+  return str.indexOf( "-" ) > -1 || str.indexOf( "_" ) > -1;
 }
 
 // downcases the first letter in a string
@@ -719,9 +642,12 @@ function downcaseFirst ( str ) {
 
 // converts a dash or hypen separated string to camelCase
 function unDashHyphen ( str ) {
-  return str.trim().toLowerCase().replace( /[-_\s]+(.)?/g, function ( match, c ){
-    return c ? c.toUpperCase() : "";
-  });
+  return str
+    .trim()
+    .toLowerCase()
+    .replace( /[-_\s]+(.)?/g, function ( match, c ) {
+      return c ? c.toUpperCase() : "";
+    });
 }
 
 // picks which method to use and returns the converted string
@@ -743,23 +669,24 @@ function baseResponseTransform ( resp ) {
 }
 
 function generalResponseTransform ( resp ) {
-  return resp.resultSets.reduce( function ( ret, resultSet ) {
-    var name = downcaseFirst( resultSet.name );
-    ret[name] = collectify( jsifyHeaders( resultSet.headers ), resultSet.rowSet );
+  return resp.resultSets.reduce( function ( ret, set ) {
+    var name = downcaseFirst( set.name );
+    ret[name] = collectify( jsifyHeaders( set.headers ), set.rowSet );
     return ret;
   }, {} );
 }
 
 function playersResponseTransform ( resp ) {
   return baseResponseTransform( resp )
-      .map( function ( player ) {
-        var result = shallowCopy( player );
-        var names = result.displayLastCommaFirst.split( ", " ).reverse();
-        result.firstName = names[0].trim();
-        result.lastName = ( names[1] ? names[1] : "" ).trim();
-        result.fullName = result.firstName + ( result.lastName ? " " + result.lastName : "" );
-        result.playerId = result.personId;
-        return result;
+    .map( function ( player ) {
+      var result = shallowCopy( player );
+      var names = result.displayLastCommaFirst.split( ", " ).reverse();
+      result.firstName = names[0].trim();
+      result.lastName = ( names[1] ? names[1] : "" ).trim();
+      result.fullName = result.firstName +
+        ( result.lastName ? " " + result.lastName : "" );
+      result.playerId = result.personId;
+      return result;
     });
 }
 
@@ -810,10 +737,11 @@ function findWhereAny ( matcher, arr ) {
 function mergeCollections ( idProp, collections ) {
   var first = collections.shift();
   return first.map( function ( itemA ) {
-    var matcher = {};
+    var matcher, findMatch, items;
+    matcher = {};
     matcher[idProp] = itemA[idProp];
-    var findMatch = partial( findWhere, matcher );
-    var items = [{}, itemA].concat( collections.map( findMatch ) );
+    findMatch = partial( findWhere, matcher );
+    items = [{}, itemA].concat( collections.map( findMatch ) );
     return merge.apply( null, items );
   });
 }
@@ -831,20 +759,30 @@ function pickKeys ( arr ) {
   });
 }
 
-function usDateFormat ( param ) {
+function usDateFormat ( param, joinChar ) {
+  if ( joinChar == null ) {
+    joinChar = "/";
+  }
   var date;
   function padValue ( num ) {
     num = String( num );
-    return ( num.length === 1 ? "0" : "" ) + num;
+    return num.length === 1 ? "0" + num : num;
   }
   date = new Date( param );
   if ( isNaN( date ) ) {
     throw new Error( "Invalid Date" );
   }
-  return [ padValue( date.getMonth() + 1 ), padValue( date.getDate() ), date.getFullYear() ].join( "/" );
+  return [
+    padValue( date.getMonth() + 1 ),
+    padValue( date.getDate() ),
+    date.getFullYear()
+  ].join( joinChar );
 }
 
+
+
 module.exports = {
+  usDateFormat: usDateFormat,
   shallowCopy: shallowCopy,
   mapKeysAndValues: mapKeysAndValues,
   mapValues: mapValues,
@@ -864,7 +802,7 @@ module.exports = {
   playersResponseTransform: playersResponseTransform
 };
 
-},{"./polyfills":10}],15:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -929,13 +867,13 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],16:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 var Promise = require("./promise/promise").Promise;
 var polyfill = require("./promise/polyfill").polyfill;
 exports.Promise = Promise;
 exports.polyfill = polyfill;
-},{"./promise/polyfill":20,"./promise/promise":21}],17:[function(require,module,exports){
+},{"./promise/polyfill":18,"./promise/promise":19}],15:[function(require,module,exports){
 "use strict";
 /* global toString */
 
@@ -1029,7 +967,7 @@ function all(promises) {
 }
 
 exports.all = all;
-},{"./utils":25}],18:[function(require,module,exports){
+},{"./utils":23}],16:[function(require,module,exports){
 (function (process,global){
 "use strict";
 var browserGlobal = (typeof window !== 'undefined') ? window : {};
@@ -1093,7 +1031,7 @@ function asap(callback, arg) {
 
 exports.asap = asap;
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":15}],19:[function(require,module,exports){
+},{"_process":13}],17:[function(require,module,exports){
 "use strict";
 var config = {
   instrument: false
@@ -1109,7 +1047,7 @@ function configure(name, value) {
 
 exports.config = config;
 exports.configure = configure;
-},{}],20:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 "use strict";
 /*global self*/
@@ -1150,7 +1088,7 @@ function polyfill() {
 
 exports.polyfill = polyfill;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./promise":21,"./utils":25}],21:[function(require,module,exports){
+},{"./promise":19,"./utils":23}],19:[function(require,module,exports){
 "use strict";
 var config = require("./config").config;
 var configure = require("./config").configure;
@@ -1362,7 +1300,7 @@ function publishRejection(promise) {
 }
 
 exports.Promise = Promise;
-},{"./all":17,"./asap":18,"./config":19,"./race":22,"./reject":23,"./resolve":24,"./utils":25}],22:[function(require,module,exports){
+},{"./all":15,"./asap":16,"./config":17,"./race":20,"./reject":21,"./resolve":22,"./utils":23}],20:[function(require,module,exports){
 "use strict";
 /* global toString */
 var isArray = require("./utils").isArray;
@@ -1452,7 +1390,7 @@ function race(promises) {
 }
 
 exports.race = race;
-},{"./utils":25}],23:[function(require,module,exports){
+},{"./utils":23}],21:[function(require,module,exports){
 "use strict";
 /**
   `RSVP.reject` returns a promise that will become rejected with the passed
@@ -1500,7 +1438,7 @@ function reject(reason) {
 }
 
 exports.reject = reject;
-},{}],24:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 function resolve(value) {
   /*jshint validthis:true */
@@ -1516,7 +1454,7 @@ function resolve(value) {
 }
 
 exports.resolve = resolve;
-},{}],25:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 function objectOrFunction(x) {
   return isFunction(x) || (typeof x === "object" && x !== null);
@@ -1539,128 +1477,7 @@ exports.objectOrFunction = objectOrFunction;
 exports.isFunction = isFunction;
 exports.isArray = isArray;
 exports.now = now;
-},{}],26:[function(require,module,exports){
-var hasOwn = Object.prototype.hasOwnProperty;
-var toString = Object.prototype.toString;
-var undefined;
-
-var isPlainObject = function isPlainObject(obj) {
-	"use strict";
-	if (!obj || toString.call(obj) !== '[object Object]' || obj.nodeType || obj.setInterval) {
-		return false;
-	}
-
-	var has_own_constructor = hasOwn.call(obj, 'constructor');
-	var has_is_property_of_method = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
-	// Not own constructor property must be Object
-	if (obj.constructor && !has_own_constructor && !has_is_property_of_method) {
-		return false;
-	}
-
-	// Own properties are enumerated firstly, so to speed up,
-	// if last one is own, then all properties are own.
-	var key;
-	for (key in obj) {}
-
-	return key === undefined || hasOwn.call(obj, key);
-};
-
-module.exports = function extend() {
-	"use strict";
-	var options, name, src, copy, copyIsArray, clone,
-		target = arguments[0],
-		i = 1,
-		length = arguments.length,
-		deep = false;
-
-	// Handle a deep copy situation
-	if (typeof target === "boolean") {
-		deep = target;
-		target = arguments[1] || {};
-		// skip the boolean and the target
-		i = 2;
-	} else if (typeof target !== "object" && typeof target !== "function" || target == undefined) {
-			target = {};
-	}
-
-	for (; i < length; ++i) {
-		// Only deal with non-null/undefined values
-		if ((options = arguments[i]) != null) {
-			// Extend the base object
-			for (name in options) {
-				src = target[name];
-				copy = options[name];
-
-				// Prevent never-ending loop
-				if (target === copy) {
-					continue;
-				}
-
-				// Recurse if we're merging plain objects or arrays
-				if (deep && copy && (isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
-					if (copyIsArray) {
-						copyIsArray = false;
-						clone = src && Array.isArray(src) ? src : [];
-					} else {
-						clone = src && isPlainObject(src) ? src : {};
-					}
-
-					// Never move original objects, clone them
-					target[name] = extend(deep, clone, copy);
-
-				// Don't bring in undefined values
-				} else if (copy !== undefined) {
-					target[name] = copy;
-				}
-			}
-		}
-	}
-
-	// Return the modified object
-	return target;
-};
-
-
-},{}],27:[function(require,module,exports){
-'use strict';
-
-function ToObject(val) {
-	if (val == null) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-module.exports = Object.assign || function (target, source) {
-	var pendingException;
-	var from;
-	var keys;
-	var to = ToObject(target);
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = arguments[s];
-		keys = Object.keys(Object(from));
-
-		for (var i = 0; i < keys.length; i++) {
-			try {
-				to[keys[i]] = from[keys[i]];
-			} catch (err) {
-				if (pendingException === undefined) {
-					pendingException = err;
-				}
-			}
-		}
-	}
-
-	if (pendingException) {
-		throw pendingException;
-	}
-
-	return to;
-};
-
-},{}],28:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /*!
 	query-string
 	Parse and stringify URL query strings
@@ -1728,8 +1545,8 @@ module.exports = Object.assign || function (target, source) {
 	}
 })();
 
-},{}],29:[function(require,module,exports){
-require( "./polyfills" );
+},{}],25:[function(require,module,exports){
+"use strict";
 
 var Promise = require( "./promise" );
 var getTeamsInfo = require( "./info-teams" );
@@ -1753,7 +1570,6 @@ function updateTeamInfo () {
 
 util.merge( nba, {
   sportVu: require( "./sport-vu" ),
-  shots: require( "./shots" ),
   playersInfo: require( "../data/players.json" ),
   updatePlayersInfo: updatePlayerInfo,
   teamsInfo: require( "../data/teams.json" ),
@@ -1789,5 +1605,5 @@ readyPromise = Promise.all([ playersPromise, teamsPromise ]);
 
 module.exports = nba;
 
-},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./polyfills":10,"./promise":11,"./shots":12,"./sport-vu":13,"./util":14}]},{},[29])(29)
+},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./promise":10,"./sport-vu":11,"./util":12}]},{},[25])(25)
 });
