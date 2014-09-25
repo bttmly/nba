@@ -1,7 +1,5 @@
 "use strict";
 
-var spy = require( "sinon" ).spy;
-
 var Promise = require( "../lib/promise" );
 
 var DELAY = 10;
@@ -23,6 +21,6 @@ function jsonFailStub () {
 }
 
 module.exports = {
-  success: spy( jsonStub ),
-  fail: spy( jsonFailStub )
+  success: jsonStub,
+  fail: jsonFailStub
 };

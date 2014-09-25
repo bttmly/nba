@@ -17,7 +17,8 @@
     "prepublish": "npm run build-all",
     "style": "jscs ./lib/*.js",
     "lint": "jshint ./lib/*.js",
-    "sl": "npm run style; npm run lint"
+    "sl": "npm run style; npm run lint",
+    "test": "mocha -R spec ./test/test.js"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
@@ -40,6 +41,7 @@
     "jshint": "^2.5.6",
     "rewire": "^2.1.0",
     "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0",
     "uglify-js": "^2.4.15",
     "watchify": "^1.0.2"
   }
