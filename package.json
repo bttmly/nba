@@ -15,7 +15,8 @@
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
     "style": "jscs ./lib/*.js",
-    "lint": "jshint ./lib/*.js"
+    "lint": "jshint ./lib/*.js",
+    "sl": "npm run style; npm run lint"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
