@@ -8,9 +8,15 @@ chai.use( sinonChai );
 
 var spy = require( "./nba-api-spy" );
 var json = require( "./get-json-stub" );
-var epStub = require( "./endpoint-stub" );
-var api = rewire( "../lib/api" );
 
+var epStub = require( "../lib/endpoints" );
+Object.keys( epStub ).forEach( function ( key ) {
+  epStub[key].transform = identity;
+});
+
+function identity ( x ) { return x; }
+
+var api = rewire( "../lib/api" );
 var successSpy = spy( json.success );
 
 api.__set__( "ep", epStub );
