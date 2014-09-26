@@ -18,7 +18,7 @@
     "style": "jscs ./lib/*.js",
     "lint": "jshint ./lib/*.js",
     "sl": "npm run style; npm run lint",
-    "test": "mocha -R spec ./test/test.js"
+    "test": "npm run sl; mocha -R spec ./test/test.js"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
