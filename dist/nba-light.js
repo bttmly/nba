@@ -93,7 +93,7 @@ var endpoints = {
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
     defaults: function () {
-      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "","MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT","MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
     },
     transform: util.generalResponseTransform
   },
@@ -692,13 +692,11 @@ function generalResponseTransform ( resp ) {
 function playersResponseTransform ( resp ) {
   return baseResponseTransform( resp )
     .map( function ( player ) {
-      var result = shallowCopy( player );
-      var names = result.displayLastCommaFirst.split( ", " ).reverse();
+      var result = {};
+      var names = player.displayLastCommaFirst.split( ", " ).reverse();
       result.firstName = names[0].trim();
       result.lastName = ( names[1] ? names[1] : "" ).trim();
-      result.fullName = result.firstName +
-        ( result.lastName ? " " + result.lastName : "" );
-      result.playerId = result.personId;
+      result.playerId = player.personId;
       return result;
     });
 }
