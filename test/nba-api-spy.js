@@ -24,6 +24,6 @@ var extensions = {
 };
 
 module.exports = function () {
-  var ret = spy.apply( null, arguments );
+  var ret = spy.apply( this, arguments );
   return merge( ret, extensions );
 };
