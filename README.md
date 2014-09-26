@@ -1,5 +1,7 @@
-# NBA API
+# nba [![Build Status](https://travis-ci.org/nickb1080/nba.svg?branch=master)](https://travis-ci.org/nickb1080/nba)
 *The NBA's stats API for the browser or Node*
+
+`npm install nba`
 
 ## Stability Disclaimer [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
