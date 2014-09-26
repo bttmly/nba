@@ -11,10 +11,8 @@ var json = require( "./get-json-stub" );
 
 var epStub = require( "../lib/endpoints" );
 Object.keys( epStub ).forEach( function ( key ) {
-  epStub[key].transform = identity;
+  epStub[key].transform = function ( a ) { return a; };
 });
-
-function identity ( x ) { return x; }
 
 var api = rewire( "../lib/api" );
 var successSpy = spy( json.success );

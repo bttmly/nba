@@ -8,7 +8,7 @@ var extensions = {
   optionPosition: 1,
   lastCalledWithOption: function ( option, value ) {
     var opts = this.lastCall.args[ this.optionPosition ];
-    if ( Object.keys( opts ).indexOf( option ) === -1 ) {
+    if ( opts[option] == null ) {
       return false;
     }
     if ( value ) {

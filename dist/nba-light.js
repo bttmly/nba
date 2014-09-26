@@ -89,15 +89,16 @@ var endpoints = {
     },
     transform: util.generalResponseTransform
   },
+  // does shots need playerId?
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
     defaults: function () {
-      return { "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "","MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
     },
     transform: util.generalResponseTransform
   },
   scoreboard: {
-    url: "http://stats.nba.com/stats/scoreboard/",
+    url: "http://stats.nba.com/stats/scoreboard",
     defaults: function () {
       return { "LeagueID": "00", "gameDate": "01/01/2000", "DayOffset": "0" };
     },
@@ -106,7 +107,7 @@ var endpoints = {
   playByPlay: {
     url: "http://stats.nba.com/stats/playbyplay",
     defaults: function () {
-      return { "GameID": "0021300721", "StartPeriod": "0", "EndPeriod": "0" };
+      return { "GameID": "0", "StartPeriod": "0", "EndPeriod": "0" };
     },
     transform: util.generalResponseTransform
   },
@@ -455,7 +456,9 @@ function twoWayMap () {
     "EndPeriod": "endPeriod",
     "endPeriod": "EndPeriod",
     "DayOffset": "dayOffset",
-    "dayOffset": "DayOffset"
+    "dayOffset": "DayOffset",
+    "gameDate": "GameDate",
+    "GameDate": "gameDate"
   };
 }
 
@@ -481,58 +484,64 @@ module.exports = require( "es6-promise" ).Promise;
 },{"es6-promise":14}],11:[function(require,module,exports){
 "use strict";
 
+var Promise = require( "./promise" );
 var getScript = require( "./get-script" );
+
+var urlRoot = "http://stats.nba.com/js/data/sportvu/";
 
 var sportVuScripts = {
   speed: {
-    url: "http://stats.nba.com/js/data/sportvu/speedData.js",
+    url: urlRoot + "speedData.js",
     varName: "speedData"
   },
   touches: {
-    url: "http://stats.nba.com/js/data/sportvu/touchesData.js",
+    url: urlRoot + "touchesData.js",
     varName: "touchesData"
   },
   passing: {
-    url: "http://stats.nba.com/js/data/sportvu/passingData.js",
+    url: urlRoot + "passingData.js",
     varName: "passingData"
   },
   defense: {
-    url: "http://stats.nba.com/js/data/sportvu/defenseData.js",
+    url: urlRoot + "defenseData.js",
     varName: "defenseData"
   },
   rebounding: {
-    url: "http://stats.nba.com/js/data/sportvu/reboundingData.js",
+    url: urlRoot + "reboundingData.js",
     varName: "reboundingData"
   },
   drives: {
-    url: "http://stats.nba.com/js/data/sportvu/drivesData.js",
+    url: urlRoot + "drivesData.js",
     varName: "drivesData"
   },
   shooting: {
-    url: "http://stats.nba.com/js/data/sportvu/shootingData.js",
+    url: urlRoot + "shootingData.js",
     varName: "shootingData"
   },
   catchShoot: {
-    url: "http://stats.nba.com/js/data/sportvu/catchShootData.js",
+    url: urlRoot + "catchShootData.js",
     varName: "catchShootData"
   },
   pullUpShoot: {
-    url: "http://stats.nba.com/js/data/sportvu/pullUpShootData.js",
+    url: urlRoot + "pullUpShootData.js",
     varName: "pullUpShootData"
   }
 };
 
-var getSportVu = (function () {
-  var cache = {};
-  return function ( key, force ) {
+var cache = {};
+
+var getSportVu = function ( key, force ) {
+  return new Promise( function ( resolve, reject ) {
     var item;
-    if ( cache[key] === undefined || force ) {
+    if ( cache[key] == null || force ) {
       item = sportVuScripts[key];
-      cache[key] = getScript( item.url, item.varName );
+      return getScript( item.url, item.varName )
+        .then( resolve )
+        .catch( reject );
     }
-    return cache[key];
-  };
-})();
+    resolve( cache[key] );
+  });
+};
 
 module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   obj[key] = function () {
@@ -541,7 +550,7 @@ module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
   return obj;
 }, {} );
 
-},{"./get-script":7}],12:[function(require,module,exports){
+},{"./get-script":7,"./promise":10}],12:[function(require,module,exports){
 "use strict";
 
 function merge ( target ) {
@@ -596,21 +605,21 @@ function translateKeys ( keyMap, obj ) {
   if ( typeof obj !== "object" ) {
     throw new Error("needs an object");
   }
-  // return mapKeys( obj, function ( value, key, obj ) {
+  return mapKeys( obj, function ( value, key ) {
+    var newKey = keyMap[key];
+    if ( newKey == null ) {
+      throw new Error( "Key not found in translator." );
+    }
+    return newKey;
+  });
+  // return Object.keys( obj ).reduce( function ( result, key ) {
   //   var newKey = keyMap[key];
-  //   if ( newKey == null ) {
+  //   if ( newKey === undefined ) {
   //     throw new Error( "Key not found in translator." );
   //   }
-  //   return newKey;
-  // });
-  return Object.keys( obj ).reduce( function ( result, key ) {
-    var newKey = keyMap[key];
-    if ( newKey === undefined ) {
-      throw new Error(  );
-    }
-    result[newKey] = obj[ key ];
-    return result;
-  }, {} );
+  //   result[newKey] = obj[ key ];
+  //   return result;
+  // }, {} );
 }
 
 // partial application, cribbed from fast.js
@@ -626,6 +635,10 @@ function partial ( fn ) {
     }
     return fn.apply( this, args );
   };
+}
+
+function allUpperCase ( str ) {
+  return str.toUpperCase() === str;
 }
 
 // detects whether a string contains a hyphen or dash
