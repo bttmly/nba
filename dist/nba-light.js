@@ -2,7 +2,7 @@
 module.exports=[]
 },{}],2:[function(require,module,exports){
 module.exports=require(1)
-},{"/Users/nickbottomley/Documents/dev/github/nick/nba-api/data/players.json":1}],3:[function(require,module,exports){
+},{"/Users/nickbottomley/Documents/nb/nba/data/players.json":1}],3:[function(require,module,exports){
 "use strict";
 
 var ep = require( "./endpoints" );
@@ -93,7 +93,7 @@ var endpoints = {
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
     defaults: function () {
-      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT","MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
     },
     transform: util.generalResponseTransform
   },
@@ -637,10 +637,6 @@ function partial ( fn ) {
   };
 }
 
-function allUpperCase ( str ) {
-  return str.toUpperCase() === str;
-}
-
 // detects whether a string contains a hyphen or dash
 // (very rough way of detecting dashed or snake_case strings)
 function hasDashOrHyphen ( str ) {
@@ -699,6 +695,15 @@ function playersResponseTransform ( resp ) {
       result.playerId = player.personId;
       return result;
     });
+}
+
+function buildPlayers ( players ) {
+  players.forEach( function ( player ) {
+    player.fullName = player.firstName +
+      ( player.lastName ? " " + player.lastName : "" );
+    player.downcaseName = player.fullName.toLowerCase();
+  });
+  return players;
 }
 
 // check if *against* has same values for each key in *matcher*
@@ -790,8 +795,6 @@ function usDateFormat ( param, joinChar ) {
   ].join( joinChar );
 }
 
-
-
 module.exports = {
   usDateFormat: usDateFormat,
   shallowCopy: shallowCopy,
@@ -810,7 +813,8 @@ module.exports = {
   mergeCollections: mergeCollections,
   baseResponseTransform: baseResponseTransform,
   generalResponseTransform: generalResponseTransform,
-  playersResponseTransform: playersResponseTransform
+  playersResponseTransform: playersResponseTransform,
+  buildPlayers: buildPlayers
 };
 
 },{}],13:[function(require,module,exports){
@@ -1581,7 +1585,7 @@ function updateTeamInfo () {
 
 util.merge( nba, {
   sportVu: require( "./sport-vu" ),
-  playersInfo: require( "../data/players.json" ),
+  playersInfo: util.buildPlayers( require( "../data/players.json" ) ),
   updatePlayersInfo: updatePlayerInfo,
   teamsInfo: require( "../data/teams.json" ),
   updateTeamsInfo: updateTeamInfo,
@@ -1592,6 +1596,12 @@ util.merge( nba, {
   playerIdFromName: function ( name ) {
     var player = util.findWhere({ fullName: name }, this.playersInfo );
     return player ? player.playerId : null;
+  },
+  searchPlayers: function ( str ) {
+    str = str.toLowerCase();
+    return this.playersInfo.filter( function ( player ) {
+      return player.downcaseName.indexOf( str ) !== -1;
+    });
   },
   teamIdFromName: function ( name ) {
     var team = util.findWhereAny({
