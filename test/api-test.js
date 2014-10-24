@@ -1,5 +1,7 @@
 "use strict";
 
+process.env.TESTING = true;
+
 var rewire = require( "rewire" );
 var chai = require( "chai" );
 var sinonChai = require( "sinon-chai" );
@@ -9,9 +11,11 @@ chai.use( sinonChai );
 var spy = require( "./nba-api-spy" );
 var json = require( "./get-json-stub" );
 
+var returnArg = function (a) { return a; };
+
 var epStub = require( "../lib/endpoints" );
 Object.keys( epStub ).forEach( function ( key ) {
-  epStub[key].transform = function ( a ) { return a; };
+  epStub[key].transform = returnArg;
 });
 
 var api = rewire( "../lib/api" );
