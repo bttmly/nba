@@ -41,7 +41,7 @@
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
     "mocha": "^1.21.4",
-    "rewire": "^2.1.0",
+    "rewire": "nickb1080/rewire",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
     "uglify-js": "^2.4.15",

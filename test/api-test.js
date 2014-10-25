@@ -3,6 +3,7 @@
 process.env.TESTING = true;
 
 var rewire = require( "rewire" );
+var testUtils = require("./util")
 var chai = require( "chai" );
 var sinonChai = require( "sinon-chai" );
 chai.should();
@@ -11,6 +12,7 @@ chai.use( sinonChai );
 var spy = require( "./nba-api-spy" );
 var json = require( "./get-json-stub" );
 
+
 var returnArg = function (a) { return a; };
 
 var epStub = require( "../lib/endpoints" );
@@ -18,19 +20,14 @@ Object.keys( epStub ).forEach( function ( key ) {
   epStub[key].transform = returnArg;
 });
 
+// a copy of API we can safely iterate (w/o rewire methods);
 var api = rewire( "../lib/api" );
+
 var successSpy = spy( json.success );
 
 api.__set__( "ep", epStub );
 api.__set__( "getJSON", successSpy );
 
-// a copy of API we can safely iterate (w/o rewire methods);
-var iterableApi = Object.keys( api ).reduce( function ( obj, key ) {
-  if ( key !== "__set__" && key !== "__get__" && key !== "__with__" ) {
-    obj[key] = api[key];
-  }
-  return obj;
-}, {} );
 
 describe( ".playerProfile()", function () {
   it( "should issue a request to the correct URL", function () {
@@ -200,10 +197,11 @@ describe( ".boxScoreFourFactors()", function () {
 
 describe( "all endpoints", function () {
   it( "should throw when passed a bad parameter", function () {
-    Object.keys( iterableApi ).forEach( function ( key ) {
+    Object.keys( api ).forEach( function ( key ) {
       var fn = function () {
         api[key]({ badParam: "xyz" });
       };
+      console.log(key);
       fn.should.throw();
     });
   });
