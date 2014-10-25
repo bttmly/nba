@@ -3,7 +3,6 @@
 process.env.TESTING = true;
 
 var rewire = require( "rewire" );
-var testUtils = require("./util")
 var chai = require( "chai" );
 var sinonChai = require( "sinon-chai" );
 chai.should();
@@ -201,7 +200,6 @@ describe( "all endpoints", function () {
       var fn = function () {
         api[key]({ badParam: "xyz" });
       };
-      console.log(key);
       fn.should.throw();
     });
   });
