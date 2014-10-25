@@ -91,4 +91,4 @@ nba.ready(function () {
 Whether you use the light or full version depends on your use case -- the full version is _substantially_ larger.
 
 ## SportVu Data
-The NBA's player tracking system, SportVu, provides data in a totally different form, and it's not query-able. 
+The NBA's player tracking system, SportVu, provides data in a totally different form. More info on this to come.
