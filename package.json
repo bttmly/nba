@@ -15,9 +15,7 @@
     "clear-data": "node ./scripts/clear-data",
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
-    "style": "jscs ./lib/*.js",
     "lint": "jshint ./lib/*.js",
-    "sl": "npm run style; npm run lint",
     "test": "npm run sl; mocha -R spec ./test/test.js"
   },
   "author": "Nick Bottomley",
