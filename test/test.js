@@ -1,3 +1,3 @@
 "use strict";
 
-require( "./api-test" );
+require("./api-test");
