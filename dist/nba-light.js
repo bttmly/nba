@@ -5,104 +5,122 @@ module.exports=require(1)
 },{"/Users/nickbottomley/Documents/nb/nba/data/players.json":1}],3:[function(require,module,exports){
 "use strict";
 
-var qs = require( "qs" );
+var qs = require("qs");
 
-var ep = require( "./endpoints" );
-var maps = require( "./maps" );
-var util = require( "./util" );
-var getJSON = require( "./get-json" );
+var ep = require("./endpoints");
+var maps = require("./maps");
+var util = require("./util");
+var getJSON = require("./get-json");
 
-var translate = util.partial( util.translateKeys, maps.twoWayMap() );
+var translate = util.partial(util.translateKeys, maps.twoWayMap());
 
+// throw a .debug on main api?
 var recordedUrls = [];
 
+// TODO refactor
+var flags = {
+  recordUrls: false
+};
+
 var api = util.makeDict();
-api._flags = { recordUrls: false };
+
+
+api._flags = flags;
 api._recordedUrls = recordedUrls;
 
-function recordUrl ( url, query ) {
-  recordedUrls.push( url + "?" + qs.stringify( query ) );
+function recordUrl (url, query) {
+  recordedUrls.push(url + "?" + qs.stringify(query));
 }
 
-Object.keys( ep ).forEach( function ( key ) {
-  api[key] = function ( options ) {
+Object.keys(ep).forEach(function (key) {
+  api[key] = function (options, cb) {
 
-    if ( options == null ) {
+    if (typeof options === "function") {
+      cb = options;
       options = {};
     }
 
-    options = util.merge( ep[key].defaults(), translate( options ) );
-
-    if ( api._flags.recordUrls ) {
-      recordUrl( ep[key], options );
+    if (typeof cb !== "function") {
+      throw new TypeError("Must pass a callback.");
     }
 
-    return getJSON( ep[key].url, options ).then( ep[key].transform );
+    options = util.merge(ep[key].defaults(), translate(options));
+
+    if (api._flags.recordUrls) {
+      recordUrl(ep[key], options);
+    }
+
+    return getJSON(ep[key].url, options, function (err, response) {
+      if (err) {
+        return cb(err);
+      }
+      cb(null, ep[key].transform(response));
+    });
   };
 });
 
 module.exports = api;
 
-},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":12,"qs":24}],4:[function(require,module,exports){
+},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":11,"qs":13}],4:[function(require,module,exports){
 // jscs:disable maximumLineLength
 
 "use strict";
 
-var util = require( "./util" );
+var util = require("./util");
 
 var DEFAULT_SEASON = "2013-14";
 
 function boxScoreDefaults () {
-  return { "GameID": "0", "RangeType": "0", "StartPeriod": "0", "EndPeriod": "0", "StartRange": "0", "EndRange": "0" };
+  return {"GameID": "0", "RangeType": "0", "StartPeriod": "0", "EndPeriod": "0", "StartRange": "0", "EndRange": "0"};
 }
 
 var endpoints = {
   playerProfile: {
     url: "http://stats.nba.com/stats/playerprofile",
     defaults: function () {
-      return { "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "PlayerID": "0", "GraphStartSeason": "2009-10", "GraphEndSeason": "2014-15", "GraphStat": "PTS"};
+      return {"Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "PlayerID": "0", "GraphStartSeason": "2009-10", "GraphEndSeason": "2014-15", "GraphStat": "PTS"};
     },
     transform: util.generalResponseTransform
   },
   playerInfo: {
     url: "http://stats.nba.com/stats/commonplayerinfo",
     defaults: function () {
-      return { "PlayerID": "0", "SeasonType": "Regular Season", "LeagueID": "00", "asynchFlag": "true" };
+      return {"PlayerID": "0", "SeasonType": "Regular Season", "LeagueID": "00", "asynchFlag": "true"};
     },
     transform: util.generalResponseTransform
   },
   playersInfo: {
     url: "http://stats.nba.com/stats/commonallplayers",
     defaults: function () {
-      return { "LeagueID": "00", "Season": DEFAULT_SEASON, "IsOnlyCurrentSeason": "1" };
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "IsOnlyCurrentSeason": "1"};
     },
     transform: util.playersResponseTransform
   },
   teamStats: {
     url: "http://stats.nba.com/stats/leaguedashteamstats",
     defaults: function () {
-      return { "Season": "2013-14", "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
+      return {"Season": "2013-14", "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": ""};
     },
     transform: util.baseResponseTransform
   },
   teamSplits: {
     url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits",
     defaults: function () {
-      return { "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "" };
+      return {"Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": ""};
     },
     transform: util.generalResponseTransform
   },
   teamYears: {
     url: "http://stats.nba.com/stats/commonteamyears",
     defaults: function () {
-      return { "LeagueID": "00" };
-    },
+      return {"LeagueID": "00"};
+   },
     transform: util.baseResponseTransform
   },
   playerSplits: {
     url: "http://stats.nba.com/stats/playerdashboardbygeneralsplits",
     defaults: function () {
-      return { "Season": DEFAULT_SEASON, "SeasonType": "Playoffs", "LeagueID": "00", "PlayerID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0" };
+      return {"Season": DEFAULT_SEASON, "SeasonType": "Playoffs", "LeagueID": "00", "PlayerID": "0", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0"};
     },
     transform: util.generalResponseTransform
   },
@@ -110,22 +128,22 @@ var endpoints = {
   shots: {
     url: "http://stats.nba.com/stats/shotchartdetail",
     defaults: function () {
-      return { "PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": "" };
-    },
+      return {"PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": ""};
+     },
     transform: util.generalResponseTransform
   },
   scoreboard: {
     url: "http://stats.nba.com/stats/scoreboard",
     defaults: function () {
-      return { "LeagueID": "00", "gameDate": "01/01/2000", "DayOffset": "0" };
-    },
+      return {"LeagueID": "00", "gameDate": "01/01/2000", "DayOffset": "0"};
+     },
     transform: util.generalResponseTransform
   },
   playByPlay: {
     url: "http://stats.nba.com/stats/playbyplay",
     defaults: function () {
-      return { "GameID": "0", "StartPeriod": "0", "EndPeriod": "0" };
-    },
+      return {"GameID": "0", "StartPeriod": "0", "EndPeriod": "0"};
+     },
     transform: util.generalResponseTransform
   },
   boxScoreScoring: {
@@ -159,25 +177,25 @@ module.exports = endpoints;
 
 // jscs: enable
 
-},{"./util":12}],5:[function(require,module,exports){
+},{"./util":11}],5:[function(require,module,exports){
 "use strict";
 
-var qs = require( "query-string" );
+var qs = require("query-string");
 
-function RequestError ( url, query ) {
-  this.url = url + "?" + qs.stringify( query );
+function RequestError (url, query) {
+  this.url = url + "?" + qs.stringify(query);
   this.message = "Request failed: " + this.url;
 }
 
-RequestError.prototype = Object.create( Error.prototype );
+RequestError.prototype = Object.create(Error.prototype);
 RequestError.prototype.constructor = RequestError;
 
-function ParameterError ( url, query, msg ) {
-  this.url = url + "?" + qs.stringify( query );
+function ParameterError (url, query, msg) {
+  this.url = url + "?" + qs.stringify(query);
   this.message = msg;
 }
 
-ParameterError.prototype = Object.create( Error.prototype );
+ParameterError.prototype = Object.create(Error.prototype);
 ParameterError.prototype.constructor = ParameterError;
 
 module.exports = {
@@ -185,120 +203,133 @@ module.exports = {
   ParameterError: ParameterError
 };
 
-},{"query-string":29}],6:[function(require,module,exports){
+},{"query-string":18}],6:[function(require,module,exports){
 "use strict";
 
-var qs = require( "query-string" );
+var qs = require("query-string");
 
-var Promise = require( "./promise" );
-var RequestError = require( "./errors" ).RequestError;
+var RequestError = require("./errors").RequestError;
 
 var PREFIX = "__jsonp__";
 
-module.exports = function jsonpStrategy ( url, query ) {
-  return new Promise( function ( resolve, reject ) {
-    var fnName, script;
+module.exports = function jsonpStrategy (url, query, callback) {
+  var fnName, script;
 
-    function cleanup () {
-      document.body.removeChild( script );
-      script = null;
-      delete window[fnName];
-    }
+  function cleanup () {
+    document.body.removeChild(script);
+    script = null;
+    delete window[fnName];
+  }
 
-    if ( query == null ) {
-      query = {};
-    }
+  if (query == null) {
+    query = {};
+  }
 
-    fnName = PREFIX + Math.random().toString( 36 ).slice( 2 );
-    script = document.createElement( "script" );
+  fnName = PREFIX + Math.random().toString(36).slice(2);
+  script = document.createElement("script");
 
-    script.onerror = function () {
-      cleanup();
-      reject( new RequestError( url, query ) );
-    };
+  script.onerror = function () {
+    cleanup();
+    callback(new RequestError(url, query));
+  };
 
-    window[fnName] = function ( data ) {
-      cleanup();
-      resolve( data );
-    };
+  window[fnName] = function (data) {
+    cleanup();
+    callback(null, data);
+  };
 
-    query.callback = fnName;
-    script.src = url + "?" + qs.stringify( query );
-    document.body.appendChild( script );
-  });
+  query.callback = fnName;
+  script.src = url + (query ? "?" + qs.stringify(query) : "");
+  document.body.appendChild(script);
 };
 
-},{"./errors":5,"./promise":10,"query-string":29}],7:[function(require,module,exports){
+
+},{"./errors":5,"query-string":18}],7:[function(require,module,exports){
 "use strict";
+var assign = require("object-assign");
 
-var Promise = require( "./promise" );
+module.exports = function scriptTagStrategy (url, globalName, callback) {
+  var script, prev, temp;
 
-module.exports = function scriptTagStrategy ( url, globalName ) {
-  return new Promise( function ( resolve, reject ) {
-    var script, prev, temp;
+  function cleanup () {
+    document.body.removeChild(script);
+    script = null;
+    window[globalName] = prev;
+  }
 
-    function cleanup () {
-      document.body.removeChild( script );
-      script = null;
-      window[globalName] = prev;
+  prev = window[globalName];
+  script = document.createElement("script");
+
+  assign(script, {
+    src: url,
+    onload: function () {
+      temp = window[globalName];
+      cleanup();
+      callback(null, temp);
+    },
+    onerror: function () {
+      cleanup();
+      callback(new Error(url));
     }
-
-    prev = window[globalName];
-    script = document.createElement( "script" );
-
-    Object.assign( script, {
-      src: url,
-      onload: function () {
-        temp = window[globalName];
-        cleanup();
-        resolve( temp );
-      },
-      onerror: function () {
-        cleanup();
-        reject();
-      }
-    });
-
-    document.body.appendChild( script );
   });
-};
 
-},{"./promise":10}],8:[function(require,module,exports){
+  document.body.appendChild(script);
+};
+},{"object-assign":12}],8:[function(require,module,exports){
 "use strict";
 
-var Promise = require( "./promise" );
-
-var util = require( "./util" );
-var api = require( "./api" );
+var util = require("./util");
+var api = require("./api");
 
 var TWO_WORD_TEAMS = util.makeDict({
   "Portland Trail Blazers": true
 });
 
 // adds location city and short name (i.e. 'Warriors') data to team objects.
-function addExtraTeamData ( team ) {
+function addExtraTeamData (team) {
   team.teamName = team.teamName.trim();
-  var splitted = team.teamName.split( " " );
-  if ( TWO_WORD_TEAMS[ team.teamName ] ) {
-    team.simpleName = splitted.splice( -2, 2 ).join( " " );
+  var splitted = team.teamName.split(" ");
+  if (TWO_WORD_TEAMS[team.teamName]) {
+    team.simpleName = splitted.splice(-2, 2).join(" ");
   } else {
-    team.simpleName = splitted.splice( -1, 1 ).join();
+    team.simpleName = splitted.splice(-1, 1).join();
   }
-  team.location = splitted.join( " " );
+  team.location = splitted.join(" ");
   return team;
 }
 
-module.exports = function () {
-  var statReq = api.teamStats();
-  var infoReq = api.teamYears();
-  return Promise.all([ statReq, infoReq ]).then( function ( responses ) {
-    return util.pickKeys( util.mergeCollections( "teamId", responses ),
-      "teamId", "abbreviation", "teamName" )
-    .map( addExtraTeamData );
+module.exports = function (cb) {
+  var results = new Array(2);
+
+  api.teamStats(function (err, response) {
+    if (err) {
+      return cb(err);
+    }
+    results[0] = response;
+    if (results[1]) {
+      andThen(results);
+    }
   });
+
+  api.teamYears(function (err, response) {
+    if (err) {
+      return cb(err);
+    }
+    results[1] = response;
+    if (results[0]) {
+      andThen(results);
+    }
+  });
+
+  function andThen (responses) {
+    var data = util.pickKeys(util.mergeCollections("teamId", responses),
+      "teamId", "abbreviation", "teamName")
+    .map(addExtraTeamData);
+    cb(null, data);
+  }
 };
 
-},{"./api":3,"./promise":10,"./util":12}],9:[function(require,module,exports){
+},{"./api":3,"./util":11}],9:[function(require,module,exports){
 "use strict";
 
 // All maps are actually map-returning functions. We need to absolutely
@@ -496,238 +527,220 @@ module.exports = {
 // }, {} );
 
 },{}],10:[function(require,module,exports){
-module.exports = require( "es6-promise" ).Promise;
-
-},{"es6-promise":14}],11:[function(require,module,exports){
 "use strict";
 
-var Promise = require( "./promise" );
-var getScript = require( "./get-script" );
+var getScript = require("./get-script");
 
 var urlRoot = "http://stats.nba.com/js/data/sportvu/";
 
-var sportVuScripts = {
-  speed: {
-    url: urlRoot + "speedData.js",
-    varName: "speedData"
-  },
-  touches: {
-    url: urlRoot + "touchesData.js",
-    varName: "touchesData"
-  },
-  passing: {
-    url: urlRoot + "passingData.js",
-    varName: "passingData"
-  },
-  defense: {
-    url: urlRoot + "defenseData.js",
-    varName: "defenseData"
-  },
-  rebounding: {
-    url: urlRoot + "reboundingData.js",
-    varName: "reboundingData"
-  },
-  drives: {
-    url: urlRoot + "drivesData.js",
-    varName: "drivesData"
-  },
-  shooting: {
-    url: urlRoot + "shootingData.js",
-    varName: "shootingData"
-  },
-  catchShoot: {
-    url: urlRoot + "catchShootData.js",
-    varName: "catchShootData"
-  },
-  pullUpShoot: {
-    url: urlRoot + "pullUpShootData.js",
-    varName: "pullUpShootData"
-  }
-};
+var sportVuScripts = [
+  "speed",
+  "touches",
+  "passing",
+  "defense",
+  "rebounding",
+  "drives",
+  "shooting",
+  "catchShoot",
+  "pullUpShoot"
+].reduce(function (obj, field) {
+  obj[field] = {
+    url: urlRoot + field + "Data.js",
+    varName: field + "Data"
+  };
+  return obj;
+}, {});
 
 var cache = {};
 
-var getSportVu = function ( key, force ) {
-  return new Promise( function ( resolve, reject ) {
-    var item;
-    if ( cache[key] == null || force ) {
-      item = sportVuScripts[key];
-      return getScript( item.url, item.varName )
-        .then( resolve )
-        .catch( reject );
-    }
-    resolve( cache[key] );
-  });
+var getSportVu = function (key, options, callback) {
+  
+  if (typeof options === "function") {
+    callback = options;
+    options = {};
+  }
+
+  if (typeof callback !== "function") {
+    throw new TypeError("Needs a callback function.");
+  }
+
+  var item = sportVuScripts[key];
+  
+  if (cache[key] == null || options.noCache) {
+    return getScript(item.url, item.varName, callback)
+  }
+
+  callback(null, cache[key]);
 };
 
-module.exports = Object.keys( sportVuScripts ).reduce(function ( obj, key ) {
-  obj[key] = function () {
-    return getSportVu( key );
+module.exports = Object.keys(sportVuScripts).reduce(function (obj, key) {
+  obj[key] = function (options, callback) {
+    return getSportVu(key, options, callback);
   };
   return obj;
-}, {} );
+}, {});
 
-},{"./get-script":7,"./promise":10}],12:[function(require,module,exports){
+},{"./get-script":7}],11:[function(require,module,exports){
 "use strict";
 
-function merge ( target ) {
+function merge (target) {
   var source;
   var keys;
-  for ( var i = 1; i < arguments.length; i++ ) {
+  for (var i = 1; i < arguments.length; i++) {
     source = arguments[i];
-    keys = Object.keys( source );
-    for ( var j = 0; j < keys.length; j++ ) {
+    keys = Object.keys(source);
+    for (var j = 0; j < keys.length; j++) {
       target[keys[j]] = source[keys[j]];
     }
   }
   return target;
 }
 
-function shallowCopy ( obj ) {
-  return merge( {}, obj );
+function shallowCopy (obj) {
+  return merge({}, obj);
 }
 
-function mapKeysAndValues ( obj, cb ) {
-  return Object.keys( obj ).reduce( function ( result, key ) {
-    var pair = cb( obj[key], key, obj );
-    result[ pair[0] ] = pair[1];
+function mapKeysAndValues (obj, cb) {
+  return Object.keys(obj).reduce(function (result, key) {
+    var pair = cb(obj[key], key, obj);
+    result[pair[0]] = pair[1];
     return result;
-  }, {} );
+  }, {});
 }
 
-function mapValues ( obj, cb ) {
-  return mapKeysAndValues( obj, function ( value, key ) {
-    return [ key, cb( value, key, obj ) ];
+function mapValues (obj, cb) {
+  return mapKeysAndValues(obj, function (value, key) {
+    return [key, cb(value, key, obj)];
   });
 }
 
-function mapKeys ( obj, cb ) {
-  return mapKeysAndValues( obj, function ( value, key ) {
-    return [ cb( value, key, obj ), value ];
+function mapKeys (obj, cb) {
+  return mapKeysAndValues(obj, function (value, key) {
+    return [cb(value, key, obj), value];
   });
 }
 
 // convert an array of headers and an array of rows
 // into an array of objects
-function collectify ( headers, rows ) {
-  return rows.map( function ( item ) {
-    return item.reduce( function ( model, val, i ) {
-      model[ headers[i] ] = val;
+function collectify (headers, rows) {
+  return rows.map(function (item) {
+    return item.reduce(function (model, val, i) {
+      model[headers[i]] = val;
       return model;
-    }, {} );
+    }, {});
   });
 }
 
-function translateKeys ( keyMap, obj ) {
-  if ( typeof obj !== "object" ) {
+function translateKeys (keyMap, obj) {
+  if (typeof obj !== "object") {
     throw new Error("needs an object");
   }
-  return mapKeys( obj, function ( value, key ) {
+  return mapKeys(obj, function (value, key) {
     var newKey = keyMap[key];
-    if ( newKey == null ) {
-      throw new Error( "Key not found in translator." );
+    if (newKey == null) {
+      throw new Error("Key not found in translator.");
     }
     return newKey;
   });
-  // return Object.keys( obj ).reduce( function ( result, key ) {
+  // return Object.keys(obj).reduce(function (result, key) {
   //   var newKey = keyMap[key];
-  //   if ( newKey === undefined ) {
-  //     throw new Error( "Key not found in translator." );
+  //   if (newKey === undefined) {
+  //     throw new Error("Key not found in translator.");
   //   }
-  //   result[newKey] = obj[ key ];
+  //   result[newKey] = obj[key];
   //   return result;
-  // }, {} );
+  // }, {});
 }
 
 // partial application, cribbed from fast.js
-function partial ( fn ) {
+function partial (fn) {
   var outerArgs = [];
-  for ( var i = 1; i < arguments.length; i++ ) {
+  for (var i = 1; i < arguments.length; i++) {
     outerArgs[i - 1] = arguments[i];
   }
   return function () {
     var args = outerArgs.slice();
-    for ( var i = 0; i < arguments.length; i++ ) {
-      args[ args.length ] = arguments[i];
+    for (var i = 0; i < arguments.length; i++) {
+      args[args.length] = arguments[i];
     }
-    return fn.apply( this, args );
+    return fn.apply(this, args);
   };
 }
 
 // detects whether a string contains a hyphen or dash
 // (very rough way of detecting dashed or snake_case strings)
-function hasDashOrHyphen ( str ) {
-  return str.indexOf( "-" ) > -1 || str.indexOf( "_" ) > -1;
+function hasDashOrHyphen (str) {
+  return str.indexOf("-") > -1 || str.indexOf("_") > -1;
 }
 
 // downcases the first letter in a string
 // good for converting from PascalCase to camelCase
-function downcaseFirst ( str ) {
-  return str[0].toLowerCase() + str.slice( 1 );
+function downcaseFirst (str) {
+  return str[0].toLowerCase() + str.slice(1);
 }
 
 // converts a dash or hypen separated string to camelCase
-function unDashHyphen ( str ) {
+function unDashHyphen (str) {
   return str
     .trim()
     .toLowerCase()
-    .replace( /[-_\s]+(.)?/g, function ( match, c ) {
+    .replace(/[-_\s]+(.)?/g, function (match, c) {
       return c ? c.toUpperCase() : "";
     });
 }
 
 // picks which method to use and returns the converted string
-function jsify ( str ) {
-  if ( hasDashOrHyphen( str ) ) {
-    return unDashHyphen( str );
+function jsify (str) {
+  if (hasDashOrHyphen(str)) {
+    return unDashHyphen(str);
   }
-  return downcaseFirst( str );
+  return downcaseFirst(str);
 }
 
-function jsifyHeaders ( arr ) {
-  return arr.map( jsify );
+function jsifyHeaders (arr) {
+  return arr.map(jsify);
 }
 
-function baseResponseTransform ( resp ) {
+function baseResponseTransform (resp) {
   var data = resp.resultSets[0];
-  var headers = jsifyHeaders( data.headers );
-  return collectify( headers, data.rowSet );
+  var headers = jsifyHeaders(data.headers);
+  return collectify(headers, data.rowSet);
 }
 
-function generalResponseTransform ( resp ) {
-  return resp.resultSets.reduce( function ( ret, set ) {
-    var name = downcaseFirst( set.name );
-    ret[name] = collectify( jsifyHeaders( set.headers ), set.rowSet );
+function generalResponseTransform (resp) {
+  return resp.resultSets.reduce(function (ret, set) {
+    var name = downcaseFirst(set.name);
+    ret[name] = collectify(jsifyHeaders(set.headers), set.rowSet);
     return ret;
-  }, {} );
+  }, {});
 }
 
-function playersResponseTransform ( resp ) {
-  return baseResponseTransform( resp )
-    .map( function ( player ) {
+function playersResponseTransform (resp) {
+  return baseResponseTransform(resp)
+    .map(function (player) {
       var result = {};
-      var names = player.displayLastCommaFirst.split( ", " ).reverse();
+      var names = player.displayLastCommaFirst.split(", ").reverse();
       result.firstName = names[0].trim();
-      result.lastName = ( names[1] ? names[1] : "" ).trim();
+      result.lastName = (names[1] ? names[1] : "").trim();
       result.playerId = player.personId;
       return result;
     });
 }
 
-function buildPlayers ( players ) {
-  players.forEach( function ( player ) {
+function buildPlayers (players) {
+  players.forEach(function (player) {
     player.fullName = player.firstName +
-      ( player.lastName ? " " + player.lastName : "" );
+      (player.lastName ? " " + player.lastName : "");
     player.downcaseName = player.fullName.toLowerCase();
   });
   return players;
 }
 
 // check if *against* has same values for each key in *matcher*
-function matches ( matcher, against ) {
-  var keys = Object.keys( matcher );
-  for ( var i = 0; i < keys.length; i++ ) {
-    if ( matcher[keys[i]] !== against[keys[i]] ) {
+function matches (matcher, against) {
+  var keys = Object.keys(matcher);
+  for (var i = 0; i < keys.length; i++) {
+    if (matcher[keys[i]] !== against[keys[i]]) {
       return false;
     }
   }
@@ -735,20 +748,24 @@ function matches ( matcher, against ) {
 }
 
 // check if *against* has same value for any key in *matcher*
-function matchesAny ( matcher, against ) {
-  var keys = Object.keys( matcher );
-  for ( var i = 0; i < keys.length; i++ ) {
-    if ( matcher[keys[i]] === against[keys[i]] ) {
+function matchesAny (matcher, against) {
+  var keys = Object.keys(matcher);
+  for (var i = 0; i < keys.length; i++) {
+    if (matcher[keys[i]] === against[keys[i]]) {
       return true;
     }
   }
   return false;
 }
 
+function contains (item, arr) {
+  return arr.indexOf(item) !== -1;
+}
+
 // returns first item in *arr* for which test(item) is truthy
-function find ( test, arr ) {
-  for ( var i = 0; i < arr.length; i++ ) {
-    if ( test( arr[i] ) ) {
+function find (test, arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (test(arr[i])) {
       return arr[i];
     }
   }
@@ -756,66 +773,66 @@ function find ( test, arr ) {
 }
 
 // find with matches
-function findWhere ( matcher, arr ) {
-  return find( partial( matches, matcher ), arr );
+function findWhere (matcher, arr) {
+  return find(partial(matches, matcher), arr);
 }
 
 // find with matchesAny
-function findWhereAny ( matcher, arr ) {
-  return find( partial( matchesAny, matcher ), arr );
+function findWhereAny (matcher, arr) {
+  return find(partial(matchesAny, matcher), arr);
 }
 
 // merges collections (arrays of objects) based on a shared unique identifier
 // current (mediocre) implementation
-function mergeCollections ( idProp, collections ) {
+function mergeCollections (idProp, collections) {
   var first = collections.shift();
-  return first.map( function ( itemA ) {
+  return first.map(function (itemA) {
     var matcher, findMatch, items;
     matcher = {};
     matcher[idProp] = itemA[idProp];
-    findMatch = partial( findWhere, matcher );
-    items = [{}, itemA].concat( collections.map( findMatch ) );
-    return merge.apply( null, items );
+    findMatch = partial(findWhere, matcher);
+    items = [{}, itemA].concat(collections.map(findMatch));
+    return merge.apply(null, items);
   });
 }
 
-function pickKeys ( arr ) {
+function pickKeys (arr) {
   var args = [];
-  for ( var i = 1; i < arguments.length; i++ ) {
+  for (var i = 1; i < arguments.length; i++) {
     args[i - 1] = arguments[i];
   }
-  return arr.map( function ( item ) {
-    return args.reduce( function ( obj, key ) {
+  return arr.map(function (item) {
+    return args.reduce(function (obj, key) {
       obj[key] = item[key];
       return obj;
-    }, {} );
+    }, {});
   });
 }
 
-function usDateFormat ( param, joinChar ) {
-  if ( joinChar == null ) {
+function usDateFormat (param, joinChar) {
+  if (joinChar == null) {
     joinChar = "/";
   }
   var date;
-  function padValue ( num ) {
-    num = String( num );
+  function padValue (num) {
+    num = String(num);
     return num.length === 1 ? "0" + num : num;
   }
-  date = new Date( param );
-  if ( isNaN( date ) ) {
-    throw new Error( "Invalid Date" );
+  date = new Date(param);
+  if (isNaN(date)) {
+    throw new Error("Invalid Date");
   }
   return [
-    padValue( date.getMonth() + 1 ),
-    padValue( date.getDate() ),
+    padValue(date.getMonth() + 1),
+    padValue(date.getDate()),
     date.getFullYear()
-  ].join( joinChar );
+ ].join(joinChar);
 }
 
-function makeDict ( obj ) {
-  var ret = Object.create( null );
-  if ( obj !== undefined ) {
-    Object.keys( obj ).forEach( function ( key ) {
+function makeDict (obj) {
+  var ret = Object.create(null);
+  if (obj !== undefined) {
+    Object.keys(obj).forEach(function (key) {
       ret[key] = obj[key];
     });
   }
@@ -831,6 +848,7 @@ module.exports = {
   mapKeys: mapKeys,
   merge: merge,
   find: find,
+  contains: contains,
   findWhere: findWhere,
   findWhereAny: findWhereAny,
   pickKeys: pickKeys,
@@ -845,685 +863,38 @@ module.exports = {
   buildPlayers: buildPlayers
 };
 
+},{}],12:[function(require,module,exports){
+'use strict';
+
+function ToObject(val) {
+	if (val == null) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+module.exports = Object.assign || function (target, source) {
+	var from;
+	var keys;
+	var to = ToObject(target);
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = arguments[s];
+		keys = Object.keys(Object(from));
+
+		for (var i = 0; i < keys.length; i++) {
+			to[keys[i]] = from[keys[i]];
+		}
+	}
+
+	return to;
+};
+
 },{}],13:[function(require,module,exports){
-// shim for using process in browser
+module.exports = require('./lib/');
 
-var process = module.exports = {};
-
-process.nextTick = (function () {
-    var canSetImmediate = typeof window !== 'undefined'
-    && window.setImmediate;
-    var canPost = typeof window !== 'undefined'
-    && window.postMessage && window.addEventListener
-    ;
-
-    if (canSetImmediate) {
-        return function (f) { return window.setImmediate(f) };
-    }
-
-    if (canPost) {
-        var queue = [];
-        window.addEventListener('message', function (ev) {
-            var source = ev.source;
-            if ((source === window || source === null) && ev.data === 'process-tick') {
-                ev.stopPropagation();
-                if (queue.length > 0) {
-                    var fn = queue.shift();
-                    fn();
-                }
-            }
-        }, true);
-
-        return function nextTick(fn) {
-            queue.push(fn);
-            window.postMessage('process-tick', '*');
-        };
-    }
-
-    return function nextTick(fn) {
-        setTimeout(fn, 0);
-    };
-})();
-
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-}
-
-// TODO(shtylman)
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-
-},{}],14:[function(require,module,exports){
-"use strict";
-var Promise = require("./promise/promise").Promise;
-var polyfill = require("./promise/polyfill").polyfill;
-exports.Promise = Promise;
-exports.polyfill = polyfill;
-},{"./promise/polyfill":18,"./promise/promise":19}],15:[function(require,module,exports){
-"use strict";
-/* global toString */
-
-var isArray = require("./utils").isArray;
-var isFunction = require("./utils").isFunction;
-
-/**
-  Returns a promise that is fulfilled when all the given promises have been
-  fulfilled, or rejected if any of them become rejected. The return promise
-  is fulfilled with an array that gives all the values in the order they were
-  passed in the `promises` array argument.
-
-  Example:
-
-  ```javascript
-  var promise1 = RSVP.resolve(1);
-  var promise2 = RSVP.resolve(2);
-  var promise3 = RSVP.resolve(3);
-  var promises = [ promise1, promise2, promise3 ];
-
-  RSVP.all(promises).then(function(array){
-    // The array here would be [ 1, 2, 3 ];
-  });
-  ```
-
-  If any of the `promises` given to `RSVP.all` are rejected, the first promise
-  that is rejected will be given as an argument to the returned promises's
-  rejection handler. For example:
-
-  Example:
-
-  ```javascript
-  var promise1 = RSVP.resolve(1);
-  var promise2 = RSVP.reject(new Error("2"));
-  var promise3 = RSVP.reject(new Error("3"));
-  var promises = [ promise1, promise2, promise3 ];
-
-  RSVP.all(promises).then(function(array){
-    // Code here never runs because there are rejected promises!
-  }, function(error) {
-    // error.message === "2"
-  });
-  ```
-
-  @method all
-  @for RSVP
-  @param {Array} promises
-  @param {String} label
-  @return {Promise} promise that is fulfilled when all `promises` have been
-  fulfilled, or rejected if any of them become rejected.
-*/
-function all(promises) {
-  /*jshint validthis:true */
-  var Promise = this;
-
-  if (!isArray(promises)) {
-    throw new TypeError('You must pass an array to all.');
-  }
-
-  return new Promise(function(resolve, reject) {
-    var results = [], remaining = promises.length,
-    promise;
-
-    if (remaining === 0) {
-      resolve([]);
-    }
-
-    function resolver(index) {
-      return function(value) {
-        resolveAll(index, value);
-      };
-    }
-
-    function resolveAll(index, value) {
-      results[index] = value;
-      if (--remaining === 0) {
-        resolve(results);
-      }
-    }
-
-    for (var i = 0; i < promises.length; i++) {
-      promise = promises[i];
-
-      if (promise && isFunction(promise.then)) {
-        promise.then(resolver(i), reject);
-      } else {
-        resolveAll(i, promise);
-      }
-    }
-  });
-}
-
-exports.all = all;
-},{"./utils":23}],16:[function(require,module,exports){
-(function (process,global){
-"use strict";
-var browserGlobal = (typeof window !== 'undefined') ? window : {};
-var BrowserMutationObserver = browserGlobal.MutationObserver || browserGlobal.WebKitMutationObserver;
-var local = (typeof global !== 'undefined') ? global : (this === undefined? window:this);
-
-// node
-function useNextTick() {
-  return function() {
-    process.nextTick(flush);
-  };
-}
-
-function useMutationObserver() {
-  var iterations = 0;
-  var observer = new BrowserMutationObserver(flush);
-  var node = document.createTextNode('');
-  observer.observe(node, { characterData: true });
-
-  return function() {
-    node.data = (iterations = ++iterations % 2);
-  };
-}
-
-function useSetTimeout() {
-  return function() {
-    local.setTimeout(flush, 1);
-  };
-}
-
-var queue = [];
-function flush() {
-  for (var i = 0; i < queue.length; i++) {
-    var tuple = queue[i];
-    var callback = tuple[0], arg = tuple[1];
-    callback(arg);
-  }
-  queue = [];
-}
-
-var scheduleFlush;
-
-// Decide what async method to use to triggering processing of queued callbacks:
-if (typeof process !== 'undefined' && {}.toString.call(process) === '[object process]') {
-  scheduleFlush = useNextTick();
-} else if (BrowserMutationObserver) {
-  scheduleFlush = useMutationObserver();
-} else {
-  scheduleFlush = useSetTimeout();
-}
-
-function asap(callback, arg) {
-  var length = queue.push([callback, arg]);
-  if (length === 1) {
-    // If length is 1, that means that we need to schedule an async flush.
-    // If additional callbacks are queued before the queue is flushed, they
-    // will be processed by this flush that we are scheduling.
-    scheduleFlush();
-  }
-}
-
-exports.asap = asap;
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":13}],17:[function(require,module,exports){
-"use strict";
-var config = {
-  instrument: false
-};
-
-function configure(name, value) {
-  if (arguments.length === 2) {
-    config[name] = value;
-  } else {
-    return config[name];
-  }
-}
-
-exports.config = config;
-exports.configure = configure;
-},{}],18:[function(require,module,exports){
-(function (global){
-"use strict";
-/*global self*/
-var RSVPPromise = require("./promise").Promise;
-var isFunction = require("./utils").isFunction;
-
-function polyfill() {
-  var local;
-
-  if (typeof global !== 'undefined') {
-    local = global;
-  } else if (typeof window !== 'undefined' && window.document) {
-    local = window;
-  } else {
-    local = self;
-  }
-
-  var es6PromiseSupport = 
-    "Promise" in local &&
-    // Some of these methods are missing from
-    // Firefox/Chrome experimental implementations
-    "resolve" in local.Promise &&
-    "reject" in local.Promise &&
-    "all" in local.Promise &&
-    "race" in local.Promise &&
-    // Older version of the spec had a resolver object
-    // as the arg rather than a function
-    (function() {
-      var resolve;
-      new local.Promise(function(r) { resolve = r; });
-      return isFunction(resolve);
-    }());
-
-  if (!es6PromiseSupport) {
-    local.Promise = RSVPPromise;
-  }
-}
-
-exports.polyfill = polyfill;
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./promise":19,"./utils":23}],19:[function(require,module,exports){
-"use strict";
-var config = require("./config").config;
-var configure = require("./config").configure;
-var objectOrFunction = require("./utils").objectOrFunction;
-var isFunction = require("./utils").isFunction;
-var now = require("./utils").now;
-var all = require("./all").all;
-var race = require("./race").race;
-var staticResolve = require("./resolve").resolve;
-var staticReject = require("./reject").reject;
-var asap = require("./asap").asap;
-
-var counter = 0;
-
-config.async = asap; // default async is asap;
-
-function Promise(resolver) {
-  if (!isFunction(resolver)) {
-    throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');
-  }
-
-  if (!(this instanceof Promise)) {
-    throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
-  }
-
-  this._subscribers = [];
-
-  invokeResolver(resolver, this);
-}
-
-function invokeResolver(resolver, promise) {
-  function resolvePromise(value) {
-    resolve(promise, value);
-  }
-
-  function rejectPromise(reason) {
-    reject(promise, reason);
-  }
-
-  try {
-    resolver(resolvePromise, rejectPromise);
-  } catch(e) {
-    rejectPromise(e);
-  }
-}
-
-function invokeCallback(settled, promise, callback, detail) {
-  var hasCallback = isFunction(callback),
-      value, error, succeeded, failed;
-
-  if (hasCallback) {
-    try {
-      value = callback(detail);
-      succeeded = true;
-    } catch(e) {
-      failed = true;
-      error = e;
-    }
-  } else {
-    value = detail;
-    succeeded = true;
-  }
-
-  if (handleThenable(promise, value)) {
-    return;
-  } else if (hasCallback && succeeded) {
-    resolve(promise, value);
-  } else if (failed) {
-    reject(promise, error);
-  } else if (settled === FULFILLED) {
-    resolve(promise, value);
-  } else if (settled === REJECTED) {
-    reject(promise, value);
-  }
-}
-
-var PENDING   = void 0;
-var SEALED    = 0;
-var FULFILLED = 1;
-var REJECTED  = 2;
-
-function subscribe(parent, child, onFulfillment, onRejection) {
-  var subscribers = parent._subscribers;
-  var length = subscribers.length;
-
-  subscribers[length] = child;
-  subscribers[length + FULFILLED] = onFulfillment;
-  subscribers[length + REJECTED]  = onRejection;
-}
-
-function publish(promise, settled) {
-  var child, callback, subscribers = promise._subscribers, detail = promise._detail;
-
-  for (var i = 0; i < subscribers.length; i += 3) {
-    child = subscribers[i];
-    callback = subscribers[i + settled];
-
-    invokeCallback(settled, child, callback, detail);
-  }
-
-  promise._subscribers = null;
-}
-
-Promise.prototype = {
-  constructor: Promise,
-
-  _state: undefined,
-  _detail: undefined,
-  _subscribers: undefined,
-
-  then: function(onFulfillment, onRejection) {
-    var promise = this;
-
-    var thenPromise = new this.constructor(function() {});
-
-    if (this._state) {
-      var callbacks = arguments;
-      config.async(function invokePromiseCallback() {
-        invokeCallback(promise._state, thenPromise, callbacks[promise._state - 1], promise._detail);
-      });
-    } else {
-      subscribe(this, thenPromise, onFulfillment, onRejection);
-    }
-
-    return thenPromise;
-  },
-
-  'catch': function(onRejection) {
-    return this.then(null, onRejection);
-  }
-};
-
-Promise.all = all;
-Promise.race = race;
-Promise.resolve = staticResolve;
-Promise.reject = staticReject;
-
-function handleThenable(promise, value) {
-  var then = null,
-  resolved;
-
-  try {
-    if (promise === value) {
-      throw new TypeError("A promises callback cannot return that same promise.");
-    }
-
-    if (objectOrFunction(value)) {
-      then = value.then;
-
-      if (isFunction(then)) {
-        then.call(value, function(val) {
-          if (resolved) { return true; }
-          resolved = true;
-
-          if (value !== val) {
-            resolve(promise, val);
-          } else {
-            fulfill(promise, val);
-          }
-        }, function(val) {
-          if (resolved) { return true; }
-          resolved = true;
-
-          reject(promise, val);
-        });
-
-        return true;
-      }
-    }
-  } catch (error) {
-    if (resolved) { return true; }
-    reject(promise, error);
-    return true;
-  }
-
-  return false;
-}
-
-function resolve(promise, value) {
-  if (promise === value) {
-    fulfill(promise, value);
-  } else if (!handleThenable(promise, value)) {
-    fulfill(promise, value);
-  }
-}
-
-function fulfill(promise, value) {
-  if (promise._state !== PENDING) { return; }
-  promise._state = SEALED;
-  promise._detail = value;
-
-  config.async(publishFulfillment, promise);
-}
-
-function reject(promise, reason) {
-  if (promise._state !== PENDING) { return; }
-  promise._state = SEALED;
-  promise._detail = reason;
-
-  config.async(publishRejection, promise);
-}
-
-function publishFulfillment(promise) {
-  publish(promise, promise._state = FULFILLED);
-}
-
-function publishRejection(promise) {
-  publish(promise, promise._state = REJECTED);
-}
-
-exports.Promise = Promise;
-},{"./all":15,"./asap":16,"./config":17,"./race":20,"./reject":21,"./resolve":22,"./utils":23}],20:[function(require,module,exports){
-"use strict";
-/* global toString */
-var isArray = require("./utils").isArray;
-
-/**
-  `RSVP.race` allows you to watch a series of promises and act as soon as the
-  first promise given to the `promises` argument fulfills or rejects.
-
-  Example:
-
-  ```javascript
-  var promise1 = new RSVP.Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve("promise 1");
-    }, 200);
-  });
-
-  var promise2 = new RSVP.Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve("promise 2");
-    }, 100);
-  });
-
-  RSVP.race([promise1, promise2]).then(function(result){
-    // result === "promise 2" because it was resolved before promise1
-    // was resolved.
-  });
-  ```
-
-  `RSVP.race` is deterministic in that only the state of the first completed
-  promise matters. For example, even if other promises given to the `promises`
-  array argument are resolved, but the first completed promise has become
-  rejected before the other promises became fulfilled, the returned promise
-  will become rejected:
-
-  ```javascript
-  var promise1 = new RSVP.Promise(function(resolve, reject){
-    setTimeout(function(){
-      resolve("promise 1");
-    }, 200);
-  });
-
-  var promise2 = new RSVP.Promise(function(resolve, reject){
-    setTimeout(function(){
-      reject(new Error("promise 2"));
-    }, 100);
-  });
-
-  RSVP.race([promise1, promise2]).then(function(result){
-    // Code here never runs because there are rejected promises!
-  }, function(reason){
-    // reason.message === "promise2" because promise 2 became rejected before
-    // promise 1 became fulfilled
-  });
-  ```
-
-  @method race
-  @for RSVP
-  @param {Array} promises array of promises to observe
-  @param {String} label optional string for describing the promise returned.
-  Useful for tooling.
-  @return {Promise} a promise that becomes fulfilled with the value the first
-  completed promises is resolved with if the first completed promise was
-  fulfilled, or rejected with the reason that the first completed promise
-  was rejected with.
-*/
-function race(promises) {
-  /*jshint validthis:true */
-  var Promise = this;
-
-  if (!isArray(promises)) {
-    throw new TypeError('You must pass an array to race.');
-  }
-  return new Promise(function(resolve, reject) {
-    var results = [], promise;
-
-    for (var i = 0; i < promises.length; i++) {
-      promise = promises[i];
-
-      if (promise && typeof promise.then === 'function') {
-        promise.then(resolve, reject);
-      } else {
-        resolve(promise);
-      }
-    }
-  });
-}
-
-exports.race = race;
-},{"./utils":23}],21:[function(require,module,exports){
-"use strict";
-/**
-  `RSVP.reject` returns a promise that will become rejected with the passed
-  `reason`. `RSVP.reject` is essentially shorthand for the following:
-
-  ```javascript
-  var promise = new RSVP.Promise(function(resolve, reject){
-    reject(new Error('WHOOPS'));
-  });
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  Instead of writing the above, your code now simply becomes the following:
-
-  ```javascript
-  var promise = RSVP.reject(new Error('WHOOPS'));
-
-  promise.then(function(value){
-    // Code here doesn't run because the promise is rejected!
-  }, function(reason){
-    // reason.message === 'WHOOPS'
-  });
-  ```
-
-  @method reject
-  @for RSVP
-  @param {Any} reason value that the returned promise will be rejected with.
-  @param {String} label optional string for identifying the returned promise.
-  Useful for tooling.
-  @return {Promise} a promise that will become rejected with the given
-  `reason`.
-*/
-function reject(reason) {
-  /*jshint validthis:true */
-  var Promise = this;
-
-  return new Promise(function (resolve, reject) {
-    reject(reason);
-  });
-}
-
-exports.reject = reject;
-},{}],22:[function(require,module,exports){
-"use strict";
-function resolve(value) {
-  /*jshint validthis:true */
-  if (value && typeof value === 'object' && value.constructor === this) {
-    return value;
-  }
-
-  var Promise = this;
-
-  return new Promise(function(resolve) {
-    resolve(value);
-  });
-}
-
-exports.resolve = resolve;
-},{}],23:[function(require,module,exports){
-"use strict";
-function objectOrFunction(x) {
-  return isFunction(x) || (typeof x === "object" && x !== null);
-}
-
-function isFunction(x) {
-  return typeof x === "function";
-}
-
-function isArray(x) {
-  return Object.prototype.toString.call(x) === "[object Array]";
-}
-
-// Date.now is not available in browsers < IE9
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now#Compatibility
-var now = Date.now || function() { return new Date().getTime(); };
-
-
-exports.objectOrFunction = objectOrFunction;
-exports.isFunction = isFunction;
-exports.isArray = isArray;
-exports.now = now;
-},{}],24:[function(require,module,exports){
-module.exports = require('./lib');
-
-},{"./lib":25}],25:[function(require,module,exports){
+},{"./lib/":14}],14:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -1540,7 +911,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":26,"./stringify":27}],26:[function(require,module,exports){
+},{"./parse":15,"./stringify":16}],15:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -1605,6 +976,7 @@ internals.parseObject = function (chain, val, options) {
         if (!isNaN(index) &&
             root !== cleanRoot &&
             indexString === cleanRoot &&
+            index >= 0 &&
             index <= options.arrayLimit) {
 
             obj = [];
@@ -1698,7 +1070,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":28}],27:[function(require,module,exports){
+},{"./utils":17}],16:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -1777,7 +1149,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":28}],28:[function(require,module,exports){
+},{"./utils":17}],17:[function(require,module,exports){
 // Load modules
 
 
@@ -1807,7 +1179,13 @@ exports.merge = function (target, source) {
     }
 
     if (typeof source !== 'object') {
-        target.push(source);
+        if (Array.isArray(target)) {
+            target.push(source);
+        }
+        else {
+            target[source] = true;
+        }
+
         return target;
     }
 
@@ -1868,7 +1246,7 @@ exports.compact = function (obj, refs) {
     if (Array.isArray(obj)) {
         var compacted = [];
 
-        for (var i = 0, l = obj.length; i < l; ++i) {
+        for (var i = 0, il = obj.length; i < il; ++i) {
             if (typeof obj[i] !== 'undefined') {
                 compacted.push(obj[i]);
             }
@@ -1878,7 +1256,7 @@ exports.compact = function (obj, refs) {
     }
 
     var keys = Object.keys(obj);
-    for (var i = 0, il = keys.length; i < il; ++i) {
+    for (i = 0, il = keys.length; i < il; ++i) {
         var key = keys[i];
         obj[key] = exports.compact(obj[key], refs);
     }
@@ -1905,7 +1283,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],29:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*!
 	query-string
 	Parse and stringify URL query strings
@@ -1973,71 +1351,106 @@ exports.isBuffer = function (obj) {
 	}
 })();
 
-},{}],30:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
-var Promise = require( "./promise" );
-var getTeamsInfo = require( "./info-teams" );
-var util = require( "./util" );
-var api = require( "./api" );
+var getTeamsInfo = require("./info-teams");
+var util = require("./util");
+var api = require("./api");
 
-var playersPromise, teamsPromise, readyPromise;
 var nba = {};
 
-function updatePlayerInfo () {
-  return api.playersInfo().then( function ( resp ) {
+function updatePlayerInfo (cb) {
+  return api.playersInfo(function (err, resp) {
     nba.teamsInfo = resp;
+    cb(err, resp);
   });
 }
 
-function updateTeamInfo () {
-  return getTeamsInfo().then( function ( resp ) {
+function updateTeamInfo (cb) {
+  return getTeamsInfo(function (err, resp) {
     nba.playersInfo = resp;
+    cb(err, resp);
   });
 }
 
-util.merge( nba, {
-  sportVu: require( "./sport-vu" ),
-  playersInfo: util.buildPlayers( require( "../data/players.json" ) ),
+var readyCallbacks = [];
+var isReady = false;
+var readyArg = null;
+
+util.merge(nba, {
+  sportVu: require("./sport-vu"),
+  playersInfo: util.buildPlayers(require("../data/players.json")),
   updatePlayersInfo: updatePlayerInfo,
-  teamsInfo: require( "../data/teams.json" ),
+  teamsInfo: require("../data/teams.json"),
   updateTeamsInfo: updateTeamInfo,
   api: api,
-  ready: function ( callback ) {
-    readyPromise.then( callback );
+  ready: function (callback) {
+    if (typeof callback !== "function") {
+      throw new TypeError("ready() only accepts functions");
+    }
+    if (isReady) {
+      return callback.call(this, readyArg);
+    }
+    readyCallbacks.push(callback);
   },
-  playerIdFromName: function ( name ) {
-    var player = util.findWhere({ fullName: name }, this.playersInfo );
+  playerIdFromName: function (name) {
+    var player = util.findWhere({ fullName: name }, nba.playersInfo);
     return player ? player.playerId : null;
   },
-  searchPlayers: function ( str ) {
+  findPlayer: function (str) {
+    return util.find(util.partial(util.contains, str), nba.playersInfo);
+  },
+  searchPlayers: function (str) {
     str = str.toLowerCase();
-    return this.playersInfo.filter( function ( player ) {
-      return player.downcaseName.indexOf( str ) !== -1;
+    return nba.playersInfo.filter(function (player) {
+      return player.downcaseName.indexOf(str) !== -1;
     });
   },
-  teamIdFromName: function ( name ) {
+  teamIdFromName: function (name) {
     var team = util.findWhereAny({
       abbreviation: name,
       teamName: name,
       simpleName: name
-    }, this.teamsInfo );
+    }, nba.teamsInfo);
     return team ? team.teamId : null;
   }
 });
 
-// To provide consistent .ready() API for both light & regular versions.
-playersPromise = nba.playersInfo.length ?
-  Promise.resolve() :
-  updatePlayerInfo();
+function init () {
 
-teamsPromise = nba.teamsInfo.length ?
-  Promise.resolve() :
-  updateTeamInfo();
+  function doReady () {
+    while (readyCallbacks.length) {
+      readyCallbacks.pop().call(null, readyArg);
+    }
+  }
 
-readyPromise = Promise.all([ playersPromise, teamsPromise ]);
+  function dummy (cb) {
+    cb(readyArg);
+  }
+
+  var _players = nba.playersInfo.length ? dummy : updatePlayerInfo;
+  var _teams = nba.teamsInfo.length ? dummy : updateTeamInfo;
+
+  _players(function (err) {
+    if (err) {
+      readyArg = err;
+      isReady = true;
+      return doReady();
+    }
+    _teams(function (err) {
+      if (err) {
+        readyArg = err;
+      }
+      isReady = true;
+      doReady();
+    });
+  });
+}
+
+init();
 
 module.exports = nba;
 
-},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./promise":10,"./sport-vu":11,"./util":12}]},{},[30])(30)
+},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./sport-vu":10,"./util":11}]},{},[19])(19)
 });
