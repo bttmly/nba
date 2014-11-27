@@ -1,23 +1,17 @@
 "use strict";
 
-var Promise = require("../lib/promise");
-
 var DELAY = 10;
 
-function jsonStub () {
-  return new Promise(function (resolve) {
-    setTimeout(function () {
-      resolve("success");
-    }, DELAY);
-  });
+function jsonStub (url, settings, callback) {
+  setTimeout(function () {
+    callback(null, {});
+  }, DELAY);
 }
 
-function jsonFailStub () {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      reject("fail");
-    });
-  });
+function jsonFailStub (url, settings, callback) {
+  setTimeout(function () {
+    callback(new Error());
+  }, DELAY);
 }
 
 module.exports = {
