@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-var fs = require( "fs" );
-var path = require( "path" );
+var fs = require("fs");
+var path = require("path");
 
-var util = require( "../lib/util" );
-var playersInfo = require( "../lib/api" ).playersInfo;
+var util = require("../lib/util");
+var playersInfo = require("../lib/api").playersInfo;
 
-playersInfo().then( function ( players ) {
-  var filePath = path.join( __dirname, "../data/players.json" );
-  fs.writeFileSync( filePath, JSON.stringify( players ) );
+playersInfo(function (err, players) {
+  var filePath = path.join(__dirname, "../data/players.json");
+  fs.writeFileSync(filePath, JSON.stringify(players));
 });

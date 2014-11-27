@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var fs = require( "fs" );
-var path = require( "path" );
+var fs = require("fs");
+var path = require("path");
 
-var maps = require( "../lib/maps" );
-var util = require( "../lib/util" );
-var teamInfo = require( "../lib/info-teams" );
+var maps = require("../lib/maps");
+var util = require("../lib/util");
+var teamInfo = require("../lib/info-teams");
 
-teamInfo().then( function ( teams ) {
-  var filePath = path.join( __dirname, "../data/teams.json" );
-  fs.writeFileSync( filePath, JSON.stringify( teams ) );
+teamInfo(function (err, teams) {
+  var filePath = path.join(__dirname, "../data/teams.json");
+  fs.writeFileSync(filePath, JSON.stringify(teams));
 });

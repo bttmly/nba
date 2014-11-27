@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-var fs = require( "fs" );
-var path = require( "path" );
+var fs = require("fs");
+var path = require("path");
 
-var teamsPath = path.join( __dirname, "../data/teams.json" );
-fs.writeFileSync( teamsPath, JSON.stringify( [] ) );
+var teamsPath = path.join(__dirname, "../data/teams.json");
+fs.writeFileSync(teamsPath, JSON.stringify([]));
 
-var playersPath = path.join( __dirname, "../data/players.json" );
-fs.writeFileSync( playersPath, JSON.stringify( [] ) );
+var playersPath = path.join(__dirname, "../data/players.json");
+fs.writeFileSync(playersPath, JSON.stringify([]));
