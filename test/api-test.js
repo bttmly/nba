@@ -277,13 +277,14 @@ describe(".boxScoreFourFactors()", function () {
 
 describe("all endpoints", function () {
   Object.keys(api).forEach(function (key) {
-    it("should throw when passed a bad parameter", function (done) {
-      try {
-        api[key]({badParam: "xyz"}, function () {});
-      } catch (e) {
-        e.should.be.ok();
-      }
-      done();
+    if (key[0] === "_"){
+      return;
+    }
+    it("should call callback with error when passed a bad parameter", function (done) {
+      api[key]({badParam: "xyz"}, function (err) {
+        done();
+        err.should.be.ok();
+      });
     });
   });
 });
