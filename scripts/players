@@ -7,6 +7,9 @@ var util = require("../lib/util");
 var playersInfo = require("../lib/api").playersInfo;
 
 playersInfo(function (err, players) {
+  if (err) {
+    throw err;
+  }
   var filePath = path.join(__dirname, "../data/players.json");
   fs.writeFileSync(filePath, JSON.stringify(players));
 });
