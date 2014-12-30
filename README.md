@@ -38,13 +38,30 @@ The following endpoints are implemented currently:
 - `http://stats.nba.com/stats/boxscoreadvanced`
 - `http://stats.nba.com/stats/boxscorefourfactors`
 
-### Strategies
-This API wrapper gets data in two main ways. Data from NBA stats is accessible over a public JSON REST API. It supports JSONP, so in the browser we just use a tiny, custom, promise-returning implementation for that. In Node we delegate to `request` module. The implementations are interchangable.
+The endpoints above correspond to the following methods available on `nba.api`:
 
-The SportVu service provides data differently, as actual .js files that expose a global variable. I have no clue why they elected to do it this way. Anyway, there are similar browser/Node strategies for these files also. The browser implementation is similar to the JSONP strategy, while the Node version uses the [`vm` module]().
+- `playerProfile([Object options], Function callback)`
+- `playerInfo([Object options], Function callback)`
+- `playersInfo([Object options], Function callback)`
+- `teamStats([Object options], Function callback)`
+- `teamSplits([Object options], Function callback)`
+- `teamYears([Object options], Function callback)`
+- `playerSplits([Object options], Function callback)`
+- `shots([Object options], Function callback)`
+- `scoreboard([Object options], Function callback)`
+- `playByPlay([Object options], Function callback)`
+- `boxScoreScoring([Object options], Function callback)`
+- `boxScoreUsage([Object options], Function callback)`
+- `boxScoreMisc([Object options], Function callback)`
+- `boxScoreAdvanced([Object options], Function callback)`
+- `boxScoreFourFactors([Object options], Function callback)`
+
+Each method has the same signature: an optional options hash (which will be translated into a query string), and a callback function. 
+
+**Note**: This library was previously written such that each API call method returned a Promise. However, Promises are just one of a number of async abstractions available to developers: FRP libraries like Bacon or RxJS, async streams a la Highland.js, ES6 generators, and certainly more in the future. Because of the prevalance of standard Node-style callbacks, there are conventions in place for transforming callbacks into higher-level abstractions.Thus, providing Node-style callbacks at the library level, and allowing library consumers to use their preferred async abstraction (or none) seems like cleaner design. [Bluebird](https://github.com/petkaantonov/bluebird) is an excellent library for "promisifying". You can use it's `.promisifyAll` method on `nba.api`.
 
 ### The Problem with JSONP
-JSONP is generally miserable at handling errors.
+JSONP is generally miserable at handling errors or providing any useful information whatsoever about them.
 
 ### Data
 Stats responses generally arrive in an object like so:
@@ -67,18 +84,7 @@ The `resultSets` property has the data. Some requests have a single `resultSet` 
 }
 ```
 
-The API serves data in an efficient, though tricky to use, manner. In a typical JSON response, the keys of each object may be repeated many times. Indeed, repeated keys might make up a substantial percentage of the size of the response. The NBA's API instead returns an array of header values and an array of rows, which need to be combined by index to produce objects. `util.js` contains a "collectify" function which turns an array of headers, and an array of rows (a two-dimensional array) into a collection of objects. The implementation is:
-
-```js
-function collectify ( headers, rows ) {
-  return rows.map( function ( item ) {
-    return item.reduce( function ( model, val, i ) {
-      model[ headers[i] ] = val;
-      return model;
-    }, {} );
-  });
-}
-```
+The API serves data in an efficient, though tricky to use, manner. In a typical JSON response, the keys of each object may be repeated many times. Indeed, repeated keys might make up a substantial percentage of the size of the response. The NBA's API instead returns an array of header values and an array of rows, which need to be combined by index to produce objects. `util.js` contains a "collectify" function which turns an array of headers, and an array of rows (a two-dimensional array) into a collection of objects. All data received in this way from NBA is transformed before being passed out of the API wrapper.
 
 ### Included JSON?
 Players, teams, and games are identified by a unique ID assigned by the NBA. Unfortunately, as far as I can tell, there isn't a way to make queries based on a player's (or team's) name. This wrapper allows queries based on names, but at a cost: it needs an internal list of teams and players to locate the correct ID. The `dist` folder includes two versions of the wrapper: `nba.js` and `nba-light.js`. The `nba.js` file has these lists bundled into the source code. The light version issues requests for these lists when it is loaded (or required). The `nba.ready()` method is provided to give users a way to execute code once these lists are prepared. In the light version, this code is run once both requests return.
