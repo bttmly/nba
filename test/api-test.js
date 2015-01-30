@@ -335,6 +335,36 @@ describe(".teamPlayerDashboard()", function () {
   });
 });
 
+describe(".playerDashPtShotLog()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.playerDashPtShotLog(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerdashptshotlog").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.playerDashPtShotLog({playerId: 11}, function () {
+      successSpy.lastCalledWithOption("PlayerID", 11).should.equal(true);
+      done();
+    });
+  });
+});
+
+describe(".playerDashPtReboundLogs()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.playerDashPtReboundLogs(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerdashptreboundlogs").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.playerDashPtReboundLogs({playerId: 12}, function () {
+      successSpy.lastCalledWithOption("PlayerID", 12).should.equal(true);
+      done();
+    });
+  });
+});
+
 describe("all endpoints", function () {
   Object.keys(api).forEach(function (key) {
     if (key[0] === "_"){
