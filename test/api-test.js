@@ -275,6 +275,66 @@ describe(".boxScoreFourFactors()", function () {
   });
 });
 
+describe(".teamHistoricalLeaders()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.teamHistoricalLeaders(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teamhistoricalleaders").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.teamHistoricalLeaders({teamId: 7}, function () {
+      successSpy.lastCalledWithOption("TeamID", 7).should.equal(true);
+      done();
+    });
+  });
+});
+
+describe(".teamInfoCommon()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.teamInfoCommon(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teaminfocommon").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.teamInfoCommon({teamId: 8}, function () {
+      successSpy.lastCalledWithOption("TeamID", 8).should.equal(true);
+      done();
+    });
+  });
+});
+
+describe(".commonTeamRoster()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.commonTeamRoster(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/commonteamroster").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.commonTeamRoster({teamId: 9}, function () {
+      successSpy.lastCalledWithOption("TeamID", 9).should.equal(true);
+      done();
+    });
+  });
+});
+
+describe(".teamPlayerDashboard()", function () {
+  it("should issue a request to the correct URL", function (done) {
+    api.teamPlayerDashboard(function () {
+      successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teamplayerdashboard").should.equal(true);
+      done();
+    });
+  });
+  it("should issue a request with the correct params", function (done) {
+    api.teamPlayerDashboard({teamId: 10}, function () {
+      successSpy.lastCalledWithOption("TeamID", 10).should.equal(true);
+      done();
+    });
+  });
+});
+
 describe("all endpoints", function () {
   Object.keys(api).forEach(function (key) {
     if (key[0] === "_"){
