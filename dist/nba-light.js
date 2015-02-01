@@ -44,7 +44,12 @@ Object.keys(ep).forEach(function (key) {
       throw new TypeError("Must pass a callback.");
     }
 
-    options = util.merge(ep[key].defaults(), translate(options));
+    // this is a temporary fix; figure out a better way to handle this long term.
+    try {
+      options = util.merge(ep[key].defaults(), translate(options));
+    } catch (err) {
+      return cb(err);
+    }
 
     if (api._flags.recordUrls) {
       recordUrl(ep[key], options);
@@ -62,13 +67,11 @@ Object.keys(ep).forEach(function (key) {
 module.exports = api;
 
 },{"./endpoints":4,"./get-json":6,"./maps":9,"./util":11,"qs":13}],4:[function(require,module,exports){
-// jscs:disable maximumLineLength
-
 "use strict";
 
 var util = require("./util");
 
-var DEFAULT_SEASON = "2013-14";
+var DEFAULT_SEASON = "2014-15";
 
 function boxScoreDefaults () {
   return {"GameID": "0", "RangeType": "0", "StartPeriod": "0", "EndPeriod": "0", "StartRange": "0", "EndRange": "0"};
@@ -114,7 +117,7 @@ var endpoints = {
     url: "http://stats.nba.com/stats/commonteamyears",
     defaults: function () {
       return {"LeagueID": "00"};
-   },
+    },
     transform: util.baseResponseTransform
   },
   playerSplits: {
@@ -129,21 +132,21 @@ var endpoints = {
     url: "http://stats.nba.com/stats/shotchartdetail",
     defaults: function () {
       return {"PlayerID": "0", "Season": DEFAULT_SEASON, "AllStarSeason": "", "SeasonType": "Regular Season", "LeagueID": "00", "TeamID": "", "GameID": "", "Position": "", "RookieYear": "", "ContextMeasure": "FG_PCT", "MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0", "GameScope": "", "PlayerExperience": "", "PlayerPosition": "", "StarterBench": ""};
-     },
+    },
     transform: util.generalResponseTransform
   },
   scoreboard: {
     url: "http://stats.nba.com/stats/scoreboard",
     defaults: function () {
       return {"LeagueID": "00", "gameDate": "01/01/2000", "DayOffset": "0"};
-     },
+    },
     transform: util.generalResponseTransform
   },
   playByPlay: {
     url: "http://stats.nba.com/stats/playbyplay",
     defaults: function () {
       return {"GameID": "0", "StartPeriod": "0", "EndPeriod": "0"};
-     },
+    },
     transform: util.generalResponseTransform
   },
   boxScoreScoring: {
@@ -174,8 +177,6 @@ var endpoints = {
 };
 
 module.exports = endpoints;
-
-// jscs: enable
 
 },{"./util":11}],5:[function(require,module,exports){
 "use strict";
@@ -837,6 +838,37 @@ function makeDict (obj) {
     });
   }
   return ret;
+}
+
+function inherit (Child, Parent) {
+  Child.prototype = Object.create(Parent.prototype, {
+    constructor: {
+      value: Child,
+      writable: true,
+      enumerable: false,
+      configurable: true
+    }
+  });
+}
+
+// if you want to have `this` binding, use .bind()
+function tryCatchCall (func) {
+  // should we even bother to optimize arguments?
+  // this function necessarily has a try/catch block
+  // in it, which itself will negate V8 optimizations
+  var len = arguments.length - 1;
+  var args = new Array(len);
+  var i = 0;
+  var result;
+  while (++i < len) {
+    args[i] = arguments[i];
+  }
+  try {
+    result = func.apply(null, args);
+  } catch (err) {
+    return err;
+  }
+  return result;
 }
 
 module.exports = {
