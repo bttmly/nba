@@ -2,7 +2,7 @@
 module.exports=[]
 },{}],2:[function(require,module,exports){
 module.exports=require(1)
-},{"/Users/nickbottomley/Documents/nb/nba/data/players.json":1}],3:[function(require,module,exports){
+},{"/Users/calenewman/Desktop/nba/data/players.json":1}],3:[function(require,module,exports){
 "use strict";
 
 var qs = require("qs");
@@ -172,6 +172,54 @@ var endpoints = {
   boxScoreFourFactors: {
     url: "http://stats.nba.com/stats/boxscorefourfactors",
     defaults: boxScoreDefaults,
+    transform: util.generalResponseTransform
+  },
+  teamHistoricalLeaders: {
+    url: "http://stats.nba.com/stats/teamhistoricalleaders",
+    defaults: function() {
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "TeamID": "0"};
+    },
+    transform: util.generalResponseTransform
+  },
+  teamInfoCommon: {
+    url: "http://stats.nba.com/stats/teaminfocommon",
+    defaults: function() {
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "TeamID": "0"};
+    },
+    transform: util.generalResponseTransform
+  },
+  commonTeamRoster: {
+    url: "http://stats.nba.com/stats/commonteamroster",
+    defaults: function() {
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "TeamID": "0"};
+    },
+    transform: util.generalResponseTransform
+  },
+  teamPlayerDashboard: {
+    url: "http://stats.nba.com/stats/teamplayerdashboard",
+    defaults: function() {
+      return {"MeasureType": "Base", "PerMode": "PerGame", "PlusMinus": "N", "PaceAdjust": "N", "Rank": "N", "LeagueID": "00", "Season": DEFAULT_SEASON,
+              "TeamID": "0", "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "", "VsDivision": "",
+              "GameSegment": "", "Period": "0", "LastNGames": "0" };
+    },
+    transform: util.generalResponseTransform
+  },
+  playerDashPtShotLog: {
+    url: "http://stats.nba.com/stats/playerdashptshotlog",
+    defaults: function() {
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "PlayerID": "0", "TeamID": "0", "MeasureType": "Base",
+              "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "",
+              "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0"};
+    },
+    transform: util.generalResponseTransform
+  },
+  playerDashPtReboundLogs: {
+    url: "http://stats.nba.com/stats/playerdashptreboundlogs",
+    defaults: function() {
+      return {"LeagueID": "00", "Season": DEFAULT_SEASON, "SeasonType": "Regular Season", "PlayerID": "0", "TeamID": "0",
+              "Outcome": "", "Location": "", "Month": "0", "SeasonSegment": "", "DateFrom": "", "DateTo": "", "OpponentTeamID": "0", "VsConference": "",
+              "VsDivision": "", "GameSegment": "", "Period": "0", "LastNGames": "0"};
+    },
     transform: util.generalResponseTransform
   }
 };
@@ -670,7 +718,7 @@ function partial (fn) {
 
 // detects whether a string contains a hyphen or dash
 // (very rough way of detecting dashed or snake_case strings)
-function hasDashOrHyphen (str) {
+function hasUnderscoreOrHyphen (str) {
   return str.indexOf("-") > -1 || str.indexOf("_") > -1;
 }
 
@@ -692,7 +740,7 @@ function unDashHyphen (str) {
 
 // picks which method to use and returns the converted string
 function jsify (str) {
-  if (hasDashOrHyphen(str)) {
+  if (hasUnderscoreOrHyphen(str)) {
     return unDashHyphen(str);
   }
   return downcaseFirst(str);
@@ -872,6 +920,9 @@ function tryCatchCall (func) {
 }
 
 module.exports = {
+  downcaseFirst: downcaseFirst,
+  hasUnderscoreOrHyphen: hasUnderscoreOrHyphen,
+  unDashHyphen: unDashHyphen,
   makeDict: makeDict,
   usDateFormat: usDateFormat,
   shallowCopy: shallowCopy,
