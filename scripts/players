@@ -11,5 +11,5 @@ playersInfo(function (err, players) {
     throw err;
   }
   var filePath = path.join(__dirname, "../data/players.json");
-  fs.writeFileSync(filePath, JSON.stringify(players));
+  fs.writeFileSync(filePath, JSON.stringify(players, null, 2));
 });
