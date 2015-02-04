@@ -40,19 +40,19 @@ describe("util.downCaseFirst()", function () {
   });
 });
 
-describe("util.hasUnderscoreOrHyphen()", function () {
-  it("should return true if the string contains a hyphen", function () {
-    var result = util.hasUnderscoreOrHyphen("hello-world");
-    result.should.equal(true);
+describe("util.unDashHyphen()", function () {
+  it("should remove any hyphens in a string and uppercase the following character", function () {
+    var result = util.unDashHyphen("hello-there-world");
+    result.should.equal("helloThereWorld");
   });
 
-  it("should return true if the string contains an underscore", function () {
-    var result = util.hasUnderscoreOrHyphen("hello-world");
-    result.should.equal(true);
+  it("should remove any underscores in a string and uppercase the following character", function () {
+    var result = util.unDashHyphen("hello_there_world");
+    result.should.equal("helloThereWorld");
   });
 
-  it("should return false if the string has neither an underscore or hyphen", function () {
-    var result = util.hasUnderscoreOrHyphen("helloworld");
-    result.should.equal(false);
+  it("should remove any spaces in a string and uppercase the following character", function () {
+    var result = util.unDashHyphen("hello there world");
+    result.should.equal("helloThereWorld");
   });
 });
