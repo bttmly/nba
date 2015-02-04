@@ -2,7 +2,9 @@
 module.exports=[]
 },{}],2:[function(require,module,exports){
 module.exports=require(1)
-},{"/Users/calenewman/Desktop/nba/data/players.json":1}],3:[function(require,module,exports){
+},{"/Users/nickbottomley/Documents/nb/nba/data/players.json":1}],3:[function(require,module,exports){
+module.exports = require("./lib");
+},{"./lib":9}],4:[function(require,module,exports){
 "use strict";
 
 var qs = require("qs");
@@ -66,7 +68,7 @@ Object.keys(ep).forEach(function (key) {
 
 module.exports = api;
 
-},{"./endpoints":4,"./get-json":6,"./maps":9,"./util":11,"qs":13}],4:[function(require,module,exports){
+},{"./endpoints":5,"./get-json":7,"./maps":11,"./util":13,"qs":15}],5:[function(require,module,exports){
 "use strict";
 
 var util = require("./util");
@@ -226,7 +228,7 @@ var endpoints = {
 
 module.exports = endpoints;
 
-},{"./util":11}],5:[function(require,module,exports){
+},{"./util":13}],6:[function(require,module,exports){
 "use strict";
 
 var qs = require("query-string");
@@ -252,7 +254,7 @@ module.exports = {
   ParameterError: ParameterError
 };
 
-},{"query-string":18}],6:[function(require,module,exports){
+},{"query-string":20}],7:[function(require,module,exports){
 "use strict";
 
 var qs = require("query-string");
@@ -293,7 +295,7 @@ module.exports = function jsonpStrategy (url, query, callback) {
 };
 
 
-},{"./errors":5,"query-string":18}],7:[function(require,module,exports){
+},{"./errors":6,"query-string":20}],8:[function(require,module,exports){
 "use strict";
 var assign = require("object-assign");
 
@@ -324,7 +326,108 @@ module.exports = function scriptTagStrategy (url, globalName, callback) {
 
   document.body.appendChild(script);
 };
-},{"object-assign":12}],8:[function(require,module,exports){
+},{"object-assign":14}],9:[function(require,module,exports){
+"use strict";
+
+var getTeamsInfo = require("./info-teams");
+var util = require("./util");
+var api = require("./api");
+
+var nba = {};
+
+function updatePlayerInfo (cb) {
+  return api.playersInfo(function (err, resp) {
+    nba.teamsInfo = resp;
+    cb(err, resp);
+  });
+}
+
+function updateTeamInfo (cb) {
+  return getTeamsInfo(function (err, resp) {
+    nba.playersInfo = resp;
+    cb(err, resp);
+  });
+}
+
+var readyCallbacks = [];
+var isReady = false;
+var readyArg = null;
+
+util.merge(nba, {
+  sportVu: require("./sport-vu"),
+  playersInfo: util.buildPlayers(require("../data/players.json")),
+  updatePlayersInfo: updatePlayerInfo,
+  teamsInfo: require("../data/teams.json"),
+  updateTeamsInfo: updateTeamInfo,
+  api: api,
+  ready: function (callback) {
+    if (typeof callback !== "function") {
+      throw new TypeError("ready() only accepts functions");
+    }
+    if (isReady) {
+      return callback.call(this, readyArg);
+    }
+    readyCallbacks.push(callback);
+  },
+  playerIdFromName: function (name) {
+    var player = util.findWhere({ fullName: name }, nba.playersInfo);
+    return player ? player.playerId : null;
+  },
+  findPlayer: function (str) {
+    return util.find(util.partial(util.contains, str), nba.playersInfo);
+  },
+  searchPlayers: function (str) {
+    str = str.toLowerCase();
+    return nba.playersInfo.filter(function (player) {
+      return player.downcaseName.indexOf(str) !== -1;
+    });
+  },
+  teamIdFromName: function (name) {
+    var team = util.findWhereAny({
+      abbreviation: name,
+      teamName: name,
+      simpleName: name
+    }, nba.teamsInfo);
+    return team ? team.teamId : null;
+  }
+});
+
+function init () {
+
+  function doReady () {
+    while (readyCallbacks.length) {
+      readyCallbacks.pop().call(null, readyArg);
+    }
+  }
+
+  function dummy (cb) {
+    cb(readyArg);
+  }
+
+  var _players = nba.playersInfo.length ? dummy : updatePlayerInfo;
+  var _teams = nba.teamsInfo.length ? dummy : updateTeamInfo;
+
+  _players(function (err) {
+    if (err) {
+      readyArg = err;
+      isReady = true;
+      return doReady();
+    }
+    _teams(function (err) {
+      if (err) {
+        readyArg = err;
+      }
+      isReady = true;
+      doReady();
+    });
+  });
+}
+
+init();
+
+module.exports = nba;
+
+},{"../data/players.json":1,"../data/teams.json":2,"./api":4,"./info-teams":10,"./sport-vu":12,"./util":13}],10:[function(require,module,exports){
 "use strict";
 
 var util = require("./util");
@@ -378,7 +481,7 @@ module.exports = function (cb) {
   }
 };
 
-},{"./api":3,"./util":11}],9:[function(require,module,exports){
+},{"./api":4,"./util":13}],11:[function(require,module,exports){
 "use strict";
 
 // All maps are actually map-returning functions. We need to absolutely
@@ -575,7 +678,7 @@ module.exports = {
 //   return result;
 // }, {} );
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 var getScript = require("./get-script");
@@ -629,7 +732,7 @@ module.exports = Object.keys(sportVuScripts).reduce(function (obj, key) {
   return obj;
 }, {});
 
-},{"./get-script":7}],11:[function(require,module,exports){
+},{"./get-script":8}],13:[function(require,module,exports){
 "use strict";
 
 function merge (target) {
@@ -946,7 +1049,7 @@ module.exports = {
   buildPlayers: buildPlayers
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -974,10 +1077,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":14}],14:[function(require,module,exports){
+},{"./lib/":16}],16:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -994,7 +1097,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":15,"./stringify":16}],15:[function(require,module,exports){
+},{"./parse":17,"./stringify":18}],17:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -1153,7 +1256,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":17}],16:[function(require,module,exports){
+},{"./utils":19}],18:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -1232,7 +1335,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":17}],17:[function(require,module,exports){
+},{"./utils":19}],19:[function(require,module,exports){
 // Load modules
 
 
@@ -1366,7 +1469,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /*!
 	query-string
 	Parse and stringify URL query strings
@@ -1434,106 +1537,5 @@ exports.isBuffer = function (obj) {
 	}
 })();
 
-},{}],19:[function(require,module,exports){
-"use strict";
-
-var getTeamsInfo = require("./info-teams");
-var util = require("./util");
-var api = require("./api");
-
-var nba = {};
-
-function updatePlayerInfo (cb) {
-  return api.playersInfo(function (err, resp) {
-    nba.teamsInfo = resp;
-    cb(err, resp);
-  });
-}
-
-function updateTeamInfo (cb) {
-  return getTeamsInfo(function (err, resp) {
-    nba.playersInfo = resp;
-    cb(err, resp);
-  });
-}
-
-var readyCallbacks = [];
-var isReady = false;
-var readyArg = null;
-
-util.merge(nba, {
-  sportVu: require("./sport-vu"),
-  playersInfo: util.buildPlayers(require("../data/players.json")),
-  updatePlayersInfo: updatePlayerInfo,
-  teamsInfo: require("../data/teams.json"),
-  updateTeamsInfo: updateTeamInfo,
-  api: api,
-  ready: function (callback) {
-    if (typeof callback !== "function") {
-      throw new TypeError("ready() only accepts functions");
-    }
-    if (isReady) {
-      return callback.call(this, readyArg);
-    }
-    readyCallbacks.push(callback);
-  },
-  playerIdFromName: function (name) {
-    var player = util.findWhere({ fullName: name }, nba.playersInfo);
-    return player ? player.playerId : null;
-  },
-  findPlayer: function (str) {
-    return util.find(util.partial(util.contains, str), nba.playersInfo);
-  },
-  searchPlayers: function (str) {
-    str = str.toLowerCase();
-    return nba.playersInfo.filter(function (player) {
-      return player.downcaseName.indexOf(str) !== -1;
-    });
-  },
-  teamIdFromName: function (name) {
-    var team = util.findWhereAny({
-      abbreviation: name,
-      teamName: name,
-      simpleName: name
-    }, nba.teamsInfo);
-    return team ? team.teamId : null;
-  }
-});
-
-function init () {
-
-  function doReady () {
-    while (readyCallbacks.length) {
-      readyCallbacks.pop().call(null, readyArg);
-    }
-  }
-
-  function dummy (cb) {
-    cb(readyArg);
-  }
-
-  var _players = nba.playersInfo.length ? dummy : updatePlayerInfo;
-  var _teams = nba.teamsInfo.length ? dummy : updateTeamInfo;
-
-  _players(function (err) {
-    if (err) {
-      readyArg = err;
-      isReady = true;
-      return doReady();
-    }
-    _teams(function (err) {
-      if (err) {
-        readyArg = err;
-      }
-      isReady = true;
-      doReady();
-    });
-  });
-}
-
-init();
-
-module.exports = nba;
-
-},{"../data/players.json":1,"../data/teams.json":2,"./api":3,"./info-teams":8,"./sport-vu":10,"./util":11}]},{},[19])(19)
+},{}]},{},[3])(3)
 });
