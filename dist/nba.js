@@ -166,6 +166,11 @@ module.exports=[
     "playerId": 2440
   },
   {
+    "firstName": "Earl",
+    "lastName": "Barron",
+    "playerId": 2853
+  },
+  {
     "firstName": "Will",
     "lastName": "Barton",
     "playerId": 203115
@@ -201,9 +206,19 @@ module.exports=[
     "playerId": 203078
   },
   {
+    "firstName": "Michael",
+    "lastName": "Beasley",
+    "playerId": 201563
+  },
+  {
     "firstName": "Marco",
     "lastName": "Belinelli",
     "playerId": 201158
+  },
+  {
+    "firstName": "Jerrelle",
+    "lastName": "Benimon",
+    "playerId": 203968
   },
   {
     "firstName": "Anthony",
@@ -291,6 +306,11 @@ module.exports=[
     "playerId": 201166
   },
   {
+    "firstName": "Jabari",
+    "lastName": "Brown",
+    "playerId": 203913
+  },
+  {
     "firstName": "Lorenzo",
     "lastName": "Brown",
     "playerId": 203485
@@ -344,6 +364,11 @@ module.exports=[
     "firstName": "Rasual",
     "lastName": "Butler",
     "playerId": 2446
+  },
+  {
+    "firstName": "Will",
+    "lastName": "Bynum",
+    "playerId": 101198
   },
   {
     "firstName": "Bruno",
@@ -456,9 +481,19 @@ module.exports=[
     "playerId": 201144
   },
   {
+    "firstName": "Jack",
+    "lastName": "Cooley",
+    "playerId": 204022
+  },
+  {
     "firstName": "Chris",
     "lastName": "Copeland",
     "playerId": 203142
+  },
+  {
+    "firstName": "Bryce",
+    "lastName": "Cotton",
+    "playerId": 203955
   },
   {
     "firstName": "DeMarcus",
@@ -494,6 +529,11 @@ module.exports=[
     "firstName": "Jared",
     "lastName": "Cunningham",
     "playerId": 203099
+  },
+  {
+    "firstName": "Seth",
+    "lastName": "Curry",
+    "playerId": 203552
   },
   {
     "firstName": "Stephen",
@@ -584,6 +624,11 @@ module.exports=[
     "firstName": "Joey",
     "lastName": "Dorsey",
     "playerId": 201595
+  },
+  {
+    "firstName": "Toney",
+    "lastName": "Douglas",
+    "playerId": 201962
   },
   {
     "firstName": "Chris",
@@ -719,6 +764,11 @@ module.exports=[
     "firstName": "Randy",
     "lastName": "Foye",
     "playerId": 200751
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Frazier",
+    "playerId": 204025
   },
   {
     "firstName": "Jimmer",
@@ -894,6 +944,11 @@ module.exports=[
     "firstName": "PJ",
     "lastName": "Hairston",
     "playerId": 203798
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Hamilton",
+    "playerId": 202706
   },
   {
     "firstName": "Justin",
@@ -1096,6 +1151,11 @@ module.exports=[
     "playerId": 202704
   },
   {
+    "firstName": "Bernard",
+    "lastName": "James",
+    "playerId": 203108
+  },
+  {
     "firstName": "LeBron",
     "lastName": "James",
     "playerId": 2544
@@ -1231,6 +1291,11 @@ module.exports=[
     "playerId": 203077
   },
   {
+    "firstName": "Sean",
+    "lastName": "Kilpatrick",
+    "playerId": 203930
+  },
+  {
     "firstName": "Andrei",
     "lastName": "Kirilenko",
     "playerId": 1905
@@ -1279,6 +1344,11 @@ module.exports=[
     "firstName": "Shane",
     "lastName": "Larkin",
     "playerId": 203499
+  },
+  {
+    "firstName": "Joffrey",
+    "lastName": "Lauvergne",
+    "playerId": 203530
   },
   {
     "firstName": "Ty",
@@ -1514,11 +1584,6 @@ module.exports=[
     "firstName": "Quincy",
     "lastName": "Miller",
     "playerId": 203113
-  },
-  {
-    "firstName": "Quincy",
-    "lastName": "Miller",
-    "playerId": 203296
   },
   {
     "firstName": "Patty",
@@ -2036,6 +2101,11 @@ module.exports=[
     "playerId": 201880
   },
   {
+    "firstName": "David",
+    "lastName": "Stockton",
+    "playerId": 204065
+  },
+  {
     "firstName": "Jarnell",
     "lastName": "Stokes",
     "playerId": 203950
@@ -2206,6 +2276,11 @@ module.exports=[
     "playerId": 203079
   },
   {
+    "firstName": "Henry",
+    "lastName": "Walker",
+    "playerId": 201611
+  },
+  {
     "firstName": "Kemba",
     "lastName": "Walker",
     "playerId": 202689
@@ -2229,6 +2304,11 @@ module.exports=[
     "firstName": "CJ",
     "lastName": "Watson",
     "playerId": 201228
+  },
+  {
+    "firstName": "David",
+    "lastName": "Wear",
+    "playerId": 204033
   },
   {
     "firstName": "Travis",
@@ -2877,14 +2957,14 @@ var api = require("./api");
 
 var nba = {};
 
-function updatePlayerInfo (cb) {
+function updatePlayersInfo (cb) {
   return api.playersInfo(function (err, resp) {
     nba.teamsInfo = resp;
     cb(err, resp);
   });
 }
 
-function updateTeamInfo (cb) {
+function updateTeamsInfo (cb) {
   return getTeamsInfo(function (err, resp) {
     nba.playersInfo = resp;
     cb(err, resp);
@@ -2898,9 +2978,9 @@ var readyArg = null;
 util.merge(nba, {
   sportVu: require("./sport-vu"),
   playersInfo: util.buildPlayers(require("../data/players.json")),
-  updatePlayersInfo: updatePlayerInfo,
+  updatePlayersInfo: updatePlayersInfo,
   teamsInfo: require("../data/teams.json"),
-  updateTeamsInfo: updateTeamInfo,
+  updateTeamsInfo: updateTeamsInfo,
   api: api,
   ready: function (callback) {
     if (typeof callback !== "function") {
@@ -2946,8 +3026,8 @@ function init () {
     cb(readyArg);
   }
 
-  var _players = nba.playersInfo.length ? dummy : updatePlayerInfo;
-  var _teams = nba.teamsInfo.length ? dummy : updateTeamInfo;
+  var _players = nba.playersInfo.length ? dummy : updatePlayersInfo;
+  var _teams = nba.teamsInfo.length ? dummy : updateTeamsInfo;
 
   _players(function (err) {
     if (err) {

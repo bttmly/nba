@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/nickbottomley/.nvm/v0.10.38/bin/node',
+1 verbose cli   '/Users/nickbottomley/.nvm/v0.10.38/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'update-data' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.38
+4 verbose run-script [ 'preupdate-data', 'update-data', 'postupdate-data' ]
+5 info preupdate-data nba@0.3.0
+6 info update-data nba@0.3.0
+7 verbose unsafe-perm in lifecycle true
+8 info nba@0.3.0 Failed to exec update-data script
+9 error nba@0.3.0 update-data: `npm run update-teams; npm run update-players`
+9 error Exit status 1
+10 error Failed at the nba@0.3.0 update-data script.
+10 error This is most likely a problem with the nba package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     npm run update-teams; npm run update-players
+10 error You can get their info via:
+10 error     npm owner ls nba
+10 error There is likely additional logging output above.
+11 error System Darwin 14.1.0
+12 error command "/Users/nickbottomley/.nvm/v0.10.38/bin/node" "/Users/nickbottomley/.nvm/v0.10.38/bin/npm" "run" "update-data"
+13 error cwd /Users/nickbottomley/Documents/nb/nba
+14 error node -v v0.10.38
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]

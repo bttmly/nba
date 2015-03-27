@@ -335,14 +335,14 @@ var api = require("./api");
 
 var nba = {};
 
-function updatePlayerInfo (cb) {
+function updatePlayersInfo (cb) {
   return api.playersInfo(function (err, resp) {
     nba.teamsInfo = resp;
     cb(err, resp);
   });
 }
 
-function updateTeamInfo (cb) {
+function updateTeamsInfo (cb) {
   return getTeamsInfo(function (err, resp) {
     nba.playersInfo = resp;
     cb(err, resp);
@@ -356,9 +356,9 @@ var readyArg = null;
 util.merge(nba, {
   sportVu: require("./sport-vu"),
   playersInfo: util.buildPlayers(require("../data/players.json")),
-  updatePlayersInfo: updatePlayerInfo,
+  updatePlayersInfo: updatePlayersInfo,
   teamsInfo: require("../data/teams.json"),
-  updateTeamsInfo: updateTeamInfo,
+  updateTeamsInfo: updateTeamsInfo,
   api: api,
   ready: function (callback) {
     if (typeof callback !== "function") {
@@ -404,8 +404,8 @@ function init () {
     cb(readyArg);
   }
 
-  var _players = nba.playersInfo.length ? dummy : updatePlayerInfo;
-  var _teams = nba.teamsInfo.length ? dummy : updateTeamInfo;
+  var _players = nba.playersInfo.length ? dummy : updatePlayersInfo;
+  var _teams = nba.teamsInfo.length ? dummy : updateTeamsInfo;
 
   _players(function (err) {
     if (err) {

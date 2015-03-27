@@ -3,11 +3,9 @@
 var fs = require("fs");
 var path = require("path");
 
-var maps = require("../lib/maps");
-var util = require("../lib/util");
-var teamInfo = require("../lib/info-teams");
+var updateTeamsInfo = require("../lib").updateTeamsInfo;
 
-teamInfo(function (err, teams) {
+updateTeamsInfo(function (err, teams) {
   var filePath = path.join(__dirname, "../data/teams.json");
   fs.writeFileSync(filePath, JSON.stringify(teams, null, 2));
 });
