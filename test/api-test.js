@@ -370,11 +370,8 @@ describe("all endpoints", function () {
     if (key[0] === "_"){
       return;
     }
-    it("should call callback with error when passed a bad parameter", function (done) {
-      api[key]({badParam: "xyz"}, function (err) {
-        done();
-        err.should.be.ok();
-      });
+    it("should call callback with error when passed a bad parameter", function () {
+      (function () { api[key]({badParam: "xyz"}, Function) }).should.throw()
     });
   });
 });

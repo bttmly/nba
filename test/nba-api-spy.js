@@ -2,7 +2,7 @@
 
 var spy = require("sinon").spy;
 
-var merge = require("../lib/util").merge;
+var assign = require("object-assign");
 
 var extensions = {
   optionPosition: 1,
@@ -25,5 +25,5 @@ var extensions = {
 
 module.exports = function () {
   var ret = spy.apply(this, arguments);
-  return merge(ret, extensions);
+  return assign(ret, extensions);
 };

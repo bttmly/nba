@@ -3,34 +3,34 @@ var chai = require("chai");
 var should = chai.should();
 
 describe("util.contains()", function () {
-  it("should return true if an item is in the array", function() {
-    var result = util.contains("a", ["a", "b", "c"])
-    result.should.equal(true);
-  });
+  // it("should return true if an item is in the array", function() {
+  //   var result = util.contains("a", ["a", "b", "c"])
+  //   result.should.equal(true);
+  // });
 
-  it("should return false if the item isn't in the array", function () {
-    var result = util.contains("d", ["a", "b", "c"])
-    result.should.equal(false);
-  })
+  // it("should return false if the item isn't in the array", function () {
+  //   var result = util.contains("d", ["a", "b", "c"])
+  //   result.should.equal(false);
+  // })
 });
 
 describe("util.find()", function () {
-  function test(item) {
-    if (item.hello === "world") {
-      return true;
-    }
-    return false;
-  }
+  // function test(item) {
+  //   if (item.hello === "world") {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
-  it("should return the first item for which the test function is truthy", function () {
-    var result = util.find(test, [{ hello: "there"}, { hello: "world"}, { goodbye: "world"}]);
-    result.should.eql({ hello: "world"});
-  });
+  // it("should return the first item for which the test function is truthy", function () {
+  //   var result = util.find(test, [{ hello: "there"}, { hello: "world"}, { goodbye: "world"}]);
+  //   result.should.eql({ hello: "world"});
+  // });
 
-  it("should return null if no item is true for the test function", function () {
-    var result = util.find(test, [{ hello: "there"}, "hello", "world"]);
-    should.not.exist(result);
-  });
+  // it("should return null if no item is true for the test function", function () {
+  //   var result = util.find(test, [{ hello: "there"}, "hello", "world"]);
+  //   should.not.exist(result);
+  // });
 });
 
 describe("util.downCaseFirst()", function () {
