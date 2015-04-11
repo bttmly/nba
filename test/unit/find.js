@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-var nba = require("../../")
+var nba = require("../../");
 
 describe("searching methods", function () {
 
@@ -16,11 +16,11 @@ describe("searching methods", function () {
 
   describe("#findPlayer", function () {
     it("searches name", function () {
-      expect(nba.findPlayer("stephen curry")).to.deep.equal({ 
+      expect(nba.findPlayer("stephen curry")).to.deep.equal({
         firstName: 'Stephen',
         lastName: 'Curry',
         playerId: 201939,
-        fullName: 'Stephen Curry' 
+        fullName: 'Stephen Curry'
       });
     });
 
@@ -43,7 +43,7 @@ describe("searching methods", function () {
   });
 
   describe("#teamIdFromName", function () {
-    it("works for name", function () {
+    it("works for short name", function () {
       expect(nba.teamIdFromName("warriors")).to.equal(1610612744);
     });
 
@@ -51,9 +51,19 @@ describe("searching methods", function () {
       expect(nba.teamIdFromName("golden state")).to.equal(1610612744);
     });
 
+    it("works for full name", function () {
+      expect(nba.teamIdFromName("golden state warriors")).to.equal(1610612744);
+    })
+
+    it("works for abbreviations", function () {
+      expect(nba.teamIdFromName("gsw")).to.equal(1610612744);
+    });
+
     it("is case insensitive", function () {
       expect(nba.teamIdFromName("WARRIORS")).to.equal(1610612744);
-    })
+      expect(nba.teamIdFromName("GoLdEn StAtE")).to.equal(1610612744);
+      expect(nba.teamIdFromName("GSW")).to.equal(1610612744);
+    });
   });
-  
+
 });

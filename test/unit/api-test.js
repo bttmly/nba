@@ -16,7 +16,7 @@ var noop = Function();
 
 var returnArg = function (a) { return a; };
 
-var epStub = require("../../lib/endpoints");
+var epStub = rewire("../../lib/endpoints");
 Object.keys(epStub).forEach(function (key) {
   epStub[key].transform = returnArg;
 });
@@ -174,7 +174,7 @@ describe(".scoreboard()", function () {
   });
   it("should issue a request with the correct params", function (done) {
     api.scoreboard({gameDate: "12/25/2014"}, function () {
-      successSpy.lastCalledWithOption("GameDate", "12/25/2014").should.equal(true);
+      successSpy.lastCalledWithOption("gameDate", "12/25/2014").should.equal(true);
       done();
     });
   });

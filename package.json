@@ -16,7 +16,7 @@
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
     "lint": "jshint ./lib/**/*.js",
-    "test": "mocha -R spec ./test/**/*.js"
+    "test": "mocha --timeout 30000 -R spec ./test/**/*.js"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
