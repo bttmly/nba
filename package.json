@@ -15,8 +15,8 @@
     "clear-data": "node ./scripts/clear-data",
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
-    "lint": "jshint ./lib/*.js",
-    "test": "mocha -R spec ./test/test.js"
+    "lint": "jshint ./lib/**/*.js",
+    "test": "mocha -R spec ./test/**/*.js"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "lodash.findwhere": "^3.1.0",
     "lodash.invert": "^3.0.0",
     "lodash.partial": "^3.1.0",
+    "lodash.pick": "^3.1.0",
     "object-assign": "^2.0.0",
     "qs": "^2.3.1",
     "query-string": "^1.0.0",

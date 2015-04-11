@@ -1,6 +1,6 @@
 "use strict";
 
-process.env.TESTING = true;
+process.env.NODE_ENV = "testing";
 
 var rewire = require("rewire");
 var chai = require("chai");
@@ -9,20 +9,20 @@ var should = chai.should();
 
 chai.use(sinonChai);
 
-var spy = require("./nba-api-spy");
-var json = require("./get-json-stub");
+var spy = require("../nba-api-spy");
+var json = require("../get-json-stub");
 
 var noop = Function();
 
 var returnArg = function (a) { return a; };
 
-var epStub = require("../lib/endpoints");
+var epStub = require("../../lib/endpoints");
 Object.keys(epStub).forEach(function (key) {
   epStub[key].transform = returnArg;
 });
 
 // a copy of API we can safely iterate (w/o rewire methods);
-var api = rewire("../lib/api");
+var api = rewire("../../lib/api");
 
 var successSpy = spy(json.success);
 
