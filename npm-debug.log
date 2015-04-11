@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/nickbottomley/.nvm/v0.10.38/bin/node',
+1 verbose cli   '/Users/nickbottomley/.nvm/v0.10.38/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'lint' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.38
+4 verbose run-script [ 'prelint', 'lint', 'postlint' ]
+5 info prelint nba@0.4.0
+6 info lint nba@0.4.0
+7 verbose unsafe-perm in lifecycle true
+8 info nba@0.4.0 Failed to exec lint script
+9 error nba@0.4.0 lint: `jshint ./lib/*.js`
+9 error Exit status 2
+10 error Failed at the nba@0.4.0 lint script.
+10 error This is most likely a problem with the nba package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     jshint ./lib/*.js
+10 error You can get their info via:
+10 error     npm owner ls nba
+10 error There is likely additional logging output above.
+11 error System Darwin 14.1.0
+12 error command "/Users/nickbottomley/.nvm/v0.10.38/bin/node" "/Users/nickbottomley/.nvm/v0.10.38/bin/npm" "run" "lint"
+13 error cwd /Users/nickbottomley/Documents/nb/nba
+14 error node -v v0.10.38
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
