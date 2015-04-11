@@ -130,6 +130,11 @@
     "playerId": 201965
   },
   {
+    "firstName": "Chris",
+    "lastName": "Babb",
+    "playerId": 203569
+  },
+  {
     "firstName": "Luke",
     "lastName": "Babbitt",
     "playerId": 202337
@@ -228,6 +233,11 @@
     "firstName": "Patrick",
     "lastName": "Beverley",
     "playerId": 201976
+  },
+  {
+    "firstName": "Sim",
+    "lastName": "Bhullar",
+    "playerId": 204021
   },
   {
     "firstName": "Bismack",
@@ -363,6 +373,11 @@
     "firstName": "Rasual",
     "lastName": "Butler",
     "playerId": 2446
+  },
+  {
+    "firstName": "Dwight",
+    "lastName": "Buycks",
+    "playerId": 202779
   },
   {
     "firstName": "Will",
@@ -918,11 +933,6 @@
     "firstName": "JaMychal",
     "lastName": "Green",
     "playerId": 203210
-  },
-  {
-    "firstName": "JaMychal",
-    "lastName": "Green",
-    "playerId": 203254
   },
   {
     "firstName": "Jeff",
@@ -1550,6 +1560,11 @@
     "playerId": 203463
   },
   {
+    "firstName": "Jerel",
+    "lastName": "McNeal",
+    "playerId": 202077
+  },
+  {
     "firstName": "Josh",
     "lastName": "McRoberts",
     "playerId": 201177
@@ -1685,11 +1700,6 @@
     "playerId": 203894
   },
   {
-    "firstName": "Steve",
-    "lastName": "Nash",
-    "playerId": 959
-  },
-  {
     "firstName": "Gary",
     "lastName": "Neal",
     "playerId": 202390
@@ -1753,6 +1763,11 @@
     "firstName": "Kelly",
     "lastName": "Olynyk",
     "playerId": 203482
+  },
+  {
+    "firstName": "Arinze",
+    "lastName": "Onuaku",
+    "playerId": 202620
   },
   {
     "firstName": "Zaza",
