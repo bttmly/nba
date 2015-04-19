@@ -265,6 +265,11 @@
     "playerId": 202339
   },
   {
+    "firstName": "Vander",
+    "lastName": "Blue",
+    "playerId": 203505
+  },
+  {
     "firstName": "Bojan",
     "lastName": "Bogdanovic",
     "playerId": 202711
@@ -783,6 +788,11 @@
     "firstName": "Randy",
     "lastName": "Foye",
     "playerId": 200751
+  },
+  {
+    "firstName": "Jamaal",
+    "lastName": "Franklin",
+    "playerId": 203479
   },
   {
     "firstName": "Tim",

@@ -10,5 +10,14 @@ updatePlayersInfo(function (err, players) {
     throw err;
   }
   var filePath = path.join(__dirname, "../data/players.json");
-  fs.writeFileSync(filePath, JSON.stringify(players, null, 2));
+  var str;
+
+  try {
+    str = JSON.stringify(players, null, 2);
+    JSON.parse(str);
+  } catch (e) {
+    throw new Error("Unable to parse JSON response: " + players);
+  }
+
+  fs.writeFileSync(filePath, str);
 });
