@@ -17,88 +17,130 @@ The peculiar structure of the NBA stats API enforced some specific design consid
 
 The following are the methods implemented on `nba.api`. Each one takes an options hash which is transformed into a query string, and a callback.
 
+
 ####`playerProfile`
-playerProfile([Object options], Function callback)`
+`playerProfile([Object options], Function callback)`
+
 http://stats.nba.com/stats/playerprofile
 
+
 ####`playerInfo`
-playerInfo([Object options], Function callback)`
+`playerInfo([Object options], Function callback)`
+
 http://stats.nba.com/stats/commonplayerinfo
 
+
 ####`playersInfo`
-playersInfo([Object options], Function callback)`
+`playersInfo([Object options], Function callback)`
+
 http://stats.nba.com/stats/commonallplayers
 
+
 ####`teamStats`
-teamStats([Object options], Function callback)`
+`teamStats([Object options], Function callback)`
+
 http://stats.nba.com/stats/leaguedashteamstats
 
+
 ####`teamSplits`
-teamSplits([Object options], Function callback)`
+`teamSplits([Object options], Function callback)`
+
 http://stats.nba.com/stats/teamdashboardbygeneralsplits
 
+
 ####`teamYears`
-teamYears([Object options], Function callback)`
+`teamYears([Object options], Function callback)`
+
 http://stats.nba.com/stats/commonteamyears
 
+
 ####`playerSplits`
-playerSplits([Object options], Function callback)`
+`playerSplits([Object options], Function callback)`
+
 http://stats.nba.com/stats/playerdashboardbygeneralsplits
 
+
 ####`shots`
-shots([Object options], Function callback)`
+`shots([Object options], Function callback)`
+
 http://stats.nba.com/stats/shotchartdetail
 
+
 ####`scoreboard`
-scoreboard([Object options], Function callback)`
+`scoreboard([Object options], Function callback)`
+
 http://stats.nba.com/stats/scoreboard
 
+
 ####`playByPlay`
-playByPlay([Object options], Function callback)`
+`playByPlay([Object options], Function callback)`
+
 http://stats.nba.com/stats/playbyplay
 
+
 ####`boxScoreScoring`
-boxScoreScoring([Object options], Function callback)`
+`boxScoreScoring([Object options], Function callback)`
+
 http://stats.nba.com/stats/boxscorescoring
 
+
 ####`boxScoreUsage`
-boxScoreUsage([Object options], Function callback)`
+`boxScoreUsage([Object options], Function callback)`
+
 http://stats.nba.com/stats/boxscoreusage
 
+
 ####`boxScoreMisc`
-boxScoreMisc([Object options], Function callback)`
+`boxScoreMisc([Object options], Function callback)`
+
 http://stats.nba.com/stats/boxscoremisc
 
+
 ####`boxScoreAdvanced`
-boxScoreAdvanced([Object options], Function callback)`
+`boxScoreAdvanced([Object options], Function callback)`
+
 http://stats.nba.com/stats/boxscoreadvanced
 
+
 ####`boxScoreFourFactors`
-boxScoreFourFactors([Object options], Function callback)`
+`boxScoreFourFactors([Object options], Function callback)`
+
 http://stats.nba.com/stats/boxscorefourfactors
 
+
 ####`teamHistoricalLeaders`
-teamHistoricalLeaders([Object options], Function callback)`
+`teamHistoricalLeaders([Object options], Function callback)`
+
 http://stats.nba.com/stats/teamhistoricalleaders
 
+
 ####`teamInfoCommon`
-teamInfoCommon([Object options], Function callback)`
+`teamInfoCommon([Object options], Function callback)`
+
 http://stats.nba.com/stats/teaminfocommon
 
+
 ####`commonTeamRoster`
-commonTeamRoster([Object options], Function callback)`
+`commonTeamRoster([Object options], Function callback)`
+
 http://stats.nba.com/stats/commonteamroster
 
+
 ####`teamPlayerDashboard`
-teamPlayerDashboard([Object options], Function callback)`
+`teamPlayerDashboard([Object options], Function callback)`
+
 http://stats.nba.com/stats/teamplayerdashboard
 
+
 ####`playerDashPtShotLog`
-playerDashPtShotLog([Object options], Function callback)`
+`playerDashPtShotLog([Object options], Function callback)`
+
 http://stats.nba.com/stats/playerdashptshotlog
 
+
 ####`playerDashPtReboundLogs`
-playerDashPtReboundLogs([Object options], Function callback)`
+`playerDashPtReboundLogs([Object options], Function callback)`
+
 http://stats.nba.com/stats/playerdashptreboundlogs
 
 
