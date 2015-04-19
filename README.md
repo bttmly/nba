@@ -15,7 +15,7 @@ I also couldn't find anything on the terms of use. If you know of a relevant pol
 
 The peculiar structure of the NBA stats API enforced some specific design considerations. 
 
-The following are the methods implemented on `nba.api`. Each one takes an options hash which is transformed into a query string, and a callback.
+The following are the methods implemented on `nba.api`. Each one takes an options hash which is transformed into a query string, and a callback. For usage examples see [/test/integration/api.js](https://github.com/nickb1080/nba/blob/master/test/integration/api.js).
 
 
 #### `playerProfile`
