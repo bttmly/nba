@@ -7,7 +7,7 @@
 
 This project is in heavy development and is subject to breaking changes without notice.
 
-## Intro
+## API
 
 As far as I can tell, the NBA's stats API does not have public documentation. As such, it's unclear what the acceptable values are for certain query parameters. Most of what's in here is based on inspecting the parameters [stats.nba.com](http://stats.nba.com/) uses in its own requests. I also took some pointers from the source of [this repo](https://github.com/Caged/nba-player-tracking). Suggestions on a more comprehensive approach, or contributions, are extremely welcome.
 
@@ -15,46 +15,93 @@ I also couldn't find anything on the terms of use. If you know of a relevant pol
 
 The peculiar structure of the NBA stats API enforced some specific design considerations. 
 
-## Roadmap
+The following are the methods implemented on `nba.api`. Each one takes an options hash which is transformed into a query string, and a callback.
 
-### Primary Focus
-**Implement methods mapping to various `http://stats.nba.com/stats/{xyz}` endpoints**
-Unfortunately, the endpoints aren't documented, so there's no good way to quickly determine how many of them there might be. So far, I've collected a preliminary list by poking around the Network panel in Dev Tools. 
+####`playerProfile`
+playerProfile([Object options], Function callback)`
+http://stats.nba.com/stats/playerprofile
 
-However, I've written infrastructure code that makes adding a new endpoint really easy. The meat of each method is a single function call to `getJSON` (discussed later) with the URL path, and an object representing the querystring.
+####`playerInfo`
+playerInfo([Object options], Function callback)`
+http://stats.nba.com/stats/commonplayerinfo
 
-The following endpoints are implemented currently:
-- `http://stats.nba.com/stats/playerprofile`
-- `http://stats.nba.com/stats/commonplayerinfo`
-- `http://stats.nba.com/stats/commonallplayers`
-- `http://stats.nba.com/stats/teamdashboardbygeneralsplits`
-- `http://stats.nba.com/stats/playerdashboardbygeneralsplits`
-- `http://stats.nba.com/stats/shotchartdetail`
-- `http://stats.nba.com/stats/scoreboard/`
-- `http://stats.nba.com/stats/playbyplay`
-- `http://stats.nba.com/stats/boxscorescoring`
-- `http://stats.nba.com/stats/boxscoreusage`
-- `http://stats.nba.com/stats/boxscoremisc`
-- `http://stats.nba.com/stats/boxscoreadvanced`
-- `http://stats.nba.com/stats/boxscorefourfactors`
+####`playersInfo`
+playersInfo([Object options], Function callback)`
+http://stats.nba.com/stats/commonallplayers
 
-The endpoints above correspond to the following methods available on `nba.api`:
+####`teamStats`
+teamStats([Object options], Function callback)`
+http://stats.nba.com/stats/leaguedashteamstats
 
-- `playerProfile([Object options], Function callback)`
-- `playerInfo([Object options], Function callback)`
-- `playersInfo([Object options], Function callback)`
-- `teamStats([Object options], Function callback)`
-- `teamSplits([Object options], Function callback)`
-- `teamYears([Object options], Function callback)`
-- `playerSplits([Object options], Function callback)`
-- `shots([Object options], Function callback)`
-- `scoreboard([Object options], Function callback)`
-- `playByPlay([Object options], Function callback)`
-- `boxScoreScoring([Object options], Function callback)`
-- `boxScoreUsage([Object options], Function callback)`
-- `boxScoreMisc([Object options], Function callback)`
-- `boxScoreAdvanced([Object options], Function callback)`
-- `boxScoreFourFactors([Object options], Function callback)`
+####`teamSplits`
+teamSplits([Object options], Function callback)`
+http://stats.nba.com/stats/teamdashboardbygeneralsplits
+
+####`teamYears`
+teamYears([Object options], Function callback)`
+http://stats.nba.com/stats/commonteamyears
+
+####`playerSplits`
+playerSplits([Object options], Function callback)`
+http://stats.nba.com/stats/playerdashboardbygeneralsplits
+
+####`shots`
+shots([Object options], Function callback)`
+http://stats.nba.com/stats/shotchartdetail
+
+####`scoreboard`
+scoreboard([Object options], Function callback)`
+http://stats.nba.com/stats/scoreboard
+
+####`playByPlay`
+playByPlay([Object options], Function callback)`
+http://stats.nba.com/stats/playbyplay
+
+####`boxScoreScoring`
+boxScoreScoring([Object options], Function callback)`
+http://stats.nba.com/stats/boxscorescoring
+
+####`boxScoreUsage`
+boxScoreUsage([Object options], Function callback)`
+http://stats.nba.com/stats/boxscoreusage
+
+####`boxScoreMisc`
+boxScoreMisc([Object options], Function callback)`
+http://stats.nba.com/stats/boxscoremisc
+
+####`boxScoreAdvanced`
+boxScoreAdvanced([Object options], Function callback)`
+http://stats.nba.com/stats/boxscoreadvanced
+
+####`boxScoreFourFactors`
+boxScoreFourFactors([Object options], Function callback)`
+http://stats.nba.com/stats/boxscorefourfactors
+
+####`teamHistoricalLeaders`
+teamHistoricalLeaders([Object options], Function callback)`
+http://stats.nba.com/stats/teamhistoricalleaders
+
+####`teamInfoCommon`
+teamInfoCommon([Object options], Function callback)`
+http://stats.nba.com/stats/teaminfocommon
+
+####`commonTeamRoster`
+commonTeamRoster([Object options], Function callback)`
+http://stats.nba.com/stats/commonteamroster
+
+####`teamPlayerDashboard`
+teamPlayerDashboard([Object options], Function callback)`
+http://stats.nba.com/stats/teamplayerdashboard
+
+####`playerDashPtShotLog`
+playerDashPtShotLog([Object options], Function callback)`
+http://stats.nba.com/stats/playerdashptshotlog
+
+####`playerDashPtReboundLogs`
+playerDashPtReboundLogs([Object options], Function callback)`
+http://stats.nba.com/stats/playerdashptreboundlogs
+
+
 
 Each method has the same signature: an optional options hash (which will be translated into a query string), and a callback function. 
 
