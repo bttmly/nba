@@ -16,7 +16,8 @@
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
     "lint": "jshint ./lib/**/*.js",
-    "test": "mocha --timeout 30000 -R spec ./test/**/*.js"
+    "test": "mocha --timeout 30000 -R spec ./test/**/*.js",
+    "babel": "babel src --out-dir lib2"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "browserify": "^9.0.3",
     "demethodize": "^0.2.0",
     "extend": "^1.3.0",
+    "jsonp": "^0.2.0",
     "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
@@ -41,6 +43,7 @@
   },
   "browserify": {},
   "devDependencies": {
+    "babel": "^5.8.23",
     "chai": "^1.9.1",
     "es6ify": "^1.3.0",
     "jscs": "^1.6.2",

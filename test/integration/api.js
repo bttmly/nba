@@ -1,4 +1,4 @@
-var nba = require("../..");
+var nba = require("../../lib2");
 
 var steph = 201939;
 var klay = 202691;
