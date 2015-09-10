@@ -36,10 +36,21 @@ function jsify (str) {
   return downcaseFirst(str);
 }
 
+function interpolate (_str) {
+  return function (obj) {
+    let str = _str;
+    Object.keys(obj).forEach(key => {
+      str = str.replace(new RegExp(`__${key}__`, "g"), obj[key]);
+    });
+    return str;
+  }
+}
+
 module.exports = {
   hasUnderscoreOrHyphen,
   downcaseFirst,
   unDashHyphen,
   isAllUpperCase,
   jsify,
+  interpolate,
 };

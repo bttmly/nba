@@ -13,6 +13,8 @@ function vmStrategy (url, globalName, callback) {
 
     var sandbox = {};
 
+    console.log(body);
+
     try {
       vm.runInNewContext(body, sandbox);
     } catch (e) {

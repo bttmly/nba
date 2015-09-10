@@ -1,6 +1,7 @@
-let transport = require("./get-script");
+const {interpolate} = require("./util/string");
+let transport = require("./get-json");
 
-const URL_ROOT = "http://stats.nba.com/js/data/sportvu/";
+const URL_ROOT = "http://stats.nba.com/js/data/sportvu/__season__/speedData.json"
 
 const SPORT_VU_STATS = [
   "speed",
@@ -14,11 +15,15 @@ const SPORT_VU_STATS = [
   "pullUpShoot",
 ];
 
+const DEFAULT_SEASON = 2014;
+
 const proto = {
   setTransport (_transport) {
     transport = _transport;
   },
 };
+
+const makeUrl = interpolate(URL_ROOT);
 
 const sportVu = Object.create(proto);
 
@@ -27,16 +32,20 @@ SPORT_VU_STATS.forEach(stat => {
 });
 
 function makeSportVuMethod (stat) {
-  return function sportVuMethod (callback) {
+  return function sportVuMethod (options, callback) {
+
+    if (typeof options === "function") {
+      callback = options;
+      options = {};
+    }
 
     if (typeof callback !== "function") {
       throw new TypeError("Must pass a callback function.");
     }
 
-    const varName = stat + "Data";
-    const scriptUrl = URL_ROOT + stat + "Data.js";
+    options.season = options.season || DEFAULT_SEASON;
 
-    transport(scriptUrl, varName, callback);
+    transport(makeUrl(options), {}, callback);
   }
 }
 
