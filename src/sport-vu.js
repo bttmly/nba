@@ -17,15 +17,13 @@ const SPORT_VU_STATS = [
 
 const DEFAULT_SEASON = 2014;
 
-const proto = {
+const makeUrl = interpolate(URL_ROOT);
+
+const sportVu = Object.create({
   setTransport (_transport) {
     transport = _transport;
   },
-};
-
-const makeUrl = interpolate(URL_ROOT);
-
-const sportVu = Object.create(proto);
+});
 
 SPORT_VU_STATS.forEach(stat => {
   sportVu[stat] = makeSportVuMethod(stat);

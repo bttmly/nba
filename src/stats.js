@@ -2,20 +2,18 @@ const qs = require("querystring");
 
 const partial = require("lodash.partial");
 
-const endpoints = require("./endpoints");
+const endpoints = require("./stats-endpoints");
 const dicts = require("./dicts");
 const translateKeys = require("./util/translate-keys");
 let transport = require("./get-json");
 
 const translate = partial(translateKeys, dicts.jsToNbaMap);
 
-const proto = {
+const stats = Object.create({
   setTransport (_transport) {
     transport = _transport;
   },
-};
-
-const stats = Object.create(proto);
+});
 
 Object.keys(endpoints).forEach(key => {
   stats[key] = makeStatsMethod(endpoints[key]);
