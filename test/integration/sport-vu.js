@@ -1,4 +1,5 @@
 const expect = require("must");
+delete Object.prototype.must;
 
 const sportVu = require("../../src/sport-vu");
 

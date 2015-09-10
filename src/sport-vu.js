@@ -32,6 +32,10 @@ SPORT_VU_STATS.forEach(stat => {
 function makeSportVuMethod (stat) {
   return function sportVuMethod (options, callback) {
 
+    if (process.browser) {
+      throw new Error("SportVu does not support JSONP");
+    }
+
     if (typeof options === "function") {
       callback = options;
       options = {};

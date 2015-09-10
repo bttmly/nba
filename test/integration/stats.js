@@ -4,6 +4,11 @@ var steph = 201939;
 var klay = 202691;
 var dubs = 1610612744;
 
+// this is an arbitrary actual game id
+// Date: 2015-03-27 GSW at MEM
+// Warriors 107 - Grizzlies 84
+var gameId = "0021401082";
+
 // for interactive inspection
 global.StatsData = {};
 
@@ -92,7 +97,7 @@ describe("#scoreboard", function () {
 
 describe("#playByPlay", function () {
   it("works", function (done) {
-    stats.playByPlay({gameId: "0021401082"}, function (err, response) {
+    stats.playByPlay({gameId}, function (err, response) {
       global.StatsData.playByPlay = response;
       done(err);
     });
@@ -102,7 +107,7 @@ describe("#playByPlay", function () {
 
 describe("#boxScoreScoring", function () {
   it("works", function (done) {
-    stats.boxScoreScoring({gameId: "0021401082"}, function (err, response) {
+    stats.boxScoreScoring({gameId}, function (err, response) {
       global.StatsData.boxScoreScoring = response;
       done(err);
     });
@@ -111,7 +116,7 @@ describe("#boxScoreScoring", function () {
 
 describe("#boxScoreUsage", function () {
   it("works", function (done) {
-    stats.boxScoreUsage({gameId: "0021401082"}, function (err, response) {
+    stats.boxScoreUsage({gameId}, function (err, response) {
       global.StatsData.boxScoreUsage = response;
       done(err);
     });
@@ -120,7 +125,7 @@ describe("#boxScoreUsage", function () {
 
 describe("#boxScoreMisc", function () {
   it("works", function (done) {
-    stats.boxScoreMisc({gameId: "0021401082"}, function (err, response) {
+    stats.boxScoreMisc({gameId}, function (err, response) {
       global.StatsData.boxScoreMisc = response;
       done(err);
     });
@@ -129,7 +134,7 @@ describe("#boxScoreMisc", function () {
 
 describe("#boxScoreAdvanced", function () {
   it("works", function (done) {
-    stats.boxScoreAdvanced({gameId: "0021401082"}, function (err, response) {
+    stats.boxScoreAdvanced({gameId}, function (err, response) {
       global.StatsData.boxScoreAdvanced = response;
       done(err);
     });
@@ -138,7 +143,7 @@ describe("#boxScoreAdvanced", function () {
 
 describe("#boxScoreFourFactors", function () {
   it("works", function (done) {
-    stats.boxScoreFourFactors({gameId: "0021401082"}, function (err, response) {
+    stats.boxScoreFourFactors({gameId}, function (err, response) {
       global.StatsData.boxScoreFourFactors = response;
       done(err);
     });

@@ -1,4 +1,64 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    draining = true;
+    var currentQueue;
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        var i = -1;
+        while (++i < len) {
+            currentQueue[i]();
+        }
+        len = queue.length;
+    }
+    draining = false;
+}
+process.nextTick = function (fun) {
+    queue.push(fun);
+    if (!draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+// TODO(shtylman)
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],2:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -84,7 +144,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -171,13 +231,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":1,"./encode":2}],4:[function(require,module,exports){
+},{"./decode":2,"./encode":3}],5:[function(require,module,exports){
 /**
  * Module dependencies
  */
@@ -276,7 +336,7 @@ function jsonp(url, opts, fn){
   return cancel;
 }
 
-},{"debug":5}],5:[function(require,module,exports){
+},{"debug":6}],6:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -453,7 +513,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":6}],6:[function(require,module,exports){
+},{"./debug":7}],7:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -652,7 +712,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":7}],7:[function(require,module,exports){
+},{"ms":8}],8:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -777,7 +837,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var Assertions = require("./lib/assertions")
 var AssertionError = require("./lib/assertion_error")
 module.exports = Must
@@ -861,7 +921,7 @@ function unbox(obj) {
          obj instanceof Number ? obj.valueOf() : obj
 }
 
-},{"./lib/assertion_error":9,"./lib/assertions":10}],9:[function(require,module,exports){
+},{"./lib/assertion_error":10,"./lib/assertions":11}],10:[function(require,module,exports){
 module.exports = AssertionError
 
 /**
@@ -930,7 +990,7 @@ AssertionError.prototype.__defineGetter__("showDiff", function() {
   return this.diffable
 })
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * @class Must
  */
@@ -1957,7 +2017,7 @@ function enumerableKeys(obj) {
   return keys
 }
 
-},{"./assertion_error":9,"./inspect":11,"kindof":12}],11:[function(require,module,exports){
+},{"./assertion_error":10,"./inspect":12,"kindof":13}],12:[function(require,module,exports){
 var kindof = require("kindof")
 
 module.exports = function(obj) {
@@ -1994,7 +2054,7 @@ function flatten(obj) {
   return flat
 }
 
-},{"kindof":12}],12:[function(require,module,exports){
+},{"kindof":13}],13:[function(require,module,exports){
 if (typeof module != "undefined") module.exports = kindof
 
 function kindof(obj) {
@@ -2012,7 +2072,7 @@ function kindof(obj) {
   }
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 var qs = require("querystring");
@@ -2034,7 +2094,8 @@ function getJsonp(url, query, callback) {
 
 module.exports = getJsonp;
 
-},{"./transport-config":15,"jsonp":4,"querystring":3}],14:[function(require,module,exports){
+},{"./transport-config":16,"jsonp":5,"querystring":4}],15:[function(require,module,exports){
+(function (process){
 "use strict";
 
 var _require = require("./util/string");
@@ -2064,6 +2125,11 @@ SPORT_VU_STATS.forEach(function (stat) {
 function makeSportVuMethod(stat) {
   return function sportVuMethod(options, callback) {
 
+    console.log("PROCESS", process);
+    if (process.browser) {
+      throw new Error("SportVu does not support JSONP");
+    }
+
     if (typeof options === "function") {
       callback = options;
       options = {};
@@ -2081,14 +2147,15 @@ function makeSportVuMethod(stat) {
 
 module.exports = sportVu;
 
-},{"./get-json":13,"./util/string":16}],15:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./get-json":14,"./util/string":17,"_process":1}],16:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   timeout: 60 * 1000
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 function hasUnderscoreOrHyphen(str) {
@@ -2145,7 +2212,7 @@ module.exports = {
   interpolate: interpolate
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -2247,4 +2314,4 @@ describe("#pullUpShoot", function () {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../src/sport-vu":14,"must":8}]},{},[17]);
+},{"../../src/sport-vu":15,"must":9}]},{},[18]);
