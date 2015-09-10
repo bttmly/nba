@@ -5,28 +5,18 @@ var contains = require("lodash.contains");
 
 var getTeamsInfo = require("./team-info");
 var sportVu = require("./sport-vu");
-var api = require("./api");
+var stats = require("./stats");
+
+var _require = require("./util/promisify");
+
+var promisify = _require.promisify;
+var promisifyAll = _require.promisifyAll;
+
 var teams = require("../data/teams.json");
 var players = require("../data/players.json");
 
-function updatePlayers(cb) {
-  return api.playersInfo(function (err, resp) {
-    if (err) return cb(err);
-    nba.teams = resp;
-    cb(null, resp);
-  });
-}
-
-function updateTeams(cb) {
-  return getTeamsInfo(function (err, resp) {
-    if (err) return cb(err);
-    nba.players = resp;
-    cb(null, resp);
-  });
-}
-
-var nba = module.exports = {
-  api: api,
+var nba = {
+  stats: stats,
   sportVu: sportVu,
   players: players,
   updatePlayers: updatePlayers,
@@ -37,11 +27,13 @@ var nba = module.exports = {
   playerIdFromName: playerIdFromName,
   findPlayer: findPlayer,
   searchPlayers: searchPlayers,
+  usePromises: usePromises,
 
   // backwards compatibility
   ready: function ready(cb) {
     return cb.call(nba);
-  }
+  },
+  api: stats
 };
 
 function teamIdFromName(name) {
@@ -70,3 +62,32 @@ function searchPlayers(str) {
     return contains(p.fullName.toLowerCase(), str);
   });
 }
+
+function updatePlayers(cb) {
+  return stats.playersInfo(function (err, resp) {
+    if (err) return cb(err);
+    nba.teams = resp;
+    cb(null, resp);
+  });
+}
+
+function updateTeams(cb) {
+  return getTeamsInfo(function (err, resp) {
+    if (err) return cb(err);
+    nba.players = resp;
+    cb(null, resp);
+  });
+}
+
+function usePromises(Prms) {
+  Prms = Prms || global.Promise;
+  if (!Prms) throw new Error("Invalid Promise implementation");
+  var _promisify = promisify(Prms);
+  nba.stats = promisifyAll(stats, Prms);
+  nba.sportVu = promisifyAll(sportVu, Prms);
+  nba.updatePlayers = _promisify(updatePlayers);
+  nba.updateTeams = _promisify(updateTeams);
+  return nba;
+}
+
+module.exports = nba;

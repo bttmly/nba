@@ -6,7 +6,13 @@ var URL_ROOT = "http://stats.nba.com/js/data/sportvu/";
 
 var SPORT_VU_STATS = ["speed", "touches", "passing", "defense", "rebounding", "drives", "shooting", "catchShoot", "pullUpShoot"];
 
-var sportVu = {};
+var proto = {
+  setTransport: function setTransport(_transport) {
+    transport = _transport;
+  }
+};
+
+var sportVu = Object.create(proto);
 
 SPORT_VU_STATS.forEach(function (stat) {
   sportVu[stat] = makeSportVuMethod(stat);
@@ -25,14 +31,5 @@ function makeSportVuMethod(stat) {
     transport(scriptUrl, varName, callback);
   };
 }
-
-Object.defineProperty(sportVu, "setTransport", {
-  value: function value(_transport) {
-    transport = _transport;
-  },
-  enumerable: false,
-  configurable: true,
-  writable: true
-});
 
 module.exports = sportVu;

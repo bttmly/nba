@@ -14,7 +14,13 @@ const SPORT_VU_STATS = [
   "pullUpShoot",
 ];
 
-const sportVu = {};
+const proto = {
+  setTransport (_transport) {
+    transport = _transport;
+  },
+};
+
+const sportVu = Object.create(proto);
 
 SPORT_VU_STATS.forEach(stat => {
   sportVu[stat] = makeSportVuMethod(stat);
@@ -33,14 +39,5 @@ function makeSportVuMethod (stat) {
     transport(scriptUrl, varName, callback);
   }
 }
-
-Object.defineProperty(sportVu, "setTransport", {
-  value (_transport) {
-    transport = _transport;
-  },
-  enumerable: false,
-  configurable: true,
-  writable: true,
-});
 
 module.exports = sportVu;

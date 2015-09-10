@@ -13,13 +13,19 @@ var transport = require("./get-json");
 
 var translate = partial(translateKeys, dicts.jsToNbaMap);
 
-var api = {};
+var proto = {
+  setTransport: function setTransport(_transport) {
+    transport = _transport;
+  }
+};
+
+var stats = Object.create(proto);
 
 Object.keys(endpoints).forEach(function (key) {
-  api[key] = makeApiMethod(endpoints[key]);
+  stats[key] = makeStatsMethod(endpoints[key]);
 });
 
-function makeApiMethod(endpoint) {
+function makeStatsMethod(endpoint) {
 
   return function (query, callback) {
 
@@ -47,13 +53,4 @@ function makeApiMethod(endpoint) {
   };
 }
 
-Object.defineProperty(api, "setTransport", {
-  value: function value(_transport) {
-    transport = _transport;
-  },
-  enumerable: false,
-  configurable: true,
-  writable: true
-});
-
-module.exports = api;
+module.exports = stats;

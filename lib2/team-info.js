@@ -2,7 +2,7 @@
 
 var mergeCollections = require("./util/merge-collections");
 var blank = require("./util/blank");
-var api = require("./api");
+var stats = require("./stats");
 
 var pick = require("lodash.pick");
 
@@ -26,13 +26,13 @@ function addExtraTeamData(team) {
 module.exports = function teamInfo(cb) {
   var results = new Array(2);
 
-  api.teamStats(function (err, response) {
+  stats.teamStats(function (err, response) {
     if (err) return cb(err);
     results[0] = response;
     if (results[1]) andThen(results);
   });
 
-  api.teamYears(function (err, response) {
+  stats.teamYears(function (err, response) {
     if (err) return cb(err);
     results[1] = response;
     if (results[0]) andThen(results);

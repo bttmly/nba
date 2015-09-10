@@ -3,9 +3,7 @@
 var DELAY = 10;
 
 function jsonStub (url, settings, callback) {
-  setTimeout(function () {
-    callback(null, {});
-  }, DELAY);
+  setTimeout(callback, DELAY);
 }
 
 function jsonFailStub (url, settings, callback) {
