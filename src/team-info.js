@@ -7,7 +7,7 @@ const stats = require("./stats");
 const pick = require("lodash.pick");
 
 const TWO_WORD_TEAMS = blank({
-  "Portland Trail Blazers": true
+  "Portland Trail Blazers": true,
 });
 
 // adds location city and short name (i.e. 'Warriors') data to team objects.

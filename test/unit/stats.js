@@ -15,13 +15,8 @@ var json = require("../get-json-stub");
 var noop = Function();
 var returnArg = function (a) { return a; };
 
-var epStub = rewire("../../lib/endpoints");
-Object.keys(epStub).forEach(function (key) {
-  epStub[key].transform = returnArg;
-});
-
 // a copy of stats we can safely iterate (w/o rewire methods);
-var stats = require("../../lib2/stats");
+var stats = require("../../src/stats");
 
 var successSpy = spy(json.success);
 

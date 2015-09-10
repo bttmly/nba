@@ -23,7 +23,7 @@ Object.keys(endpoints).forEach(key => {
 
 function makeStatsMethod (endpoint) {
 
-  return function (query, callback) {
+  return function statsMethod (query, callback) {
 
     if (typeof query === "function") {
       callback = query;

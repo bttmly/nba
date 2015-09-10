@@ -49,6 +49,7 @@ function playerIdFromName (name) {
 function findPlayer (str) {
   str = str.toLowerCase();
   return find(nba.players, function (p) {
+    console.log(p);
     return contains(p.fullName.toLowerCase(), str);
   });
 }

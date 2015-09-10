@@ -52,7 +52,7 @@ const nbaToJsMap = blank({
   "GroupQuantity": "groupQuantity",
   "pageNo": "pageNo",
   "rowsPerPage": "rowsPerPage",
-  "SeasonID": "seasonId"
+  "SeasonID": "seasonId",
 });
 
 const jsToNbaMap = blank(invert(nbaToJsMap));
@@ -143,7 +143,7 @@ const jsParams = blank({
   "zoneMode": 1,
   "groupQuantity": 1,
   "pageNo": 1,
-  "rowsPerPage": 1
+  "rowsPerPage": 1,
 });
 
 module.exports = {

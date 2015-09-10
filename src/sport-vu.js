@@ -27,7 +27,7 @@ SPORT_VU_STATS.forEach(stat => {
 });
 
 function makeSportVuMethod (stat) {
-  return function sportVu (callback) {
+  return function sportVuMethod (callback) {
 
     if (typeof callback !== "function") {
       throw new TypeError("Must pass a callback function.");

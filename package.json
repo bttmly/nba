@@ -15,9 +15,11 @@
     "clear-data": "node ./scripts/clear-data",
     "postinstall": "npm run update-data",
     "prepublish": "npm run build-all",
-    "lint": "jshint ./lib/**/*.js",
     "test": "mocha --timeout 30000 -R spec ./test/**/*.js",
-    "babel": "babel src --out-dir lib2"
+
+    "lint": "eslint ./src",
+    "babel": "babel src --out-dir lib2",
+    "test-unit": "npm run babel; mocha --recursive ./test/setup.js ./test/unit/"
   },
   "author": "Nick Bottomley",
   "license": "MIT",

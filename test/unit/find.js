@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-var nba = require("../../");
+var nba = require("../../src");
 
 describe("searching methods", function () {
 

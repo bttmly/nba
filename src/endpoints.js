@@ -12,7 +12,7 @@ const boxScoreDefaults = {
   "StartPeriod": "0",
   "EndPeriod": "0",
   "StartRange": "0",
-  "EndRange": "0"
+  "EndRange": "0",
 };
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
       "PlayerID": "0",
       "GraphStartSeason": "2009-10",
       "GraphEndSeason": "2014-15",
-      "GraphStat": "PTS"
+      "GraphStat": "PTS",
     },
     transform: general,
   },
@@ -37,7 +37,7 @@ module.exports = {
       "PlayerID": "0",
       "SeasonType": "Regular Season",
       "LeagueID": "00",
-      "asynchFlag": "true"
+      "asynchFlag": "true",
     },
     transform: general,
   },
@@ -47,9 +47,9 @@ module.exports = {
     defaults: {
       "LeagueID": "00",
       "Season": DEFAULT_SEASON,
-      "IsOnlyCurrentSeason": "1"
+      "IsOnlyCurrentSeason": "1",
     },
-    transform: player
+    transform: player,
   },
 
   teamStats: {
@@ -79,7 +79,7 @@ module.exports = {
       "GameScope": "",
       "PlayerExperience": "",
       "PlayerPosition": "",
-      "StarterBench": ""
+      "StarterBench": "",
     },
     transform: base,
   },
@@ -108,7 +108,7 @@ module.exports = {
       "GameSegment": "",
       "Period": "0",
       "LastNGames": "0",
-      "GameScope": ""
+      "GameScope": "",
     },
     transform: general,
   },
@@ -116,7 +116,7 @@ module.exports = {
   teamYears: {
     url: "http://stats.nba.com/stats/commonteamyears",
     defaults: {
-      "LeagueID": "00"
+      "LeagueID": "00",
     },
     transform: base,
   },
@@ -144,7 +144,7 @@ module.exports = {
       "VsDivision": "",
       "GameSegment": "",
       "Period": "0",
-      "LastNGames": "0"
+      "LastNGames": "0",
     },
     transform: general,
   },
@@ -183,7 +183,7 @@ module.exports = {
       "GameScope": "",
       "PlayerExperience": "",
       "PlayerPosition": "",
-      "StarterBench": ""
+      "StarterBench": "",
     },
     transform: general,
   },
@@ -194,7 +194,7 @@ module.exports = {
     defaults: {
       "LeagueID": "00",
       "gameDate": "01/01/2000",
-      "DayOffset": "0"
+      "DayOffset": "0",
     },
     transform: general,
   },
@@ -204,7 +204,7 @@ module.exports = {
     defaults: {
       "GameID": "0",
       "StartPeriod": "0",
-      "EndPeriod": "0"
+      "EndPeriod": "0",
     },
     transform: general,
   },
@@ -244,7 +244,7 @@ module.exports = {
     defaults: {
       "LeagueID": "00",
       "Season": DEFAULT_SEASON,
-      "TeamID": "0"
+      "TeamID": "0",
     },
     transform: general,
   },
@@ -255,7 +255,7 @@ module.exports = {
       "LeagueID": "00",
       "Season": DEFAULT_SEASON,
       "SeasonType": "Regular Season",
-      "TeamID": "0"
+      "TeamID": "0",
     },
     transform: general,
   },
@@ -265,7 +265,7 @@ module.exports = {
     defaults: {
       "LeagueID": "00",
       "Season": DEFAULT_SEASON,
-      "TeamID": "0"
+      "TeamID": "0",
     },
     transform: general,
   },
@@ -292,7 +292,7 @@ module.exports = {
       "VsDivision": "",
       "GameSegment": "",
       "Period": "0",
-      "LastNGames": "0"
+      "LastNGames": "0",
     },
     transform: general,
   },
@@ -317,7 +317,7 @@ module.exports = {
       "VsDivision": "",
       "GameSegment": "",
       "Period": "0",
-      "LastNGames": "0"
+      "LastNGames": "0",
     },
     transform: general,
   },
@@ -341,7 +341,7 @@ module.exports = {
       "VsDivision": "",
       "GameSegment": "",
       "Period": "0",
-      "LastNGames": "0"
+      "LastNGames": "0",
     },
     transform: general,
   },
