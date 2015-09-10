@@ -80,7 +80,10 @@ function updateTeams (cb) {
 
 function usePromises (Prms) {
   Prms = Prms || global.Promise;
-  if (!Prms) throw new Error("Invalid Promise implementation");
+  if (typeof Prms !== "function") {
+    throw new Error("Invalid Promise implementation");
+  }
+
   let _promisify = promisify(Prms);
   nba.stats = promisifyAll(stats, Prms);
   nba.sportVu = promisifyAll(sportVu, Prms);
