@@ -5,9 +5,11 @@ const contains = require("lodash.contains");
 const getTeamsInfo = require("./team-info");
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
+const buildPlayers = require("./util/build-players");
 const {promisify, promisifyAll} = require("./util/promisify");
+
 const teams = require("../data/teams.json");
-const players = require("../data/players.json");
+const players = buildPlayers(require("../data/players.json"));
 
 const nba = {
   stats,
@@ -49,7 +51,6 @@ function playerIdFromName (name) {
 function findPlayer (str) {
   str = str.toLowerCase();
   return find(nba.players, function (p) {
-    console.log(p);
     return contains(p.fullName.toLowerCase(), str);
   });
 }

@@ -2,7 +2,6 @@
 
 process.env.NODE_ENV = "testing";
 
-var rewire = require("rewire");
 var chai = require("chai");
 var sinonChai = require("sinon-chai");
 var should = chai.should();

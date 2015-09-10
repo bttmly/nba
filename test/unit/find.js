@@ -20,7 +20,8 @@ describe("searching methods", function () {
         firstName: 'Stephen',
         lastName: 'Curry',
         playerId: 201939,
-        fullName: 'Stephen Curry'
+        fullName: 'Stephen Curry',
+        downcaseName: 'stephen curry'
       });
     });
 

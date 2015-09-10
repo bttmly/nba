@@ -6,6 +6,7 @@ var contains = require("lodash.contains");
 var getTeamsInfo = require("./team-info");
 var sportVu = require("./sport-vu");
 var stats = require("./stats");
+var buildPlayers = require("./util/build-players");
 
 var _require = require("./util/promisify");
 
@@ -13,7 +14,7 @@ var promisify = _require.promisify;
 var promisifyAll = _require.promisifyAll;
 
 var teams = require("../data/teams.json");
-var players = require("../data/players.json");
+var players = buildPlayers(require("../data/players.json"));
 
 var nba = {
   stats: stats,

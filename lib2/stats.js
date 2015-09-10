@@ -2,7 +2,7 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var qs = require("qs");
+var qs = require("querystring");
 
 var partial = require("lodash.partial");
 
@@ -27,7 +27,7 @@ Object.keys(endpoints).forEach(function (key) {
 
 function makeStatsMethod(endpoint) {
 
-  return function (query, callback) {
+  return function statsMethod(query, callback) {
 
     if (typeof query === "function") {
       callback = query;

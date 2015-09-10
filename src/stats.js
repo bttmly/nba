@@ -1,4 +1,4 @@
-const qs = require("qs");
+const qs = require("querystring");
 
 const partial = require("lodash.partial");
 
