@@ -5,3 +5,4 @@ node_js:
 - 'iojs'
 install: 'npm install'
 script: 'sh travis.sh'
+sudo: false
