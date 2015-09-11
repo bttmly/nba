@@ -7,6 +7,9 @@
 
 This project is in heavy development and is subject to breaking changes without notice.
 
+## RE: This Readme
+It's a little out of date. Just finished a big refactor and cleanup, getting this readme in shape is next on my list. -9/10/15
+
 ## API
 
 As far as I can tell, the NBA's stats API does not have public documentation. As such, it's unclear what the acceptable values are for certain query parameters. Most of what's in here is based on inspecting the parameters [stats.nba.com](http://stats.nba.com/) uses in its own requests. I also took some pointers from the source of [this repo](https://github.com/Caged/nba-player-tracking). Suggestions on a more comprehensive approach, or contributions, are extremely welcome.
