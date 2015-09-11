@@ -22,4 +22,4 @@ module.exports = function translateKeys (keyMap, obj) {
     }
     return newKey;
   });
-}
+};

@@ -6,4 +6,4 @@ module.exports = function blank (obj) {
     });
   }
   return out;
-}
+};

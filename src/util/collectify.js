@@ -5,4 +5,4 @@ module.exports = function collectify (headers, rows) {
       return cell;
     }, {});
   });
-}
+};

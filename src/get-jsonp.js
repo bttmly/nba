@@ -12,7 +12,7 @@ function getJsonp (url, query, callback) {
       callback(err);
     }
     callback(null, result);
-  })
+  });
 }
 
 module.exports = getJsonp;

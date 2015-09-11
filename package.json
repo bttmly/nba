@@ -5,14 +5,7 @@
   "repository": "https://github.com/nickb1080/nba.git",
   "main": "index.js",
   "scripts": {
-    "update-teams": "node ./scripts/teams",
-    "update-players": "node ./scripts/players",
-    "update-data": "npm run update-teams && npm run update-players",
-    "clear-data": "node ./scripts/clear-data",
-    "test": "mocha --timeout 30000 -R spec ./test/**/*.js",
-    "lint": "eslint ./src",
-    "babel": "babel src --out-dir lib2 --stage 0",
-    "test-unit": "npm run babel; mocha --recursive ./test/setup.js ./test/unit/"
+    "test": "make test"
   },
   "author": "Nick Bottomley",
   "license": "MIT",

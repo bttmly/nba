@@ -43,7 +43,7 @@ function interpolate (_str) {
       str = str.replace(new RegExp(`__${key}__`, "g"), obj[key]);
     });
     return str;
-  }
+  };
 }
 
 module.exports = {

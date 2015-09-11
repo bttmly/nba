@@ -6,7 +6,7 @@ let promisify = Prms => func => (...args) =>
     });
   });
 
-let promisifyAll = (obj, Prms) => {
+function promisifyAll (obj, Prms) {
   const _promisify = promisify(Prms);
 
   let out = Object.create(Object.getPrototypeOf(obj));
@@ -15,7 +15,6 @@ let promisifyAll = (obj, Prms) => {
   });
   return out;
 }
-
 
 module.exports = {promisify, promisifyAll};
 

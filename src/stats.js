@@ -44,7 +44,7 @@ function makeStatsMethod (endpoint) {
       if (endpoint.transform) return callback(null, endpoint.transform(response));
       callback(null, response);
     });
-  }
+  };
 }
 
 module.exports = stats;

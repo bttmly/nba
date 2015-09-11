@@ -21,6 +21,9 @@ test-unit:
 coverage:
 	./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive ./test/setup.js ./test/unit/
 
+lint:
+	./node_modules/.bin/eslint ./src
+
 build:
 	rm -rf ./lib
 	./node_modules/.bin/babel src --out-dir lib --stage 0

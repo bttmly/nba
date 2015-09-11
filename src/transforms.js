@@ -45,4 +45,4 @@ module.exports = {
   base,
   general,
   players,
-}
+};

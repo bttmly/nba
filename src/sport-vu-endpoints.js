@@ -50,4 +50,4 @@ module.exports = {
     defaults: defaults,
     transform: sportVuTransform,
   },
-}
+};

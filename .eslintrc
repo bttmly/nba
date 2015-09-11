@@ -7,25 +7,10 @@
     "mocha": true
   },
   "rules": {
-    "consistent-return": 0,
-    "strict": 0,
-    "no-underscore-dangle": 0,
-    "no-multi-spaces": 0,
     "quotes": [ 2 ],
-    "new-cap": 2,
-    "comma-spacing": 0,
-    "no-use-before-define": 0,
-    "camelcase": 0,
-    "curly": 0,
-    "no-trailing-spaces": 0,
-    "semi-spacing": 0,
-    "no-unused-expressions": 0,
-    "eol-last": 0,
-    "no-extend-native": 0,
     "no-redeclare": 2,
     "no-shadow": 2,
-
-
+    "semi": [2, "always"],
     "no-else-return": 2,
     "default-case": 2,
     "comma-dangle": [2, "always-multiline"],
