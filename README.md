@@ -1,4 +1,4 @@
-# nba [![Build Status](https://travis-ci.org/nickb1080/nba.svg?branch=master)](https://travis-ci.org/nickb1080/nba)
+# nba [![Build Status](https://travis-ci.org/nickb1080/nba.svg?branch=master)](https://travis-ci.org/nickb1080/nba) [![Coverage Status](https://coveralls.io/repos/nickb1080/nba/badge.svg?branch=master&service=github)](https://coveralls.io/github/nickb1080/nba?branch=master)
 *The NBA's stats API for the browser or Node*
 
 `npm install nba`
