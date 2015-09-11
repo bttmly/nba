@@ -1,6 +1,6 @@
 {
   "name": "nba",
-  "version": "0.4.1",
+  "version": "1.0.0",
   "description": "A Node.js wrapper around the NBA's API",
   "repository": "https://github.com/nickb1080/nba.git",
   "main": "index.js",
