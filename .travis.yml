@@ -4,4 +4,4 @@ node_js:
 - '0.12'
 - 'iojs'
 install: 'npm install'
-script: 'make test'
+script: 'sh travis.sh'
