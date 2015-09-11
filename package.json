@@ -5,12 +5,15 @@
   "repository": "https://github.com/nickb1080/nba.git",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "preversion": "make preversion"
   },
   "author": "Nick Bottomley",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickb1080/nba/issues"
+  },
   "dependencies": {
-    "browserify": "^9.0.3",
     "jsonp": "^0.2.0",
     "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
@@ -19,7 +22,6 @@
     "lodash.invert": "^3.0.0",
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
-    "object-assign": "^2.0.0",
     "request": "^2.42.0"
   },
   "browser": {
@@ -28,10 +30,10 @@
   },
   "browserify": {},
   "devDependencies": {
+    "browserify": "^9.0.3",
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
-    "chai": "^1.9.1",
     "coveralls": "^2.11.4",
     "eslint": "^1.3.1",
     "istanbul": "^0.3.19",
@@ -39,8 +41,6 @@
     "must": "^0.12.0",
     "node-static": "^0.7.7",
     "openurl": "^1.1.0",
-    "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
-    "uglify-js": "^2.4.15"
+    "sinon": "^1.10.3"
   }
 }

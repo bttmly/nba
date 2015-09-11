@@ -1,8 +1,8 @@
 .PHONY: test
 
 build-browser-test:
-	./node_modules/.bin/browserify ./test/integration/stats.js -t babelify -o ./test/browser/stats.js
-	./node_modules/.bin/browserify ./test/integration/sport-vu.js -t babelify -o ./test/browser/sport-vu.js
+	./node_modules/.bin/browserify ./test/integration/stats.js -t babelify -o ./test/browser/stats-browserified.js
+	./node_modules/.bin/browserify ./test/integration/sport-vu.js -t babelify -o ./test/browser/sport-vu-browserified.js
 
 browser-test:
 	@make build-browser-test
@@ -33,3 +33,12 @@ update-players:
 
 update-teams:
 	node ./scripts/teams.js
+
+preversion:
+	@make update-players
+	@make update-teams
+	@make lint
+	@make test
+	@make build
+	exit 1
+

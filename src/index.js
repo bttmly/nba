@@ -1,4 +1,3 @@
-
 const find = require("lodash.find");
 const contains = require("lodash.contains");
 
@@ -31,8 +30,8 @@ const nba = {
 };
 
 function teamIdFromName (name) {
-  let n = name.toLowerCase();
-  let team = find(nba.teams, function (t) {
+  const n = name.toLowerCase();
+  const team = find(nba.teams, function (t) {
     return (
       t.abbreviation.toLowerCase() === n ||
       t.location.toLowerCase() === n ||
@@ -44,7 +43,7 @@ function teamIdFromName (name) {
 }
 
 function playerIdFromName (name) {
-  let p = findPlayer(name);
+  const p = findPlayer(name);
   return p ? p.playerId : null;
 }
 
@@ -83,12 +82,11 @@ function usePromises (Prms) {
   if (typeof Prms !== "function") {
     throw new Error("Invalid Promise implementation");
   }
-
-  let _promisify = promisify(Prms);
+  
   nba.stats = promisifyAll(stats, Prms);
   nba.sportVu = promisifyAll(sportVu, Prms);
-  nba.updatePlayers = _promisify(updatePlayers);
-  nba.updateTeams = _promisify(updateTeams);
+  nba.updatePlayers = promisify(Prms)(updatePlayers);
+  nba.updateTeams = promisify(Prms)(updateTeams);
   return nba;
 }
 

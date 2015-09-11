@@ -12,36 +12,36 @@ var gameId = "0021401082";
 // for interactive inspection
 global.StatsData = {};
 
-describe("#playerProfile", function () {
-  it("works", function (done) {
-    stats.playerProfile({playerId: steph}, function (err, response) {
+describe("#playerProfile", () => {
+  it("works", done => {
+    stats.playerProfile({playerId: steph}, (err, response) => {
       global.StatsData.playerProfile = response;
       done(err);
     });
   });
 });
 
-describe("#playerInfo", function () {
-  it("works", function (done) {
-    stats.playerInfo({playerId: steph}, function (err, response) {
+describe("#playerInfo", () => {
+  it("works", done => {
+    stats.playerInfo({playerId: steph}, (err, response) => {
       global.StatsData.playerInfo = response;
       done(err);
     });
   });
 });
 
-describe("#playersInfo", function () {
-  it("works", function (done) {
-    stats.playersInfo(function (err, response) {
+describe("#playersInfo", () => {
+  it("works", done => {
+    stats.playersInfo((err, response) => {
       global.StatsData.playersInfo = response;
       done(err);
     });
   });
 });
 
-describe("#teamStats", function () {
-  it("works", function (done) {
-    stats.teamStats(function (err, response) {
+describe("#teamStats", () => {
+  it("works", done => {
+    stats.teamStats((err, response) => {
       global.StatsData.teamStats = response;
       done(err);
     });
@@ -49,18 +49,18 @@ describe("#teamStats", function () {
 });
 
 // transform or params needs work
-describe("#teamSplits", function () {
-  it("works", function (done) {
-    stats.teamSplits({teamId: dubs}, function (err, response) {
+describe("#teamSplits", () => {
+  it("works", done => {
+    stats.teamSplits({teamId: dubs}, (err, response) => {
       global.StatsData.teamSplits = response;
       done(err);
     });
   });
 });
 
-describe("#teamYears", function () {
-  it("works", function (done) {
-    stats.teamYears(function (err, response) {
+describe("#teamYears", () => {
+  it("works", done => {
+    stats.teamYears((err, response) => {
       global.StatsData.teamYears = response;
       done(err);
     });
@@ -68,36 +68,36 @@ describe("#teamYears", function () {
 });
 
 // transform or params needs work
-describe("#playerSplits", function () {
-  it("works", function (done) {
-    stats.playerSplits({playerId: klay}, function (err, response) {
+describe("#playerSplits", () => {
+  it("works", done => {
+    stats.playerSplits({playerId: klay}, (err, response) => {
       global.StatsData.playerSplits = response;
       done(err);
     });
   });
 });
 
-describe("#shots", function () {
-  it("works", function (done) {
-    stats.shots({teamId: dubs}, function (err, response) {
+describe("#shots", () => {
+  it("works", done => {
+    stats.shots({teamId: dubs}, (err, response) => {
       global.StatsData.shots = response;
       done(err);
     });
   });
 });
 
-describe("#scoreboard", function () {
-  it("works", function (done) {
-    stats.scoreboard({gameDate: "03/27/2015"}, function (err, response) {
+describe("#scoreboard", () => {
+  it("works", done => {
+    stats.scoreboard({gameDate: "03/27/2015"}, (err, response) => {
       global.StatsData.scoreboard = response;
       done(err);
     });
   });
 });
 
-describe("#playByPlay", function () {
-  it("works", function (done) {
-    stats.playByPlay({gameId}, function (err, response) {
+describe("#playByPlay", () => {
+  it("works", done => {
+    stats.playByPlay({gameId}, (err, response) => {
       global.StatsData.playByPlay = response;
       done(err);
     });
@@ -105,45 +105,45 @@ describe("#playByPlay", function () {
 });
 
 
-describe("#boxScoreScoring", function () {
-  it("works", function (done) {
-    stats.boxScoreScoring({gameId}, function (err, response) {
+describe("#boxScoreScoring", () => {
+  it("works", done => {
+    stats.boxScoreScoring({gameId}, (err, response) => {
       global.StatsData.boxScoreScoring = response;
       done(err);
     });
   });
 });
 
-describe("#boxScoreUsage", function () {
-  it("works", function (done) {
-    stats.boxScoreUsage({gameId}, function (err, response) {
+describe("#boxScoreUsage", () => {
+  it("works", done => {
+    stats.boxScoreUsage({gameId}, (err, response) => {
       global.StatsData.boxScoreUsage = response;
       done(err);
     });
   });
 });
 
-describe("#boxScoreMisc", function () {
-  it("works", function (done) {
-    stats.boxScoreMisc({gameId}, function (err, response) {
+describe("#boxScoreMisc", () => {
+  it("works", done => {
+    stats.boxScoreMisc({gameId}, (err, response) => {
       global.StatsData.boxScoreMisc = response;
       done(err);
     });
   });
 });
 
-describe("#boxScoreAdvanced", function () {
-  it("works", function (done) {
-    stats.boxScoreAdvanced({gameId}, function (err, response) {
+describe("#boxScoreAdvanced", () => {
+  it("works", done => {
+    stats.boxScoreAdvanced({gameId}, (err, response) => {
       global.StatsData.boxScoreAdvanced = response;
       done(err);
     });
   });
 });
 
-describe("#boxScoreFourFactors", function () {
-  it("works", function (done) {
-    stats.boxScoreFourFactors({gameId}, function (err, response) {
+describe("#boxScoreFourFactors", () => {
+  it("works", done => {
+    stats.boxScoreFourFactors({gameId}, (err, response) => {
       global.StatsData.boxScoreFourFactors = response;
       done(err);
     });
@@ -151,54 +151,54 @@ describe("#boxScoreFourFactors", function () {
 });
 
 // no idea what `seasonId` is supposed to be -- Reponse says must be five digit number
-describe("#teamHistoricalLeaders", function () {
-  it("works", function (done) {
-    stats.teamHistoricalLeaders({teamId: dubs, seasonId: "20078"}, function (err, response) {
+describe("#teamHistoricalLeaders", () => {
+  it("works", done => {
+    stats.teamHistoricalLeaders({teamId: dubs, seasonId: "20078"}, (err, response) => {
       global.StatsData.teamHistoricalLeaders = response;
       done(err);
     });
   });
 });
 
-describe("#teamInfoCommon", function () {
-  it("works", function (done) {
-    stats.teamInfoCommon({teamId: dubs}, function (err, response) {
+describe("#teamInfoCommon", () => {
+  it("works", done => {
+    stats.teamInfoCommon({teamId: dubs}, (err, response) => {
       global.StatsData.teamInfoCommon = response;
       done(err);
     });
   });
 });
 
-describe("#commonTeamRoster", function () {
-  it("works", function (done) {
-    stats.commonTeamRoster({teamId: dubs}, function (err, response) {
+describe("#commonTeamRoster", () => {
+  it("works", done => {
+    stats.commonTeamRoster({teamId: dubs}, (err, response) => {
       global.StatsData.commonTeamRoster = response;
       done(err);
     });
   });
 });
 
-describe("#teamPlayerDashboard", function () {
-  it("works", function (done) {
-    stats.teamPlayerDashboard({teamId: dubs, seasonType: "Regular Season"}, function (err, response) {
+describe("#teamPlayerDashboard", () => {
+  it("works", done => {
+    stats.teamPlayerDashboard({teamId: dubs, seasonType: "Regular Season"}, (err, response) => {
       global.StatsData.teamPlayerDashboard = response;
       done(err);
     });
   });
 });
 
-describe("#playerDashPtShotLog", function () {
-  it("works", function (done) {
-    stats.playerDashPtShotLog({playerId: klay}, function (err, response) {
+describe("#playerDashPtShotLog", () => {
+  it("works", done => {
+    stats.playerDashPtShotLog({playerId: klay}, (err, response) => {
       global.StatsData.playerDashPtShotLog = response;
       done(err);
     });
   });
 });
 
-describe("#playerDashPtReboundLogs", function () {
-  it("works", function (done) {
-    stats.playerDashPtReboundLogs({playerId: klay}, function (err, response) {
+describe("#playerDashPtReboundLogs", () => {
+  it("works", done => {
+    stats.playerDashPtReboundLogs({playerId: klay}, (err, response) => {
       global.StatsData.playerDashPtReboundLogs = response;
       done(err);
     });
