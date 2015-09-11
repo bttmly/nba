@@ -2094,23 +2094,78 @@ function getJsonp(url, query, callback) {
 
 module.exports = getJsonp;
 
-},{"./transport-config":16,"jsonp":5,"querystring":4}],15:[function(require,module,exports){
+},{"./transport-config":17,"jsonp":5,"querystring":4}],15:[function(require,module,exports){
+"use strict";
+
+var defaults = {
+  season: 2014
+};
+
+function sportVuTransform(x) {
+  return x;
+}
+
+module.exports = {
+  "speed": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/speedData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "touches": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/touchesData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "passing": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/passingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "defense": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/defenseData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "rebounding": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/reboundingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "drives": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/drivesData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "shooting": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/shootingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "catchShoot": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/catchShootData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "pullUpShoot": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/pullUpShootData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  }
+};
+
+},{}],16:[function(require,module,exports){
 (function (process){
 "use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _require = require("./util/string");
 
 var interpolate = _require.interpolate;
 
+var endpoints = require("./sport-vu-endpoints");
+
 var transport = require("./get-json");
-
-var URL_ROOT = "http://stats.nba.com/js/data/sportvu/__season__/speedData.json";
-
-var SPORT_VU_STATS = ["speed", "touches", "passing", "defense", "rebounding", "drives", "shooting", "catchShoot", "pullUpShoot"];
-
-var DEFAULT_SEASON = 2014;
-
-var makeUrl = interpolate(URL_ROOT);
 
 var sportVu = Object.create({
   setTransport: function setTransport(_transport) {
@@ -2118,14 +2173,14 @@ var sportVu = Object.create({
   }
 });
 
-SPORT_VU_STATS.forEach(function (stat) {
-  sportVu[stat] = makeSportVuMethod(stat);
+Object.keys(endpoints).forEach(function (key) {
+  sportVu[key] = makeSportVuMethod(endpoints[key]);
 });
 
-function makeSportVuMethod(stat) {
-  return function sportVuMethod(options, callback) {
+function makeSportVuMethod(endpoint) {
+  var makeUrl = interpolate(endpoint.url);
 
-    console.log("PROCESS", process);
+  return function sportVuMethod(options, callback) {
     if (process.browser) {
       throw new Error("SportVu does not support JSONP");
     }
@@ -2139,7 +2194,7 @@ function makeSportVuMethod(stat) {
       throw new TypeError("Must pass a callback function.");
     }
 
-    options.season = options.season || DEFAULT_SEASON;
+    options = _extends({}, endpoint.defaults, options);
 
     transport(makeUrl(options), {}, callback);
   };
@@ -2148,14 +2203,14 @@ function makeSportVuMethod(stat) {
 module.exports = sportVu;
 
 }).call(this,require('_process'))
-},{"./get-json":14,"./util/string":17,"_process":1}],16:[function(require,module,exports){
+},{"./get-json":14,"./sport-vu-endpoints":15,"./util/string":18,"_process":1}],17:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   timeout: 60 * 1000
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 function hasUnderscoreOrHyphen(str) {
@@ -2212,11 +2267,12 @@ module.exports = {
   interpolate: interpolate
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function (global){
 "use strict";
 
 var expect = require("must");
+delete Object.prototype.must;
 
 var sportVu = require("../../src/sport-vu");
 
@@ -2314,4 +2370,4 @@ describe("#pullUpShoot", function () {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../src/sport-vu":15,"must":9}]},{},[18]);
+},{"../../src/sport-vu":16,"must":9}]},{},[19]);

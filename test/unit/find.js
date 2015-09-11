@@ -1,39 +1,37 @@
-var expect = require("chai").expect;
+const expect = require("must");
 
-var nba = require("../../src");
+const nba = require("../../src");
 
-describe("searching methods", function () {
+describe("searching methods", () => {
 
-  describe("#playerIdFromName", function () {
-    it("works for names", function () {
+  describe("#playerIdFromName", () => {
+    it("works for names", () => {
       expect(nba.playerIdFromName("lebron")).to.equal(2544);
     });
 
-    it("is case insensitive", function () {
+    it("is case insensitive", () => {
       expect(nba.playerIdFromName("LEBRON")).to.equal(2544);
     });
   });
 
-  describe("#findPlayer", function () {
-    it("searches name", function () {
-      expect(nba.findPlayer("stephen curry")).to.deep.equal({
-        firstName: 'Stephen',
-        lastName: 'Curry',
+  describe("#findPlayer", () => {
+    it("searches name", () => {
+      expect(nba.findPlayer("stephen curry")).to.eql({
+        firstName: "Stephen",
+        lastName: "Curry",
         playerId: 201939,
-        fullName: 'Stephen Curry',
-        downcaseName: 'stephen curry'
+        fullName: "Stephen Curry",
+        downcaseName: "stephen curry",
       });
     });
 
   });
 
-  describe("#searchPlayers", function () {
-    it("finds many players", function () {
-      var players = nba.searchPlayers("james")
-
+  describe("#searchPlayers", () => {
+    it("finds many players", () => {
+      const players = nba.searchPlayers("james");
       expect(Array.isArray(players)).to.equal(true);
-
-      var ids = players.map(function (p) { return p.playerId });
+      const ids = players.map(p => p.playerId);
 
       // james harden
       expect(ids.indexOf(201935)).to.not.equal(-1);
@@ -43,24 +41,24 @@ describe("searching methods", function () {
     });
   });
 
-  describe("#teamIdFromName", function () {
-    it("works for short name", function () {
+  describe("#teamIdFromName", () => {
+    it("works for short name", () => {
       expect(nba.teamIdFromName("warriors")).to.equal(1610612744);
     });
 
-    it("works for location", function () {
+    it("works for location", () => {
       expect(nba.teamIdFromName("golden state")).to.equal(1610612744);
     });
 
-    it("works for full name", function () {
+    it("works for full name", () => {
       expect(nba.teamIdFromName("golden state warriors")).to.equal(1610612744);
-    })
+    });
 
-    it("works for abbreviations", function () {
+    it("works for abbreviations", () => {
       expect(nba.teamIdFromName("gsw")).to.equal(1610612744);
     });
 
-    it("is case insensitive", function () {
+    it("is case insensitive", () => {
       expect(nba.teamIdFromName("WARRIORS")).to.equal(1610612744);
       expect(nba.teamIdFromName("GoLdEn StAtE")).to.equal(1610612744);
       expect(nba.teamIdFromName("GSW")).to.equal(1610612744);

@@ -1,13 +1,12 @@
-"use strict";
+var sinon = require("sinon");
 
-var spy = require("sinon").spy;
+var optionPosition = 1;
+var urlPosition = 0;
 
-var assign = require("object-assign");
-
-var extensions = {
-  optionPosition: 1,
-  lastCalledWithOption: function (option, value) {
-    var opts = this.lastCall.args[ this.optionPosition ];
+module.exports = function () {
+  var spy = sinon.spy.apply(this, arguments);
+  spy.lastCalledWithOption = function (option, value) {
+    var opts = this.lastCall.args[optionPosition];
     if (opts[option] == null) {
       return false;
     }
@@ -15,15 +14,9 @@ var extensions = {
       return opts[option] === value;
     }
     return true;
-  },
-  urlPosition: 0,
-  lastCalledWithUrl: function (url) {
-    var lastUrl = this.lastCall.args[ this.urlPosition ];
-    return lastUrl === url;
-  }
-};
-
-module.exports = function () {
-  var ret = spy.apply(this, arguments);
-  return assign(ret, extensions);
+  };
+  spy.lastCalledWithUrl = function (url) {
+    return this.lastCall.args[urlPosition] === url;
+  };
+  return spy;
 };

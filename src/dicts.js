@@ -1,7 +1,5 @@
-"use strict";
-
-var blank = require("./util/blank");
-var invert = require("lodash.invert");
+const blank = require("./util/blank");
+const invert = require("lodash.invert");
 
 const nbaToJsMap = blank({
   "Season": "season",
