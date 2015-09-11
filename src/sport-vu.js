@@ -1,23 +1,7 @@
 const {interpolate} = require("./util/string");
+const endpoints = require("./sport-vu-endpoints");
+
 let transport = require("./get-json");
-
-const URL_ROOT = "http://stats.nba.com/js/data/sportvu/__season__/speedData.json"
-
-const SPORT_VU_STATS = [
-  "speed",
-  "touches",
-  "passing",
-  "defense",
-  "rebounding",
-  "drives",
-  "shooting",
-  "catchShoot",
-  "pullUpShoot",
-];
-
-const DEFAULT_SEASON = 2014;
-
-const makeUrl = interpolate(URL_ROOT);
 
 const sportVu = Object.create({
   setTransport (_transport) {
@@ -25,13 +9,14 @@ const sportVu = Object.create({
   },
 });
 
-SPORT_VU_STATS.forEach(stat => {
-  sportVu[stat] = makeSportVuMethod(stat);
+Object.keys(endpoints).forEach(key => {
+  sportVu[key] = makeSportVuMethod(endpoints[key]);
 });
 
-function makeSportVuMethod (stat) {
-  return function sportVuMethod (options, callback) {
+function makeSportVuMethod (endpoint) {
+  const makeUrl = interpolate(endpoint.url);
 
+  return function sportVuMethod (options, callback) {
     if (process.browser) {
       throw new Error("SportVu does not support JSONP");
     }
@@ -45,10 +30,10 @@ function makeSportVuMethod (stat) {
       throw new TypeError("Must pass a callback function.");
     }
 
-    options.season = options.season || DEFAULT_SEASON;
+    options = {...endpoint.defaults, ...options};
 
     transport(makeUrl(options), {}, callback);
-  }
+  };
 }
 
 module.exports = sportVu;

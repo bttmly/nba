@@ -24,23 +24,22 @@ function addExtraTeamData (team) {
 }
 
 module.exports = function teamInfo (cb) {
-  const results = new Array(2);
+  const results = [null, null];
 
   stats.teamStats(function (err, response) {
     if (err) return cb(err);
     results[0] = response;
-    if (results[1]) andThen(results);
+    if (results[1]) done(results);
   });
 
   stats.teamYears(function (err, response) {
     if (err) return cb(err);
     results[1] = response;
-    if (results[0]) andThen(results);
+    if (results[0]) done(results);
   });
 
-  function andThen (responses) {
-    let data = mergeCollections("teamId", responses[0], responses[1]);
-    data = data.map(function (d) {
+  function done (responses) {
+    let data = mergeCollections("teamId", responses[0], responses[1]).map(function (d) {
       return addExtraTeamData(pick(d, "teamId", "abbreviation", "teamName"));
     });
     cb(null, data);
