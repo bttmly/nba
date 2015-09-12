@@ -29,10 +29,10 @@ build:
 	./node_modules/.bin/babel src --out-dir lib --stage 0
 
 update-players:
-	node ./scripts/players.js
+	./node_modules/.bin/babel-node ./scripts/players.js
 
 update-teams:
-	node ./scripts/teams.js
+	./node_modules/.bin/babel-node ./scripts/teams.js
 
 preversion:
 	@make update-players
@@ -42,3 +42,5 @@ preversion:
 	@make build
 	exit 1
 
+demo-movement:
+	./node_modules/.bin/babel-node ./src/apis/movement/index.js

@@ -1,9 +1,8 @@
 const async = require("async");
 const {EventEmitter} = require("events");
+const {Readable} = require("stream");
 
-const transport = require("../../get-json");
-
-const movement = {};
+let transport = require("../../get-json");
 
 const BATCH_COUNT = 10;
 const GAME_URL = "http://stats.nba.com/stats/locations_getmoments/";
@@ -15,55 +14,60 @@ function getPlayMovement (playNumber, gameId, cb) {
   transport(GAME_URL, {eventid: playNumber, gameid: gameId}, cb);
 }
 
-// this algorithm should be improved as follows:
-// set an in flight size, issue those requests
-// then as each one returns, send another
-// at the same time, keep a count of consecutive falsy results
-// if the count exceeds the flight size, terminate.
+const movement = Object.create({
+  setTransport (_transport) {
+    transport = _transport;
+  },
+});
 
-function getPlayMovementForGame (gameId, done) {
+function getPlayMovementForGame (gameId) {
   const emitter = new EventEmitter();
 
   let i = 1;
+  let blanks = 0;
+  let ended = false;
 
-  function repeat () {
+  const MAX = 10;
 
-    let nums = between(i, (i + BATCH_COUNT));
-    i = i + BATCH_COUNT;
+  while (i < MAX) {
+    sendRequest(i);
+    i += 1;
+  }
 
-    console.log("NUMS", nums);
-    async.map(nums, function (n, cb) {
-      console.log("RUNNING", n);
-      getPlayMovement(n, gameId, (err, data) => {
-        if (err) return cb(err);
+  function sendRequest (n) {
+    if (ended) return;
 
-        // emitting this data needs to include the eventid because
-        // the plays come back in slightly random order
-        if (data) emitter.emit("data", data);
+    if (blanks > MAX) {
+      ended = true;
+      return emitter.emit("end");
+    }
 
-        // don't hang on to the objects here, just cast them to boolean
-        // for the callback to check
-        return cb(null, !!data);
-      });
-    }, function (err, results) {
-
+    getPlayMovement(i, gameId, (err, data) => {
       if (err) {
         return emitter.emit("error", err);
       }
 
-      if (results.every(not(id))) {
-        console.log("Terminating!");
-        emitter.emit("end");
+      if (ended) {
         return;
       }
 
-      repeat();
+      if (data) {
+        blanks = 0;
+        emitter.emit("data", data);
+      } else {
+        blanks += 1;
+      }
+
+      sendRequest(++i);
     });
   }
 
-  repeat();
-
   return emitter;
+}
+
+
+function streamPlayMovementForGame (gameId) {
+  return streamifyEmitter(getPlayMovementForGame(gameId));
 }
 
 function between (x, y) {
@@ -72,8 +76,25 @@ function between (x, y) {
   return nums;
 }
 
-module.exports = {
-  getPlayMovement,
-  getPlayMovementForGame,
-};
+function streamifyEmitter (emitter) {
+  let items = [];
+  let rs = new Readable();
+  rs._read = () => {
+    while (items.length) {
+      if (!rs.push(items.shift())) {
+        break;
+      }
+    }
+  };
 
+  emitter.on("data", [].push.bind(items));
+  emitter.on("end", [].push.bind(items, null));
+
+  return rs;
+}
+
+
+movement.getPlayMovement = getPlayMovement;
+movement.getPlayMovementForGame = getPlayMovementForGame;
+movement.streamPlayMovementForGame = streamPlayMovementForGame;
+module.exports = movement;

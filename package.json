@@ -16,6 +16,7 @@
   "dependencies": {
     "async": "^1.4.2",
     "jsonp": "^0.2.0",
+    "jsonstream": "^1.0.3",
     "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
