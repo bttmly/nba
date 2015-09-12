@@ -8,7 +8,9 @@ function getJson (url, query, callback) {
     qs: query,
     json: true,
     timeout: transportConfig.timeout,
+    pool: false,
   }, function (err, resp, body) {
+    console.log(query, "GET JSON ERR:", err, typeof body);
     callback(err, body);
   });
 };
