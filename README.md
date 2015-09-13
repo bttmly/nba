@@ -160,7 +160,7 @@ Stats responses generally arrive in an object like so:
 
 ```js
 {
-  resouce: "boxscore",
+  resource: "boxscore",
   parameters: Object, 
   resultSets: Array
 }
