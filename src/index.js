@@ -79,7 +79,12 @@ function updateTeams (cb) {
   });
 }
 
+let usedPromises = false;
+
 function usePromises (Prms) {
+  if (usedPromises) return nba;
+  usedPromises = true;
+
   Prms = Prms || global.Promise;
   if (typeof Prms !== "function") {
     throw new Error("Invalid Promise implementation");

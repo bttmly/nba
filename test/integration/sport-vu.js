@@ -1,98 +1,23 @@
-const expect = require("must");
-delete Object.prototype.must;
+const nba = require("../../src").usePromises();
 
-const sportVu = require("../../src/sport-vu");
+const sportVu = nba.sportVu;
 
 // for interactive inspection
 global.SportVuData = {};
 
-describe("#speed", () => {
-  it("works", done => {
-    sportVu.speed((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.speed = data;
-      done();
-    });
-  });
-});
+let verifyShape = shape => response => response;
 
-describe("#touches", () => {
-  it("works", done => {
-    sportVu.touches((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.touches = data;
-      done();
-    });
-  });
-});
+let callMethod = (name, shape) => () => 
+  sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
 
-describe("#passing", () => {
-  it("works", done => {
-    sportVu.passing((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.passing = data;
-      done();
-    });
-  });
+describe("sport vu methods", function () {
+  it("#speed", callMethod("speed"));
+  it("#touches", callMethod("touches"));
+  it("#passing", callMethod("passing"));
+  it("#defense", callMethod("defense"));
+  it("#rebounding", callMethod("rebounding"));
+  it("#drives", callMethod("drives"));
+  it("#shooting", callMethod("shooting"));
+  it("#catchShoot", callMethod("catchShoot"));
+  it("#pullUpShoot", callMethod("pullUpShoot"));
 });
-
-describe("#defense", () => {
-  it("works", done => {
-    sportVu.defense((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.defense = data;
-      done();
-    });
-  });
-});
-
-describe("#rebounding", () => {
-  it("works", done => {
-    sportVu.rebounding((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.rebounding = data;
-      done();
-    });
-  });
-});
-
-describe("#drives", () => {
-  it("works", done => {
-    sportVu.drives((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.drives = data;
-      done();
-    });
-  });
-});
-
-describe("#shooting", () => {
-  it("works", done => {
-    sportVu.shooting((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.shooting = data;
-      done();
-    });
-  });
-});
-
-describe("#catchShoot", () => {
-  it("works", done => {
-    sportVu.catchShoot((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.catchShoot = data;
-      done();
-    });
-  });
-});
-
-describe("#pullUpShoot", () => {
-  it("works", done => {
-    sportVu.pullUpShoot((err, data) => {
-      expect(err).to.not.exist();
-      global.SportVuData.pullUpShoot = data;
-      done();
-    });
-  });
-});
-

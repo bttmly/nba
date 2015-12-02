@@ -2098,7 +2098,7 @@ module.exports = getJsonp;
 "use strict";
 
 var defaults = {
-  season: 2014
+  season: 2015
 };
 
 function sportVuTransform(x) {
