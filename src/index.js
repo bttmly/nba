@@ -64,7 +64,7 @@ function searchPlayers (str) {
 }
 
 function updatePlayers (cb) {
-  return stats.playersInfo(function (err, resp) {
+  return getPlayersInfo(function (err, resp) {
     if (err) return cb(err);
     nba.players = resp;
     cb(null, resp);

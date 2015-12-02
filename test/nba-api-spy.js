@@ -8,7 +8,7 @@ module.exports = function () {
   spy.lastCalledWithOption = function (option, value) {
     var opts = this.lastCall.args[optionPosition];
     if (opts[option] == null) {
-      return false;
+      return false
     }
     if (value) {
       return opts[option] === value;
