@@ -4,7 +4,7 @@ const {
   base,
 } = require("./transforms");
 
-var DEFAULT_SEASON = "2014-15";
+var DEFAULT_SEASON = "2015-16";
 
 const boxScoreDefaults = {
   "GameID": "0",
@@ -25,7 +25,7 @@ module.exports = {
       "LeagueID": "00",
       "PlayerID": "0",
       "GraphStartSeason": "2009-10",
-      "GraphEndSeason": "2014-15",
+      "GraphEndSeason": "2015-16",
       "GraphStat": "PTS",
     },
     transform: general,
@@ -55,7 +55,7 @@ module.exports = {
   teamStats: {
     url: "http://stats.nba.com/stats/leaguedashteamstats",
     defaults: {
-      "Season": "2013-14",
+      "Season": "2015-16",
       "AllStarSeason": "",
       "SeasonType": "Regular Season",
       "LeagueID": "00",

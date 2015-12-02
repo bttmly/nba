@@ -1,5 +1,5 @@
 const defaults = {
-  season: 2014,
+  season: 2015,
 };
 
 function sportVuTransform (x) { return x; }
