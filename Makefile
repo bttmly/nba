@@ -35,10 +35,9 @@ update-teams:
 	node ./scripts/teams.js
 
 preversion:
+	@make build
 	@make update-players
 	@make update-teams
 	@make lint
 	@make test
-	@make build
-	exit 1
 

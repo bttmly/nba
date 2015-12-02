@@ -2,6 +2,8 @@ const find = require("lodash.find");
 const contains = require("lodash.contains");
 
 const getTeamsInfo = require("./team-info");
+const getPlayersInfo = require("./player-info");
+
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
 const buildPlayers = require("./util/build-players");
@@ -64,7 +66,7 @@ function searchPlayers (str) {
 function updatePlayers (cb) {
   return stats.playersInfo(function (err, resp) {
     if (err) return cb(err);
-    nba.teams = resp;
+    nba.players = resp;
     cb(null, resp);
   });
 }
@@ -72,7 +74,7 @@ function updatePlayers (cb) {
 function updateTeams (cb) {
   return getTeamsInfo(function (err, resp) {
     if (err) return cb(err);
-    nba.players = resp;
+    nba.teams = resp;
     cb(null, resp);
   });
 }

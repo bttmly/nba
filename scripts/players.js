@@ -3,9 +3,9 @@
 var fs = require("fs");
 var path = require("path");
 
-var updatePlayersInfo = require("../lib").updatePlayersInfo;
+var updatePlayers = require("../lib/player-info");
 
-updatePlayersInfo(function (err, players) {
+updatePlayers(function (err, players) {
   if (err) {
     throw err;
   }

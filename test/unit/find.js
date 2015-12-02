@@ -20,6 +20,7 @@ describe("searching methods", () => {
         firstName: "Stephen",
         lastName: "Curry",
         playerId: 201939,
+        teamId: 1610612744,
         fullName: "Stephen Curry",
         downcaseName: "stephen curry",
       });
