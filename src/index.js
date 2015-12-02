@@ -1,5 +1,7 @@
 const find = require("lodash.find");
 const contains = require("lodash.contains");
+const assign = require("lodash.assign");
+const pify = require("pify");
 
 const getTeamsInfo = require("./team-info");
 const getPlayersInfo = require("./player-info");
@@ -90,11 +92,12 @@ function usePromises (Prms) {
     throw new Error("Invalid Promise implementation");
   }
   
-  nba.stats = promisifyAll(stats, Prms);
+  nba.stats = assign(Object.create(Object.getPrototypeOf(nba.stats)), pify(nba.stats, Prms));
+  nba.sportVu = assign(Object.create(Object.getPrototypeOf(nba.sportVu)), pify(nba.sportVu, Prms));
+  nba.updatePlayers = pify(updatePlayers, Prms);
+  nba.updateTeams = pify(updateTeams, Prms);
+  
   nba.api = nba.stats;
-  nba.sportVu = promisifyAll(sportVu, Prms);
-  nba.updatePlayers = promisify(Prms)(updatePlayers);
-  nba.updateTeams = promisify(Prms)(updateTeams);
   return nba;
 }
 

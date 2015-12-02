@@ -5,362 +5,146 @@ process.env.NODE_ENV = "testing";
 const expect = require("must");
 delete Object.prototype.must; // argh.
 
-const spy = require("../nba-api-spy");
-const json = require("../get-json-stub");
-
 const noop = () => {};
-const returnArg = a => a;
 
 // a copy of stats we can safely iterate (w/o rewire methods);
-const stats = require("../../src/stats");
+// const stats = require("../../src/stats");
 
-const successSpy = spy(json.success);
+const {stats} = require("../../src").usePromises();
 
-stats.setTransport(successSpy);
+let lastSettings;
+let lastUrl;
 
-describe("#playerProfile()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playerProfile(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerprofile")).to.equal(true);
-      done();
-    });
+function jsonStub (url, settings, callback) {
+  lastUrl = url;
+  lastSettings = settings;
+  setTimeout(callback, 1);
+}
+
+function lastCalledWithOption (prop, val) {
+  return lastSettings[prop] === val;
+}
+
+function lastUrlEq (url) {
+  return lastUrl === url;
+}
+
+
+describe("stats methods", function () {
+  
+  before(() => stats.setTransport(jsonStub));
+
+  describe("#playerProfile()", () =>{
+    it("should issue a request to the correct URL", () => stats.playerProfile({playerId: 1234}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerprofile")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playerProfile({playerId: 1234}).then(() => expect(lastCalledWithOption("PlayerID", 1234)).to.equal(true)));
   });
 
-  it("should issue a request with the correct params", done => {
-    stats.playerProfile({playerId: 1234}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 1234)).to.equal(true);
-      done();
-    });
+  describe("#playerInfo()", () =>{
+    it("should issue a request to the correct URL", () => stats.playerInfo({playerId: 1}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/commonplayerinfo")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playerInfo({playerId: 1}).then(() => expect(lastCalledWithOption("PlayerID", 1)).to.equal(true)));
   });
+
+  describe("#playerSplits()", () =>{
+    it("should issue a request to the correct URL", () => stats.playerSplits({playerId: 2}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerdashboardbygeneralsplits")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playerSplits({playerId: 2}).then(() => expect(lastCalledWithOption("PlayerID", 2)).to.equal(true)));
+  });
+
+  describe("#playersInfo()", () =>{
+    it("should issue a request to the correct URL", () => stats.playersInfo({season: "2013-14"}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/commonallplayers")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playersInfo({season: "2013-14"}).then(() => expect(lastCalledWithOption("Season", "2013-14")).to.equal(true)));
+  });
+
+  describe("#teamStats()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamStats({season: "2012-13"}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/leaguedashteamstats")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamStats({season: "2012-13"}).then(() => expect(lastCalledWithOption("Season", "2012-13")).to.equal(true)));
+  });
+
+  describe("#teamSplits()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamSplits({season: "2011-12"}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/teamdashboardbygeneralsplits")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamSplits({season: "2011-12"}).then(() => expect(lastCalledWithOption("Season", "2011-12")).to.equal(true)));
+  });
+
+  describe("#teamYears()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamYears({leagueId: "00"}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/commonteamyears")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamYears({leagueId: "00"}).then(() => expect(lastCalledWithOption("LeagueID", "00")).to.equal(true)));
+  });
+
+  describe("#shots()", () =>{
+    it("should issue a request to the correct URL", () => stats.shots({playerId: 3}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/shotchartdetail")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.shots({playerId: 3}).then(() => expect(lastCalledWithOption("PlayerID", 3)).to.equal(true)));
+  });
+
+  describe("#scoreboard()", () =>{
+    it("should issue a request to the correct URL", () => stats.scoreboard({gameDate: "12/25/2014"}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/scoreboard")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.scoreboard({gameDate: "12/25/2014"}).then(() => expect(lastCalledWithOption("gameDate", "12/25/2014")).to.equal(true)));
+  });
+
+  describe("#playByPlay()", () =>{
+    it("should issue a request to the correct URL", () => stats.playByPlay({gameId: 1}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playbyplay")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playByPlay({gameId: 1}).then(() => expect(lastCalledWithOption("GameID", 1)).to.equal(true)));
+  });
+
+  describe("#boxScoreScoring()", () =>{
+    it("should issue a request to the correct URL", () => stats.boxScoreScoring().then(() => expect(lastUrlEq("http://stats.nba.com/stats/boxscorescoring")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.boxScoreScoring({gameId: 2}).then(() => expect(lastCalledWithOption("GameID", 2)).to.equal(true)));
+  });
+
+  describe("#boxScoreUsage()", () =>{
+    it("should issue a request to the correct URL", () => stats.boxScoreUsage({gameId: 3}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/boxscoreusage")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.boxScoreUsage({gameId: 3}).then(() => expect(lastCalledWithOption("GameID", 3)).to.equal(true)));
+  });
+
+  describe("#boxScoreMisc()", () =>{
+    it("should issue a request to the correct URL", () => stats.boxScoreMisc({gameId: 4}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/boxscoremisc")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.boxScoreMisc({gameId: 4}).then(() => expect(lastCalledWithOption("GameID", 4)).to.equal(true)));
+  });
+
+  describe("#boxScoreAdvanced()", () =>{
+    it("should issue a request to the correct URL", () => stats.boxScoreAdvanced({gameId: 5}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/boxscoreadvanced")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.boxScoreAdvanced({gameId: 5}).then(() => expect(lastCalledWithOption("GameID", 5)).to.equal(true)));
+  });
+
+  describe("#boxScoreFourFactors()", () =>{
+    it("should issue a request to the correct URL", () => stats.boxScoreFourFactors({gameId: 6}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/boxscorefourfactors")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.boxScoreFourFactors({gameId: 6}).then(() => expect(lastCalledWithOption("GameID", 6)).to.equal(true)));
+  });
+
+  describe("#teamHistoricalLeaders()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamHistoricalLeaders({teamId: 7}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/teamhistoricalleaders")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamHistoricalLeaders({teamId: 7}).then(() => expect(lastCalledWithOption("TeamID", 7)).to.equal(true)));
+  });
+
+  describe("#teamInfoCommon()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamInfoCommon({teamId: 8}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/teaminfocommon")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamInfoCommon({teamId: 8}).then(() => expect(lastCalledWithOption("TeamID", 8)).to.equal(true)));
+  });
+
+  describe("#commonTeamRoster()", () =>{
+    it("should issue a request to the correct URL", () => stats.commonTeamRoster({teamId: 9}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/commonteamroster")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.commonTeamRoster({teamId: 9}).then(() => expect(lastCalledWithOption("TeamID", 9)).to.equal(true)));
+  });
+
+  describe("#teamPlayerDashboard()", () =>{
+    it("should issue a request to the correct URL", () => stats.teamPlayerDashboard({teamId: 10}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/teamplayerdashboard")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.teamPlayerDashboard({teamId: 10}).then(() => expect(lastCalledWithOption("TeamID", 10)).to.equal(true)));
+  });
+
+  describe("#playerDashPtShotLog()", () =>{
+    it("should issue a request to the correct URL", () => stats.playerDashPtShotLog({playerId: 11}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerdashptshotlog")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playerDashPtShotLog({playerId: 11}).then(() => expect(lastCalledWithOption("PlayerID", 11)).to.equal(true)));
+  });
+
+  describe("#playerDashPtReboundLogs()", () =>{
+    it("should issue a request to the correct URL", () => stats.playerDashPtReboundLogs({playerId: 12}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerdashptreboundlogs")).to.equal(true)));
+    it("should issue a request with the correct params", () => stats.playerDashPtReboundLogs({playerId: 12}).then(() => expect(lastCalledWithOption("PlayerID", 12)).to.equal(true)));
+  });
+
 });
 
+// describe("all endpoints", () =>{
+//   Object.keys(stats).forEach(key => it("should THROW an error when passed a bad parameter", () => expect(() => stats[key]({badParam: "xyz"}, noop)).to.throw())))
+// });
 
-describe("#playerInfo()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playerInfo(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/commonplayerinfo")).to.equal(true);
-      done();
-    });
-  });
-
-  it("should issue a request with the correct params", done => {
-    stats.playerInfo({playerId: 1}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 1)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#playerSplits()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playerSplits(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerdashboardbygeneralsplits")).to.equal(true);
-      done();
-    });
-  });
-
-  it("should issue a request with the correct params", done => {
-    stats.playerSplits({playerId: 2}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 2)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#playersInfo()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playersInfo(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/commonallplayers")).to.equal(true);
-      done();
-    });
-  });
-
-  it("should issue a request with the correct params", done => {
-    stats.playersInfo({season: "2013-14"}, noop);
-    expect(successSpy.lastCalledWithOption("Season", "2013-14")).to.equal(true);
-    done();
-  });
-});
-
-
-
-describe("#teamStats()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamStats(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/leaguedashteamstats")).to.equal(true);
-      done();
-    });
-  });
-
-  it("should issue a request with the correct params", done => {
-    stats.teamStats({season: "2012-13"}, () => {
-      expect(successSpy.lastCalledWithOption("Season", "2012-13")).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#teamSplits()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamSplits(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teamdashboardbygeneralsplits")).to.equal(true);
-      done();
-    });
-  });
-
-  it("should issue a request with the correct params", done => {
-    stats.teamSplits({season: "2011-12"}, () => {
-      expect(successSpy.lastCalledWithOption("Season", "2011-12")).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#teamYears()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamYears(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/commonteamyears")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.teamYears({leagueId: "00"}, () => {
-      expect(successSpy.lastCalledWithOption("LeagueID", "00")).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#shots()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.shots(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/shotchartdetail")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.shots({playerId: 3}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 3)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-
-describe("#scoreboard()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.scoreboard(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/scoreboard")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.scoreboard({gameDate: "12/25/2014"}, () => {
-      expect(successSpy.lastCalledWithOption("gameDate", "12/25/2014")).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#playByPlay()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playByPlay(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playbyplay")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.playByPlay({gameId: 1}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 1)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#boxScoreScoring()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.boxScoreScoring(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/boxscorescoring")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.boxScoreScoring({gameId: 2}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 2)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#boxScoreUsage()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.boxScoreUsage(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/boxscoreusage")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.boxScoreUsage({gameId: 3}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 3)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#boxScoreMisc()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.boxScoreMisc(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/boxscoremisc")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.boxScoreMisc({gameId: 4}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 4)).to.equal(true);
-      done();
-    });
-  });
-});
-
-
-describe("#boxScoreAdvanced()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.boxScoreAdvanced(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/boxscoreadvanced")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.boxScoreAdvanced({gameId: 5}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 5)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#boxScoreFourFactors()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.boxScoreFourFactors(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/boxscorefourfactors")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.boxScoreFourFactors({gameId: 6}, () => {
-      expect(successSpy.lastCalledWithOption("GameID", 6)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#teamHistoricalLeaders()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamHistoricalLeaders(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teamhistoricalleaders")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.teamHistoricalLeaders({teamId: 7}, () => {
-      expect(successSpy.lastCalledWithOption("TeamID", 7)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#teamInfoCommon()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamInfoCommon(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teaminfocommon")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.teamInfoCommon({teamId: 8}, () => {
-      expect(successSpy.lastCalledWithOption("TeamID", 8)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#commonTeamRoster()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.commonTeamRoster(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/commonteamroster")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.commonTeamRoster({teamId: 9}, () => {
-      expect(successSpy.lastCalledWithOption("TeamID", 9)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#teamPlayerDashboard()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.teamPlayerDashboard(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/teamplayerdashboard")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.teamPlayerDashboard({teamId: 10}, () => {
-      expect(successSpy.lastCalledWithOption("TeamID", 10)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#playerDashPtShotLog()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playerDashPtShotLog(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerdashptshotlog")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.playerDashPtShotLog({playerId: 11}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 11)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("#playerDashPtReboundLogs()", () => {
-  it("should issue a request to the correct URL", done => {
-    stats.playerDashPtReboundLogs(() => {
-      expect(successSpy.lastCalledWithUrl("http://stats.nba.com/stats/playerdashptreboundlogs")).to.equal(true);
-      done();
-    });
-  });
-  it("should issue a request with the correct params", done => {
-    stats.playerDashPtReboundLogs({playerId: 12}, () => {
-      expect(successSpy.lastCalledWithOption("PlayerID", 12)).to.equal(true);
-      done();
-    });
-  });
-});
-
-describe("all endpoints", () => {
-  Object.keys(stats).forEach(key => {
-    it("should THROW an error when passed a bad parameter", () => {
-      expect(() => stats[key]({badParam: "xyz"}, noop)).to.throw();
-    });
-  });
-});
-
-describe("failing", () => {
+describe("failing", () =>{
 
 });

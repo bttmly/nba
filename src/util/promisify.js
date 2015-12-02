@@ -1,20 +1,7 @@
-let promisify = Prms => func => (...args) => 
-  new Prms((resolve, reject) => {
-    func(...args, (err, result) => {
-      if (err) return reject(err);
-      resolve(result);
-    });
-  });
+const pify = require("pify");
 
-function promisifyAll (obj, Prms) {
-  const _promisify = promisify(Prms);
-
-  let out = Object.create(Object.getPrototypeOf(obj));
-  Object.keys(obj).forEach(key => {
-    out[key] = _promisify(obj[key]);
-  });
-  return out;
-}
+const promisify = Prms => func => pify(func, Prms);
+const promisifyAll = Prms => obj => pify(obj, Prms);
 
 module.exports = {promisify, promisifyAll};
 

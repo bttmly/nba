@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "jsonp": "^0.2.0",
+    "lodash.assign": "^3.2.0",
     "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
@@ -22,6 +23,7 @@
     "lodash.invert": "^3.0.0",
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
+    "pify": "^2.3.0",
     "request": "^2.42.0"
   },
   "browser": {

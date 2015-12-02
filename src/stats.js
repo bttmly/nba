@@ -13,6 +13,9 @@ const stats = Object.create({
   setTransport (_transport) {
     transport = _transport;
   },
+  getTransport () {
+    return transport;
+  },
 });
 
 Object.keys(endpoints).forEach(key => {
@@ -35,8 +38,14 @@ function makeStatsMethod (endpoint) {
     query = {...endpoint.defaults, ...translate(query)};
 
     transport(endpoint.url, query, function (err, response) {
-      if (err) return callback(err);
-      if (response == null) return callback();
+      if (err) {
+        
+        return callback(err);
+      }
+
+      if (response == null) {
+        return callback();
+      }
 
       // response is something like "GameID is required"
       if (typeof response === "string") return callback(new Error(response));

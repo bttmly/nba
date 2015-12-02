@@ -1,16 +1,17 @@
 const nba = require("../../src").usePromises();
 
-const sportVu = nba.sportVu;
-
 // for interactive inspection
 global.SportVuData = {};
 
 let verifyShape = shape => response => response;
 
 let callMethod = (name, shape) => () => 
-  sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
+  nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
 
 describe("sport vu methods", function () {
+
+  before(() => nba.sportVu.setTransport(require("../../src/get-json")));
+
   it("#speed", callMethod("speed"));
   it("#touches", callMethod("touches"));
   it("#passing", callMethod("passing"));

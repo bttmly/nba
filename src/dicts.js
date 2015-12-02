@@ -2,7 +2,7 @@ const blank = require("./util/blank");
 const invert = require("lodash.invert");
 
 const mapOfOnes = arr => arr.reduce((obj, k) => (obj[k] = 1, obj), {});
-
+const pipe = (...fns) => arg => fns.reduce((last, fn) => fn(last), arg);
 const nbaToJsMap = blank({
   "Season": "season",
   "SeasonType": "seasonType",
@@ -54,6 +54,7 @@ const nbaToJsMap = blank({
   "rowsPerPage": "rowsPerPage",
   "SeasonID": "seasonId",
 });
+
 
 const jsToNbaMap = blank(invert(nbaToJsMap));
 const nbaParams = blank(mapOfOnes(Object.keys(nbaToJsMap)));
