@@ -31,6 +31,15 @@ function players (resp) {
   });
 }
 
+function lineups (resp) {
+  function makeLineup (lu) {
+    delete lu.groupSet;
+    lu.playerIds = lu.groupId.split(" - ").map(Number);
+    return lu;
+  }
+  return general(resp).lineups.map(makeLineup);
+}
+
 function sportVu (resp) {
   let temp = general(resp);
 
@@ -41,8 +50,4 @@ function sportVu (resp) {
   return indexBy(temp[0], "playerId");
 }
 
-module.exports = {
-  base,
-  general,
-  players,
-};
+module.exports = { base, general, players, lineups };

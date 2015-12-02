@@ -1,8 +1,4 @@
-const {
-  general,
-  player,
-  base,
-} = require("./transforms");
+const { general, player, base, lineups } = require("./transforms");
 
 var DEFAULT_SEASON = "2015-16";
 
@@ -344,6 +340,39 @@ module.exports = {
       "LastNGames": "0",
     },
     transform: general,
+  },
+
+  lineups: {
+    url: "http://stats.nba.com/stats/leaguedashlineups",
+    defaults: {
+      MeasureType: "Base",
+      PerMode: "PerGame",
+      PlusMinus: "N",
+      PaceAdjust: "N",
+      Rank: "N",
+      LeagueID: "00",
+      Season: "2015-16",
+      SeasonType: "Regular Season",
+      PORound: 0,
+      Outcome: null,
+      Location: null,
+      Month: 0,
+      SeasonSegment: null,
+      DateFrom: null,
+      DateTo: null,
+      OpponentTeamID: 0,
+      VsConference: null,
+      VsDivision: null,
+      TeamID: 0,
+      Conference: null,
+      Division: null,
+      GameSegment: null,
+      Period: 0,
+      ShotClockRange: null,
+      LastNGames: 0,
+      GroupQuantity: 5,
+    },
+    transform: lineups,
   },
 
 };

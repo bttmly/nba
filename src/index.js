@@ -86,6 +86,7 @@ function usePromises (Prms) {
   }
   
   nba.stats = promisifyAll(stats, Prms);
+  nba.api = nba.stats;
   nba.sportVu = promisifyAll(sportVu, Prms);
   nba.updatePlayers = promisify(Prms)(updatePlayers);
   nba.updateTeams = promisify(Prms)(updateTeams);
