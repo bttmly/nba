@@ -20,6 +20,7 @@ function general (resp) {
   }, {});
 }
 
+// todo make this work identical to update-players.js
 function players (resp) {
   return base(resp).map(function (player) {
     var names = player.displayLastCommaFirst.split(", ").reverse();

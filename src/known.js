@@ -18,7 +18,7 @@ module.exports = {
   "vsConference": null,
   "vsDivision": null,
   "gameSegment": null,
-  "period": 1 ,
+  "period": [1],
   "lastNGames": null,
   "gameScope": null,
   "playerExperience": null,

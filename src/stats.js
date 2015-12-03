@@ -35,17 +35,12 @@ function makeStatsMethod (endpoint) {
       throw new TypeError("Must pass a callback function.");
     }
 
-    query = {...endpoint.defaults, ...translate(query)};
+    const params = {...endpoint.defaults, ...translate(query)};
 
-    transport(endpoint.url, query, function (err, response) {
-      if (err) {
-        
-        return callback(err);
-      }
+    transport(endpoint.url, params, function (err, response) {
+      if (err) return callback(err);
 
-      if (response == null) {
-        return callback();
-      }
+      if (response == null) return callback();
 
       // response is something like "GameID is required"
       if (typeof response === "string") return callback(new Error(response));

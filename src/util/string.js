@@ -18,11 +18,12 @@ function unDashHyphen (str) {
     });
 }
 
+// checks if a string consists of only uppercase letters
 function isAllUpperCase (str) {
-  return [].every.call(str, function (ch) {
-    var n = ch.charCodeAt(0);
-    return n >= 65 && n <= 90;
-  });
+  return str
+    .split("")
+    .map(ch => ch.charCodeAt(0))
+    .every(n => n >= 65 && n <= 90);
 }
 
 function jsify (str) {
@@ -33,6 +34,7 @@ function jsify (str) {
   if (hasUnderscoreOrHyphen(str)) {
     return unDashHyphen(str);
   }
+
   return downcaseFirst(str);
 }
 

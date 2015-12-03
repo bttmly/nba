@@ -1,4 +1,8 @@
 const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+
+const pify = require("pify");
 
 const nba = require("../../src/").usePromises();
 
@@ -58,6 +62,13 @@ describe("nba stats methods", function () {
   it("#playerDashPtShotLog", callMethod("playerDashPtShotLog", steph));
   it("#playerDashPtReboundLogs", callMethod("playerDashPtReboundLogs", steph));
   it("#lineups", callMethod("lineups"));
+
+  after(done =>
+    Promise.all(Object.keys(global.StatsData).map(k =>
+      pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
+    ))
+    .then(() => console.log("FINISHED!"))
+    .then(done, done)
 });
 
 describe("tested all methods", function () {
