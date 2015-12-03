@@ -68,7 +68,7 @@ describe("nba stats methods", function () {
       pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
     ))
     .then(() => console.log("FINISHED!"))
-    .then(done, done)
+    .then(done, done));
 });
 
 describe("tested all methods", function () {
