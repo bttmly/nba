@@ -63,12 +63,13 @@ describe("nba stats methods", function () {
   it("#playerDashPtReboundLogs", callMethod("playerDashPtReboundLogs", steph));
   it("#lineups", callMethod("lineups"));
 
-  after(done =>
+  after(function () {
     Promise.all(Object.keys(global.StatsData).map(k =>
       pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
     ))
-    .catch(() => {})
-    .then(done, done));
+    .then(() => done())
+    .catch(() => done());
+  });
 });
 
 describe("tested all methods", function () {

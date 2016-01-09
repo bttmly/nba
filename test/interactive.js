@@ -5,7 +5,7 @@ var path = require("path");
 var Repl = require("repl");
 
 var Mocha = require("mocha");
-var mocha = new Mocha();
+var mocha = new Mocha({timeout: 10000});
 
 mocha.addFile(path.join(__dirname, "integration/stats.js"));
 mocha.addFile(path.join(__dirname, "integration/sport-vu.js"));
