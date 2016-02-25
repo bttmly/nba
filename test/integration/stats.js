@@ -59,8 +59,6 @@ describe("nba stats methods", function () {
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
   it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {teamId: _dubs, seasonType: "Regular Season"}));
-  it("#playerDashPtShotLog", callMethod("playerDashPtShotLog", steph));
-  it("#playerDashPtReboundLogs", callMethod("playerDashPtReboundLogs", steph));
   it("#lineups", callMethod("lineups"));
 
   after(function () {

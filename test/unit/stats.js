@@ -129,16 +129,6 @@ describe("stats methods", function () {
     it("should issue a request with the correct params", () => stats.teamPlayerDashboard({teamId: 10}).then(() => expect(lastCalledWithOption("TeamID", 10)).to.equal(true)));
   });
 
-  describe("#playerDashPtShotLog()", () =>{
-    it("should issue a request to the correct URL", () => stats.playerDashPtShotLog({playerId: 11}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerdashptshotlog")).to.equal(true)));
-    it("should issue a request with the correct params", () => stats.playerDashPtShotLog({playerId: 11}).then(() => expect(lastCalledWithOption("PlayerID", 11)).to.equal(true)));
-  });
-
-  describe("#playerDashPtReboundLogs()", () =>{
-    it("should issue a request to the correct URL", () => stats.playerDashPtReboundLogs({playerId: 12}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerdashptreboundlogs")).to.equal(true)));
-    it("should issue a request with the correct params", () => stats.playerDashPtReboundLogs({playerId: 12}).then(() => expect(lastCalledWithOption("PlayerID", 12)).to.equal(true)));
-  });
-
 });
 
 // describe("all endpoints", () =>{
