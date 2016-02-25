@@ -20,7 +20,7 @@ test-unit:
 	./node_modules/.bin/mocha --recursive ./test/setup.js ./test/unit/
 
 coverage:
-	./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive ./test/setup.js ./test/unit/ ./test/integration
+	./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive --timeout 60000 ./test/setup.js ./test/unit/ ./test/integration
 
 lint:
 	./node_modules/.bin/eslint ./src

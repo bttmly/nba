@@ -16,7 +16,7 @@ function getJson (url, query, callback) {
     },
   }, function (err, resp, body) {
     if (err == null && resp != null && resp.statusCode !== 200) {
-      err = new Error("HTTP error: " + resp.statusCode + " " + JSON.stringify(resp.body));
+      err = new Error("HTTP error: " + resp.statusCode + " " + body.Message);
     }
 
     if (resp == null) {
