@@ -29,7 +29,7 @@ const nba = {
   usePromises,
 
   // backwards compatibility
-  ready: (cb) => cb.call(nba),
+  ready: cb => cb.call(nba),
   api: stats,
 };
 
