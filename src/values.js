@@ -12,6 +12,14 @@ function DefaultZero (obj = {}) {
   return { ...obj, [DEFAULT]: 0 };
 }
 
+function DefaultN (num = 0, obj = {}) { 
+  return { ...obj, [DEFAULT]: num };
+}
+
+exports.League = DefaultTo("NBA", {
+  NBA: "00",
+});
+
 exports.PerMode = DefaultTo("PerGame", {
   Totals: "Totals",
   PerGame: "PerGame",
@@ -24,10 +32,6 @@ exports.PerMode = DefaultTo("PerGame", {
   PerPlay: "PerPlay",
   Per100Possessions: "Per100Possessions",
   Per100Plays: "Per100Plays",
-});
-
-exports.League = DefaultTo("NBA", {
-  NBA: "00",
 });
 
 exports.SeasonType = DefaultTo("Regular", {
@@ -52,14 +56,12 @@ exports.Outcome = DefaultBlank({
   Loss: "L",
 });
 
-exports.Outcome = DefaultBlank({
+exports.Location = DefaultBlank({
   Home: "Home",
   Away: "Away",
 });
 
-exports.Location = DefaultBlank();
-
-exports.SeasonSegment = DefautlTo("EntireSeason", {
+exports.SeasonSegment = DefaultTo("EntireSeason", {
   EntireSeason: "",
   PreAllStar: "Pre All-Star",
   PostAllStar: "Post All-Star",
@@ -89,6 +91,17 @@ exports.GameSegment = DefaultTo("EntireGame", {
   FirstHalf: "First Half",
   SecondHalf: "Second Half",
   Overtime: "Overtime",
+});
+
+
+exports.ClutchTime = DefaultBlank({
+  Last5Min: "Last 5 Minutes",
+  Last4Min: "Last 4 Minutes",
+  Last3Min: "Last 3 Minutes",
+  Last2Min: "Last 2 Minutes",
+  Last1Min: "Last 1 Minutes",
+  Last30Sec: "Last 30 Seconds",
+  Last10Sec: "Last 10 Seconds",
 });
 
 exports.ShotClockRange = DefaultBlank({
@@ -124,12 +137,32 @@ exports.ShotClockRange = DefaultBlank({
   0: "4-0 Very Late",
 });
 
+exports.AheadBehind = DefaultBlank({
+  AheadOrBehind: "Ahead or Behind",
+  AheadOrTied: "Ahead or Tied",
+  BehindOrTied: "Behind or Tied",
+});
+
 exports.PlusMinus = DefaultN();
 exports.PaceAdjust = DefaultN();
 exports.Rank = DefaultN();
 
 exports.LastNGames = DefaultZero();
 exports.OpponentTeamID = DefaultZero();
+
+exports.Period = DefaultZero({
+  AllQuarters: 0,
+  FirstQuarter: 1,
+  SecondQuarter: 2,
+  ThirdQuarter: 3,
+  FourthQuarter: 4,
+  Overtime1: 5,
+  Overtime2: 6,
+  Overtime3: 7,
+  Overtime4: 8,
+  Overtime5: 9,
+  Overtime6: 10,
+});
 
 exports.PlayoffRound = DefaultZero({
   All: 0,
@@ -199,6 +232,21 @@ exports.StatCategory = DefaultTo("PTS", {
   PF: "PF",
 });
 
+exports.ContextMeasure = DefaultTo("FGM", {
+  FGM: "FGM",
+  FGA: "FGA",
+  FG_PCT: "FG_PCT",
+  FG3M: "FG3m",
+  FG3A: "FG3A",
+  FG3_PCT: "FG3_PCT",
+  PF: "PF",
+  EFG_PCT: "EFG_PCT",
+  TS_PCT: "TS_PCT",
+  PTS_FB: "PTS_FB",
+  PTS_OFF_TOV: "PTS_OFF_TOV",
+  PTS_2ND_CHANCE: "PTS_2ND_CHANCE",
+});
+
 exports.Scope = DefaultTo("AllPlayers", {
   AllPlayers: "S",
   Rookies: "Rookies",
@@ -221,19 +269,22 @@ exports.GameScope = DefaultTo("Season", {
   Finals: "Finals",
 });
 
-exports.PlayerOrTeam = DefaultTo("Player", {
+exports.Game_Scope = DefaultBlank({
+  Last10:"Last 10",
+  Yesterday:"Yesterday",
+});
+
+exports.Player_or_Team = DefaultTo("Player", {
   Player: "P",
   Team: "T",
 });
 
-// class Conference(VsConference):
-//     pass
+exports.Conference = { ...exports.VsConference };
+exports.Division = { ...exports.VsDivision };
 
-// class Division(VsDivision):
-//     pass
-
-// class TeamID(_DefaultZero):
-//     pass
+exports.TeamID = DefaultZero();
+exports.GameID = DefaultZero();
+exports.RookieYear = DefaultBlank();
 
 exports.PlayerExperience = DefaultBlank({
   Rookie: "Rookie",
@@ -268,27 +319,6 @@ exports.DraftPick = DefaultBlank({
   Picks21Thru30: "Picks+21+Thru+30",
   Undrafted: "Undrafted",
 });
-
-/*
-class College(_DefaultBlank):
-    pass
-
-class Country(_DefaultBlank):
-    pass
-
-class Height(_DefaultBlank):
-    '''
-    Example:
-    for greater than 6ft8 api call should be GT+6-8
-    for lower than 7ft3 api call should be LT+7-3
-    '''
-
-class Weight(_DefaultBlank):
-    '''
-    Example:
-    for greater than 225lbs api call should be GT+225lbs
-    '''
-*/
 
 exports.College = DefaultBlank();
 exports.Country = DefaultBlank();
