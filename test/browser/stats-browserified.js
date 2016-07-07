@@ -1,4 +1,3029 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports=[
+  {
+    "firstName": "Quincy",
+    "lastName": "Acy",
+    "playerId": 203112,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Adams",
+    "playerId": 203919,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Steven",
+    "lastName": "Adams",
+    "playerId": 203500,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Arron",
+    "lastName": "Afflalo",
+    "playerId": 201167,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Alexis",
+    "lastName": "Ajinca",
+    "playerId": 201582,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Cole",
+    "lastName": "Aldrich",
+    "playerId": 202332,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "LaMarcus",
+    "lastName": "Aldridge",
+    "playerId": 200746,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Cliff",
+    "lastName": "Alexander",
+    "playerId": 1626146,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Lavoy",
+    "lastName": "Allen",
+    "playerId": 202730,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Tony",
+    "lastName": "Allen",
+    "playerId": 2754,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Al-Farouq",
+    "lastName": "Aminu",
+    "playerId": 202329,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Lou",
+    "lastName": "Amundson",
+    "playerId": 200811,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Andersen",
+    "playerId": 2365,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Alan",
+    "lastName": "Anderson",
+    "playerId": 101187,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "James",
+    "lastName": "Anderson",
+    "playerId": 202341,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Justin",
+    "lastName": "Anderson",
+    "playerId": 1626147,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "Anderson",
+    "playerId": 203937,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Ryan",
+    "lastName": "Anderson",
+    "playerId": 201583,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Giannis",
+    "lastName": "Antetokounmpo",
+    "playerId": 203507,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Thanasis",
+    "lastName": "Antetokounmpo",
+    "playerId": 203648,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Carmelo",
+    "lastName": "Anthony",
+    "playerId": 2546,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Joel",
+    "lastName": "Anthony",
+    "playerId": 201202,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Keith",
+    "lastName": "Appling",
+    "playerId": 203951,
+    "teamId": 0
+  },
+  {
+    "firstName": "Trevor",
+    "lastName": "Ariza",
+    "playerId": 2772,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Darrell",
+    "lastName": "Arthur",
+    "playerId": 201589,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Omer",
+    "lastName": "Asik",
+    "playerId": 201600,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "D.J.",
+    "lastName": "Augustin",
+    "playerId": 201571,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Jeff",
+    "lastName": "Ayres",
+    "playerId": 201965,
+    "teamId": 0
+  },
+  {
+    "firstName": "Luke",
+    "lastName": "Babbitt",
+    "playerId": 202337,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Cameron",
+    "lastName": "Bairstow",
+    "playerId": 203946,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Leandro",
+    "lastName": "Barbosa",
+    "playerId": 2571,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Jose Juan",
+    "lastName": "Barea",
+    "playerId": 200826,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Andrea",
+    "lastName": "Bargnani",
+    "playerId": 200745,
+    "teamId": 0
+  },
+  {
+    "firstName": "Harrison",
+    "lastName": "Barnes",
+    "playerId": 203084,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Matt",
+    "lastName": "Barnes",
+    "playerId": 2440,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Will",
+    "lastName": "Barton",
+    "playerId": 203115,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Brandon",
+    "lastName": "Bass",
+    "playerId": 101138,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Nicolas",
+    "lastName": "Batum",
+    "playerId": 201587,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Jerryd",
+    "lastName": "Bayless",
+    "playerId": 201573,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Aron",
+    "lastName": "Baynes",
+    "playerId": 203382,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Kent",
+    "lastName": "Bazemore",
+    "playerId": 203145,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Bradley",
+    "lastName": "Beal",
+    "playerId": 203078,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Marco",
+    "lastName": "Belinelli",
+    "playerId": 201158,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Anthony",
+    "lastName": "Bennett",
+    "playerId": 203461,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Patrick",
+    "lastName": "Beverley",
+    "playerId": 201976,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Bismack",
+    "lastName": "Biyombo",
+    "playerId": 202687,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Nemanja",
+    "lastName": "Bjelica",
+    "playerId": 202357,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Tarik",
+    "lastName": "Black",
+    "playerId": 204028,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "DeJuan",
+    "lastName": "Blair",
+    "playerId": 201971,
+    "teamId": 0
+  },
+  {
+    "firstName": "Steve",
+    "lastName": "Blake",
+    "playerId": 2581,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Eric",
+    "lastName": "Bledsoe",
+    "playerId": 202339,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Bojan",
+    "lastName": "Bogdanovic",
+    "playerId": 202711,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Andrew",
+    "lastName": "Bogut",
+    "playerId": 101106,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Matt",
+    "lastName": "Bonner",
+    "playerId": 2588,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Devin",
+    "lastName": "Booker",
+    "playerId": 1626164,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Trevor",
+    "lastName": "Booker",
+    "playerId": 202344,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Bosh",
+    "playerId": 2547,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Avery",
+    "lastName": "Bradley",
+    "playerId": 202340,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Elton",
+    "lastName": "Brand",
+    "playerId": 1882,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Corey",
+    "lastName": "Brewer",
+    "playerId": 201147,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Aaron",
+    "lastName": "Brooks",
+    "playerId": 201166,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Anthony",
+    "lastName": "Brown",
+    "playerId": 1626148,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Lorenzo",
+    "lastName": "Brown",
+    "playerId": 203485,
+    "teamId": 0
+  },
+  {
+    "firstName": "Markel",
+    "lastName": "Brown",
+    "playerId": 203900,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Kobe",
+    "lastName": "Bryant",
+    "playerId": 977,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Chase",
+    "lastName": "Budinger",
+    "playerId": 201978,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Reggie",
+    "lastName": "Bullock",
+    "playerId": 203493,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Trey",
+    "lastName": "Burke",
+    "playerId": 203504,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Alec",
+    "lastName": "Burks",
+    "playerId": 202692,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Caron",
+    "lastName": "Butler",
+    "playerId": 2406,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Jimmy",
+    "lastName": "Butler",
+    "playerId": 202710,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Rasual",
+    "lastName": "Butler",
+    "playerId": 2446,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Bruno",
+    "lastName": "Caboclo",
+    "playerId": 203998,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Jose",
+    "lastName": "Calderon",
+    "playerId": 101181,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Kentavious",
+    "lastName": "Caldwell-Pope",
+    "playerId": 203484,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Isaiah",
+    "lastName": "Canaan",
+    "playerId": 203477,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Clint",
+    "lastName": "Capela",
+    "playerId": 203991,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "DeMarre",
+    "lastName": "Carroll",
+    "playerId": 201960,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Vince",
+    "lastName": "Carter",
+    "playerId": 1713,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Michael",
+    "lastName": "Carter-Williams",
+    "playerId": 203487,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Omri",
+    "lastName": "Casspi",
+    "playerId": 201956,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Willie",
+    "lastName": "Cauley-Stein",
+    "playerId": 1626161,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Mario",
+    "lastName": "Chalmers",
+    "playerId": 201596,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Tyson",
+    "lastName": "Chandler",
+    "playerId": 2199,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Wilson",
+    "lastName": "Chandler",
+    "playerId": 201163,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Rakeem",
+    "lastName": "Christmas",
+    "playerId": 1626176,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Ian",
+    "lastName": "Clark",
+    "playerId": 203546,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Clarkson",
+    "playerId": 203903,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Norris",
+    "lastName": "Cole",
+    "playerId": 202708,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Darren",
+    "lastName": "Collison",
+    "playerId": 201954,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Nick",
+    "lastName": "Collison",
+    "playerId": 2555,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Conley",
+    "playerId": 201144,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Pat",
+    "lastName": "Connaughton",
+    "playerId": 1626192,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Copeland",
+    "playerId": 203142,
+    "teamId": 0
+  },
+  {
+    "firstName": "Bryce",
+    "lastName": "Cotton",
+    "playerId": 203955,
+    "teamId": 0
+  },
+  {
+    "firstName": "DeMarcus",
+    "lastName": "Cousins",
+    "playerId": 202326,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Robert",
+    "lastName": "Covington",
+    "playerId": 203496,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Allen",
+    "lastName": "Crabbe",
+    "playerId": 203459,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Jamal",
+    "lastName": "Crawford",
+    "playerId": 2037,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Jae",
+    "lastName": "Crowder",
+    "playerId": 203109,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Dante",
+    "lastName": "Cunningham",
+    "playerId": 201967,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Jared",
+    "lastName": "Cunningham",
+    "playerId": 203099,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Seth",
+    "lastName": "Curry",
+    "playerId": 203552,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Stephen",
+    "lastName": "Curry",
+    "playerId": 201939,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Troy",
+    "lastName": "Daniels",
+    "playerId": 203584,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Anthony",
+    "lastName": "Davis",
+    "playerId": 203076,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Ed",
+    "lastName": "Davis",
+    "playerId": 202334,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Branden",
+    "lastName": "Dawson",
+    "playerId": 1626183,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "DeMar",
+    "lastName": "DeRozan",
+    "playerId": 201942,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Dewayne",
+    "lastName": "Dedmon",
+    "playerId": 203473,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Bryce",
+    "lastName": "Dejean-Jones",
+    "playerId": 1626214,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Sam",
+    "lastName": "Dekker",
+    "playerId": 1626155,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Matthew",
+    "lastName": "Dellavedova",
+    "playerId": 203521,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Luol",
+    "lastName": "Deng",
+    "playerId": 2736,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Boris",
+    "lastName": "Diaw",
+    "playerId": 2564,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Gorgui",
+    "lastName": "Dieng",
+    "playerId": 203476,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Spencer",
+    "lastName": "Dinwiddie",
+    "playerId": 203915,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Toney",
+    "lastName": "Douglas",
+    "playerId": 201962,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Goran",
+    "lastName": "Dragic",
+    "playerId": 201609,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Andre",
+    "lastName": "Drummond",
+    "playerId": 203083,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Jared",
+    "lastName": "Dudley",
+    "playerId": 201162,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Duje",
+    "lastName": "Dukan",
+    "playerId": 1626251,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Duncan",
+    "playerId": 1495,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Dunleavy",
+    "playerId": 2399,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "Durant",
+    "playerId": 201142,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Cleanthony",
+    "lastName": "Early",
+    "playerId": 203921,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Jarell",
+    "lastName": "Eddie",
+    "playerId": 204067,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Wayne",
+    "lastName": "Ellington",
+    "playerId": 201961,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Monta",
+    "lastName": "Ellis",
+    "playerId": 101145,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Joel",
+    "lastName": "Embiid",
+    "playerId": 203954,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "James",
+    "lastName": "Ennis",
+    "playerId": 203516,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Tyler",
+    "lastName": "Ennis",
+    "playerId": 203898,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Jeremy",
+    "lastName": "Evans",
+    "playerId": 202379,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Tyreke",
+    "lastName": "Evans",
+    "playerId": 201936,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Dante",
+    "lastName": "Exum",
+    "playerId": 203957,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Festus",
+    "lastName": "Ezeli",
+    "playerId": 203105,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Kenneth",
+    "lastName": "Faried",
+    "playerId": 202702,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Derrick",
+    "lastName": "Favors",
+    "playerId": 202324,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Cristiano",
+    "lastName": "Felicio",
+    "playerId": 1626245,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Raymond",
+    "lastName": "Felton",
+    "playerId": 101109,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Evan",
+    "lastName": "Fournier",
+    "playerId": 203095,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Randy",
+    "lastName": "Foye",
+    "playerId": 200751,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Frazier",
+    "playerId": 204025,
+    "teamId": 0
+  },
+  {
+    "firstName": "Jimmer",
+    "lastName": "Fredette",
+    "playerId": 202690,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Channing",
+    "lastName": "Frye",
+    "playerId": 101112,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Danilo",
+    "lastName": "Gallinari",
+    "playerId": 201568,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Langston",
+    "lastName": "Galloway",
+    "playerId": 204038,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "Garnett",
+    "playerId": 708,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Marc",
+    "lastName": "Gasol",
+    "playerId": 201188,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Pau",
+    "lastName": "Gasol",
+    "playerId": 2200,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Rudy",
+    "lastName": "Gay",
+    "playerId": 200752,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Alonzo",
+    "lastName": "Gee",
+    "playerId": 202087,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Paul",
+    "lastName": "George",
+    "playerId": 202331,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Taj",
+    "lastName": "Gibson",
+    "playerId": 201959,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Manu",
+    "lastName": "Ginobili",
+    "playerId": 1938,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Rudy",
+    "lastName": "Gobert",
+    "playerId": 203497,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Drew",
+    "lastName": "Gooden",
+    "playerId": 2400,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Archie",
+    "lastName": "Goodwin",
+    "playerId": 203462,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Aaron",
+    "lastName": "Gordon",
+    "playerId": 203932,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Eric",
+    "lastName": "Gordon",
+    "playerId": 201569,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Marcin",
+    "lastName": "Gortat",
+    "playerId": 101162,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Jerami",
+    "lastName": "Grant",
+    "playerId": 203924,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Jerian",
+    "lastName": "Grant",
+    "playerId": 1626170,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Danny",
+    "lastName": "Green",
+    "playerId": 201980,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Draymond",
+    "lastName": "Green",
+    "playerId": 203110,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Erick",
+    "lastName": "Green",
+    "playerId": 203475,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Gerald",
+    "lastName": "Green",
+    "playerId": 101123,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "JaMychal",
+    "lastName": "Green",
+    "playerId": 203210,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Jeff",
+    "lastName": "Green",
+    "playerId": 201145,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Blake",
+    "lastName": "Griffin",
+    "playerId": 201933,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Jorge",
+    "lastName": "Gutierrez",
+    "playerId": 203268,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "PJ",
+    "lastName": "Hairston",
+    "playerId": 203798,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Tyler",
+    "lastName": "Hansbrough",
+    "playerId": 201946,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Hardaway Jr.",
+    "playerId": 203501,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "James",
+    "lastName": "Harden",
+    "playerId": 201935,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Maurice",
+    "lastName": "Harkless",
+    "playerId": 203090,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Justin",
+    "lastName": "Harper",
+    "playerId": 202712,
+    "teamId": 0
+  },
+  {
+    "firstName": "Montrezl",
+    "lastName": "Harrell",
+    "playerId": 1626149,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Devin",
+    "lastName": "Harris",
+    "playerId": 2734,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Gary",
+    "lastName": "Harris",
+    "playerId": 203914,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Joe",
+    "lastName": "Harris",
+    "playerId": 203925,
+    "teamId": 0
+  },
+  {
+    "firstName": "Tobias",
+    "lastName": "Harris",
+    "playerId": 202699,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Aaron",
+    "lastName": "Harrison",
+    "playerId": 1626151,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Udonis",
+    "lastName": "Haslem",
+    "playerId": 2617,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Spencer",
+    "lastName": "Hawes",
+    "playerId": 201150,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Charles",
+    "lastName": "Hayes",
+    "playerId": 101236,
+    "teamId": 0
+  },
+  {
+    "firstName": "Gordon",
+    "lastName": "Hayward",
+    "playerId": 202330,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Gerald",
+    "lastName": "Henderson",
+    "playerId": 201945,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "John",
+    "lastName": "Henson",
+    "playerId": 203089,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Mario",
+    "lastName": "Hezonja",
+    "playerId": 1626209,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Roy",
+    "lastName": "Hibbert",
+    "playerId": 201579,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "JJ",
+    "lastName": "Hickson",
+    "playerId": 201581,
+    "teamId": 0
+  },
+  {
+    "lastName": "Nene",
+    "playerId": 2403,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "George",
+    "lastName": "Hill",
+    "playerId": 201588,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Hill",
+    "playerId": 201941,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Solomon",
+    "lastName": "Hill",
+    "playerId": 203524,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Darrun",
+    "lastName": "Hilliard",
+    "playerId": 1626199,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Kirk",
+    "lastName": "Hinrich",
+    "playerId": 2550,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Jrue",
+    "lastName": "Holiday",
+    "playerId": 201950,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Justin",
+    "lastName": "Holiday",
+    "playerId": 203200,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Ryan",
+    "lastName": "Hollins",
+    "playerId": 200797,
+    "teamId": 0
+  },
+  {
+    "firstName": "Rondae",
+    "lastName": "Hollis-Jefferson",
+    "playerId": 1626178,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Richaun",
+    "lastName": "Holmes",
+    "playerId": 1626158,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Rodney",
+    "lastName": "Hood",
+    "playerId": 203918,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Al",
+    "lastName": "Horford",
+    "playerId": 201143,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Dwight",
+    "lastName": "Howard",
+    "playerId": 2730,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Marcelo",
+    "lastName": "Huertas",
+    "playerId": 1626273,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Josh",
+    "lastName": "Huestis",
+    "playerId": 203962,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Kris",
+    "lastName": "Humphries",
+    "playerId": 2743,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "RJ",
+    "lastName": "Hunter",
+    "playerId": 1626154,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Serge",
+    "lastName": "Ibaka",
+    "playerId": 201586,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Andre",
+    "lastName": "Iguodala",
+    "playerId": 2738,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Ersan",
+    "lastName": "Ilyasova",
+    "playerId": 101141,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Joe",
+    "lastName": "Ingles",
+    "playerId": 204060,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Damien",
+    "lastName": "Inglis",
+    "playerId": 203996,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Kyrie",
+    "lastName": "Irving",
+    "playerId": 202681,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Jarrett",
+    "lastName": "Jack",
+    "playerId": 101127,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Reggie",
+    "lastName": "Jackson",
+    "playerId": 202704,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "LeBron",
+    "lastName": "James",
+    "playerId": 2544,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Al",
+    "lastName": "Jefferson",
+    "playerId": 2744,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Cory",
+    "lastName": "Jefferson",
+    "playerId": 203928,
+    "teamId": 0
+  },
+  {
+    "firstName": "Richard",
+    "lastName": "Jefferson",
+    "playerId": 2210,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "John",
+    "lastName": "Jenkins",
+    "playerId": 203098,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Brandon",
+    "lastName": "Jennings",
+    "playerId": 201943,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Jonas",
+    "lastName": "Jerebko",
+    "playerId": 201973,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Amir",
+    "lastName": "Johnson",
+    "playerId": 101161,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Johnson",
+    "playerId": 203187,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "James",
+    "lastName": "Johnson",
+    "playerId": 201949,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Joe",
+    "lastName": "Johnson",
+    "playerId": 2207,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Orlando",
+    "lastName": "Johnson",
+    "playerId": 203111,
+    "teamId": 0
+  },
+  {
+    "firstName": "Stanley",
+    "lastName": "Johnson",
+    "playerId": 1626169,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Tyler",
+    "lastName": "Johnson",
+    "playerId": 204020,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Wesley",
+    "lastName": "Johnson",
+    "playerId": 202325,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Nikola",
+    "lastName": "Jokic",
+    "playerId": 203999,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "James",
+    "lastName": "Jones",
+    "playerId": 2592,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Terrence",
+    "lastName": "Jones",
+    "playerId": 203093,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Tyus",
+    "lastName": "Jones",
+    "playerId": 1626145,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "DeAndre",
+    "lastName": "Jordan",
+    "playerId": 201599,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Cory",
+    "lastName": "Joseph",
+    "playerId": 202709,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Kaman",
+    "playerId": 2549,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Frank",
+    "lastName": "Kaminsky",
+    "playerId": 1626163,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Enes",
+    "lastName": "Kanter",
+    "playerId": 202683,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Sergey",
+    "lastName": "Karasev",
+    "playerId": 203508,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Sasha",
+    "lastName": "Kaun",
+    "playerId": 201619,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Ryan",
+    "lastName": "Kelly",
+    "playerId": 203527,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Michael",
+    "lastName": "Kidd-Gilchrist",
+    "playerId": 203077,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Sean",
+    "lastName": "Kilpatrick",
+    "playerId": 203930,
+    "teamId": 0
+  },
+  {
+    "firstName": "Brandon",
+    "lastName": "Knight",
+    "playerId": 202688,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "Korver",
+    "playerId": 2594,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Kosta",
+    "lastName": "Koufos",
+    "playerId": 201585,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Zach",
+    "lastName": "LaVine",
+    "playerId": 203897,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Jeremy",
+    "lastName": "Lamb",
+    "playerId": 203087,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Carl",
+    "lastName": "Landry",
+    "playerId": 201171,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Shane",
+    "lastName": "Larkin",
+    "playerId": 203499,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Joffrey",
+    "lastName": "Lauvergne",
+    "playerId": 203530,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Ty",
+    "lastName": "Lawson",
+    "playerId": 201951,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Courtney",
+    "lastName": "Lee",
+    "playerId": 201584,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "David",
+    "lastName": "Lee",
+    "playerId": 101135,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Alex",
+    "lastName": "Len",
+    "playerId": 203458,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Kawhi",
+    "lastName": "Leonard",
+    "playerId": 202695,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Meyers",
+    "lastName": "Leonard",
+    "playerId": 203086,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Jon",
+    "lastName": "Leuer",
+    "playerId": 202720,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Damian",
+    "lastName": "Lillard",
+    "playerId": 203081,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Jeremy",
+    "lastName": "Lin",
+    "playerId": 202391,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Shaun",
+    "lastName": "Livingston",
+    "playerId": 2733,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Kevon",
+    "lastName": "Looney",
+    "playerId": 1626172,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Brook",
+    "lastName": "Lopez",
+    "playerId": 201572,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Robin",
+    "lastName": "Lopez",
+    "playerId": 201577,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "Love",
+    "playerId": 201567,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "Lowry",
+    "playerId": 200768,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Trey",
+    "lastName": "Lyles",
+    "playerId": 1626168,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Shelvin",
+    "lastName": "Mack",
+    "playerId": 202714,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Ian",
+    "lastName": "Mahinmi",
+    "playerId": 101133,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Devyn",
+    "lastName": "Marble",
+    "playerId": 203906,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Boban",
+    "lastName": "Marjanovic",
+    "playerId": 1626246,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Kendall",
+    "lastName": "Marshall",
+    "playerId": 203088,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Jarell",
+    "lastName": "Martin",
+    "playerId": 1626185,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "Martin",
+    "playerId": 2755,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Wesley",
+    "lastName": "Matthews",
+    "playerId": 202083,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "O.J.",
+    "lastName": "Mayo",
+    "playerId": 201564,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Luc",
+    "lastName": "Mbah a Moute",
+    "playerId": 201601,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "James Michael",
+    "lastName": "McAdoo",
+    "playerId": 203949,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Ray",
+    "lastName": "McCallum",
+    "playerId": 203492,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "CJ",
+    "lastName": "McCollum",
+    "playerId": 203468,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "TJ",
+    "lastName": "McConnell",
+    "playerId": 204456,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "McCullough",
+    "playerId": 1626191,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "KJ",
+    "lastName": "McDaniels",
+    "playerId": 203909,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Doug",
+    "lastName": "McDermott",
+    "playerId": 203926,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Mitch",
+    "lastName": "McGary",
+    "playerId": 203956,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "JaVale",
+    "lastName": "McGee",
+    "playerId": 201580,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Ben",
+    "lastName": "McLemore",
+    "playerId": 203463,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "McRae",
+    "playerId": 203895,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Josh",
+    "lastName": "McRoberts",
+    "playerId": 201177,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Jodie",
+    "lastName": "Meeks",
+    "playerId": 201975,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Salah",
+    "lastName": "Mejri",
+    "playerId": 1626257,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Mickey",
+    "playerId": 1626175,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Khris",
+    "lastName": "Middleton",
+    "playerId": 203114,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "CJ",
+    "lastName": "Miles",
+    "playerId": 101139,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Andre",
+    "lastName": "Miller",
+    "playerId": 1889,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Miller",
+    "playerId": 2034,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Patty",
+    "lastName": "Mills",
+    "playerId": 201988,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Elijah",
+    "lastName": "Millsap",
+    "playerId": 202407,
+    "teamId": 0
+  },
+  {
+    "firstName": "Paul",
+    "lastName": "Millsap",
+    "playerId": 200794,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Nikola",
+    "lastName": "Mirotic",
+    "playerId": 202703,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Greg",
+    "lastName": "Monroe",
+    "playerId": 202328,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Luis",
+    "lastName": "Montero",
+    "playerId": 1626242,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "E'Twaun",
+    "lastName": "Moore",
+    "playerId": 202734,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Eric",
+    "lastName": "Moreland",
+    "playerId": 203961,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Marcus",
+    "lastName": "Morris",
+    "playerId": 202694,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Markieff",
+    "lastName": "Morris",
+    "playerId": 202693,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Anthony",
+    "lastName": "Morrow",
+    "playerId": 201627,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Donatas",
+    "lastName": "Motiejunas",
+    "playerId": 202700,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Timofey",
+    "lastName": "Mozgov",
+    "playerId": 202389,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Emmanuel",
+    "lastName": "Mudiay",
+    "playerId": 1626144,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Shabazz",
+    "lastName": "Muhammad",
+    "playerId": 203498,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Muscala",
+    "playerId": 203488,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Larry",
+    "lastName": "Nance Jr.",
+    "playerId": 1626204,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Shabazz",
+    "lastName": "Napier",
+    "playerId": 203894,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Gary",
+    "lastName": "Neal",
+    "playerId": 202390,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Jameer",
+    "lastName": "Nelson",
+    "playerId": 2749,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Raul",
+    "lastName": "Neto",
+    "playerId": 203526,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Andrew",
+    "lastName": "Nicholson",
+    "playerId": 203094,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Joakim",
+    "lastName": "Noah",
+    "playerId": 201149,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Nerlens",
+    "lastName": "Noel",
+    "playerId": 203457,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Lucas",
+    "lastName": "Nogueira",
+    "playerId": 203512,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Steve",
+    "lastName": "Novak",
+    "playerId": 200779,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Dirk",
+    "lastName": "Nowitzki",
+    "playerId": 1717,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Jusuf",
+    "lastName": "Nurkic",
+    "playerId": 203994,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "J.J.",
+    "lastName": "O'Brien",
+    "playerId": 1626266,
+    "teamId": 0
+  },
+  {
+    "firstName": "Johnny",
+    "lastName": "O'Bryant",
+    "playerId": 203948,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "O'Quinn",
+    "playerId": 203124,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Jahlil",
+    "lastName": "Okafor",
+    "playerId": 1626143,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Victor",
+    "lastName": "Oladipo",
+    "playerId": 203506,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Kelly",
+    "lastName": "Olynyk",
+    "playerId": 203482,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Kelly",
+    "lastName": "Oubre",
+    "playerId": 1626162,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Zaza",
+    "lastName": "Pachulia",
+    "playerId": 2585,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Kostas",
+    "lastName": "Papanikolaou",
+    "playerId": 203123,
+    "teamId": 0
+  },
+  {
+    "firstName": "Jabari",
+    "lastName": "Parker",
+    "playerId": 203953,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Tony",
+    "lastName": "Parker",
+    "playerId": 2225,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Chandler",
+    "lastName": "Parsons",
+    "playerId": 202718,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Lamar",
+    "lastName": "Patterson",
+    "playerId": 203934,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Patrick",
+    "lastName": "Patterson",
+    "playerId": 202335,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Chris",
+    "lastName": "Paul",
+    "playerId": 101108,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Adreian",
+    "lastName": "Payne",
+    "playerId": 203940,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Cameron",
+    "lastName": "Payne",
+    "playerId": 1626166,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Elfrid",
+    "lastName": "Payton",
+    "playerId": 203901,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Nikola",
+    "lastName": "Pekovic",
+    "playerId": 201593,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Jeff",
+    "lastName": "Pendergraph",
+    "playerId": 1626339,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Kendrick",
+    "lastName": "Perkins",
+    "playerId": 2570,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Paul",
+    "lastName": "Pierce",
+    "playerId": 1718,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Tibor",
+    "lastName": "Pleiss",
+    "playerId": 202353,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Mason",
+    "lastName": "Plumlee",
+    "playerId": 203486,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Miles",
+    "lastName": "Plumlee",
+    "playerId": 203101,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Quincy",
+    "lastName": "Pondexter",
+    "playerId": 202347,
+    "teamId": 1610612740
+  },
+  {
+    "firstName": "Otto",
+    "lastName": "Porter",
+    "playerId": 203490,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Bobby",
+    "lastName": "Portis",
+    "playerId": 1626171,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Kristaps",
+    "lastName": "Porzingis",
+    "playerId": 204001,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Dwight",
+    "lastName": "Powell",
+    "playerId": 203939,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Norman",
+    "lastName": "Powell",
+    "playerId": 1626181,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Phil",
+    "lastName": "Pressey",
+    "playerId": 203515,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Ronnie",
+    "lastName": "Price",
+    "playerId": 101179,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Pablo",
+    "lastName": "Prigioni",
+    "playerId": 203143,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Tayshaun",
+    "lastName": "Prince",
+    "playerId": 2419,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Julius",
+    "lastName": "Randle",
+    "playerId": 203944,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Zach",
+    "lastName": "Randolph",
+    "playerId": 2216,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "JJ",
+    "lastName": "Redick",
+    "playerId": 200755,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Willie",
+    "lastName": "Reed",
+    "playerId": 203186,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Josh",
+    "lastName": "Richardson",
+    "playerId": 1626196,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Austin",
+    "lastName": "Rivers",
+    "playerId": 203085,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Andre",
+    "lastName": "Roberson",
+    "playerId": 203460,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Brian",
+    "lastName": "Roberts",
+    "playerId": 203148,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Glenn",
+    "lastName": "Robinson",
+    "playerId": 203922,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Nate",
+    "lastName": "Robinson",
+    "playerId": 101126,
+    "teamId": 0
+  },
+  {
+    "firstName": "Thomas",
+    "lastName": "Robinson",
+    "playerId": 203080,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Rajon",
+    "lastName": "Rondo",
+    "playerId": 200765,
+    "teamId": 1610612758
+  },
+  {
+    "firstName": "Derrick",
+    "lastName": "Rose",
+    "playerId": 201565,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Terrence",
+    "lastName": "Ross",
+    "playerId": 203082,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Terry",
+    "lastName": "Rozier",
+    "playerId": 1626179,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Ricky",
+    "lastName": "Rubio",
+    "playerId": 201937,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Damjan",
+    "lastName": "Rudez",
+    "playerId": 204014,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "Brandon",
+    "lastName": "Rush",
+    "playerId": 201575,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "D'Angelo",
+    "lastName": "Russell",
+    "playerId": 1626156,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Robert",
+    "lastName": "Sacre",
+    "playerId": 203135,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "JaKarr",
+    "lastName": "Sampson",
+    "playerId": 203960,
+    "teamId": 1610612743
+  },
+  {
+    "firstName": "Dennis",
+    "lastName": "Schroder",
+    "playerId": 203471,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Luis",
+    "lastName": "Scola",
+    "playerId": 2449,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Scott",
+    "playerId": 203118,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Thabo",
+    "lastName": "Sefolosha",
+    "playerId": 200757,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "Seraphin",
+    "playerId": 202338,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Ramon",
+    "lastName": "Sessions",
+    "playerId": 201196,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Iman",
+    "lastName": "Shumpert",
+    "playerId": 202697,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Jonathon",
+    "lastName": "Simmons",
+    "playerId": 203613,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "Singler",
+    "playerId": 202713,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Donald",
+    "lastName": "Sloan",
+    "playerId": 202388,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Marcus",
+    "lastName": "Smart",
+    "playerId": 203935,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Ish",
+    "lastName": "Smith",
+    "playerId": 202397,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "J.R.",
+    "lastName": "Smith",
+    "playerId": 2747,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Jason",
+    "lastName": "Smith",
+    "playerId": 201160,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Josh",
+    "lastName": "Smith",
+    "playerId": 2746,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Russ",
+    "lastName": "Smith",
+    "playerId": 203893,
+    "teamId": 0
+  },
+  {
+    "firstName": "Tony",
+    "lastName": "Snell",
+    "playerId": 203503,
+    "teamId": 1610612741
+  },
+  {
+    "firstName": "Marreese",
+    "lastName": "Speights",
+    "playerId": 201578,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Tiago",
+    "lastName": "Splitter",
+    "playerId": 201168,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Nik",
+    "lastName": "Stauskas",
+    "playerId": 203917,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Lance",
+    "lastName": "Stephenson",
+    "playerId": 202362,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Alex",
+    "lastName": "Stepheson",
+    "playerId": 1627293,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Jarnell",
+    "lastName": "Stokes",
+    "playerId": 203950,
+    "teamId": 0
+  },
+  {
+    "firstName": "Amar'e",
+    "lastName": "Stoudemire",
+    "playerId": 2405,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Rodney",
+    "lastName": "Stuckey",
+    "playerId": 201155,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Jared",
+    "lastName": "Sullinger",
+    "playerId": 203096,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Walter",
+    "lastName": "Tavares",
+    "playerId": 204002,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Jeff",
+    "lastName": "Teague",
+    "playerId": 201952,
+    "teamId": 1610612737
+  },
+  {
+    "firstName": "Mirza",
+    "lastName": "Teletovic",
+    "playerId": 203141,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Garrett",
+    "lastName": "Temple",
+    "playerId": 202066,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "Jason",
+    "lastName": "Terry",
+    "playerId": 1891,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Isaiah",
+    "lastName": "Thomas",
+    "playerId": 202738,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Lance",
+    "lastName": "Thomas",
+    "playerId": 202498,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Hollis",
+    "lastName": "Thompson",
+    "playerId": 203138,
+    "teamId": 1610612755
+  },
+  {
+    "firstName": "Jason",
+    "lastName": "Thompson",
+    "playerId": 201574,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Klay",
+    "lastName": "Thompson",
+    "playerId": 202691,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Tristan",
+    "lastName": "Thompson",
+    "playerId": 202684,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Marcus",
+    "lastName": "Thornton",
+    "playerId": 201977,
+    "teamId": 1610612745
+  },
+  {
+    "firstName": "Anthony",
+    "lastName": "Tolliver",
+    "playerId": 201229,
+    "teamId": 1610612765
+  },
+  {
+    "firstName": "Karl-Anthony",
+    "lastName": "Towns",
+    "playerId": 1626157,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "PJ",
+    "lastName": "Tucker",
+    "playerId": 200782,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "Evan",
+    "lastName": "Turner",
+    "playerId": 202323,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Myles",
+    "lastName": "Turner",
+    "playerId": 1626167,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Beno",
+    "lastName": "Udrih",
+    "playerId": 2757,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Jonas",
+    "lastName": "Valanciunas",
+    "playerId": 202685,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Anderson",
+    "lastName": "Varejao",
+    "playerId": 2760,
+    "teamId": 1610612744
+  },
+  {
+    "firstName": "Greivis",
+    "lastName": "Vasquez",
+    "playerId": 202349,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Rashad",
+    "lastName": "Vaughn",
+    "playerId": 1626173,
+    "teamId": 1610612749
+  },
+  {
+    "firstName": "Charlie",
+    "lastName": "Villanueva",
+    "playerId": 101111,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Vonleh",
+    "playerId": 203943,
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "Nikola",
+    "lastName": "Vucevic",
+    "playerId": 202696,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Sasha",
+    "lastName": "Vujacic",
+    "playerId": 2756,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Dwyane",
+    "lastName": "Wade",
+    "playerId": 2548,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Dion",
+    "lastName": "Waiters",
+    "playerId": 203079,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Kemba",
+    "lastName": "Walker",
+    "playerId": 202689,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "John",
+    "lastName": "Wall",
+    "playerId": 202322,
+    "teamId": 1610612764
+  },
+  {
+    "firstName": "TJ",
+    "lastName": "Warren",
+    "playerId": 203933,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "CJ",
+    "lastName": "Watson",
+    "playerId": 201228,
+    "teamId": 1610612753
+  },
+  {
+    "firstName": "Sonny",
+    "lastName": "Weems",
+    "playerId": 201603,
+    "teamId": 1610612756
+  },
+  {
+    "firstName": "David",
+    "lastName": "West",
+    "playerId": 2561,
+    "teamId": 1610612759
+  },
+  {
+    "firstName": "Russell",
+    "lastName": "Westbrook",
+    "playerId": 201566,
+    "teamId": 1610612760
+  },
+  {
+    "firstName": "Hassan",
+    "lastName": "Whiteside",
+    "playerId": 202355,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Shayne",
+    "lastName": "Whittington",
+    "playerId": 203963,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Andrew",
+    "lastName": "Wiggins",
+    "playerId": 203952,
+    "teamId": 1610612750
+  },
+  {
+    "firstName": "CJ",
+    "lastName": "Wilcox",
+    "playerId": 203912,
+    "teamId": 1610612746
+  },
+  {
+    "firstName": "Deron",
+    "lastName": "Williams",
+    "playerId": 101114,
+    "teamId": 1610612742
+  },
+  {
+    "firstName": "Derrick",
+    "lastName": "Williams",
+    "playerId": 202682,
+    "teamId": 1610612752
+  },
+  {
+    "firstName": "Elliot",
+    "lastName": "Williams",
+    "playerId": 202343,
+    "teamId": 0
+  },
+  {
+    "firstName": "Lou",
+    "lastName": "Williams",
+    "playerId": 101150,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Marvin",
+    "lastName": "Williams",
+    "playerId": 101107,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Mo",
+    "lastName": "Williams",
+    "playerId": 2590,
+    "teamId": 1610612739
+  },
+  {
+    "firstName": "Justise",
+    "lastName": "Winslow",
+    "playerId": 1626159,
+    "teamId": 1610612748
+  },
+  {
+    "firstName": "Jeff",
+    "lastName": "Withey",
+    "playerId": 203481,
+    "teamId": 1610612762
+  },
+  {
+    "firstName": "Christian",
+    "lastName": "Wood",
+    "playerId": 1626174,
+    "teamId": 0
+  },
+  {
+    "firstName": "Metta",
+    "lastName": "World Peace",
+    "playerId": 1897,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Brandan",
+    "lastName": "Wright",
+    "playerId": 201148,
+    "teamId": 1610612763
+  },
+  {
+    "firstName": "Delon",
+    "lastName": "Wright",
+    "playerId": 1626153,
+    "teamId": 1610612761
+  },
+  {
+    "firstName": "Tony",
+    "lastName": "Wroten",
+    "playerId": 203100,
+    "teamId": 0
+  },
+  {
+    "firstName": "James",
+    "lastName": "Young",
+    "playerId": 203923,
+    "teamId": 1610612738
+  },
+  {
+    "firstName": "Joe",
+    "lastName": "Young",
+    "playerId": 1626202,
+    "teamId": 1610612754
+  },
+  {
+    "firstName": "Nick",
+    "lastName": "Young",
+    "playerId": 201156,
+    "teamId": 1610612747
+  },
+  {
+    "firstName": "Thaddeus",
+    "lastName": "Young",
+    "playerId": 201152,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Cody",
+    "lastName": "Zeller",
+    "playerId": 203469,
+    "teamId": 1610612766
+  },
+  {
+    "firstName": "Tyler",
+    "lastName": "Zeller",
+    "playerId": 203092,
+    "teamId": 1610612738
+  }
+]
+},{}],2:[function(require,module,exports){
+module.exports=[
+  {
+    "teamId": 1610612737,
+    "abbreviation": "ATL",
+    "teamName": "Atlanta Hawks",
+    "simpleName": "Hawks",
+    "location": "Atlanta"
+  },
+  {
+    "teamId": 1610612738,
+    "abbreviation": "BOS",
+    "teamName": "Boston Celtics",
+    "simpleName": "Celtics",
+    "location": "Boston"
+  },
+  {
+    "teamId": 1610612751,
+    "abbreviation": "BKN",
+    "teamName": "Brooklyn Nets",
+    "simpleName": "Nets",
+    "location": "Brooklyn"
+  },
+  {
+    "teamId": 1610612766,
+    "abbreviation": "CHA",
+    "teamName": "Charlotte Hornets",
+    "simpleName": "Hornets",
+    "location": "Charlotte"
+  },
+  {
+    "teamId": 1610612741,
+    "abbreviation": "CHI",
+    "teamName": "Chicago Bulls",
+    "simpleName": "Bulls",
+    "location": "Chicago"
+  },
+  {
+    "teamId": 1610612739,
+    "abbreviation": "CLE",
+    "teamName": "Cleveland Cavaliers",
+    "simpleName": "Cavaliers",
+    "location": "Cleveland"
+  },
+  {
+    "teamId": 1610612742,
+    "abbreviation": "DAL",
+    "teamName": "Dallas Mavericks",
+    "simpleName": "Mavericks",
+    "location": "Dallas"
+  },
+  {
+    "teamId": 1610612743,
+    "abbreviation": "DEN",
+    "teamName": "Denver Nuggets",
+    "simpleName": "Nuggets",
+    "location": "Denver"
+  },
+  {
+    "teamId": 1610612765,
+    "abbreviation": "DET",
+    "teamName": "Detroit Pistons",
+    "simpleName": "Pistons",
+    "location": "Detroit"
+  },
+  {
+    "teamId": 1610612744,
+    "abbreviation": "GSW",
+    "teamName": "Golden State Warriors",
+    "simpleName": "Warriors",
+    "location": "Golden State"
+  },
+  {
+    "teamId": 1610612745,
+    "abbreviation": "HOU",
+    "teamName": "Houston Rockets",
+    "simpleName": "Rockets",
+    "location": "Houston"
+  },
+  {
+    "teamId": 1610612754,
+    "abbreviation": "IND",
+    "teamName": "Indiana Pacers",
+    "simpleName": "Pacers",
+    "location": "Indiana"
+  },
+  {
+    "teamId": 1610612746,
+    "abbreviation": "LAC",
+    "teamName": "Los Angeles Clippers",
+    "simpleName": "Clippers",
+    "location": "Los Angeles"
+  },
+  {
+    "teamId": 1610612747,
+    "abbreviation": "LAL",
+    "teamName": "Los Angeles Lakers",
+    "simpleName": "Lakers",
+    "location": "Los Angeles"
+  },
+  {
+    "teamId": 1610612763,
+    "abbreviation": "MEM",
+    "teamName": "Memphis Grizzlies",
+    "simpleName": "Grizzlies",
+    "location": "Memphis"
+  },
+  {
+    "teamId": 1610612748,
+    "abbreviation": "MIA",
+    "teamName": "Miami Heat",
+    "simpleName": "Heat",
+    "location": "Miami"
+  },
+  {
+    "teamId": 1610612749,
+    "abbreviation": "MIL",
+    "teamName": "Milwaukee Bucks",
+    "simpleName": "Bucks",
+    "location": "Milwaukee"
+  },
+  {
+    "teamId": 1610612750,
+    "abbreviation": "MIN",
+    "teamName": "Minnesota Timberwolves",
+    "simpleName": "Timberwolves",
+    "location": "Minnesota"
+  },
+  {
+    "teamId": 1610612740,
+    "abbreviation": "NOP",
+    "teamName": "New Orleans Pelicans",
+    "simpleName": "Pelicans",
+    "location": "New Orleans"
+  },
+  {
+    "teamId": 1610612752,
+    "abbreviation": "NYK",
+    "teamName": "New York Knicks",
+    "simpleName": "Knicks",
+    "location": "New York"
+  },
+  {
+    "teamId": 1610612760,
+    "abbreviation": "OKC",
+    "teamName": "Oklahoma City Thunder",
+    "simpleName": "Thunder",
+    "location": "Oklahoma City"
+  },
+  {
+    "teamId": 1610612753,
+    "abbreviation": "ORL",
+    "teamName": "Orlando Magic",
+    "simpleName": "Magic",
+    "location": "Orlando"
+  },
+  {
+    "teamId": 1610612755,
+    "abbreviation": "PHI",
+    "teamName": "Philadelphia 76ers",
+    "simpleName": "76ers",
+    "location": "Philadelphia"
+  },
+  {
+    "teamId": 1610612756,
+    "abbreviation": "PHX",
+    "teamName": "Phoenix Suns",
+    "simpleName": "Suns",
+    "location": "Phoenix"
+  },
+  {
+    "teamId": 1610612757,
+    "abbreviation": "POR",
+    "teamName": "Portland Trail Blazers",
+    "simpleName": "Trail Blazers",
+    "location": "Portland"
+  },
+  {
+    "teamId": 1610612758,
+    "abbreviation": "SAC",
+    "teamName": "Sacramento Kings",
+    "simpleName": "Kings",
+    "location": "Sacramento"
+  },
+  {
+    "teamId": 1610612759,
+    "abbreviation": "SAS",
+    "teamName": "San Antonio Spurs",
+    "simpleName": "Spurs",
+    "location": "San Antonio"
+  },
+  {
+    "teamId": 1610612761,
+    "abbreviation": "TOR",
+    "teamName": "Toronto Raptors",
+    "simpleName": "Raptors",
+    "location": "Toronto"
+  },
+  {
+    "teamId": 1610612762,
+    "abbreviation": "UTA",
+    "teamName": "Utah Jazz",
+    "simpleName": "Jazz",
+    "location": "Utah"
+  },
+  {
+    "teamId": 1610612764,
+    "abbreviation": "WAS",
+    "teamName": "Washington Wizards",
+    "simpleName": "Wizards",
+    "location": "Washington"
+  }
+]
+},{}],3:[function(require,module,exports){
+
+},{}],4:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -359,7 +3384,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":8}],2:[function(require,module,exports){
+},{"util/":12}],5:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -384,7 +3409,235 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
+(function (process){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// Split a filename into [root, dir, basename, ext], unix version
+// 'root' is just a slash, or nothing.
+var splitPathRe =
+    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+var splitPath = function(filename) {
+  return splitPathRe.exec(filename).slice(1);
+};
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function(path) {
+  var result = splitPath(path),
+      root = result[0],
+      dir = result[1];
+
+  if (!root && !dir) {
+    // No dirname whatsoever
+    return '.';
+  }
+
+  if (dir) {
+    // It has a dirname, strip trailing slash
+    dir = dir.substr(0, dir.length - 1);
+  }
+
+  return root + dir;
+};
+
+
+exports.basename = function(path, ext) {
+  var f = splitPath(path)[2];
+  // TODO: make this comparison case-insensitive on windows?
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+
+exports.extname = function(path) {
+  return splitPath(path)[3];
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+}).call(this,require('_process'))
+},{"_process":7}],7:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -444,7 +3697,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],4:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -530,7 +3783,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],5:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -617,20 +3870,20 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],6:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":4,"./encode":5}],7:[function(require,module,exports){
+},{"./decode":8,"./encode":9}],11:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],8:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1220,7 +4473,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":7,"_process":3,"inherits":2}],9:[function(require,module,exports){
+},{"./support/isBuffer":11,"_process":7,"inherits":5}],13:[function(require,module,exports){
 /**
  * Module dependencies
  */
@@ -1319,7 +4572,7 @@ function jsonp(url, opts, fn){
   return cancel;
 }
 
-},{"debug":10}],10:[function(require,module,exports){
+},{"debug":14}],14:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -1496,7 +4749,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":11}],11:[function(require,module,exports){
+},{"./debug":15}],15:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -1695,7 +4948,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":12}],12:[function(require,module,exports){
+},{"ms":16}],16:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -1820,118 +5073,36 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],13:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
- * lodash 3.1.1 (Custom Build) <https://lodash.com/>
+ * lodash 3.2.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
  * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var createAggregator = require('lodash._createaggregator');
+var baseCopy = require('lodash._basecopy'),
+    keys = require('lodash.keys');
 
 /**
- * Creates an object composed of keys generated from the results of running
- * each element of `collection` through `iteratee`. The corresponding value
- * of each key is the last element responsible for generating the key. The
- * iteratee function is bound to `thisArg` and invoked with three arguments:
- * (value, index|key, collection).
- *
- * If a property name is provided for `iteratee` the created `_.property`
- * style callback returns the property value of the given element.
- *
- * If a value is also provided for `thisArg` the created `_.matchesProperty`
- * style callback returns `true` for elements that have a matching property
- * value, else `false`.
- *
- * If an object is provided for `iteratee` the created `_.matches` style
- * callback returns `true` for elements that have the properties of the given
- * object, else `false`.
- *
- * @static
- * @memberOf _
- * @category Collection
- * @param {Array|Object|string} collection The collection to iterate over.
- * @param {Function|Object|string} [iteratee=_.identity] The function invoked
- *  per iteration.
- * @param {*} [thisArg] The `this` binding of `iteratee`.
- * @returns {Object} Returns the composed aggregate object.
- * @example
- *
- * var keyData = [
- *   { 'dir': 'left', 'code': 97 },
- *   { 'dir': 'right', 'code': 100 }
- * ];
- *
- * _.indexBy(keyData, 'dir');
- * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
- *
- * _.indexBy(keyData, function(object) {
- *   return String.fromCharCode(object.code);
- * });
- * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
- *
- * _.indexBy(keyData, function(object) {
- *   return this.fromCharCode(object.code);
- * }, String);
- * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
- */
-var indexBy = createAggregator(function(result, value, key) {
-  result[key] = value;
-});
-
-module.exports = indexBy;
-
-},{"lodash._createaggregator":14}],14:[function(require,module,exports){
-/**
- * lodash 3.0.0 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-var baseCallback = require('lodash._basecallback'),
-    baseEach = require('lodash._baseeach'),
-    isArray = require('lodash.isarray');
-
-/**
- * Creates a function that aggregates a collection, creating an accumulator
- * object composed from the results of running each element in the collection
- * through an iteratee. The `setter` sets the keys and values of the accumulator
- * object. If `initializer` is provided initializes the accumulator object.
+ * The base implementation of `_.assign` without support for argument juggling,
+ * multiple sources, and `customizer` functions.
  *
  * @private
- * @param {Function} setter The function to set keys and values of the accumulator object.
- * @param {Function} [initializer] The function to initialize the accumulator object.
- * @returns {Function} Returns the new aggregator function.
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @returns {Object} Returns `object`.
  */
-function createAggregator(setter, initializer) {
-  return function(collection, iteratee, thisArg) {
-    var result = initializer ? initializer() : {};
-    iteratee = baseCallback(iteratee, thisArg, 3);
-
-    if (isArray(collection)) {
-      var index = -1,
-          length = collection.length;
-
-      while (++index < length) {
-        var value = collection[index];
-        setter(result, value, iteratee(value, index, collection), collection);
-      }
-    } else {
-      baseEach(collection, function(value, key, collection) {
-        setter(result, value, iteratee(value, key, collection), collection);
-      });
-    }
-    return result;
-  };
+function baseAssign(object, source) {
+  return source == null
+    ? object
+    : baseCopy(source, keys(source), object);
 }
 
-module.exports = createAggregator;
+module.exports = baseAssign;
 
-},{"lodash._basecallback":15,"lodash._baseeach":20,"lodash.isarray":21}],15:[function(require,module,exports){
+},{"lodash._basecopy":19,"lodash.keys":108}],18:[function(require,module,exports){
 /**
  * lodash 3.3.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -2355,7 +5526,129 @@ function property(path) {
 
 module.exports = baseCallback;
 
-},{"lodash._baseisequal":16,"lodash._bindcallback":18,"lodash.isarray":21,"lodash.pairs":19}],16:[function(require,module,exports){
+},{"lodash._baseisequal":21,"lodash._bindcallback":22,"lodash.isarray":106,"lodash.pairs":110}],19:[function(require,module,exports){
+/**
+ * lodash 3.0.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property names to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @returns {Object} Returns `object`.
+ */
+function baseCopy(source, props, object) {
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+    object[key] = source[key];
+  }
+  return object;
+}
+
+module.exports = baseCopy;
+
+},{}],20:[function(require,module,exports){
+/**
+ * lodash 3.0.2 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * The base implementation of `baseForIn` and `baseForOwn` which iterates
+ * over `object` properties returned by `keysFunc` invoking `iteratee` for
+ * each property. Iteratee functions may exit iteration early by explicitly
+ * returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+/**
+ * Creates a base function for `_.forIn` or `_.forInRight`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function(object, iteratee, keysFunc) {
+    var iterable = toObject(object),
+        props = keysFunc(object),
+        length = props.length,
+        index = fromRight ? length : -1;
+
+    while ((fromRight ? index-- : ++index < length)) {
+      var key = props[index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+/**
+ * Converts `value` to an object if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Object} Returns the object.
+ */
+function toObject(value) {
+  return isObject(value) ? value : Object(value);
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = baseFor;
+
+},{}],21:[function(require,module,exports){
 /**
  * lodash 3.0.7 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -2699,7 +5992,1649 @@ function isObject(value) {
 
 module.exports = baseIsEqual;
 
-},{"lodash.isarray":21,"lodash.istypedarray":17,"lodash.keys":22}],17:[function(require,module,exports){
+},{"lodash.isarray":106,"lodash.istypedarray":107,"lodash.keys":108}],22:[function(require,module,exports){
+/**
+ * lodash 3.0.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * A specialized version of `baseCallback` which only supports `this` binding
+ * and specifying the number of arguments to provide to `func`.
+ *
+ * @private
+ * @param {Function} func The function to bind.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {number} [argCount] The number of arguments to provide to `func`.
+ * @returns {Function} Returns the callback.
+ */
+function bindCallback(func, thisArg, argCount) {
+  if (typeof func != 'function') {
+    return identity;
+  }
+  if (thisArg === undefined) {
+    return func;
+  }
+  switch (argCount) {
+    case 1: return function(value) {
+      return func.call(thisArg, value);
+    };
+    case 3: return function(value, index, collection) {
+      return func.call(thisArg, value, index, collection);
+    };
+    case 4: return function(accumulator, value, index, collection) {
+      return func.call(thisArg, accumulator, value, index, collection);
+    };
+    case 5: return function(value, other, key, object, source) {
+      return func.call(thisArg, value, other, key, object, source);
+    };
+  }
+  return function() {
+    return func.apply(thisArg, arguments);
+  };
+}
+
+/**
+ * This method returns the first argument provided to it.
+ *
+ * @static
+ * @memberOf _
+ * @category Utility
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'user': 'fred' };
+ *
+ * _.identity(object) === object;
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = bindCallback;
+
+},{}],23:[function(require,module,exports){
+/**
+ * lodash 3.1.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var bindCallback = require('lodash._bindcallback'),
+    isIterateeCall = require('lodash._isiterateecall'),
+    restParam = require('lodash.restparam');
+
+/**
+ * Creates a function that assigns properties of source object(s) to a given
+ * destination object.
+ *
+ * **Note:** This function is used to create `_.assign`, `_.defaults`, and `_.merge`.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return restParam(function(object, sources) {
+    var index = -1,
+        length = object == null ? 0 : sources.length,
+        customizer = length > 2 ? sources[length - 2] : undefined,
+        guard = length > 2 ? sources[2] : undefined,
+        thisArg = length > 1 ? sources[length - 1] : undefined;
+
+    if (typeof customizer == 'function') {
+      customizer = bindCallback(customizer, thisArg, 5);
+      length -= 2;
+    } else {
+      customizer = typeof thisArg == 'function' ? thisArg : undefined;
+      length -= (customizer ? 1 : 0);
+    }
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
+    }
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, customizer);
+      }
+    }
+    return object;
+  });
+}
+
+module.exports = createAssigner;
+
+},{"lodash._bindcallback":22,"lodash._isiterateecall":25,"lodash.restparam":129}],24:[function(require,module,exports){
+/**
+ * lodash 3.9.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/** `Object#toString` result references. */
+var funcTag = '[object Function]';
+
+/** Used to detect host constructors (Safari > 5). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/**
+ * Checks if `value` is object-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var fnToString = Function.prototype.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = object == null ? undefined : object[key];
+  return isNative(value) ? value : undefined;
+}
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in older versions of Chrome and Safari which return 'function' for regexes
+  // and Safari 8 equivalents which return 'object' for typed array constructors.
+  return isObject(value) && objToString.call(value) == funcTag;
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+ * @example
+ *
+ * _.isNative(Array.prototype.push);
+ * // => true
+ *
+ * _.isNative(_);
+ * // => false
+ */
+function isNative(value) {
+  if (value == null) {
+    return false;
+  }
+  if (isFunction(value)) {
+    return reIsNative.test(fnToString.call(value));
+  }
+  return isObjectLike(value) && reIsHostCtor.test(value);
+}
+
+module.exports = getNative;
+
+},{}],25:[function(require,module,exports){
+/**
+ * lodash 3.0.9 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^\d+$/;
+
+/**
+ * Used as the [maximum length](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new function.
+ */
+function baseProperty(key) {
+  return function(object) {
+    return object == null ? undefined : object[key];
+  };
+}
+
+/**
+ * Gets the "length" property value of `object`.
+ *
+ * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
+ * that affects Safari on at least iOS 8.1-8.3 ARM64.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {*} Returns the "length" value.
+ */
+var getLength = baseProperty('length');
+
+/**
+ * Checks if `value` is array-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ */
+function isArrayLike(value) {
+  return value != null && isLength(getLength(value));
+}
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return value > -1 && value % 1 == 0 && value < length;
+}
+
+/**
+ * Checks if the provided arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call, else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number'
+      ? (isArrayLike(object) && isIndex(index, object.length))
+      : (type == 'string' && index in object)) {
+    var other = object[index];
+    return value === value ? (value === other) : (other !== other);
+  }
+  return false;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = isIterateeCall;
+
+},{}],26:[function(require,module,exports){
+/**
+ * lodash 3.2.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseAssign = require('lodash._baseassign'),
+    createAssigner = require('lodash._createassigner'),
+    keys = require('lodash.keys');
+
+/**
+ * A specialized version of `_.assign` for customizing assigned values without
+ * support for argument juggling, multiple sources, and `this` binding `customizer`
+ * functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {Function} customizer The function to customize assigned values.
+ * @returns {Object} Returns `object`.
+ */
+function assignWith(object, source, customizer) {
+  var index = -1,
+      props = keys(source),
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index],
+        value = object[key],
+        result = customizer(value, source[key], key, object, source);
+
+    if ((result === result ? (result !== value) : (value === value)) ||
+        (value === undefined && !(key in object))) {
+      object[key] = result;
+    }
+  }
+  return object;
+}
+
+/**
+ * Assigns own enumerable properties of source object(s) to the destination
+ * object. Subsequent sources overwrite property assignments of previous sources.
+ * If `customizer` is provided it is invoked to produce the assigned values.
+ * The `customizer` is bound to `thisArg` and invoked with five arguments:
+ * (objectValue, sourceValue, key, object, source).
+ *
+ * **Note:** This method mutates `object` and is based on
+ * [`Object.assign`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign).
+ *
+ * @static
+ * @memberOf _
+ * @alias extend
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @param {Function} [customizer] The function to customize assigned values.
+ * @param {*} [thisArg] The `this` binding of `customizer`.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * _.assign({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' });
+ * // => { 'user': 'fred', 'age': 40 }
+ *
+ * // using a customizer callback
+ * var defaults = _.partialRight(_.assign, function(value, other) {
+ *   return _.isUndefined(value) ? other : value;
+ * });
+ *
+ * defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' });
+ * // => { 'user': 'barney', 'age': 36 }
+ */
+var assign = createAssigner(function(object, source, customizer) {
+  return customizer
+    ? assignWith(object, source, customizer)
+    : baseAssign(object, source);
+});
+
+module.exports = assign;
+
+},{"lodash._baseassign":17,"lodash._createassigner":23,"lodash.keys":108}],27:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.3 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var baseIndexOf = require('lodash._baseindexof'),
+    forOwn = require('lodash.forown'),
+    isArray = require('lodash.isarray'),
+    isString = require('lodash.isstring');
+
+/* Native method shortcuts for methods with the same name as other `lodash` methods */
+var nativeMax = Math.max;
+
+/**
+ * Checks if a given value is present in a collection using strict equality
+ * for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the
+ * offset from the end of the collection.
+ *
+ * @static
+ * @memberOf _
+ * @alias include
+ * @category Collections
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {*} target The value to check for.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
+ * @example
+ *
+ * _.contains([1, 2, 3], 1);
+ * // => true
+ *
+ * _.contains([1, 2, 3], 1, 2);
+ * // => false
+ *
+ * _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
+ * // => true
+ *
+ * _.contains('pebbles', 'eb');
+ * // => true
+ */
+function contains(collection, target, fromIndex) {
+  var index = -1,
+      indexOf = baseIndexOf,
+      length = collection ? collection.length : 0,
+      result = false;
+
+  fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex) || 0;
+  if (isArray(collection)) {
+    result = indexOf(collection, target, fromIndex) > -1;
+  } else if (typeof length == 'number') {
+    result = (isString(collection) ? collection.indexOf(target, fromIndex) : indexOf(collection, target, fromIndex)) > -1;
+  } else {
+    forOwn(collection, function(value) {
+      if (++index >= fromIndex) {
+        return !(result = value === target);
+      }
+    });
+  }
+  return result;
+}
+
+module.exports = contains;
+
+},{"lodash._baseindexof":28,"lodash.forown":29,"lodash.isarray":56,"lodash.isstring":58}],28:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * The base implementation of `_.indexOf` without support for binary searches
+ * or `fromIndex` constraints.
+ *
+ * @private
+ * @param {Array} array The array to search.
+ * @param {*} value The value to search for.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {number} Returns the index of the matched value or `-1`.
+ */
+function baseIndexOf(array, value, fromIndex) {
+  var index = (fromIndex || 0) - 1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (array[index] === value) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+module.exports = baseIndexOf;
+
+},{}],29:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var baseCreateCallback = require('lodash._basecreatecallback'),
+    keys = require('lodash.keys'),
+    objectTypes = require('lodash._objecttypes');
+
+/**
+ * Iterates over own enumerable properties of an object, executing the callback
+ * for each property. The callback is bound to `thisArg` and invoked with three
+ * arguments; (value, key, object). Callbacks may exit iteration early by
+ * explicitly returning `false`.
+ *
+ * @static
+ * @memberOf _
+ * @type Function
+ * @category Objects
+ * @param {Object} object The object to iterate over.
+ * @param {Function} [callback=identity] The function called per iteration.
+ * @param {*} [thisArg] The `this` binding of `callback`.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * _.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+ *   console.log(key);
+ * });
+ * // => logs '0', '1', and 'length' (property order is not guaranteed across environments)
+ */
+var forOwn = function(collection, callback, thisArg) {
+  var index, iterable = collection, result = iterable;
+  if (!iterable) return result;
+  if (!objectTypes[typeof iterable]) return result;
+  callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+    var ownIndex = -1,
+        ownProps = objectTypes[typeof iterable] && keys(iterable),
+        length = ownProps ? ownProps.length : 0;
+
+    while (++ownIndex < length) {
+      index = ownProps[ownIndex];
+      if (callback(iterable[index], index, collection) === false) return result;
+    }
+  return result
+};
+
+module.exports = forOwn;
+
+},{"lodash._basecreatecallback":30,"lodash._objecttypes":51,"lodash.keys":52}],30:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var bind = require('lodash.bind'),
+    identity = require('lodash.identity'),
+    setBindData = require('lodash._setbinddata'),
+    support = require('lodash.support');
+
+/** Used to detected named functions */
+var reFuncName = /^\s*function[ \n\r\t]+\w/;
+
+/** Used to detect functions containing a `this` reference */
+var reThis = /\bthis\b/;
+
+/** Native method shortcuts */
+var fnToString = Function.prototype.toString;
+
+/**
+ * The base implementation of `_.createCallback` without support for creating
+ * "_.pluck" or "_.where" style callbacks.
+ *
+ * @private
+ * @param {*} [func=identity] The value to convert to a callback.
+ * @param {*} [thisArg] The `this` binding of the created callback.
+ * @param {number} [argCount] The number of arguments the callback accepts.
+ * @returns {Function} Returns a callback function.
+ */
+function baseCreateCallback(func, thisArg, argCount) {
+  if (typeof func != 'function') {
+    return identity;
+  }
+  // exit early for no `thisArg` or already bound by `Function#bind`
+  if (typeof thisArg == 'undefined' || !('prototype' in func)) {
+    return func;
+  }
+  var bindData = func.__bindData__;
+  if (typeof bindData == 'undefined') {
+    if (support.funcNames) {
+      bindData = !func.name;
+    }
+    bindData = bindData || !support.funcDecomp;
+    if (!bindData) {
+      var source = fnToString.call(func);
+      if (!support.funcNames) {
+        bindData = !reFuncName.test(source);
+      }
+      if (!bindData) {
+        // checks if `func` references the `this` keyword and stores the result
+        bindData = reThis.test(source);
+        setBindData(func, bindData);
+      }
+    }
+  }
+  // exit early if there are no `this` references or `func` is bound
+  if (bindData === false || (bindData !== true && bindData[1] & 1)) {
+    return func;
+  }
+  switch (argCount) {
+    case 1: return function(value) {
+      return func.call(thisArg, value);
+    };
+    case 2: return function(a, b) {
+      return func.call(thisArg, a, b);
+    };
+    case 3: return function(value, index, collection) {
+      return func.call(thisArg, value, index, collection);
+    };
+    case 4: return function(accumulator, value, index, collection) {
+      return func.call(thisArg, accumulator, value, index, collection);
+    };
+  }
+  return bind(func, thisArg);
+}
+
+module.exports = baseCreateCallback;
+
+},{"lodash._setbinddata":31,"lodash.bind":34,"lodash.identity":48,"lodash.support":49}],31:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('lodash._isnative'),
+    noop = require('lodash.noop');
+
+/** Used as the property descriptor for `__bindData__` */
+var descriptor = {
+  'configurable': false,
+  'enumerable': false,
+  'value': null,
+  'writable': false
+};
+
+/** Used to set meta data on functions */
+var defineProperty = (function() {
+  // IE 8 only accepts DOM elements
+  try {
+    var o = {},
+        func = isNative(func = Object.defineProperty) && func,
+        result = func(o, o, o) && func;
+  } catch(e) { }
+  return result;
+}());
+
+/**
+ * Sets `this` binding data on a given function.
+ *
+ * @private
+ * @param {Function} func The function to set data on.
+ * @param {Array} value The data array to set.
+ */
+var setBindData = !defineProperty ? noop : function(func, value) {
+  descriptor.value = value;
+  defineProperty(func, '__bindData__', descriptor);
+};
+
+module.exports = setBindData;
+
+},{"lodash._isnative":32,"lodash.noop":33}],32:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/** Used for native method references */
+var objectProto = Object.prototype;
+
+/** Used to resolve the internal [[Class]] of values */
+var toString = objectProto.toString;
+
+/** Used to detect if a method is native */
+var reNative = RegExp('^' +
+  String(toString)
+    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    .replace(/toString| for [^\]]+/g, '.*?') + '$'
+);
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+ */
+function isNative(value) {
+  return typeof value == 'function' && reNative.test(value);
+}
+
+module.exports = isNative;
+
+},{}],33:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * A no-operation function.
+ *
+ * @static
+ * @memberOf _
+ * @category Utilities
+ * @example
+ *
+ * var object = { 'name': 'fred' };
+ * _.noop(object) === undefined;
+ * // => true
+ */
+function noop() {
+  // no operation performed
+}
+
+module.exports = noop;
+
+},{}],34:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var createWrapper = require('lodash._createwrapper'),
+    slice = require('lodash._slice');
+
+/**
+ * Creates a function that, when called, invokes `func` with the `this`
+ * binding of `thisArg` and prepends any additional `bind` arguments to those
+ * provided to the bound function.
+ *
+ * @static
+ * @memberOf _
+ * @category Functions
+ * @param {Function} func The function to bind.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {...*} [arg] Arguments to be partially applied.
+ * @returns {Function} Returns the new bound function.
+ * @example
+ *
+ * var func = function(greeting) {
+ *   return greeting + ' ' + this.name;
+ * };
+ *
+ * func = _.bind(func, { 'name': 'fred' }, 'hi');
+ * func();
+ * // => 'hi fred'
+ */
+function bind(func, thisArg) {
+  return arguments.length > 2
+    ? createWrapper(func, 17, slice(arguments, 2), null, thisArg)
+    : createWrapper(func, 1, null, null, thisArg);
+}
+
+module.exports = bind;
+
+},{"lodash._createwrapper":35,"lodash._slice":47}],35:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var baseBind = require('lodash._basebind'),
+    baseCreateWrapper = require('lodash._basecreatewrapper'),
+    isFunction = require('lodash.isfunction'),
+    slice = require('lodash._slice');
+
+/**
+ * Used for `Array` method references.
+ *
+ * Normally `Array.prototype` would suffice, however, using an array literal
+ * avoids issues in Narwhal.
+ */
+var arrayRef = [];
+
+/** Native method shortcuts */
+var push = arrayRef.push,
+    unshift = arrayRef.unshift;
+
+/**
+ * Creates a function that, when called, either curries or invokes `func`
+ * with an optional `this` binding and partially applied arguments.
+ *
+ * @private
+ * @param {Function|string} func The function or method name to reference.
+ * @param {number} bitmask The bitmask of method flags to compose.
+ *  The bitmask may be composed of the following flags:
+ *  1 - `_.bind`
+ *  2 - `_.bindKey`
+ *  4 - `_.curry`
+ *  8 - `_.curry` (bound)
+ *  16 - `_.partial`
+ *  32 - `_.partialRight`
+ * @param {Array} [partialArgs] An array of arguments to prepend to those
+ *  provided to the new function.
+ * @param {Array} [partialRightArgs] An array of arguments to append to those
+ *  provided to the new function.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new function.
+ */
+function createWrapper(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
+  var isBind = bitmask & 1,
+      isBindKey = bitmask & 2,
+      isCurry = bitmask & 4,
+      isCurryBound = bitmask & 8,
+      isPartial = bitmask & 16,
+      isPartialRight = bitmask & 32;
+
+  if (!isBindKey && !isFunction(func)) {
+    throw new TypeError;
+  }
+  if (isPartial && !partialArgs.length) {
+    bitmask &= ~16;
+    isPartial = partialArgs = false;
+  }
+  if (isPartialRight && !partialRightArgs.length) {
+    bitmask &= ~32;
+    isPartialRight = partialRightArgs = false;
+  }
+  var bindData = func && func.__bindData__;
+  if (bindData && bindData !== true) {
+    // clone `bindData`
+    bindData = slice(bindData);
+    if (bindData[2]) {
+      bindData[2] = slice(bindData[2]);
+    }
+    if (bindData[3]) {
+      bindData[3] = slice(bindData[3]);
+    }
+    // set `thisBinding` is not previously bound
+    if (isBind && !(bindData[1] & 1)) {
+      bindData[4] = thisArg;
+    }
+    // set if previously bound but not currently (subsequent curried functions)
+    if (!isBind && bindData[1] & 1) {
+      bitmask |= 8;
+    }
+    // set curried arity if not yet set
+    if (isCurry && !(bindData[1] & 4)) {
+      bindData[5] = arity;
+    }
+    // append partial left arguments
+    if (isPartial) {
+      push.apply(bindData[2] || (bindData[2] = []), partialArgs);
+    }
+    // append partial right arguments
+    if (isPartialRight) {
+      unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+    }
+    // merge flags
+    bindData[1] |= bitmask;
+    return createWrapper.apply(null, bindData);
+  }
+  // fast path for `_.bind`
+  var creater = (bitmask == 1 || bitmask === 17) ? baseBind : baseCreateWrapper;
+  return creater([func, bitmask, partialArgs, partialRightArgs, thisArg, arity]);
+}
+
+module.exports = createWrapper;
+
+},{"lodash._basebind":36,"lodash._basecreatewrapper":41,"lodash._slice":47,"lodash.isfunction":46}],36:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var baseCreate = require('lodash._basecreate'),
+    isObject = require('lodash.isobject'),
+    setBindData = require('lodash._setbinddata'),
+    slice = require('lodash._slice');
+
+/**
+ * Used for `Array` method references.
+ *
+ * Normally `Array.prototype` would suffice, however, using an array literal
+ * avoids issues in Narwhal.
+ */
+var arrayRef = [];
+
+/** Native method shortcuts */
+var push = arrayRef.push;
+
+/**
+ * The base implementation of `_.bind` that creates the bound function and
+ * sets its meta data.
+ *
+ * @private
+ * @param {Array} bindData The bind data array.
+ * @returns {Function} Returns the new bound function.
+ */
+function baseBind(bindData) {
+  var func = bindData[0],
+      partialArgs = bindData[2],
+      thisArg = bindData[4];
+
+  function bound() {
+    // `Function#bind` spec
+    // http://es5.github.io/#x15.3.4.5
+    if (partialArgs) {
+      // avoid `arguments` object deoptimizations by using `slice` instead
+      // of `Array.prototype.slice.call` and not assigning `arguments` to a
+      // variable as a ternary expression
+      var args = slice(partialArgs);
+      push.apply(args, arguments);
+    }
+    // mimic the constructor's `return` behavior
+    // http://es5.github.io/#x13.2.2
+    if (this instanceof bound) {
+      // ensure `new bound` is an instance of `func`
+      var thisBinding = baseCreate(func.prototype),
+          result = func.apply(thisBinding, args || arguments);
+      return isObject(result) ? result : thisBinding;
+    }
+    return func.apply(thisArg, args || arguments);
+  }
+  setBindData(bound, bindData);
+  return bound;
+}
+
+module.exports = baseBind;
+
+},{"lodash._basecreate":37,"lodash._setbinddata":31,"lodash._slice":47,"lodash.isobject":40}],37:[function(require,module,exports){
+(function (global){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('lodash._isnative'),
+    isObject = require('lodash.isobject'),
+    noop = require('lodash.noop');
+
+/* Native method shortcuts for methods with the same name as other `lodash` methods */
+var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate;
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} prototype The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+function baseCreate(prototype, properties) {
+  return isObject(prototype) ? nativeCreate(prototype) : {};
+}
+// fallback for browsers without `Object.create`
+if (!nativeCreate) {
+  baseCreate = (function() {
+    function Object() {}
+    return function(prototype) {
+      if (isObject(prototype)) {
+        Object.prototype = prototype;
+        var result = new Object;
+        Object.prototype = null;
+      }
+      return result || global.Object();
+    };
+  }());
+}
+
+module.exports = baseCreate;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"lodash._isnative":38,"lodash.isobject":40,"lodash.noop":39}],38:[function(require,module,exports){
+arguments[4][32][0].apply(exports,arguments)
+},{"dup":32}],39:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"dup":33}],40:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var objectTypes = require('lodash._objecttypes');
+
+/**
+ * Checks if `value` is the language type of Object.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // check if the value is the ECMAScript language type of Object
+  // http://es5.github.io/#x8
+  // and avoid a V8 bug
+  // http://code.google.com/p/v8/issues/detail?id=2291
+  return !!(value && objectTypes[typeof value]);
+}
+
+module.exports = isObject;
+
+},{"lodash._objecttypes":51}],41:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var baseCreate = require('lodash._basecreate'),
+    isObject = require('lodash.isobject'),
+    setBindData = require('lodash._setbinddata'),
+    slice = require('lodash._slice');
+
+/**
+ * Used for `Array` method references.
+ *
+ * Normally `Array.prototype` would suffice, however, using an array literal
+ * avoids issues in Narwhal.
+ */
+var arrayRef = [];
+
+/** Native method shortcuts */
+var push = arrayRef.push;
+
+/**
+ * The base implementation of `createWrapper` that creates the wrapper and
+ * sets its meta data.
+ *
+ * @private
+ * @param {Array} bindData The bind data array.
+ * @returns {Function} Returns the new function.
+ */
+function baseCreateWrapper(bindData) {
+  var func = bindData[0],
+      bitmask = bindData[1],
+      partialArgs = bindData[2],
+      partialRightArgs = bindData[3],
+      thisArg = bindData[4],
+      arity = bindData[5];
+
+  var isBind = bitmask & 1,
+      isBindKey = bitmask & 2,
+      isCurry = bitmask & 4,
+      isCurryBound = bitmask & 8,
+      key = func;
+
+  function bound() {
+    var thisBinding = isBind ? thisArg : this;
+    if (partialArgs) {
+      var args = slice(partialArgs);
+      push.apply(args, arguments);
+    }
+    if (partialRightArgs || isCurry) {
+      args || (args = slice(arguments));
+      if (partialRightArgs) {
+        push.apply(args, partialRightArgs);
+      }
+      if (isCurry && args.length < arity) {
+        bitmask |= 16 & ~32;
+        return baseCreateWrapper([func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity]);
+      }
+    }
+    args || (args = arguments);
+    if (isBindKey) {
+      func = thisBinding[key];
+    }
+    if (this instanceof bound) {
+      thisBinding = baseCreate(func.prototype);
+      var result = func.apply(thisBinding, args);
+      return isObject(result) ? result : thisBinding;
+    }
+    return func.apply(thisBinding, args);
+  }
+  setBindData(bound, bindData);
+  return bound;
+}
+
+module.exports = baseCreateWrapper;
+
+},{"lodash._basecreate":42,"lodash._setbinddata":31,"lodash._slice":47,"lodash.isobject":45}],42:[function(require,module,exports){
+arguments[4][37][0].apply(exports,arguments)
+},{"dup":37,"lodash._isnative":43,"lodash.isobject":45,"lodash.noop":44}],43:[function(require,module,exports){
+arguments[4][32][0].apply(exports,arguments)
+},{"dup":32}],44:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"dup":33}],45:[function(require,module,exports){
+arguments[4][40][0].apply(exports,arguments)
+},{"dup":40,"lodash._objecttypes":51}],46:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * Checks if `value` is a function.
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ */
+function isFunction(value) {
+  return typeof value == 'function';
+}
+
+module.exports = isFunction;
+
+},{}],47:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * Slices the `collection` from the `start` index up to, but not including,
+ * the `end` index.
+ *
+ * Note: This function is used instead of `Array#slice` to support node lists
+ * in IE < 9 and to ensure dense arrays are returned.
+ *
+ * @private
+ * @param {Array|Object|string} collection The collection to slice.
+ * @param {number} start The start index.
+ * @param {number} end The end index.
+ * @returns {Array} Returns the new array.
+ */
+function slice(array, start, end) {
+  start || (start = 0);
+  if (typeof end == 'undefined') {
+    end = array ? array.length : 0;
+  }
+  var index = -1,
+      length = end - start || 0,
+      result = Array(length < 0 ? 0 : length);
+
+  while (++index < length) {
+    result[index] = array[start + index];
+  }
+  return result;
+}
+
+module.exports = slice;
+
+},{}],48:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * This method returns the first argument provided to it.
+ *
+ * @static
+ * @memberOf _
+ * @category Utilities
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'name': 'fred' };
+ * _.identity(object) === object;
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+},{}],49:[function(require,module,exports){
+(function (global){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('lodash._isnative');
+
+/** Used to detect functions containing a `this` reference */
+var reThis = /\bthis\b/;
+
+/**
+ * An object used to flag environments features.
+ *
+ * @static
+ * @memberOf _
+ * @type Object
+ */
+var support = {};
+
+/**
+ * Detect if functions can be decompiled by `Function#toString`
+ * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
+ *
+ * @memberOf _.support
+ * @type boolean
+ */
+support.funcDecomp = !isNative(global.WinRTError) && reThis.test(function() { return this; });
+
+/**
+ * Detect if `Function#name` is supported (all but IE).
+ *
+ * @memberOf _.support
+ * @type boolean
+ */
+support.funcNames = typeof Function.name == 'string';
+
+module.exports = support;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"lodash._isnative":50}],50:[function(require,module,exports){
+arguments[4][32][0].apply(exports,arguments)
+},{"dup":32}],51:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/** Used to determine if values are of the language type Object */
+var objectTypes = {
+  'boolean': false,
+  'function': true,
+  'object': true,
+  'number': false,
+  'string': false,
+  'undefined': false
+};
+
+module.exports = objectTypes;
+
+},{}],52:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('lodash._isnative'),
+    isObject = require('lodash.isobject'),
+    shimKeys = require('lodash._shimkeys');
+
+/* Native method shortcuts for methods with the same name as other `lodash` methods */
+var nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys;
+
+/**
+ * Creates an array composed of the own enumerable property names of an object.
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {Object} object The object to inspect.
+ * @returns {Array} Returns an array of property names.
+ * @example
+ *
+ * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
+ * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
+ */
+var keys = !nativeKeys ? shimKeys : function(object) {
+  if (!isObject(object)) {
+    return [];
+  }
+  return nativeKeys(object);
+};
+
+module.exports = keys;
+
+},{"lodash._isnative":53,"lodash._shimkeys":54,"lodash.isobject":55}],53:[function(require,module,exports){
+arguments[4][32][0].apply(exports,arguments)
+},{"dup":32}],54:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var objectTypes = require('lodash._objecttypes');
+
+/** Used for native method references */
+var objectProto = Object.prototype;
+
+/** Native method shortcuts */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A fallback implementation of `Object.keys` which produces an array of the
+ * given object's own enumerable property names.
+ *
+ * @private
+ * @type Function
+ * @param {Object} object The object to inspect.
+ * @returns {Array} Returns an array of property names.
+ */
+var shimKeys = function(object) {
+  var index, iterable = object, result = [];
+  if (!iterable) return result;
+  if (!(objectTypes[typeof object])) return result;
+    for (index in iterable) {
+      if (hasOwnProperty.call(iterable, index)) {
+        result.push(index);
+      }
+    }
+  return result
+};
+
+module.exports = shimKeys;
+
+},{"lodash._objecttypes":51}],55:[function(require,module,exports){
+arguments[4][40][0].apply(exports,arguments)
+},{"dup":40,"lodash._objecttypes":51}],56:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('lodash._isnative');
+
+/** `Object#toString` result shortcuts */
+var arrayClass = '[object Array]';
+
+/** Used for native method references */
+var objectProto = Object.prototype;
+
+/** Used to resolve the internal [[Class]] of values */
+var toString = objectProto.toString;
+
+/* Native method shortcuts for methods with the same name as other `lodash` methods */
+var nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray;
+
+/**
+ * Checks if `value` is an array.
+ *
+ * @static
+ * @memberOf _
+ * @type Function
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is an array, else `false`.
+ * @example
+ *
+ * (function() { return _.isArray(arguments); })();
+ * // => false
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ */
+var isArray = nativeIsArray || function(value) {
+  return value && typeof value == 'object' && typeof value.length == 'number' &&
+    toString.call(value) == arrayClass || false;
+};
+
+module.exports = isArray;
+
+},{"lodash._isnative":57}],57:[function(require,module,exports){
+arguments[4][32][0].apply(exports,arguments)
+},{"dup":32}],58:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="npm" -o ./npm/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/** `Object#toString` result shortcuts */
+var stringClass = '[object String]';
+
+/** Used for native method references */
+var objectProto = Object.prototype;
+
+/** Used to resolve the internal [[Class]] of values */
+var toString = objectProto.toString;
+
+/**
+ * Checks if `value` is a string.
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is a string, else `false`.
+ * @example
+ *
+ * _.isString('fred');
+ * // => true
+ */
+function isString(value) {
+  return typeof value == 'string' ||
+    value && typeof value == 'object' && toString.call(value) == stringClass || false;
+}
+
+module.exports = isString;
+
+},{}],59:[function(require,module,exports){
+/**
+ * lodash 3.2.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseCallback = require('lodash._basecallback'),
+    baseEach = require('lodash._baseeach'),
+    baseFind = require('lodash._basefind'),
+    baseFindIndex = require('lodash._basefindindex'),
+    isArray = require('lodash.isarray');
+
+/**
+ * Creates a `_.find` or `_.findLast` function.
+ *
+ * @private
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new find function.
+ */
+function createFind(eachFunc, fromRight) {
+  return function(collection, predicate, thisArg) {
+    predicate = baseCallback(predicate, thisArg, 3);
+    if (isArray(collection)) {
+      var index = baseFindIndex(collection, predicate, fromRight);
+      return index > -1 ? collection[index] : undefined;
+    }
+    return baseFind(collection, predicate, eachFunc);
+  };
+}
+
+/**
+ * Iterates over elements of `collection`, returning the first element
+ * `predicate` returns truthy for. The predicate is bound to `thisArg` and
+ * invoked with three arguments: (value, index|key, collection).
+ *
+ * If a property name is provided for `predicate` the created `_.property`
+ * style callback returns the property value of the given element.
+ *
+ * If a value is also provided for `thisArg` the created `_.matchesProperty`
+ * style callback returns `true` for elements that have a matching property
+ * value, else `false`.
+ *
+ * If an object is provided for `predicate` the created `_.matches` style
+ * callback returns `true` for elements that have the properties of the given
+ * object, else `false`.
+ *
+ * @static
+ * @memberOf _
+ * @alias detect
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to search.
+ * @param {Function|Object|string} [predicate=_.identity] The function invoked
+ *  per iteration.
+ * @param {*} [thisArg] The `this` binding of `predicate`.
+ * @returns {*} Returns the matched element, else `undefined`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'age': 36, 'active': true },
+ *   { 'user': 'fred',    'age': 40, 'active': false },
+ *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ * ];
+ *
+ * _.result(_.find(users, function(chr) {
+ *   return chr.age < 40;
+ * }), 'user');
+ * // => 'barney'
+ *
+ * // using the `_.matches` callback shorthand
+ * _.result(_.find(users, { 'age': 1, 'active': true }), 'user');
+ * // => 'pebbles'
+ *
+ * // using the `_.matchesProperty` callback shorthand
+ * _.result(_.find(users, 'active', false), 'user');
+ * // => 'fred'
+ *
+ * // using the `_.property` callback shorthand
+ * _.result(_.find(users, 'active'), 'user');
+ * // => 'barney'
+ */
+var find = createFind(baseEach);
+
+module.exports = find;
+
+},{"lodash._basecallback":60,"lodash._baseeach":65,"lodash._basefind":66,"lodash._basefindindex":67,"lodash.isarray":68}],60:[function(require,module,exports){
+arguments[4][18][0].apply(exports,arguments)
+},{"dup":18,"lodash._baseisequal":61,"lodash._bindcallback":63,"lodash.isarray":68,"lodash.pairs":64}],61:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"dup":21,"lodash.isarray":68,"lodash.istypedarray":62,"lodash.keys":69}],62:[function(require,module,exports){
 /**
  * lodash 3.0.2 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -2811,74 +7746,9 @@ function isTypedArray(value) {
 
 module.exports = isTypedArray;
 
-},{}],18:[function(require,module,exports){
-/**
- * lodash 3.0.1 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-
-/**
- * A specialized version of `baseCallback` which only supports `this` binding
- * and specifying the number of arguments to provide to `func`.
- *
- * @private
- * @param {Function} func The function to bind.
- * @param {*} thisArg The `this` binding of `func`.
- * @param {number} [argCount] The number of arguments to provide to `func`.
- * @returns {Function} Returns the callback.
- */
-function bindCallback(func, thisArg, argCount) {
-  if (typeof func != 'function') {
-    return identity;
-  }
-  if (thisArg === undefined) {
-    return func;
-  }
-  switch (argCount) {
-    case 1: return function(value) {
-      return func.call(thisArg, value);
-    };
-    case 3: return function(value, index, collection) {
-      return func.call(thisArg, value, index, collection);
-    };
-    case 4: return function(accumulator, value, index, collection) {
-      return func.call(thisArg, accumulator, value, index, collection);
-    };
-    case 5: return function(value, other, key, object, source) {
-      return func.call(thisArg, value, other, key, object, source);
-    };
-  }
-  return function() {
-    return func.apply(thisArg, arguments);
-  };
-}
-
-/**
- * This method returns the first argument provided to it.
- *
- * @static
- * @memberOf _
- * @category Utility
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'user': 'fred' };
- *
- * _.identity(object) === object;
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = bindCallback;
-
-},{}],19:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"dup":22}],64:[function(require,module,exports){
 /**
  * lodash 3.0.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -2958,7 +7828,7 @@ function pairs(object) {
 
 module.exports = pairs;
 
-},{"lodash.keys":22}],20:[function(require,module,exports){
+},{"lodash.keys":69}],65:[function(require,module,exports){
 /**
  * lodash 3.0.4 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -3141,7 +8011,77 @@ function isObject(value) {
 
 module.exports = baseEach;
 
-},{"lodash.keys":22}],21:[function(require,module,exports){
+},{"lodash.keys":69}],66:[function(require,module,exports){
+/**
+ * lodash 3.0.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * The base implementation of `_.find`, `_.findLast`, `_.findKey`, and `_.findLastKey`,
+ * without support for callback shorthands and `this` binding, which iterates
+ * over `collection` using the provided `eachFunc`.
+ *
+ * @private
+ * @param {Array|Object|string} collection The collection to search.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {Function} eachFunc The function to iterate over `collection`.
+ * @param {boolean} [retKey] Specify returning the key of the found element
+ *  instead of the element itself.
+ * @returns {*} Returns the found element or its key, else `undefined`.
+ */
+function baseFind(collection, predicate, eachFunc, retKey) {
+  var result;
+  eachFunc(collection, function(value, key, collection) {
+    if (predicate(value, key, collection)) {
+      result = retKey ? key : value;
+      return false;
+    }
+  });
+  return result;
+}
+
+module.exports = baseFind;
+
+},{}],67:[function(require,module,exports){
+/**
+ * lodash 3.6.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * The base implementation of `_.findIndex` and `_.findLastIndex` without
+ * support for callback shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array} array The array to search.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function baseFindIndex(array, predicate, fromRight) {
+  var length = array.length,
+      index = fromRight ? length : -1;
+
+  while ((fromRight ? index-- : ++index < length)) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+module.exports = baseFindIndex;
+
+},{}],68:[function(require,module,exports){
 /**
  * lodash 3.0.4 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -3323,7 +8263,7 @@ function isNative(value) {
 
 module.exports = isArray;
 
-},{}],22:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
  * lodash 3.1.2 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -3561,146 +8501,9 @@ function keysIn(object) {
 
 module.exports = keys;
 
-},{"lodash._getnative":23,"lodash.isarguments":24,"lodash.isarray":25}],23:[function(require,module,exports){
-/**
- * lodash 3.9.1 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-
-/** `Object#toString` result references. */
-var funcTag = '[object Function]';
-
-/** Used to detect host constructors (Safari > 5). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/**
- * Checks if `value` is object-like.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- */
-function isObjectLike(value) {
-  return !!value && typeof value == 'object';
-}
-
-/** Used for native method references. */
-var objectProto = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var fnToString = Function.prototype.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objToString = objectProto.toString;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = object == null ? undefined : object[key];
-  return isNative(value) ? value : undefined;
-}
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in older versions of Chrome and Safari which return 'function' for regexes
-  // and Safari 8 equivalents which return 'object' for typed array constructors.
-  return isObject(value) && objToString.call(value) == funcTag;
-}
-
-/**
- * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
- * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(1);
- * // => false
- */
-function isObject(value) {
-  // Avoid a V8 JIT bug in Chrome 19-20.
-  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Checks if `value` is a native function.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
- * @example
- *
- * _.isNative(Array.prototype.push);
- * // => true
- *
- * _.isNative(_);
- * // => false
- */
-function isNative(value) {
-  if (value == null) {
-    return false;
-  }
-  if (isFunction(value)) {
-    return reIsNative.test(fnToString.call(value));
-  }
-  return isObjectLike(value) && reIsHostCtor.test(value);
-}
-
-module.exports = getNative;
-
-},{}],24:[function(require,module,exports){
+},{"lodash._getnative":70,"lodash.isarguments":71,"lodash.isarray":68}],70:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],71:[function(require,module,exports){
 /**
  * lodash 3.0.4 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -3808,9 +8611,409 @@ function isArguments(value) {
 
 module.exports = isArguments;
 
-},{}],25:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
+/**
+ * lodash 3.1.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseMatches = require('lodash._basematches'),
+    find = require('lodash.find');
+
+/**
+ * Performs a deep comparison between each element in `collection` and the
+ * source object, returning the first element that has equivalent property
+ * values.
+ *
+ * @static
+ * @memberOf _
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to search.
+ * @param {Object} source The object of property values to match.
+ * @returns {*} Returns the matched element, else `undefined`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney', 'age': 36, 'status': 'busy' },
+ *   { 'user': 'fred',   'age': 40, 'status': 'busy' }
+ * ];
+ *
+ * _.result(_.findWhere(users, { 'status': 'busy' }), 'user');
+ * // => 'barney'
+ *
+ * _.result(_.findWhere(users, { 'age': 40 }), 'user');
+ * // => 'fred'
+ */
+function findWhere(collection, source) {
+  return find(collection, baseMatches(source));
+}
+
+module.exports = findWhere;
+
+},{"lodash._basematches":73,"lodash.find":59}],73:[function(require,module,exports){
+/**
+ * lodash 3.2.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseIsMatch = require('lodash._baseismatch'),
+    pairs = require('lodash.pairs');
+
+/**
+ * The base implementation of `_.matches` which does not clone `source`.
+ *
+ * @private
+ * @param {Object} source The object of property values to match.
+ * @returns {Function} Returns the new function.
+ */
+function baseMatches(source) {
+  var matchData = getMatchData(source);
+  if (matchData.length == 1 && matchData[0][2]) {
+    var key = matchData[0][0],
+        value = matchData[0][1];
+
+    return function(object) {
+      if (object == null) {
+        return false;
+      }
+      return object[key] === value && (value !== undefined || (key in toObject(object)));
+    };
+  }
+  return function(object) {
+    return baseIsMatch(object, matchData);
+  };
+}
+
+/**
+ * Gets the propery names, values, and compare flags of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the match data of `object`.
+ */
+function getMatchData(object) {
+  var result = pairs(object),
+      length = result.length;
+
+  while (length--) {
+    result[length][2] = isStrictComparable(result[length][1]);
+  }
+  return result;
+}
+
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+
+/**
+ * Converts `value` to an object if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Object} Returns the object.
+ */
+function toObject(value) {
+  return isObject(value) ? value : Object(value);
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = baseMatches;
+
+},{"lodash._baseismatch":74,"lodash.pairs":81}],74:[function(require,module,exports){
+/**
+ * lodash 3.1.3 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseIsEqual = require('lodash._baseisequal');
+
+/**
+ * The base implementation of `_.isMatch` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Object} object The object to inspect.
+ * @param {Array} matchData The propery names, values, and compare flags to match.
+ * @param {Function} [customizer] The function to customize comparing objects.
+ * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ */
+function baseIsMatch(object, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+
+  if (object == null) {
+    return !length;
+  }
+  object = toObject(object);
+  while (index--) {
+    var data = matchData[index];
+    if ((noCustomizer && data[2])
+          ? data[1] !== object[data[0]]
+          : !(data[0] in object)
+        ) {
+      return false;
+    }
+  }
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var result = customizer ? customizer(objValue, srcValue, key) : undefined;
+      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true) : result)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+/**
+ * Converts `value` to an object if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Object} Returns the object.
+ */
+function toObject(value) {
+  return isObject(value) ? value : Object(value);
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = baseIsMatch;
+
+},{"lodash._baseisequal":75}],75:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"dup":21}],26:[function(require,module,exports){
+},{"dup":21,"lodash.isarray":76,"lodash.istypedarray":77,"lodash.keys":78}],76:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],77:[function(require,module,exports){
+arguments[4][62][0].apply(exports,arguments)
+},{"dup":62}],78:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69,"lodash._getnative":79,"lodash.isarguments":80,"lodash.isarray":76}],79:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],80:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],81:[function(require,module,exports){
+arguments[4][64][0].apply(exports,arguments)
+},{"dup":64,"lodash.keys":82}],82:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69,"lodash._getnative":83,"lodash.isarguments":84,"lodash.isarray":85}],83:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],84:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],85:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],86:[function(require,module,exports){
+/**
+ * lodash 3.1.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var createAggregator = require('lodash._createaggregator');
+
+/**
+ * Creates an object composed of keys generated from the results of running
+ * each element of `collection` through `iteratee`. The corresponding value
+ * of each key is the last element responsible for generating the key. The
+ * iteratee function is bound to `thisArg` and invoked with three arguments:
+ * (value, index|key, collection).
+ *
+ * If a property name is provided for `iteratee` the created `_.property`
+ * style callback returns the property value of the given element.
+ *
+ * If a value is also provided for `thisArg` the created `_.matchesProperty`
+ * style callback returns `true` for elements that have a matching property
+ * value, else `false`.
+ *
+ * If an object is provided for `iteratee` the created `_.matches` style
+ * callback returns `true` for elements that have the properties of the given
+ * object, else `false`.
+ *
+ * @static
+ * @memberOf _
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+ *  per iteration.
+ * @param {*} [thisArg] The `this` binding of `iteratee`.
+ * @returns {Object} Returns the composed aggregate object.
+ * @example
+ *
+ * var keyData = [
+ *   { 'dir': 'left', 'code': 97 },
+ *   { 'dir': 'right', 'code': 100 }
+ * ];
+ *
+ * _.indexBy(keyData, 'dir');
+ * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+ *
+ * _.indexBy(keyData, function(object) {
+ *   return String.fromCharCode(object.code);
+ * });
+ * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+ *
+ * _.indexBy(keyData, function(object) {
+ *   return this.fromCharCode(object.code);
+ * }, String);
+ * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+ */
+var indexBy = createAggregator(function(result, value, key) {
+  result[key] = value;
+});
+
+module.exports = indexBy;
+
+},{"lodash._createaggregator":87}],87:[function(require,module,exports){
+/**
+ * lodash 3.0.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseCallback = require('lodash._basecallback'),
+    baseEach = require('lodash._baseeach'),
+    isArray = require('lodash.isarray');
+
+/**
+ * Creates a function that aggregates a collection, creating an accumulator
+ * object composed from the results of running each element in the collection
+ * through an iteratee. The `setter` sets the keys and values of the accumulator
+ * object. If `initializer` is provided initializes the accumulator object.
+ *
+ * @private
+ * @param {Function} setter The function to set keys and values of the accumulator object.
+ * @param {Function} [initializer] The function to initialize the accumulator object.
+ * @returns {Function} Returns the new aggregator function.
+ */
+function createAggregator(setter, initializer) {
+  return function(collection, iteratee, thisArg) {
+    var result = initializer ? initializer() : {};
+    iteratee = baseCallback(iteratee, thisArg, 3);
+
+    if (isArray(collection)) {
+      var index = -1,
+          length = collection.length;
+
+      while (++index < length) {
+        var value = collection[index];
+        setter(result, value, iteratee(value, index, collection), collection);
+      }
+    } else {
+      baseEach(collection, function(value, key, collection) {
+        setter(result, value, iteratee(value, key, collection), collection);
+      });
+    }
+    return result;
+  };
+}
+
+module.exports = createAggregator;
+
+},{"lodash._basecallback":88,"lodash._baseeach":93,"lodash.isarray":94}],88:[function(require,module,exports){
+arguments[4][18][0].apply(exports,arguments)
+},{"dup":18,"lodash._baseisequal":89,"lodash._bindcallback":91,"lodash.isarray":94,"lodash.pairs":92}],89:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"dup":21,"lodash.isarray":94,"lodash.istypedarray":90,"lodash.keys":95}],90:[function(require,module,exports){
+arguments[4][62][0].apply(exports,arguments)
+},{"dup":62}],91:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"dup":22}],92:[function(require,module,exports){
+arguments[4][64][0].apply(exports,arguments)
+},{"dup":64,"lodash.keys":95}],93:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65,"lodash.keys":95}],94:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],95:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69,"lodash._getnative":96,"lodash.isarguments":97,"lodash.isarray":98}],96:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],97:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],98:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],99:[function(require,module,exports){
 /**
  * lodash 3.0.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -3880,149 +9083,99 @@ function invert(object, multiValue, guard) {
 
 module.exports = invert;
 
-},{"lodash._isiterateecall":27,"lodash.keys":28}],27:[function(require,module,exports){
+},{"lodash._isiterateecall":100,"lodash.keys":101}],100:[function(require,module,exports){
+arguments[4][25][0].apply(exports,arguments)
+},{"dup":25}],101:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69,"lodash._getnative":102,"lodash.isarguments":103,"lodash.isarray":104}],102:[function(require,module,exports){
+arguments[4][24][0].apply(exports,arguments)
+},{"dup":24}],103:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],104:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],105:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],106:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],107:[function(require,module,exports){
+arguments[4][62][0].apply(exports,arguments)
+},{"dup":62}],108:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69,"lodash._getnative":24,"lodash.isarguments":105,"lodash.isarray":106}],109:[function(require,module,exports){
 /**
- * lodash 3.0.9 (Custom Build) <https://lodash.com/>
+ * lodash 3.8.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
  * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^\d+$/;
-
-/**
- * Used as the [maximum length](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.max_safe_integer)
- * of an array-like value.
- */
-var MAX_SAFE_INTEGER = 9007199254740991;
+var baseCallback = require('lodash._basecallback'),
+    baseFor = require('lodash._basefor'),
+    keys = require('lodash.keys');
 
 /**
- * The base implementation of `_.property` without support for deep paths.
+ * The base implementation of `_.forOwn` without support for callback
+ * shorthands and `this` binding.
  *
  * @private
- * @param {string} key The key of the property to get.
- * @returns {Function} Returns the new function.
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
  */
-function baseProperty(key) {
-  return function(object) {
-    return object == null ? undefined : object[key];
+function baseForOwn(object, iteratee) {
+  return baseFor(object, iteratee, keys);
+}
+
+/**
+ * Creates a function for `_.mapKeys` or `_.mapValues`.
+ *
+ * @private
+ * @param {boolean} [isMapKeys] Specify mapping keys instead of values.
+ * @returns {Function} Returns the new map function.
+ */
+function createObjectMapper(isMapKeys) {
+  return function(object, iteratee, thisArg) {
+    var result = {};
+    iteratee = baseCallback(iteratee, thisArg, 3);
+
+    baseForOwn(object, function(value, key, object) {
+      var mapped = iteratee(value, key, object);
+      key = isMapKeys ? mapped : key;
+      value = isMapKeys ? value : mapped;
+      result[key] = value;
+    });
+    return result;
   };
 }
 
 /**
- * Gets the "length" property value of `object`.
- *
- * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
- * that affects Safari on at least iOS 8.1-8.3 ARM64.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {*} Returns the "length" value.
- */
-var getLength = baseProperty('length');
-
-/**
- * Checks if `value` is array-like.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- */
-function isArrayLike(value) {
-  return value != null && isLength(getLength(value));
-}
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return value > -1 && value % 1 == 0 && value < length;
-}
-
-/**
- * Checks if the provided arguments are from an iteratee call.
- *
- * @private
- * @param {*} value The potential iteratee value argument.
- * @param {*} index The potential iteratee index or key argument.
- * @param {*} object The potential iteratee object argument.
- * @returns {boolean} Returns `true` if the arguments are from an iteratee call, else `false`.
- */
-function isIterateeCall(value, index, object) {
-  if (!isObject(object)) {
-    return false;
-  }
-  var type = typeof index;
-  if (type == 'number'
-      ? (isArrayLike(object) && isIndex(index, object.length))
-      : (type == 'string' && index in object)) {
-    var other = object[index];
-    return value === value ? (value === other) : (other !== other);
-  }
-  return false;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This function is based on [`ToLength`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength).
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- */
-function isLength(value) {
-  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
- * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ * The opposite of `_.mapValues`; this method creates an object with the
+ * same values as `object` and keys generated by running each own enumerable
+ * property of `object` through `iteratee`.
  *
  * @static
  * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @category Object
+ * @param {Object} object The object to iterate over.
+ * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+ *  per iteration.
+ * @param {*} [thisArg] The `this` binding of `iteratee`.
+ * @returns {Object} Returns the new mapped object.
  * @example
  *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(1);
- * // => false
+ * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+ *   return key + value;
+ * });
+ * // => { 'a1': 1, 'b2': 2 }
  */
-function isObject(value) {
-  // Avoid a V8 JIT bug in Chrome 19-20.
-  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
+var mapKeys = createObjectMapper(true);
 
-module.exports = isIterateeCall;
+module.exports = mapKeys;
 
-},{}],28:[function(require,module,exports){
-arguments[4][22][0].apply(exports,arguments)
-},{"dup":22,"lodash._getnative":29,"lodash.isarguments":30,"lodash.isarray":31}],29:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],30:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],31:[function(require,module,exports){
-arguments[4][21][0].apply(exports,arguments)
-},{"dup":21}],32:[function(require,module,exports){
+},{"lodash._basecallback":18,"lodash._basefor":20,"lodash.keys":108}],110:[function(require,module,exports){
+arguments[4][64][0].apply(exports,arguments)
+},{"dup":64,"lodash.keys":108}],111:[function(require,module,exports){
 /**
  * lodash 3.1.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -4092,7 +9245,7 @@ partial.placeholder = {};
 
 module.exports = partial;
 
-},{"lodash._createwrapper":33,"lodash._replaceholders":36,"lodash.restparam":37}],33:[function(require,module,exports){
+},{"lodash._createwrapper":112,"lodash._replaceholders":115,"lodash.restparam":116}],112:[function(require,module,exports){
 (function (global){
 /**
  * lodash 3.0.7 (Custom Build) <https://lodash.com/>
@@ -4491,7 +9644,7 @@ function isObject(value) {
 module.exports = createWrapper;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"lodash._arraycopy":34,"lodash._basecreate":35,"lodash._replaceholders":36}],34:[function(require,module,exports){
+},{"lodash._arraycopy":113,"lodash._basecreate":114,"lodash._replaceholders":115}],113:[function(require,module,exports){
 /**
  * lodash 3.0.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -4522,7 +9675,7 @@ function arrayCopy(source, array) {
 
 module.exports = arrayCopy;
 
-},{}],35:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 /**
  * lodash 3.0.3 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -4581,7 +9734,7 @@ function isObject(value) {
 
 module.exports = baseCreate;
 
-},{}],36:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 /**
  * lodash 3.0.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -4620,7 +9773,7 @@ function replaceHolders(array, placeholder) {
 
 module.exports = replaceHolders;
 
-},{}],37:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 /**
  * lodash 3.6.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -4689,12 +9842,554 @@ function restParam(func, start) {
 
 module.exports = restParam;
 
-},{}],38:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
+/**
+ * lodash 3.1.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseFlatten = require('lodash._baseflatten'),
+    bindCallback = require('lodash._bindcallback'),
+    pickByArray = require('lodash._pickbyarray'),
+    pickByCallback = require('lodash._pickbycallback'),
+    restParam = require('lodash.restparam');
+
+/**
+ * Creates an object composed of the picked `object` properties. Property
+ * names may be specified as individual arguments or as arrays of property
+ * names. If `predicate` is provided it is invoked for each property of `object`
+ * picking the properties `predicate` returns truthy for. The predicate is
+ * bound to `thisArg` and invoked with three arguments: (value, key, object).
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {Function|...(string|string[])} [predicate] The function invoked per
+ *  iteration or property names to pick, specified as individual property
+ *  names or arrays of property names.
+ * @param {*} [thisArg] The `this` binding of `predicate`.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'user': 'fred', 'age': 40 };
+ *
+ * _.pick(object, 'user');
+ * // => { 'user': 'fred' }
+ *
+ * _.pick(object, _.isString);
+ * // => { 'user': 'fred' }
+ */
+var pick = restParam(function(object, props) {
+  if (object == null) {
+    return {};
+  }
+  return typeof props[0] == 'function'
+    ? pickByCallback(object, bindCallback(props[0], props[1], 3))
+    : pickByArray(object, baseFlatten(props));
+});
+
+module.exports = pick;
+
+},{"lodash._baseflatten":118,"lodash._bindcallback":121,"lodash._pickbyarray":122,"lodash._pickbycallback":123,"lodash.restparam":128}],118:[function(require,module,exports){
+/**
+ * lodash 3.1.4 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var isArguments = require('lodash.isarguments'),
+    isArray = require('lodash.isarray');
+
+/**
+ * Checks if `value` is object-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+/**
+ * The base implementation of `_.flatten` with added support for restricting
+ * flattening and specifying the start index.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {boolean} [isDeep] Specify a deep flatten.
+ * @param {boolean} [isStrict] Restrict flattening to arrays-like objects.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, isDeep, isStrict, result) {
+  result || (result = []);
+
+  var index = -1,
+      length = array.length;
+
+  while (++index < length) {
+    var value = array[index];
+    if (isObjectLike(value) && isArrayLike(value) &&
+        (isStrict || isArray(value) || isArguments(value))) {
+      if (isDeep) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, isDeep, isStrict, result);
+      } else {
+        arrayPush(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new function.
+ */
+function baseProperty(key) {
+  return function(object) {
+    return object == null ? undefined : object[key];
+  };
+}
+
+/**
+ * Gets the "length" property value of `object`.
+ *
+ * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
+ * that affects Safari on at least iOS 8.1-8.3 ARM64.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {*} Returns the "length" value.
+ */
+var getLength = baseProperty('length');
+
+/**
+ * Checks if `value` is array-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ */
+function isArrayLike(value) {
+  return value != null && isLength(getLength(value));
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = baseFlatten;
+
+},{"lodash.isarguments":119,"lodash.isarray":120}],119:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],120:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],121:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"dup":22}],122:[function(require,module,exports){
+/**
+ * lodash 3.0.2 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * A specialized version of `_.pick` which picks `object` properties specified
+ * by `props`.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} props The property names to pick.
+ * @returns {Object} Returns the new object.
+ */
+function pickByArray(object, props) {
+  object = toObject(object);
+
+  var index = -1,
+      length = props.length,
+      result = {};
+
+  while (++index < length) {
+    var key = props[index];
+    if (key in object) {
+      result[key] = object[key];
+    }
+  }
+  return result;
+}
+
+/**
+ * Converts `value` to an object if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Object} Returns the object.
+ */
+function toObject(value) {
+  return isObject(value) ? value : Object(value);
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = pickByArray;
+
+},{}],123:[function(require,module,exports){
+/**
+ * lodash 3.0.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseFor = require('lodash._basefor'),
+    keysIn = require('lodash.keysin');
+
+/**
+ * The base implementation of `_.forIn` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForIn(object, iteratee) {
+  return baseFor(object, iteratee, keysIn);
+}
+
+/**
+ * A specialized version of `_.pick` that picks `object` properties `predicate`
+ * returns truthy for.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Object} Returns the new object.
+ */
+function pickByCallback(object, predicate) {
+  var result = {};
+  baseForIn(object, function(value, key, object) {
+    if (predicate(value, key, object)) {
+      result[key] = value;
+    }
+  });
+  return result;
+}
+
+module.exports = pickByCallback;
+
+},{"lodash._basefor":124,"lodash.keysin":125}],124:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"dup":20}],125:[function(require,module,exports){
+/**
+ * lodash 3.0.8 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var isArguments = require('lodash.isarguments'),
+    isArray = require('lodash.isarray');
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^\d+$/;
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used as the [maximum length](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return value > -1 && value % 1 == 0 && value < length;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  if (object == null) {
+    return [];
+  }
+  if (!isObject(object)) {
+    object = Object(object);
+  }
+  var length = object.length;
+  length = (length && isLength(length) &&
+    (isArray(object) || isArguments(object)) && length) || 0;
+
+  var Ctor = object.constructor,
+      index = -1,
+      isProto = typeof Ctor == 'function' && Ctor.prototype === object,
+      result = Array(length),
+      skipIndexes = length > 0;
+
+  while (++index < length) {
+    result[index] = (index + '');
+  }
+  for (var key in object) {
+    if (!(skipIndexes && isIndex(key, length)) &&
+        !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = keysIn;
+
+},{"lodash.isarguments":126,"lodash.isarray":127}],126:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"dup":71}],127:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],128:[function(require,module,exports){
+arguments[4][116][0].apply(exports,arguments)
+},{"dup":116}],129:[function(require,module,exports){
+arguments[4][116][0].apply(exports,arguments)
+},{"dup":116}],130:[function(require,module,exports){
+'use strict';
+
+var processFn = function (fn, P, opts) {
+	return function () {
+		var that = this;
+		var args = new Array(arguments.length);
+
+		for (var i = 0; i < arguments.length; i++) {
+			args[i] = arguments[i];
+		}
+
+		return new P(function (resolve, reject) {
+			args.push(function (err, result) {
+				if (err) {
+					reject(err);
+				} else if (opts.multiArgs) {
+					var results = new Array(arguments.length - 1);
+
+					for (var i = 1; i < arguments.length; i++) {
+						results[i - 1] = arguments[i];
+					}
+
+					resolve(results);
+				} else {
+					resolve(result);
+				}
+			});
+
+			fn.apply(that, args);
+		});
+	};
+};
+
+var pify = module.exports = function (obj, P, opts) {
+	if (typeof P !== 'function') {
+		opts = P;
+		P = Promise;
+	}
+
+	opts = opts || {};
+	opts.exclude = opts.exclude || [/.+Sync$/];
+
+	var filter = function (key) {
+		var match = function (pattern) {
+			return typeof pattern === 'string' ? key === pattern : pattern.test(key);
+		};
+
+		return opts.include ? opts.include.some(match) : !opts.exclude.some(match);
+	};
+
+	var ret = typeof obj === 'function' ? function () {
+		if (opts.excludeMain) {
+			return obj.apply(this, arguments);
+		}
+
+		return processFn(obj, P, opts).apply(this, arguments);
+	} : {};
+
+	return Object.keys(obj).reduce(function (ret, key) {
+		var x = obj[key];
+
+		ret[key] = typeof x === 'function' && filter(key) ? processFn(x, P, opts) : x;
+
+		return ret;
+	}, ret);
+};
+
+pify.all = pify;
+
+},{}],131:[function(require,module,exports){
 "use strict";
 
 var blank = require("./util/blank");
 var invert = require("lodash.invert");
 
+var mapOfOnes = function mapOfOnes(arr) {
+  return arr.reduce(function (obj, k) {
+    return (obj[k] = 1, obj);
+  }, {});
+};
+var pipe = function pipe() {
+  for (var _len = arguments.length, fns = Array(_len), _key = 0; _key < _len; _key++) {
+    fns[_key] = arguments[_key];
+  }
+
+  return function (arg) {
+    return fns.reduce(function (last, fn) {
+      return fn(last);
+    }, arg);
+  };
+};
 var nbaToJsMap = blank({
   "Season": "season",
   "SeasonType": "seasonType",
@@ -4748,95 +10443,8 @@ var nbaToJsMap = blank({
 });
 
 var jsToNbaMap = blank(invert(nbaToJsMap));
-
-var nbaParams = blank({
-  "Season": 1,
-  "SeasonType": 1,
-  "LeagueID": 1,
-  "PlayerID": 1,
-  "GraphStartSeason": 1,
-  "GraphEndSeason": 1,
-  "GraphStat": 1,
-  "asynchFlag": 1,
-  "IsOnlyCurrentSeason": 1,
-  "AllStarSeason": 1,
-  "MeasureType": 1,
-  "PerMode": 1,
-  "PlusMinus": 1,
-  "PaceAdjust": 1,
-  "Rank": 1,
-  "Outcome": 1,
-  "Location": 1,
-  "Month": 1,
-  "SeasonSegment": 1,
-  "DateFrom": 1,
-  "DateTo": 1,
-  "OpponentTeamID": 1,
-  "VsConference": 1,
-  "VsDivision": 1,
-  "GameSegment": 1,
-  "Period": 1,
-  "LastNGames": 1,
-  "GameScope": 1,
-  "PlayerExperience": 1,
-  "PlayerPosition": 1,
-  "StarterBench": 1,
-  "TeamID": 1,
-  "GameID": 1,
-  "Position": 1,
-  "RookieYear": 1,
-  "ContextMeasure": 1,
-  "gameDate": 1,
-  "DayOffset": 1,
-  "StartPeriod": 1,
-  "EndPeriod": 1,
-  "RangeType": 1,
-  "StartRange": 1,
-  "EndRange": 1,
-  "ContextFilter": 1,
-  "zone-mode": 1,
-  "GroupQuantity": 1,
-  "pageNo": 1,
-  "rowsPerPage": 1
-});
-
-var jsParams = blank({
-  "season": 1,
-  "allStarSeason": 1,
-  "seasonType": 1,
-  "leagueId": 1,
-  "measureType": 1,
-  "perMode": 1,
-  "plusMinus": 1,
-  "paceAdjust": 1,
-  "rank": 1,
-  "outcome": 1,
-  "location": 1,
-  "month": 1,
-  "seasonSegment": 1,
-  "dateFrom": 1,
-  "dateTo": 1,
-  "opponentTeamId": 1,
-  "vsConference": 1,
-  "vsDivision": 1,
-  "gameSegment": 1,
-  "period": 1,
-  "lastNGames": 1,
-  "gameScope": 1,
-  "playerExperience": 1,
-  "playerPosition": 1,
-  "starterBench": 1,
-  "teamId": 1,
-  "gameId": 1,
-  "position": 1,
-  "rookieYear": 1,
-  "contextFilter": 1,
-  "contextMeasure": 1,
-  "zoneMode": 1,
-  "groupQuantity": 1,
-  "pageNo": 1,
-  "rowsPerPage": 1
-});
+var nbaParams = blank(mapOfOnes(Object.keys(nbaToJsMap)));
+var jsParams = blank(mapOfOnes(Object.keys(jsToNbaMap)));
 
 module.exports = {
   nbaParams: nbaParams,
@@ -4845,7 +10453,7 @@ module.exports = {
   nbaToJsMap: nbaToJsMap
 };
 
-},{"./util/blank":44,"lodash.invert":26}],39:[function(require,module,exports){
+},{"./util/blank":142,"lodash.invert":99}],132:[function(require,module,exports){
 "use strict";
 
 var qs = require("querystring");
@@ -4856,18 +10464,264 @@ var transportConfig = require("./transport-config");
 function getJsonp(url, query, callback) {
   url += "?" + qs.stringify(query);
   jsonp(url, { timeout: transportConfig.timeout }, function (err, result) {
-    if (err) {
-      // for compatibility with timeouts from request module
-      if (err.message === "Timeout") err.code = "ETIMEDOUT";
-      callback(err);
-    }
-    callback(null, result);
+    // for compatibility with timeouts from request module
+    if (err && err.message === "Timeout") err.code = "ETIMEDOUT";
+    callback(err, result);
   });
 }
 
 module.exports = getJsonp;
 
-},{"./transport-config":43,"jsonp":9,"querystring":6}],40:[function(require,module,exports){
+},{"./transport-config":141,"jsonp":13,"querystring":10}],133:[function(require,module,exports){
+(function (global){
+"use strict";
+
+var find = require("lodash.find");
+var contains = require("lodash.contains");
+var assign = require("lodash.assign");
+var pify = require("pify");
+
+var getTeamsInfo = require("./team-info");
+var getPlayersInfo = require("./player-info");
+
+var sportVu = require("./sport-vu");
+var stats = require("./stats");
+var buildPlayers = require("./util/build-players");
+
+var _require = require("./util/promisify");
+
+var promisify = _require.promisify;
+var promisifyAll = _require.promisifyAll;
+
+var teams = require("../data/teams.json");
+var players = buildPlayers(require("../data/players.json"));
+
+var nba = {
+  stats: stats,
+  sportVu: sportVu,
+  players: players,
+  updatePlayers: updatePlayers,
+  teams: teams,
+  updateTeams: updateTeams,
+
+  teamIdFromName: teamIdFromName,
+  playerIdFromName: playerIdFromName,
+  findPlayer: findPlayer,
+  searchPlayers: searchPlayers,
+  usePromises: usePromises,
+
+  // backwards compatibility
+  ready: function ready(cb) {
+    return cb.call(nba);
+  },
+  api: stats
+};
+
+function teamIdFromName(name) {
+  var n = name.toLowerCase();
+  var team = find(nba.teams, function (t) {
+    return t.abbreviation.toLowerCase() === n || t.location.toLowerCase() === n || t.teamName.toLowerCase() === n || t.simpleName.toLowerCase() === n;
+  });
+  return team ? team.teamId : null;
+}
+
+function playerIdFromName(name) {
+  var p = findPlayer(name);
+  return p ? p.playerId : null;
+}
+
+function findPlayer(str) {
+  str = str.toLowerCase();
+  return find(nba.players, function (p) {
+    return contains(p.fullName.toLowerCase(), str);
+  });
+}
+
+function searchPlayers(str) {
+  str = str.toLowerCase();
+  return nba.players.filter(function (p) {
+    return contains(p.fullName.toLowerCase(), str);
+  });
+}
+
+function updatePlayers(cb) {
+  return getPlayersInfo(function (err, resp) {
+    if (err) return cb(err);
+    nba.players = resp;
+    cb(null, resp);
+  });
+}
+
+function updateTeams(cb) {
+  return getTeamsInfo(function (err, resp) {
+    if (err) return cb(err);
+    nba.teams = resp;
+    cb(null, resp);
+  });
+}
+
+var usedPromises = false;
+
+function usePromises(Prms) {
+  if (usedPromises) return nba;
+  usedPromises = true;
+
+  Prms = Prms || global.Promise;
+  if (typeof Prms !== "function") {
+    throw new Error("Invalid Promise implementation");
+  }
+
+  nba.stats = assign(Object.create(Object.getPrototypeOf(nba.stats)), pify(nba.stats, Prms));
+  nba.sportVu = assign(Object.create(Object.getPrototypeOf(nba.sportVu)), pify(nba.sportVu, Prms));
+  nba.updatePlayers = pify(updatePlayers, Prms);
+  nba.updateTeams = pify(updateTeams, Prms);
+
+  nba.api = nba.stats;
+  return nba;
+}
+
+module.exports = nba;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"../data/players.json":1,"../data/teams.json":2,"./player-info":134,"./sport-vu":136,"./stats":138,"./team-info":139,"./util/build-players":143,"./util/promisify":146,"lodash.assign":26,"lodash.contains":27,"lodash.find":59,"pify":130}],134:[function(require,module,exports){
+"use strict";
+
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
+
+var stats = require("./stats");
+
+module.exports = function (cb) {
+  stats.playersInfo(function (err, resp) {
+    if (err) return cb(err);
+    var players = resp.resultSets[0].rowSet;
+    cb(null, players.map(makePlayer));
+  });
+};
+
+function makePlayer(tuple) {
+  var playerId = tuple[0];
+
+  var _tuple$1$split = tuple[1].split(", ");
+
+  var _tuple$1$split2 = _slicedToArray(_tuple$1$split, 2);
+
+  var lastName = _tuple$1$split2[0];
+  var firstName = _tuple$1$split2[1];
+
+  var teamId = tuple[7];
+  return { firstName: firstName, lastName: lastName, playerId: playerId, teamId: teamId };
+}
+
+},{"./stats":138}],135:[function(require,module,exports){
+"use strict";
+
+var defaults = {
+  season: 2015
+};
+
+function sportVuTransform(x) {
+  return x;
+}
+
+module.exports = {
+  "speed": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/speedData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "touches": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/touchesData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "passing": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/passingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "defense": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/defenseData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "rebounding": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/reboundingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "drives": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/drivesData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "shooting": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/shootingData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "catchShoot": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/catchShootData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  },
+  "pullUpShoot": {
+    url: "http://stats.nba.com/js/data/sportvu/__season__/pullUpShootData.json",
+    defaults: defaults,
+    transform: sportVuTransform
+  }
+};
+
+},{}],136:[function(require,module,exports){
+(function (process){
+"use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _require = require("./util/string");
+
+var interpolate = _require.interpolate;
+
+var endpoints = require("./sport-vu-endpoints");
+
+var transport = require("./get-json");
+
+var sportVu = Object.create({
+  setTransport: function setTransport(_transport) {
+    transport = _transport;
+  }
+});
+
+Object.keys(endpoints).forEach(function (key) {
+  sportVu[key] = makeSportVuMethod(endpoints[key]);
+});
+
+function makeSportVuMethod(endpoint) {
+  var makeUrl = interpolate(endpoint.url);
+
+  return function sportVuMethod(options, callback) {
+    if (process.browser) {
+      throw new Error("SportVu does not support JSONP");
+    }
+
+    if (typeof options === "function") {
+      callback = options;
+      options = {};
+    }
+
+    if (typeof callback !== "function") {
+      throw new TypeError("Must pass a callback function.");
+    }
+
+    options = _extends({}, endpoint.defaults, options);
+
+    transport(makeUrl(options), {}, callback);
+  };
+}
+
+module.exports = sportVu;
+
+}).call(this,require('_process'))
+},{"./get-json":132,"./sport-vu-endpoints":135,"./util/string":147,"_process":7}],137:[function(require,module,exports){
 "use strict";
 
 var _require = require("./transforms");
@@ -5170,55 +11024,6 @@ module.exports = {
     transform: general
   },
 
-  playerDashPtShotLog: {
-    url: "http://stats.nba.com/stats/playerdashptshotlog",
-    defaults: {
-      "LeagueID": "00",
-      "Season": DEFAULT_SEASON,
-      "SeasonType": "Regular Season",
-      "PlayerID": "0",
-      "TeamID": "0",
-      "MeasureType": "Base",
-      "Outcome": "",
-      "Location": "",
-      "Month": "0",
-      "SeasonSegment": "",
-      "DateFrom": "",
-      "DateTo": "",
-      "OpponentTeamID": "0",
-      "VsConference": "",
-      "VsDivision": "",
-      "GameSegment": "",
-      "Period": "0",
-      "LastNGames": "0"
-    },
-    transform: general
-  },
-
-  playerDashPtReboundLogs: {
-    url: "http://stats.nba.com/stats/playerdashptreboundlogs",
-    defaults: {
-      "LeagueID": "00",
-      "Season": DEFAULT_SEASON,
-      "SeasonType": "Regular Season",
-      "PlayerID": "0",
-      "TeamID": "0",
-      "Outcome": "",
-      "Location": "",
-      "Month": "0",
-      "SeasonSegment": "",
-      "DateFrom": "",
-      "DateTo": "",
-      "OpponentTeamID": "0",
-      "VsConference": "",
-      "VsDivision": "",
-      "GameSegment": "",
-      "Period": "0",
-      "LastNGames": "0"
-    },
-    transform: general
-  },
-
   lineups: {
     url: "http://stats.nba.com/stats/leaguedashlineups",
     defaults: {
@@ -5254,7 +11059,7 @@ module.exports = {
 
 };
 
-},{"./transforms":42}],41:[function(require,module,exports){
+},{"./transforms":140}],138:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -5273,6 +11078,9 @@ var translate = partial(translateKeys, dicts.jsToNbaMap);
 var stats = Object.create({
   setTransport: function setTransport(_transport) {
     transport = _transport;
+  },
+  getTransport: function getTransport() {
+    return transport;
   }
 });
 
@@ -5293,10 +11101,11 @@ function makeStatsMethod(endpoint) {
       throw new TypeError("Must pass a callback function.");
     }
 
-    query = _extends({}, endpoint.defaults, translate(query));
+    var params = _extends({}, endpoint.defaults, translate(query));
 
-    transport(endpoint.url, query, function (err, response) {
+    transport(endpoint.url, params, function (err, response) {
       if (err) return callback(err);
+
       if (response == null) return callback();
 
       // response is something like "GameID is required"
@@ -5310,7 +11119,56 @@ function makeStatsMethod(endpoint) {
 
 module.exports = stats;
 
-},{"./dicts":38,"./get-json":39,"./stats-endpoints":40,"./util/translate-keys":47,"lodash.partial":32,"querystring":6}],42:[function(require,module,exports){
+},{"./dicts":131,"./get-json":132,"./stats-endpoints":137,"./util/translate-keys":148,"lodash.partial":111,"querystring":10}],139:[function(require,module,exports){
+"use strict";
+
+var mergeCollections = require("./util/merge-collections");
+var blank = require("./util/blank");
+var stats = require("./stats");
+
+var pick = require("lodash.pick");
+
+var TWO_WORD_TEAMS = blank({
+  "Portland Trail Blazers": true
+});
+
+// adds location city and short name (i.e. 'Warriors') data to team objects.
+function addExtraTeamData(team) {
+  team.teamName = team.teamName.trim();
+  var splitted = team.teamName.split(" ");
+  if (TWO_WORD_TEAMS[team.teamName]) {
+    team.simpleName = splitted.splice(-2, 2).join(" ");
+  } else {
+    team.simpleName = splitted.splice(-1, 1).join();
+  }
+  team.location = splitted.join(" ");
+  return team;
+}
+
+module.exports = function teamInfo(cb) {
+  var results = [null, null];
+
+  stats.teamStats(function (err, response) {
+    if (err) return cb(err);
+    results[0] = response;
+    if (results[1]) done(results);
+  });
+
+  stats.teamYears(function (err, response) {
+    if (err) return cb(err);
+    results[1] = response;
+    if (results[0]) done(results);
+  });
+
+  function done(responses) {
+    var data = mergeCollections("teamId", responses[0], responses[1]).map(function (d) {
+      return addExtraTeamData(pick(d, "teamId", "abbreviation", "teamName"));
+    });
+    cb(null, data);
+  }
+};
+
+},{"./stats":138,"./util/blank":142,"./util/merge-collections":145,"lodash.pick":117}],140:[function(require,module,exports){
 "use strict";
 
 var indexBy = require("lodash.indexby");
@@ -5336,6 +11194,7 @@ function general(resp) {
   }, {});
 }
 
+// todo make this work identical to update-players.js
 function players(resp) {
   return base(resp).map(function (player) {
     var names = player.displayLastCommaFirst.split(", ").reverse();
@@ -5368,14 +11227,14 @@ function sportVu(resp) {
 
 module.exports = { base: base, general: general, players: players, lineups: lineups };
 
-},{"./util/collectify":45,"./util/string":46,"lodash.indexby":13}],43:[function(require,module,exports){
+},{"./util/collectify":144,"./util/string":147,"lodash.indexby":86}],141:[function(require,module,exports){
 "use strict";
 
 module.exports = {
   timeout: 60 * 1000
 };
 
-},{}],44:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 "use strict";
 
 module.exports = function blank(obj) {
@@ -5388,7 +11247,25 @@ module.exports = function blank(obj) {
   return out;
 };
 
-},{}],45:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
+"use strict";
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
+function buildPlayers(_players) {
+  var players = [].concat(_toConsumableArray(_players));
+
+  players.forEach(function (player) {
+    player.fullName = player.firstName + (player.lastName ? " " + player.lastName : "");
+    player.downcaseName = player.fullName.toLowerCase();
+  });
+
+  return players;
+}
+
+module.exports = buildPlayers;
+
+},{}],144:[function(require,module,exports){
 "use strict";
 
 module.exports = function collectify(headers, rows) {
@@ -5400,7 +11277,41 @@ module.exports = function collectify(headers, rows) {
   });
 };
 
-},{}],46:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
+"use strict";
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var findWhere = require("lodash.findwhere");
+
+module.exports = function mergeCollections(idProp, a, b) {
+  return a.map(function (itemA) {
+    var itemB = findWhere(b, _defineProperty({}, idProp, itemA[idProp]));
+    return _extends({}, itemA, itemB);
+  });
+};
+
+},{"lodash.findwhere":72}],146:[function(require,module,exports){
+"use strict";
+
+var pify = require("pify");
+
+var promisify = function promisify(Prms) {
+  return function (func) {
+    return pify(func, Prms);
+  };
+};
+var promisifyAll = function promisifyAll(Prms) {
+  return function (obj) {
+    return pify(obj, Prms);
+  };
+};
+
+module.exports = { promisify: promisify, promisifyAll: promisifyAll };
+
+},{"pify":130}],147:[function(require,module,exports){
 "use strict";
 
 function hasUnderscoreOrHyphen(str) {
@@ -5420,9 +11331,11 @@ function unDashHyphen(str) {
   });
 }
 
+// checks if a string consists of only uppercase letters
 function isAllUpperCase(str) {
-  return [].every.call(str, function (ch) {
-    var n = ch.charCodeAt(0);
+  return str.split("").map(function (ch) {
+    return ch.charCodeAt(0);
+  }).every(function (n) {
     return n >= 65 && n <= 90;
   });
 }
@@ -5435,6 +11348,7 @@ function jsify(str) {
   if (hasUnderscoreOrHyphen(str)) {
     return unDashHyphen(str);
   }
+
   return downcaseFirst(str);
 }
 
@@ -5457,54 +11371,41 @@ module.exports = {
   interpolate: interpolate
 };
 
-},{}],47:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 "use strict";
 
-function mapKeysAndValues(obj, cb) {
-  return Object.keys(obj).reduce(function (result, key) {
-    var pair = cb(obj[key], key, obj);
-    result[pair[0]] = pair[1];
-    return result;
-  }, {});
-}
-function mapKeys(obj, cb) {
-  return mapKeysAndValues(obj, function (value, key) {
-    return [cb(value, key, obj), value];
-  });
-}
+var mapKeys = require("lodash.mapkeys");
 
-module.exports = function translateKeys(keyMap, obj) {
+module.exports = function translateKeys(oldToNewMap, obj) {
   if (typeof obj !== "object") {
     throw new Error("needs an object");
   }
-  return mapKeys(obj, function (value, key) {
-    var newKey = keyMap[key];
+
+  return mapKeys(obj, function (value, oldKey) {
+    var newKey = oldToNewMap[oldKey];
+
     if (newKey == null) {
       throw new Error("Key not found in translator.");
     }
+
     return newKey;
   });
 };
 
-},{}],48:[function(require,module,exports){
-(function (global){
+},{"lodash.mapkeys":109}],149:[function(require,module,exports){
+(function (global,__dirname){
 "use strict";
 
 var assert = require("assert");
-var actualStats = require("../../src/stats");
+var fs = require("fs");
+var path = require("path");
 
-var steph = 201939;
-var klay = 202691;
-var dubs = 1610612744;
+var pify = require("pify");
 
-// this is an arbitrary actual game id
-// Date: 2015-03-27 GSW at MEM
-// Warriors 107 - Grizzlies 84
-var gameId = "0021401082";
+var nba = require("../../src/").usePromises();
 
-// for interactive inspection
+// for interactive inspection, particularly in browser
 global.StatsData = {};
-
 var tested = {};
 var methods = {};
 
@@ -5512,213 +11413,84 @@ var set = function set(a, b, c) {
   return (a[b] = c, a);
 };
 
-var stats = Object.keys(actualStats).reduce(function (prox, k) {
+var stats = Object.keys(nba.stats).reduce(function (prox, k) {
   methods[k] = true;
   return set(prox, k, function () {
+    var _nba$stats;
+
     tested[k] = true;
-    return actualStats[k].apply(actualStats, arguments);
+    return (_nba$stats = nba.stats)[k].apply(_nba$stats, arguments);
   });
 }, {});
 
-console.log("STATS", stats);
+// stub for now, will add response shape verification for self-documenting responses
+var verifyShape = function verifyShape(shape) {
+  return function (response) {
+    return response;
+  };
+};
 
-describe("#playerProfile", function () {
-  it("works", function (done) {
-    stats.playerProfile({ playerId: steph }, function (err, response) {
-      global.StatsData.playerProfile = response;
-      done(err);
+var callMethod = function callMethod(name, params, shape) {
+  if (params === undefined) params = {};
+  return function () {
+    return stats[name](params).then(function (r) {
+      return global.StatsData[name] = r;
     });
-  });
-});
+  };
+};
 
-describe("#playerInfo", function () {
-  it("works", function (done) {
-    stats.playerInfo({ playerId: steph }, function (err, response) {
-      global.StatsData.playerInfo = response;
-      done(err);
-    });
-  });
-});
+var _steph = 201939;
+var _dubs = 1610612744;
+var steph = { playerId: _steph };
+var dubs = { teamId: _dubs };
+var game = { gameId: "0021401082" };
 
-describe("#playersInfo", function () {
-  it("works", function (done) {
-    stats.playersInfo(function (err, response) {
-      global.StatsData.playersInfo = response;
-      done(err);
-    });
-  });
-});
+// these tests merely ensure that valid stats API calls don't error.
+// more comprehensive tests are coming soon.
 
-describe("#teamStats", function () {
-  it("works", function (done) {
-    stats.teamStats(function (err, response) {
-      global.StatsData.teamStats = response;
-      done(err);
-    });
-  });
-});
+describe("nba stats methods", function () {
 
-// transform or params needs work
-describe("#teamSplits", function () {
-  it("works", function (done) {
-    stats.teamSplits({ teamId: dubs }, function (err, response) {
-      global.StatsData.teamSplits = response;
-      done(err);
-    });
+  before(function () {
+    return nba.stats.setTransport(require("../../src/get-json"));
   });
-});
 
-describe("#teamYears", function () {
-  it("works", function (done) {
-    stats.teamYears(function (err, response) {
-      global.StatsData.teamYears = response;
-      done(err);
-    });
-  });
-});
+  it("#playerProfile", callMethod("playerProfile", steph));
+  it("#playerInfo", callMethod("playerInfo", steph));
+  it("#playersInfo", callMethod("playersInfo"));
+  it("#teamStats", callMethod("teamStats"));
+  it("#teamSplits", callMethod("teamSplits", dubs));
+  it("#teamYears", callMethod("teamYears"));
+  it("#playerSplits", callMethod("playerSplits", steph));
+  it("#shots", callMethod("shots", dubs));
+  it("#scoreboard", callMethod("scoreboard", { gameDate: "03/27/2015" }));
+  it("#playByPlay", callMethod("playByPlay", game));
+  it("#boxScoreScoring", callMethod("boxScoreScoring", game));
+  it("#boxScoreUsage", callMethod("boxScoreUsage", game));
+  it("#boxScoreMisc", callMethod("boxScoreMisc", game));
+  it("#boxScoreAdvanced", callMethod("boxScoreAdvanced", game));
+  it("#boxScoreFourFactors", callMethod("boxScoreFourFactors", game));
+  it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", { teamId: _dubs, seasonId: "20078" }));
+  it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
+  it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
+  it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", { teamId: _dubs, seasonType: "Regular Season" }));
+  it("#lineups", callMethod("lineups"));
 
-// transform or params needs work
-describe("#playerSplits", function () {
-  it("works", function (done) {
-    stats.playerSplits({ playerId: klay }, function (err, response) {
-      global.StatsData.playerSplits = response;
-      done(err);
-    });
-  });
-});
-
-describe("#shots", function () {
-  it("works", function (done) {
-    stats.shots({ teamId: dubs }, function (err, response) {
-      global.StatsData.shots = response;
-      done(err);
-    });
-  });
-});
-
-describe("#scoreboard", function () {
-  it("works", function (done) {
-    stats.scoreboard({ gameDate: "03/27/2015" }, function (err, response) {
-      global.StatsData.scoreboard = response;
-      done(err);
-    });
-  });
-});
-
-describe("#playByPlay", function () {
-  it("works", function (done) {
-    stats.playByPlay({ gameId: gameId }, function (err, response) {
-      global.StatsData.playByPlay = response;
-      done(err);
-    });
-  });
-});
-
-describe("#boxScoreScoring", function () {
-  it("works", function (done) {
-    stats.boxScoreScoring({ gameId: gameId }, function (err, response) {
-      global.StatsData.boxScoreScoring = response;
-      done(err);
-    });
-  });
-});
-
-describe("#boxScoreUsage", function () {
-  it("works", function (done) {
-    stats.boxScoreUsage({ gameId: gameId }, function (err, response) {
-      global.StatsData.boxScoreUsage = response;
-      done(err);
-    });
-  });
-});
-
-describe("#boxScoreMisc", function () {
-  it("works", function (done) {
-    stats.boxScoreMisc({ gameId: gameId }, function (err, response) {
-      global.StatsData.boxScoreMisc = response;
-      done(err);
-    });
-  });
-});
-
-describe("#boxScoreAdvanced", function () {
-  it("works", function (done) {
-    stats.boxScoreAdvanced({ gameId: gameId }, function (err, response) {
-      global.StatsData.boxScoreAdvanced = response;
-      done(err);
-    });
-  });
-});
-
-describe("#boxScoreFourFactors", function () {
-  it("works", function (done) {
-    stats.boxScoreFourFactors({ gameId: gameId }, function (err, response) {
-      global.StatsData.boxScoreFourFactors = response;
-      done(err);
-    });
-  });
-});
-
-// no idea what `seasonId` is supposed to be -- Reponse says must be five digit number
-describe("#teamHistoricalLeaders", function () {
-  it("works", function (done) {
-    stats.teamHistoricalLeaders({ teamId: dubs, seasonId: "20078" }, function (err, response) {
-      global.StatsData.teamHistoricalLeaders = response;
-      done(err);
-    });
-  });
-});
-
-describe("#teamInfoCommon", function () {
-  it("works", function (done) {
-    stats.teamInfoCommon({ teamId: dubs }, function (err, response) {
-      global.StatsData.teamInfoCommon = response;
-      done(err);
-    });
-  });
-});
-
-describe("#commonTeamRoster", function () {
-  it("works", function (done) {
-    stats.commonTeamRoster({ teamId: dubs }, function (err, response) {
-      global.StatsData.commonTeamRoster = response;
-      done(err);
-    });
-  });
-});
-
-describe("#teamPlayerDashboard", function () {
-  return it("works", function (done) {
-    return stats.teamPlayerDashboard({ teamId: dubs, seasonType: "Regular Season" }, function (err, response) {
-      global.StatsData.teamPlayerDashboard = response;
-      done(err);
-    });
-  });
-});
-
-describe("#playerDashPtShotLog", function () {
-  return it("works", function (done) {
-    return stats.playerDashPtShotLog({ playerId: klay }, function (err, response) {
-      global.StatsData.playerDashPtShotLog = response;
-      done(err);
-    });
-  });
-});
-
-describe("#playerDashPtReboundLogs", function () {
-  return it("works", function (done) {
-    return stats.playerDashPtReboundLogs({ playerId: klay }, function (err, response) {
-      global.StatsData.playerDashPtReboundLogs = response;
-      done(err);
+  after(function () {
+    Promise.all(Object.keys(global.StatsData).map(function (k) {
+      return pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2));
+    })).then(function () {
+      return done();
+    })["catch"](function () {
+      return done();
     });
   });
 });
 
 describe("tested all methods", function () {
-  return it("did test all methods", function () {
+  it("did test all methods", function () {
     return assert.deepEqual(tested, methods);
   });
 });
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../src/stats":41,"assert":1}]},{},[48]);
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},"/test/integration")
+},{"../../src/":133,"../../src/get-json":132,"assert":4,"fs":3,"path":6,"pify":130}]},{},[149]);

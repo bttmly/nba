@@ -53,6 +53,7 @@ const nbaToJsMap = blank({
   "pageNo": "pageNo",
   "rowsPerPage": "rowsPerPage",
   "SeasonID": "seasonId",
+  "PtMeasureType": "ptMeasureType",
 });
 
 

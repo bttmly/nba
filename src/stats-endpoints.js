@@ -2,15 +2,6 @@ const { general, player, base, lineups } = require("./transforms");
 
 var DEFAULT_SEASON = "2015-16";
 
-const boxScoreDefaults = {
-  "GameID": "0",
-  "RangeType": "0",
-  "StartPeriod": "0",
-  "EndPeriod": "0",
-  "StartRange": "0",
-  "EndRange": "0",
-};
-
 module.exports = {
 
   playerProfile: {
@@ -33,7 +24,6 @@ module.exports = {
       "PlayerID": "0",
       "SeasonType": "Regular Season",
       "LeagueID": "00",
-      "asynchFlag": "true",
     },
     transform: general,
   },
@@ -184,13 +174,12 @@ module.exports = {
     transform: general,
   },
 
-  // is it 'GameDate' or 'gameDate' ???
   scoreboard: {
     url: "http://stats.nba.com/stats/scoreboard",
     defaults: {
       "LeagueID": "00",
-      "gameDate": "01/01/2000",
       "DayOffset": "0",
+      "gameDate": "",
     },
     transform: general,
   },
@@ -202,36 +191,6 @@ module.exports = {
       "StartPeriod": "0",
       "EndPeriod": "0",
     },
-    transform: general,
-  },
-
-  boxScoreScoring: {
-    url: "http://stats.nba.com/stats/boxscorescoring",
-    defaults: boxScoreDefaults,
-    transform: general,
-  },
-
-  boxScoreUsage: {
-    url: "http://stats.nba.com/stats/boxscoreusage",
-    defaults: boxScoreDefaults,
-    transform: general,
-  },
-
-  boxScoreMisc: {
-    url: "http://stats.nba.com/stats/boxscoremisc",
-    defaults: boxScoreDefaults,
-    transform: general,
-  },
-
-  boxScoreAdvanced: {
-    url: "http://stats.nba.com/stats/boxscoreadvanced",
-    defaults: boxScoreDefaults,
-    transform: general,
-  },
-
-  boxScoreFourFactors: {
-    url: "http://stats.nba.com/stats/boxscorefourfactors",
-    defaults: boxScoreDefaults,
     transform: general,
   },
 
@@ -326,4 +285,29 @@ module.exports = {
     transform: lineups,
   },
 
+  playerTracking: {
+    url: "http://stats.nba.com/stats/leaguedashptstats",
+    params: [
+      "PtMeasureType",
+      "PerMode",
+      "Season",
+      "SeasonType",
+      "Outcome",
+      "Location",
+      "Month",
+      "SeasonSegment",
+      "DateFrom",
+      "DateTo",
+      "OpponentTeamID",
+      "VsConference",
+      "VsDivision",
+      "LastNGames",
+      "GameScope",
+      "PlayerExperience",
+      "PlayerPosition",
+      "StarterBench",
+      "PlayerOrTeam",
+    ],
+    defaults: {},
+  },
 };

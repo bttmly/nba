@@ -50,16 +50,12 @@ describe("nba stats methods", function () {
   it("#shots", callMethod("shots", dubs));
   it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"}));
   it("#playByPlay", callMethod("playByPlay", game));
-  it("#boxScoreScoring", callMethod("boxScoreScoring", game));
-  it("#boxScoreUsage", callMethod("boxScoreUsage", game));
-  it("#boxScoreMisc", callMethod("boxScoreMisc", game));
-  it("#boxScoreAdvanced", callMethod("boxScoreAdvanced", game));
-  it("#boxScoreFourFactors", callMethod("boxScoreFourFactors", game));
   it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {teamId: _dubs, seasonId: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
   it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {teamId: _dubs, seasonType: "Regular Season"}));
   it("#lineups", callMethod("lineups"));
+  it("#playerTracking", callMethod("playerTracking", {ptMeasureType: "CatchShoot"}));
 
   after(function () {
     Promise.all(Object.keys(global.StatsData).map(k =>

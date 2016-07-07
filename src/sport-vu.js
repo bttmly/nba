@@ -16,24 +16,19 @@ Object.keys(endpoints).forEach(key => {
 function makeSportVuMethod (endpoint) {
   const makeUrl = interpolate(endpoint.url);
 
-  return function sportVuMethod (options, callback) {
-    if (process.browser) {
-      throw new Error("SportVu does not support JSONP");
-    }
-
-    if (typeof options === "function") {
-      callback = options;
-      options = {};
-    }
-
-    if (typeof callback !== "function") {
-      throw new TypeError("Must pass a callback function.");
-    }
-
+  function sportVuMethod (options = {}) {
+    return Promise.reject(new Error("SportVu does not support JSONP"));
+    
     options = {...endpoint.defaults, ...options};
 
-    transport(makeUrl(options), {}, callback);
+    return transport(makeUrl(options), {});
   };
+
+  if (endpoint.params) {
+    sportVuMthod.params = endpoint.params;
+  } else {
+    sportVuMethod.params = Object.keys(endpoint.defaults);
+  }
 }
 
 module.exports = sportVu;
