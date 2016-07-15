@@ -1,19 +1,23 @@
-const DEFAULT = exports.DEFAULT = "__DEFAULT__";
+const DEFAULT = "__DEFAULT__";
 
 function DefaultTo (key, obj = {}) {
-  return Object.freeze({ ...obj, [DEFAULT]: obj[key] });
+  return Object.assign({}, obj, { [DEFAULT]: obj[key] });
 }
 
 function DefaultBlank (obj = {}) {
-  return Object.freeze({ ...obj, [DEFAULT]: "" });
+  return Object.assign({}, obj, { [DEFAULT]: "" });
 }
 
 function DefaultZero (obj = {}) {
-  return Object.freeze({ ...obj, [DEFAULT]: 0 });
+  return Object.assign({}, obj, { [DEFAULT]: 0 });
 }
 
-function DefaultN (obj = {}) { 
-  return Object.freeze({ ...obj, [DEFAULT]: "N" });
+function DefaultN (obj = {}) {
+  return Object.assign({}, obj, { [DEFAULT]: "N" });
+}
+
+function DefaultOf (value, obj = {}) {
+  return Object.assign({}, obj, { [DEFAULT]: value });
 }
 
 exports.Season =
@@ -40,17 +44,17 @@ DefaultTo("2015-16", {
   "2015-16": "2015-16",
 });
 
-exports.GraphStartSeason = exports.Season;
-exports.GraphEndSeason = exports.Season;
+exports.GraphStartSeason = Object.assign({}, exports.Season);
+exports.GraphEndSeason = Object.assign({}, exports.Season);
 
-exports.LeagueID = DefaultTo("NBA", {
-  NBA: "00",
+exports.LeagueID = DefaultTo("00", {
+  "00": "00",
 });
 
 exports.PlayerID = DefaultZero();
 
-exports.League = DefaultTo("NBA", {
-  NBA: "00",
+exports.League = DefaultTo("00", {
+  "00": "00",
 });
 
 exports.IsOnlyCurrentSeason = DefaultTo(1, { 0: 0, 1: 1 });
@@ -99,8 +103,8 @@ exports.Location = DefaultBlank({
 
 exports.SeasonSegment = DefaultTo("EntireSeason", {
   EntireSeason: "",
-  PreAllStar: "Pre All-Star",
-  PostAllStar: "Post All-Star",
+  "Pre All-Star": "Pre All-Star",
+  "Post All-Star": "Post All-Star",
 });
 
 exports.DateFrom = DefaultBlank();
@@ -185,9 +189,9 @@ exports.ShotClockRange = DefaultBlank({
 });
 
 exports.AheadBehind = DefaultBlank({
-  AheadOrBehind: "Ahead or Behind",
-  AheadOrTied: "Ahead or Tied",
-  BehindOrTied: "Behind or Tied",
+  "Ahead or Behind": "Ahead or Behind",
+  "Ahead or Tied": "Ahead or Tied",
+  "Behind or Tied": "Behind or Tied",
 });
 
 exports.PlusMinus = DefaultN();
@@ -306,7 +310,7 @@ exports.StatCategory = DefaultTo("PTS", {
   STL_TOV: "STL/TOV",
   PF: "PF",
 });
-exports.GraphStat = exports.StatCategory;
+exports.GraphStat = Object.assign({}, exports.StatCategory);
 
 exports.ContextMeasure = DefaultTo("FGM", {
   FGM: "FGM",
@@ -346,13 +350,13 @@ exports.GameScope = DefaultBlank("", {
 });
 
 exports.Game_Scope = DefaultBlank({
-  Last10:"Last 10",
+  "Last 10":"Last 10",
   Yesterday:"Yesterday",
 });
 
-exports.Player_or_Team = DefaultTo("Player", {
-  Player: "P",
-  Team: "T",
+exports.Player_or_Team = DefaultTo("P", {
+  P: "P",
+  T: "T",
 });
 
 exports.gameDate =
@@ -407,7 +411,7 @@ exports.Country = DefaultBlank();
 exports.Height = DefaultBlank();
 exports.Weight = DefaultBlank();
 
-exports.Counter = Default(1000);
+exports.Counter = DefaultOf(1000);
 
 exports.Sorter = DefaultTo("PTS", {
   PTS: "PTS",
@@ -478,7 +482,7 @@ exports.PlayType = {
     OffRebound: "OffRebound",
     Misc: "Misc",
   }),
-  limit: DefaultTo(500),
+  limit: DefaultOf(500),
   season: 2015, // note, this is a different format than _S_eason above ("2015-16")
   seasonType: "Post", // note, this is a different format than _S_easonType above ("Playoffs")
 };

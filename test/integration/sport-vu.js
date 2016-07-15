@@ -1,11 +1,11 @@
-const nba = require("../../src").usePromises();
+const nba = require("../../src");
 
 // for interactive inspection
 global.SportVuData = {};
 
 let verifyShape = shape => response => response;
 
-let callMethod = (name, shape) => () => 
+let callMethod = (name, shape) => () =>
   nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
 
 describe("sport vu methods", function () {

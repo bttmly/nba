@@ -4,7 +4,7 @@ const path = require("path");
 
 const pify = require("pify");
 
-const nba = require("../../src/").usePromises();
+const nba = require("../../src/");
 
 // for interactive inspection, particularly in browser
 global.StatsData = {};
@@ -47,9 +47,9 @@ describe("nba stats methods", function () {
   it("#teamSplits", callMethod("teamSplits", dubs));
   it("#teamYears", callMethod("teamYears"));
   it("#playerSplits", callMethod("playerSplits", steph));
-  it("#shots", callMethod("shots", dubs));
+  it("#shots", callMethod("shots", {teamId: _dubs, position: ""}));
   it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"}));
-  it("#playByPlay", callMethod("playByPlay", game));
+  it("#playByPlay", callMethod("playByPlay", {gameId: "0021401082", endPeriod: "0"}));
   it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {teamId: _dubs, seasonId: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
@@ -58,11 +58,10 @@ describe("nba stats methods", function () {
   it("#playerTracking", callMethod("playerTracking", {ptMeasureType: "CatchShoot"}));
 
   after(function () {
-    Promise.all(Object.keys(global.StatsData).map(k =>
+    return Promise.all(Object.keys(global.StatsData).map(k =>
       pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
     ))
-    .then(() => done())
-    .catch(() => done());
+    .catch(() => {});
   });
 });
 

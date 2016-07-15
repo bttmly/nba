@@ -1,41 +1,35 @@
-const find = require("lodash.find");
-const contains = require("lodash.contains");
-const assign = require("lodash.assign");
-const pify = require("pify");
-
 const getTeamsInfo = require("./team-info");
 const getPlayersInfo = require("./player-info");
 
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
-const buildPlayers = require("./util/build-players");
-const {promisify, promisifyAll} = require("./util/promisify");
 
 const teams = require("../data/teams.json");
-const players = buildPlayers(require("../data/players.json"));
+const players = require("./util/build-players")(require("../data/players.json"));
 
 const nba = {
+  // namespaces for NBA API endpoints
   stats,
   sportVu,
+  
+  // in-memory data to help with constructing queries
   players,
-  updatePlayers,
   teams,
-  updateTeams,
 
+  // helpers for searching in-memory data
   teamIdFromName,
   playerIdFromName,
   findPlayer,
   searchPlayers,
-  usePromises,
 
-  // backwards compatibility
-  ready: cb => cb.call(nba),
-  api: stats,
+  // update in-memory data
+  updatePlayers,
+  updateTeams,
 };
 
 function teamIdFromName (name) {
   const n = name.toLowerCase();
-  const team = find(nba.teams, function (t) {
+  const team = nba.teams.find(function (t) {
     return (
       t.abbreviation.toLowerCase() === n ||
       t.location.toLowerCase() === n ||
@@ -53,52 +47,30 @@ function playerIdFromName (name) {
 
 function findPlayer (str) {
   str = str.toLowerCase();
-  return find(nba.players, function (p) {
-    return contains(p.fullName.toLowerCase(), str);
+  return nba.players.find(function (p) {
+    return p.fullName.toLowerCase().includes(str);
   });
 }
 
 function searchPlayers (str) {
   str = str.toLowerCase();
   return nba.players.filter(function (p) {
-    return contains(p.fullName.toLowerCase(), str);
+    return p.fullName.toLowerCase().includes(str);
   });
 }
 
-function updatePlayers (cb) {
-  return getPlayersInfo(function (err, resp) {
-    if (err) return cb(err);
-    nba.players = resp;
-    cb(null, resp);
+function updatePlayers () {
+  return getPlayersInfo().then(function (data) {
+    nba.players = data;
+    return data;
   });
 }
 
-function updateTeams (cb) {
-  return getTeamsInfo(function (err, resp) {
-    if (err) return cb(err);
-    nba.teams = resp;
-    cb(null, resp);
+function updateTeams () {
+  return getTeamsInfo.then(function (data) {
+    nba.teams = data;
+    return data;
   });
-}
-
-let usedPromises = false;
-
-function usePromises (Prms) {
-  if (usedPromises) return nba;
-  usedPromises = true;
-
-  Prms = Prms || global.Promise;
-  if (typeof Prms !== "function") {
-    throw new Error("Invalid Promise implementation");
-  }
-  
-  nba.stats = assign(Object.create(Object.getPrototypeOf(nba.stats)), pify(nba.stats, Prms));
-  nba.sportVu = assign(Object.create(Object.getPrototypeOf(nba.sportVu)), pify(nba.sportVu, Prms));
-  nba.updatePlayers = pify(updatePlayers, Prms);
-  nba.updateTeams = pify(updateTeams, Prms);
-  
-  nba.api = nba.stats;
-  return nba;
 }
 
 module.exports = nba;

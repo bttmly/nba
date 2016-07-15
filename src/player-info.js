@@ -1,13 +1,13 @@
 const stats = require("./stats");
 
-module.exports = function (cb) {
-  stats.playersInfo(function (err, resp) {
-    if (err) return cb(err);
+function playerInfo () {
+  return stats.playersInfo().then(function (resp) {
     const players = resp.resultSets[0].rowSet;
-    cb(null, players.map(makePlayer));
-
+    return players.map(makePlayer);
   });
-};
+}
+
+module.exports = playerInfo;
 
 function makePlayer (tuple) {
   const playerId = tuple[0];

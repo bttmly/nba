@@ -17,9 +17,9 @@ function makeSportVuMethod (endpoint) {
   const makeUrl = interpolate(endpoint.url);
 
   function sportVuMethod (options = {}) {
-    return Promise.reject(new Error("SportVu does not support JSONP"));
+    // return Promise.reject(new Error("SportVu does not support JSONP"));
     
-    options = {...endpoint.defaults, ...options};
+    options = Object.assign({}, endpoint.defaults, options);
 
     return transport(makeUrl(options), {});
   };
@@ -29,6 +29,8 @@ function makeSportVuMethod (endpoint) {
   } else {
     sportVuMethod.params = Object.keys(endpoint.defaults);
   }
+
+  return sportVuMethod;
 }
 
 module.exports = sportVu;

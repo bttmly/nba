@@ -1,6 +1,6 @@
 const expect = require("must");
 
-const nba = require("../../src").usePromises();
+const nba = require("../../src");
 
 describe("searching methods", () => {
 
