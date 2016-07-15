@@ -24,7 +24,7 @@
     "lodash.mapkeys": "^3.8.0",
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
-    "nba-client-template": "^0.1.1",
+    "nba-client-template": "^0.3.0",
     "pify": "^2.3.0",
     "request": "^2.42.0"
   },

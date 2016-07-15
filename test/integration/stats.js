@@ -47,9 +47,9 @@ describe("nba stats methods", function () {
   it("#teamSplits", callMethod("teamSplits", dubs));
   it("#teamYears", callMethod("teamYears"));
   it("#playerSplits", callMethod("playerSplits", steph));
-  it("#shots", callMethod("shots", {teamId: _dubs, position: ""}));
+  it("#shots", callMethod("shots", dubs));
   it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"}));
-  it("#playByPlay", callMethod("playByPlay", {gameId: "0021401082", endPeriod: "0"}));
+  it("#playByPlay", callMethod("playByPlay", game));
   it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {teamId: _dubs, seasonId: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
