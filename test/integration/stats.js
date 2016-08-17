@@ -11,10 +11,15 @@ global.StatsData = {};
 const tested = {};
 const methods = {};
 
+const blacklist = ["withTransport"];
+
 const set = (a, b, c) => (a[b] = c, a);
 
 const stats = Object.keys(nba.stats).reduce((prox, k) => {
-  methods[k] = true;
+  if (!blacklist.includes(k)) {
+    methods[k] = true;
+  }
+
   return set(prox, k, (...args) => {
     tested[k] = true;
     return nba.stats[k](...args);
