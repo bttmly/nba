@@ -10,7 +10,7 @@ const noop = () => {};
 // a copy of stats we can safely iterate (w/o rewire methods);
 // const stats = require("../../src/stats");
 
-const {stats} = require("../../src");
+let {stats} = require("../../src");
 
 let lastSettings;
 let lastUrl;
@@ -34,7 +34,7 @@ function lastUrlEq (url) {
 
 describe("stats methods", function () {
   
-  before(() => stats.setTransport(jsonStub));
+  before(() => stats = stats.withTransport(jsonStub));
 
   describe("#playerProfile()", () => {
     it("should issue a request to the correct URL", () => stats.playerProfile({playerId: 1234}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playerprofile")).to.equal(true)));

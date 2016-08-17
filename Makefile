@@ -11,7 +11,7 @@ browser-test:
 	./node_modules/.bin/static
 
 test:
-	./node_modules/.bin/mocha --bail --recursive --timeout 60000 ./test/setup.js ./test/unit ./test/integration
+	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/setup.js ./test/unit ./test/integration
 
 test-integration:
 	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/setup.js ./test/integration

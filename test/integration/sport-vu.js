@@ -10,7 +10,9 @@ let callMethod = (name, shape) => () =>
 
 describe("sport vu methods", function () {
 
-  before(() => nba.sportVu.setTransport(require("../../src/get-json")));
+  // before(() => nba.sportVu.setTransport(require("../../src/get-json")));
+
+  console.log(nba.sportVu);
 
   it("#speed", callMethod("speed"));
   it("#touches", callMethod("touches"));

@@ -1,6 +1,6 @@
 const { general, player, base, lineups } = require("./transforms");
 
-var DEFAULT_SEASON = "2015-16";
+const DEFAULT_SEASON = "2015-16";
 
 module.exports = {
 

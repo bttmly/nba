@@ -1,19 +1,13 @@
 const qs = require("querystring");
-const { format } = require("util");
 
 const template = require("nba-client-template");
-
-const partial = require("lodash.partial");
 
 const dicts = require("./dicts");
 const translateKeys = require("./util/translate-keys");
 const { downcaseFirst } = require("./util/string");
-const params = require("./params");
 const { general, players, base, lineups } = require("./transforms");
 
-let transport = require("./get-json");
-
-const translate = partial(translateKeys, dicts.jsToNbaMap);
+const translate = query => translateKeys(dicts.jsToNbaMap, query);
 
 const paramMap = {};
 template.parameters.forEach(function (param) {
@@ -39,25 +33,7 @@ const transformMap = {
   playerTracking: general,
 };
 
-const stats = Object.create({
-  setTransport (_transport) {
-    transport = _transport;
-  },
-  getTransport () {
-    return transport;
-  },
-});
-
-// Object.keys(endpoints).forEach(key => {
-//   stats[key] = makeStatsMethod(endpoints[key], key);
-// });
-
-template.stats_endpoints.forEach(function (endpoint) {
-  const methodName = downcaseFirst(endpoint.name);
-  stats[methodName] = makeStatsMethod(endpoint);
-});
-
-function makeStatsMethod (endpoint) {
+function makeStatsMethod (endpoint, transport) {
 
   const defaults = {};
   endpoint.parameters.forEach(function (param) {
@@ -71,18 +47,6 @@ function makeStatsMethod (endpoint) {
 
   function statsMethod (query = {}, options = {}) {
     const translated = translate(query);
-
-    // if (!options.noValidate) {
-    //   Object.keys(translated).forEach(function (name) {
-    //     if (NO_CHECK.hasOwnProperty(name)) {
-    //       return;
-    //     }
-    //     if (params[name][translated[name]] == null) {
-    //       console.log("invalid value for", name, ":", translated[name]);
-    //     }
-    //   }); 
-    // }
-
     const reqParams = Object.assign({}, defaults, translated);
 
     // console.log(endpoint.url + "?" + qs.stringify(reqParams));
@@ -94,12 +58,23 @@ function makeStatsMethod (endpoint) {
 
       return transform(response);
     });
-
   }
 
-  statsMethod.params = endpoint.params;
-
+  statsMethod.parameters = endpoint.parameters;
+  statsMethod.defaults = endpoint.defaults;
   return statsMethod;
 }
 
-module.exports = stats;
+function makeStatsClient (transport) {
+  const client = {};
+  template.stats_endpoints.forEach(function (endpoint) {
+    const methodName = downcaseFirst(endpoint.name);
+    client[methodName] = makeStatsMethod(endpoint, transport);
+  });
+  client.withTransport = function (_transport) {
+    return makeStatsClient(_transport);
+  };
+  return client;
+}
+
+module.exports = makeStatsClient(require("./get-json"));

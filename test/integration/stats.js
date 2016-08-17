@@ -38,8 +38,6 @@ const game = {gameId: "0021401082"};
 
 describe("nba stats methods", function () {
 
-  before(() => nba.stats.setTransport(require("../../src/get-json")));
-
   it("#playerProfile", callMethod("playerProfile", steph));
   it("#playerInfo", callMethod("playerInfo", steph));
   it("#playersInfo", callMethod("playersInfo"));

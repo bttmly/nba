@@ -1,26 +1,11 @@
 const {interpolate} = require("./util/string");
 const endpoints = require("./sport-vu-endpoints");
 
-let transport = require("./get-json");
-
-const sportVu = Object.create({
-  setTransport (_transport) {
-    transport = _transport;
-  },
-});
-
-Object.keys(endpoints).forEach(key => {
-  sportVu[key] = makeSportVuMethod(endpoints[key]);
-});
-
-function makeSportVuMethod (endpoint) {
+function makeSportVuMethod (endpoint, transport) {
   const makeUrl = interpolate(endpoint.url);
 
   function sportVuMethod (options = {}) {
-    // return Promise.reject(new Error("SportVu does not support JSONP"));
-    
     options = Object.assign({}, endpoint.defaults, options);
-
     return transport(makeUrl(options), {});
   };
 
@@ -33,4 +18,15 @@ function makeSportVuMethod (endpoint) {
   return sportVuMethod;
 }
 
-module.exports = sportVu;
+function makeSportVuClient (transport) {
+  const client = {};
+  endpoints.forEach(endpoint => {
+    client[endpoint.name] = makeSportVuMethod(endpoint, transport);
+  });
+  client.withTransport = function (_transport) {
+    return makeSportVuClient(_transport);
+  };
+  return client;
+}
+
+module.exports = makeSportVuClient(require("./get-json"));

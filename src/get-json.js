@@ -1,25 +1,26 @@
 const request = require("request");
+const template = require("nba-client-template");
 
-const transportConfig = require("./transport-config");
+const HEADERS = {
+  "user-agent": template.user_agent,
+  referer: template.referrer,
+};
 
-// from https://github.com/seemethere/nba_py/blob/79b764ec86a4740b0460ab8c75483f41247e940f/nba_py/__init__.py#L14
-const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36";
-const REFERER = "http://stats.nba.com/scores/";
-
-function getJson (url, query) {
+function getJson (url, query, _options = {}) {
   return new Promise(function (resolve, reject) {
 
+    // override where important, otherwise let caller configure
+    const options = Object.assign({}, _options);
+    options.url = url;
+    options.qs = query;
+    options.json = true;
+    options.headers = Object.assign((options.headers || {}), HEADERS);
+
+    // console.log("REQUEST OPTIONS", options);
     // console.log(url + "?" + qs.stringify(query));
-    request({
-      url: url,
-      qs: query,
-      json: true,
-      agent: false,
-      timeout: transportConfig.timeout,
-      headers: { "user-agent": USER_AGENT, referer: REFERER },
-    }, function (err, resp, body) {
+    request(options, function (err, resp, body) {
       if (err == null && resp && resp.statusCode !== 200) {
-        err = new Error("HTTP error: " + resp.statusCode + " " + (body.Message || body));
+        err = new Error(`HTTP error (${url}): ${resp.statusCode} ${body.Message || body}`);
       }
 
       if (resp == null) {
@@ -32,7 +33,6 @@ function getJson (url, query) {
     });
     
   });
-
-};
+}
 
 module.exports = getJson;
