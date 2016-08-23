@@ -31,7 +31,8 @@ function lastUrlEq (url) {
   return lastUrl === url;
 }
 
-
+// these tests don't go over the internet, they merely check that the method called has the correct URL, and show that translation from js-style camel cased
+// properties into NBA styled properties works
 describe("stats methods", function () {
   
   before(() => stats = stats.withTransport(jsonStub));

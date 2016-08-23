@@ -4,7 +4,7 @@ const path = require("path");
 
 const pify = require("pify");
 
-const nba = require("../../src/");
+const nba = require("../../lib");
 
 // for interactive inspection, particularly in browser
 global.StatsData = {};

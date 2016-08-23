@@ -71,9 +71,7 @@ function makeStatsClient (transport) {
     const methodName = downcaseFirst(endpoint.name);
     client[methodName] = makeStatsMethod(endpoint, transport);
   });
-  client.withTransport = function (_transport) {
-    return makeStatsClient(_transport);
-  };
+  client.withTransport = makeStatsClient;
   return client;
 }
 

@@ -23,9 +23,7 @@ function makeSportVuClient (transport) {
   endpoints.forEach(endpoint => {
     client[endpoint.name] = makeSportVuMethod(endpoint, transport);
   });
-  client.withTransport = function (_transport) {
-    return makeSportVuClient(_transport);
-  };
+  client.withTransport = makeSportVuClient;
   return client;
 }
 

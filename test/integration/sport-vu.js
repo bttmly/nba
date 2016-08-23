@@ -1,4 +1,4 @@
-const nba = require("../../src");
+const nba = require("../../lib");
 
 // for interactive inspection
 global.SportVuData = {};
@@ -9,11 +9,6 @@ let callMethod = (name, shape) => () =>
   nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
 
 describe("sport vu methods", function () {
-
-  // before(() => nba.sportVu.setTransport(require("../../src/get-json")));
-
-  console.log(nba.sportVu);
-
   it("#speed", callMethod("speed"));
   it("#touches", callMethod("touches"));
   it("#passing", callMethod("passing"));
