@@ -1,6 +1,6 @@
 const expect = require("must");
 
-const nba = require("../../src");
+const nba = require("../../lib");
 
 describe("searching methods", () => {
 

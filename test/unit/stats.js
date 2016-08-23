@@ -10,7 +10,7 @@ const noop = () => {};
 // a copy of stats we can safely iterate (w/o rewire methods);
 // const stats = require("../../src/stats");
 
-let {stats} = require("../../src");
+let {stats} = require("../../lib");
 
 let lastSettings;
 let lastUrl;

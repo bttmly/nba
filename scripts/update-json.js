@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const playerInfo = require("../src/player-info");
-const teamInfo = require("../src/team-info");
+const playerInfo = require("../lib/player-info");
+const teamInfo = require("../lib/team-info");
 
 Promise.all([
   playerInfo().then(function (players) {
