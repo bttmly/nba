@@ -1,3 +1,5 @@
+"use strict";
+
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -20,10 +22,12 @@ const stats = Object.keys(nba.stats).reduce((prox, k) => {
     methods[k] = true;
   }
 
-  return set(prox, k, (...args) => {
+  prox[k] = function () {
     tested[k] = true;
-    return nba.stats[k](...args);
-  });
+    return nba.stats[k].apply(nba.stats, arguments);
+  };
+
+  return prox;
 }, {});
 
 // stub for now, will add response shape verification for self-documenting responses

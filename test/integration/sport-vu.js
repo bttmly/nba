@@ -1,3 +1,5 @@
+"use strict";
+
 const nba = require("../../lib");
 
 // for interactive inspection
