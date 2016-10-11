@@ -4,6 +4,7 @@ const invert = require("lodash.invert");
 const mapOfOnes = arr => arr.reduce((obj, k) => (obj[k] = 1, obj), {});
 const pipe = (...fns) => arg => fns.reduce((last, fn) => fn(last), arg);
 const nbaToJsMap = blank({
+  // responses from Stats endpoints
   "Season": "season",
   "SeasonType": "seasonType",
   "LeagueID": "leagueId",
@@ -54,6 +55,11 @@ const nbaToJsMap = blank({
   "rowsPerPage": "rowsPerPage",
   "SeasonID": "seasonId",
   "PtMeasureType": "ptMeasureType",
+  "StatType": "statType",
+  "PlayerScope": "playerScope",
+  "ClutchTime": "clutchTime",
+  "AheadBehind": "aheadBehind",
+  "PointDiff": "pointDiff",
 });
 
 

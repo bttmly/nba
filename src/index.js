@@ -3,6 +3,7 @@ const getPlayersInfo = require("./player-info");
 
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
+const synergy = require("./synergy");
 
 const teams = require("../data/teams.json");
 const players = require("./util/build-players")(require("../data/players.json"));
@@ -11,7 +12,8 @@ const nba = {
   // namespaces for NBA API endpoints
   stats,
   sportVu,
-  
+  synergy,
+
   // in-memory data to help with constructing queries
   players,
   teams,

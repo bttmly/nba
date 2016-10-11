@@ -7,7 +7,7 @@ function jsonStub (url, settings) {
 }
 
 function jsonFailStub (url, settings, callback) {
-  return new Promise(function (resolve) {
+  return new Promise(function (__, reject) {
     setTimeout(() => reject(new Error()), DELAY)
   });
 }

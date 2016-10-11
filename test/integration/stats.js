@@ -3,7 +3,6 @@
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
-
 const pify = require("pify");
 
 const nba = require("../../lib");
@@ -31,9 +30,9 @@ const stats = Object.keys(nba.stats).reduce((prox, k) => {
 }, {});
 
 // stub for now, will add response shape verification for self-documenting responses
-let verifyShape = shape => response => response;
+const verifyShape = shape => response => response;
 
-let callMethod = (name, params = {}, shape) => () =>
+const callMethod = (name, params = {}, shape) => () =>
   stats[name](params).then(r => global.StatsData[name] = r);
 
 const _steph = 201939;
@@ -63,12 +62,22 @@ describe("nba stats methods", function () {
   it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {teamId: _dubs, seasonType: "Regular Season"}));
   it("#lineups", callMethod("lineups"));
   it("#playerTracking", callMethod("playerTracking", {ptMeasureType: "CatchShoot"}));
+  it("#homepageV2", callMethod("homepageV2", {statType: "Traditional", gameScope: "Season", playerScope: "All Players"}));
+  it("#assistTracker", callMethod("assistTracker"));
+  it("#playerStats", callMethod("playerStats"));
+  it("#playerClutch", callMethod("playerClutch", {clutchTime: "Last 5 Minutes", aheadBehind: "Ahead or Behind", pointDiff: 5}));
+  it("#teamClutch", callMethod("teamClutch", {clutchTime: "Last 5 Minutes", aheadBehind: "Ahead or Behind", pointDiff: 5}));
+  it("#playerShooting", callMethod("playerShooting"));
+  it("#teamShooting", callMethod("teamShooting"));
 
   after(function () {
     return Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
+      pify(fs.writeFile)(
+        path.join(__dirname, "../../responses", `stats-${k}.json`),
+        JSON.stringify(global.StatsData[k], null, 2)
+      )
     ))
-    .catch(() => {});
+    .catch(console.error);
   });
 });
 
