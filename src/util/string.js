@@ -40,11 +40,9 @@ function jsify (str) {
 
 function interpolate (_str) {
   return function (obj) {
-    let str = _str;
-    Object.keys(obj).forEach(key => {
-      str = str.replace(new RegExp(`__${key}__`, "g"), obj[key]);
-    });
-    return str;
+    return Object.keys(obj).reduce(function (str, key) {
+      return str.replace(new RegExp(`__${key}__`, "g"), obj[key]);
+    }, _str);
   };
 }
 

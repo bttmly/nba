@@ -1,4 +1,6 @@
-const request = require("request");
+require("isomorphic-fetch");
+const qs = require("querystring");
+const url = require("url");
 const template = require("nba-client-template");
 
 const HEADERS = {
@@ -6,33 +8,22 @@ const HEADERS = {
   referer: template.referrer,
 };
 
-function getJson (url, query, _options = {}) {
-  return new Promise(function (resolve, reject) {
+function getJson (_url, query, _options = {}) {
 
-    // override where important, otherwise let caller configure
-    const options = Object.assign({}, _options);
-    options.url = url;
-    options.qs = query;
-    options.json = true;
-    options.headers = Object.assign((options.headers || {}), HEADERS);
+  const urlObj = url.parse(_url);
+  urlObj.query = query;
+  const urlStr = urlObj.format();
 
-    // console.log("REQUEST OPTIONS", options);
-    // console.log(url + "?" + qs.stringify(query));
-    request(options, function (err, resp, body) {
-      if (err == null && resp && resp.statusCode !== 200) {
-        err = new Error(`HTTP error (${url}): ${resp.statusCode} ${body.Message || body}`);
+  const options = Object.assign({}, _options);
+  options.headers = Object.assign((options.headers || {}), HEADERS);
+
+  return fetch(urlStr, options)
+    .then(resp => {
+      if (resp.status !== 200) {
+        throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
       }
-
-      if (resp == null) {
-        err = new Error("No response.");
-      }
-
-      if (err) return reject(err);
-
-      resolve(body);
+      return resp.json();
     });
-    
-  });
 }
 
 module.exports = getJson;

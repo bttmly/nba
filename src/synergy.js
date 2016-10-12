@@ -65,7 +65,6 @@ function makeSynergyClient (transport) {
   synergyEndpoints.forEach(function (endpoint) {
     client[camelCase(endpoint.name)] = makeSynergyMethod(endpoint, transport);
   });
-  client.parameters = parameters;
   client.withTransport = makeSynergyClient;
   return client;
 }
