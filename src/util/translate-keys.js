@@ -7,11 +7,11 @@ module.exports = function translateKeys (oldToNewMap, obj) {
 
   return mapKeys(obj, function (value, oldKey) {
     const newKey = oldToNewMap[oldKey];
-    
+
     if (newKey == null) {
-      throw new Error("Key not found in translator.");
+      throw new Error(`Key '${oldKey}' not found in translator.`);
     }
-    
+
     return newKey;
   });
 };

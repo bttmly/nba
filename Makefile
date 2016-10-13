@@ -7,7 +7,7 @@ build-browser-test: build
 browser-test:
 	@make build-browser-test
 	node -e 'require("openurl").open("http://localhost:8080/test/browser")'
-	./node_modules/.bin/static
+	./node_modules/.bin/static --cache 0
 
 test: build
 	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/setup.js ./test/unit ./test/integration
@@ -40,4 +40,3 @@ preversion:
 	@make update-teams
 	@make lint
 	@make test
-

@@ -21,20 +21,16 @@
     "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
+    "lodash.get": "^4.4.2",
     "lodash.indexby": "^3.1.1",
     "lodash.invert": "^3.0.0",
     "lodash.mapkeys": "^3.8.0",
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
+    "minimist": "^1.2.0",
     "nba-client-template": "^2.0.2",
-    "pify": "^2.3.0",
-    "request": "^2.42.0"
+    "pify": "^2.3.0"
   },
-  "browser": {
-    "./lib/get-json.js": "./lib/get-jsonp.js",
-    "./src/get-json.js": "./src/get-jsonp.js"
-  },
-  "browserify": {},
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
