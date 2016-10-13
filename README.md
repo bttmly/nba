@@ -7,8 +7,8 @@
 
 This project is in heavy development and is subject to breaking changes without notice.
 
-## RE: This Readme
-It's a little out of date. Just finished a big refactor and cleanup, getting this readme in shape is next on my list. -9/10/15
+## NOTE
+This readme is a little out of date. Major version 3 of this library will be released soon, before the 2016-2017 regular season tips off. You can track the [pull request here](https://github.com/nickb1080/nba/pull/26) or just [check out the `v3` branch](https://github.com/nickb1080/nba/tree/v3).
 
 ## API
 
