@@ -2,3 +2,6 @@ node_modules
 lib
 coverage
 responses
+
+test/browser/sport-vu-browserified.js
+test/browser/stats-browserified.js
