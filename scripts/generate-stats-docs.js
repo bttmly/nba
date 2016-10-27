@@ -10,14 +10,13 @@ const updateAt = (n, f) => (arr) => {
   copy[n] = f(copy[n]);
   return copy;
 };
-
-Object.prototype.into = function (fn, ...args) { return fn(this, ...args); };
-Object.prototype.onto = function (fn, ...args) { return fn(...args, this); };
-Object.prototype.tap = function (fn) { fn(this); return this; }
-
 const invokeAt = (n, f) => (arr) => f(arr[n]);
 const not = f => (...args) => !f(...args);
 const test = re => s => re.test(s);
+
+Object.prototype.into = function (fn, ...args) { return fn(this, ...args); };
+Object.prototype.onto = function (fn, ...args) { return fn(...args, this); };
+Object.prototype.tap = function (fn) { fn(this); return this; };
 
 fs.readdirSync(respDir)
   .filter(test(/stats\-/))
@@ -27,13 +26,13 @@ fs.readdirSync(respDir)
   .filter(invokeAt(1, not(Array.isArray)))
   .map(statsEndpointDocs)
   .map(endpointMarkdown)
-  .into(writeMarkdown)
+  .into(writeMarkdown);
 
 function statsEndpointDocs ([fileName, fileContents]) {
   const methodName = fileName.match(/stats\-(\w+)\.json/)[1];
   const {defaults} = nba.stats[methodName];
   const responseShape = generateResponseShape(fileContents);
-  return {methodName, defaults, responseShape}
+  return {methodName, defaults, responseShape};
 }
 
 function generateResponseShape (contents) {
@@ -59,12 +58,13 @@ function generateLeafShape (leaf) {
 
 function endpointMarkdown ({methodName, defaults, responseShape}) {
   const pieces = [];
-  pieces.push(`## nba.stats.${methodName}()`);
-  pieces.push(`#### Parameters & Default Values:`);
+  pieces.push(`## \`nba.stats.${methodName}(params) -> Promise\``);
+  pieces.push(`#### Default parameters`);
   Object.keys(defaults).forEach(function (key) {
-    pieces.push(`• \`*${key}*\`: \`${JSON.stringify(defaults[key])}\``);
+    pieces.push(`- \`${key}: ${JSON.stringify(defaults[key])}\``);
   });
-  pieces.push("\n\n -- END SECTION -- \n\n");
+  pieces.push("\n\n");
+  // pieces.push("\n\n -- END SECTION -- \n\n");
   return pieces;
 }
 
