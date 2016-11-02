@@ -1,30 +1,54 @@
-const request = require("request");
+const url = require("url");
+const qs = require("querystring");
+const template = require("nba-client-template");
 
-const transportConfig = require("./transport-config");
-
-function getJson (url, query, callback) {
-  request({
-    url: url,
-    qs: query,
-    json: true,
-    agent: false,
-    timeout: transportConfig.timeout,
-    // from https://github.com/seemethere/nba_py/blob/79b764ec86a4740b0460ab8c75483f41247e940f/nba_py/__init__.py#L14
-    headers: {
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
-      "referer": "http://stats.nba.com/scores/",
-    },
-  }, function (err, resp, body) {
-    if (err == null && resp != null && resp.statusCode !== 200) {
-      err = new Error("HTTP error: " + resp.statusCode + " " + body.Message);
-    }
-
-    if (resp == null) {
-      err = new Error("No response.");
-    }
-
-    callback(err, body);
-  });
+const HEADERS = {
+  "user-agent": template.user_agent,
+  referer: template.referrer,
 };
 
-module.exports = getJson;
+function createUrlString (_url, query) {
+  const urlObj = url.parse(_url);
+  urlObj.query = query;
+  return urlObj.format();
+}
+
+function createGetJson () {
+  require("isomorphic-fetch");
+
+  return function getJson (_url, query, _options = {}) {
+    const urlStr = createUrlString(_url, query);
+
+    const options = Object.assign({}, _options);
+    options.headers = Object.assign((options.headers || {}), HEADERS);
+
+    return fetch(urlStr, options)
+      .then(resp => {
+        if (resp.ok) return resp.json();
+        
+        return resp.text().then(function (text) {
+          throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
+        });
+      });
+  };
+}
+
+function createGetJsonp () {
+  const jsonp = require("jsonp");
+
+  return function getJsonp (_url, query, options = {}) {
+    return new Promise(function (resolve, reject) {
+      const urlStr = createUrlString(_url, query);
+
+      jsonp(urlStr, {timeout: options.timeout}, function (err, data) {
+        // for compatibility with timeouts from request module
+        if (err && err.message === "Timeout") err.code = "ETIMEDOUT";
+        if (err) return reject(err);
+        return resolve(data);
+      });
+    });
+  };
+}
+
+module.exports = typeof window === "undefined" ?
+  createGetJson() : createGetJsonp();

@@ -1,44 +1,52 @@
+"use strict";
+
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
-
 const pify = require("pify");
 
-const nba = require("../../src/").usePromises();
+const nba = require("../../lib");
 
 // for interactive inspection, particularly in browser
 global.StatsData = {};
 const tested = {};
 const methods = {};
 
+const blacklist = ["withTransport"];
+
 const set = (a, b, c) => (a[b] = c, a);
 
 const stats = Object.keys(nba.stats).reduce((prox, k) => {
-  methods[k] = true;
-  return set(prox, k, (...args) => {
+  if (!blacklist.includes(k)) {
+    methods[k] = true;
+  }
+
+  prox[k] = function () {
     tested[k] = true;
-    return nba.stats[k](...args);
-  });
+    return nba.stats[k].apply(nba.stats, arguments);
+  };
+
+  return prox;
 }, {});
 
 // stub for now, will add response shape verification for self-documenting responses
-let verifyShape = shape => response => response;
+const verifyShape = shape => response => response;
 
-let callMethod = (name, params = {}, shape) => () =>
-  stats[name](params).then(r => global.StatsData[name] = r);
+const callMethod = (name, params = {}, shape) => () => {
+  params.Season = "2016-17";
+  return stats[name](params).then(r => global.StatsData[name] = r);
+};
 
 const _steph = 201939;
 const _dubs = 1610612744;
-const steph = {playerId: _steph};
-const dubs = {teamId: _dubs};
-const game = {gameId: "0021401082"};
+const steph = {PlayerID: _steph};
+const dubs = {TeamID: _dubs};
+const game = {GameID: "0021401082"};
 
 // these tests merely ensure that valid stats API calls don't error.
 // more comprehensive tests are coming soon.
 
 describe("nba stats methods", function () {
-
-  before(() => nba.stats.setTransport(require("../../src/get-json")));
 
   it("#playerProfile", callMethod("playerProfile", steph));
   it("#playerInfo", callMethod("playerInfo", steph));
@@ -48,25 +56,30 @@ describe("nba stats methods", function () {
   it("#teamYears", callMethod("teamYears"));
   it("#playerSplits", callMethod("playerSplits", steph));
   it("#shots", callMethod("shots", dubs));
-  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"}));
+  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"})); // response says "GameDate is required" but it doesn't seem to work with uppercase first letter unlike every other parameter -- WTF.
   it("#playByPlay", callMethod("playByPlay", game));
-  it("#boxScoreScoring", callMethod("boxScoreScoring", game));
-  it("#boxScoreUsage", callMethod("boxScoreUsage", game));
-  it("#boxScoreMisc", callMethod("boxScoreMisc", game));
-  it("#boxScoreAdvanced", callMethod("boxScoreAdvanced", game));
-  it("#boxScoreFourFactors", callMethod("boxScoreFourFactors", game));
-  it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {teamId: _dubs, seasonId: "20078"}));
+  it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {TeamID: _dubs, SeasonID: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
-  it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {teamId: _dubs, seasonType: "Regular Season"}));
+  it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {TeamID: _dubs, SeasonType: "Regular Season"}));
   it("#lineups", callMethod("lineups"));
+  it("#playerTracking", callMethod("playerTracking", {PtMeasureType: "CatchShoot"}));
+  it("#homepageV2", callMethod("homepageV2", {StatType: "Traditional", GameScope: "Season", PlayerScope: "All Players"}));
+  it("#assistTracker", callMethod("assistTracker"));
+  it("#playerStats", callMethod("playerStats"));
+  it("#playerClutch", callMethod("playerClutch", {ClutchTime: "Last 5 Minutes", AheadBehind: "Ahead or Behind", PointDiff: 5}));
+  it("#teamClutch", callMethod("teamClutch", {ClutchTime: "Last 5 Minutes", AheadBehind: "Ahead or Behind", PointDiff: 5}));
+  it("#playerShooting", callMethod("playerShooting"));
+  it("#teamShooting", callMethod("teamShooting"));
 
   after(function () {
-    Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(path.join(__dirname, "../../responses", k + ".json"), JSON.stringify(global.StatsData[k], null, 2))
+    return Promise.all(Object.keys(global.StatsData).map(k =>
+      pify(fs.writeFile)(
+        path.join(__dirname, "../../responses", `stats-${k}.json`),
+        JSON.stringify(global.StatsData[k], null, 2)
+      )
     ))
-    .then(() => done())
-    .catch(() => done());
+    .catch(console.error);
   });
 });
 

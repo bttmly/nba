@@ -1,17 +1,19 @@
-const nba = require("../../src").usePromises();
+"use strict";
+
+const nba = require("../../lib");
+const fs = require("fs");
+const path = require("path");
+const pify = require("pify");
 
 // for interactive inspection
 global.SportVuData = {};
 
-let verifyShape = shape => response => response;
+const verifyShape = shape => response => response;
 
-let callMethod = (name, shape) => () => 
+const callMethod = (name, shape) => () =>
   nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
 
 describe("sport vu methods", function () {
-
-  before(() => nba.sportVu.setTransport(require("../../src/get-json")));
-
   it("#speed", callMethod("speed"));
   it("#touches", callMethod("touches"));
   it("#passing", callMethod("passing"));
@@ -21,4 +23,14 @@ describe("sport vu methods", function () {
   it("#shooting", callMethod("shooting"));
   it("#catchShoot", callMethod("catchShoot"));
   it("#pullUpShoot", callMethod("pullUpShoot"));
+
+  after(function () {
+    return Promise.all(Object.keys(global.SportVuData).map(k =>
+      pify(fs.writeFile)(
+        path.join(__dirname, "../../responses", `sportvu-${k}.json`),
+        JSON.stringify(global.SportVuData[k], null, 2)
+      )
+    ))
+    .catch(console.error);
+  });
 });

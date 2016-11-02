@@ -3,190 +3,23 @@
 
 `npm install nba`
 
-## Stability Disclaimer [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+## NBA API
+The [stats.nba.com](http://stats.nba.com) uses a large number of undocumented JSON endpoints to provide the statistics tables and charts displayed on that website. This library provides a JavaScript client for interacting with many of those API endpoints.
 
-This project is in heavy development and is subject to breaking changes without notice.
+## Stability Warning
+This is a client for an unstable and undocumented API. While I try to follow [semver](http://semver.org/) for changes to the JavaScript API this library exposes, the underlying HTTP API can (and has) changed without warning. In particular, the NBA has repeatedly deprecated endpoints, or added certain required headers without which requests will fail. Further, this library comes bundled with a (relatively) up-to-date list of current NBA players which is subject to change at any time -- the specific contents of it should not be considered part of this library's API contract.
 
-## NOTE
-This readme is a little out of date. Major version 3 of this library will be released soon, before the 2016-2017 regular season tips off. You can track the [pull request here](https://github.com/nickb1080/nba/pull/26) or just [check out the `v3` branch](https://github.com/nickb1080/nba/tree/v3).
+## Usability
+To put it nicely, the NBA's API endpoints are a little clunky to work with. This library tries to strike a balance between being usable but not making assumptions about how the data will be used. Specifically, the NBA sends data in a concise "table" form where the column headers come first then each result is an array of values that need to be matched with the proper header. This library does a simple transformation to zip the header and values arrays into a header-keyed object. Beyond that, it tries to not do too much. This is important to note because sometimes the various "result sets" that come back on a single endpoint seem sort of arbitrary. The underlying HTTP API doesn't seem to follow standard REST practices; rather it seems the endpoints are tied directly to the data needed by specific tables and charts displayed on [stats.nba.com](). This is what I mean by "clunky" to work with -- it can be tricky to assemble the data you need for a specific analysis from the various endpoints available.
 
-## API
+## Documentation
+There are four primary parts of this library
+- *Top-level methods*
+- *`stats` namespace* &mdash; [docs](https://github.com/nickb1080/nba/blob/master/doc/stats.md)
+- *`sportVu` namespace*
+- *`synergy` namespace*
 
-As far as I can tell, the NBA's stats API does not have public documentation. As such, it's unclear what the acceptable values are for certain query parameters. Most of what's in here is based on inspecting the parameters [stats.nba.com](http://stats.nba.com/) uses in its own requests. I also took some pointers from the source of [this repo](https://github.com/Caged/nba-player-tracking). Suggestions on a more comprehensive approach, or contributions, are extremely welcome.
+## "I don't use Node.js"
+Please take a look at [nba-client-template](http://github.com/nickb1080/nba-client-template). The relevant part of the repo is a single JSON document from which many programming languages can dynamically generate an API client. The repo contains (sloppy) examples in [Ruby](TODO) and [Python](TODO). Compiled languages can use code generation techniques to the same effect -- there's a (again, sloppy) example in Go. If you'd like me to publish it to a specific registry so you can install it with your language's package manager, please [open an issue](http://github.com/nickb1080/nba-client-template/issues). Please note, however, that package only includes  the endpoints exposed by this library under the `stats` namespace -- `sportvu` and `synergy` endpoints aren't yet included in it. I also plan to add a command-line interface to this library so that it can be easily driven as a child process by another program.
 
-I also couldn't find anything on the terms of use. If you know of a relevant policy, please point me to it.
-
-The peculiar structure of the NBA stats API enforced some specific design considerations. 
-
-The following are the methods implemented on `nba.api`. Each one takes an options hash which is transformed into a query string, and a callback. For usage examples see [/test/integration/api.js](https://github.com/nickb1080/nba/blob/master/test/integration/api.js).
-
-
-#### `playerProfile`
-`playerProfile([Object options], Function callback)`
-
-http://stats.nba.com/stats/playerprofile
-
-
-#### `playerInfo`
-`playerInfo([Object options], Function callback)`
-
-http://stats.nba.com/stats/commonplayerinfo
-
-
-#### `playersInfo`
-`playersInfo([Object options], Function callback)`
-
-http://stats.nba.com/stats/commonallplayers
-
-
-#### `teamStats`
-`teamStats([Object options], Function callback)`
-
-http://stats.nba.com/stats/leaguedashteamstats
-
-
-#### `teamSplits`
-`teamSplits([Object options], Function callback)`
-
-http://stats.nba.com/stats/teamdashboardbygeneralsplits
-
-
-#### `teamYears`
-`teamYears([Object options], Function callback)`
-
-http://stats.nba.com/stats/commonteamyears
-
-
-#### `playerSplits`
-`playerSplits([Object options], Function callback)`
-
-http://stats.nba.com/stats/playerdashboardbygeneralsplits
-
-
-#### `shots`
-`shots([Object options], Function callback)`
-
-http://stats.nba.com/stats/shotchartdetail
-
-
-#### `scoreboard`
-`scoreboard([Object options], Function callback)`
-
-http://stats.nba.com/stats/scoreboard
-
-
-#### `playByPlay`
-`playByPlay([Object options], Function callback)`
-
-http://stats.nba.com/stats/playbyplay
-
-
-#### `boxScoreScoring`
-`boxScoreScoring([Object options], Function callback)`
-
-http://stats.nba.com/stats/boxscorescoring
-
-
-#### `boxScoreUsage`
-`boxScoreUsage([Object options], Function callback)`
-
-http://stats.nba.com/stats/boxscoreusage
-
-
-#### `boxScoreMisc`
-`boxScoreMisc([Object options], Function callback)`
-
-http://stats.nba.com/stats/boxscoremisc
-
-
-#### `boxScoreAdvanced`
-`boxScoreAdvanced([Object options], Function callback)`
-
-http://stats.nba.com/stats/boxscoreadvanced
-
-
-#### `boxScoreFourFactors`
-`boxScoreFourFactors([Object options], Function callback)`
-
-http://stats.nba.com/stats/boxscorefourfactors
-
-
-#### `teamHistoricalLeaders`
-`teamHistoricalLeaders([Object options], Function callback)`
-
-http://stats.nba.com/stats/teamhistoricalleaders
-
-
-#### `teamInfoCommon`
-`teamInfoCommon([Object options], Function callback)`
-
-http://stats.nba.com/stats/teaminfocommon
-
-
-#### `commonTeamRoster`
-`commonTeamRoster([Object options], Function callback)`
-
-http://stats.nba.com/stats/commonteamroster
-
-
-#### `teamPlayerDashboard`
-`teamPlayerDashboard([Object options], Function callback)`
-
-http://stats.nba.com/stats/teamplayerdashboard
-
-
-#### `playerDashPtShotLog`
-`playerDashPtShotLog([Object options], Function callback)`
-
-http://stats.nba.com/stats/playerdashptshotlog
-
-
-#### `playerDashPtReboundLogs`
-`playerDashPtReboundLogs([Object options], Function callback)`
-
-http://stats.nba.com/stats/playerdashptreboundlogs
-
-
-
-Each method has the same signature: an optional options hash (which will be translated into a query string), and a callback function. 
-
-**Note**: This library was previously written such that each API call method returned a Promise. However, Promises are just one of a number of async abstractions available to developers: FRP libraries like Bacon or RxJS, async streams a la Highland.js, ES6 generators, and certainly more in the future. Because of the prevalance of standard Node-style callbacks, there are conventions in place for transforming callbacks into higher-level abstractions.Thus, providing Node-style callbacks at the library level, and allowing library consumers to use their preferred async abstraction (or none) seems like cleaner design. [Bluebird](https://github.com/petkaantonov/bluebird) is an excellent library for "promisifying". You can use it's `.promisifyAll` method on `nba.api`. The [Q library](https://github.com/kriskowal/q/wiki/API-Reference#interfacing-with-nodejs-callbacks) has similar helpers.
-
-### The Problem with JSONP
-JSONP is generally miserable at handling errors or providing any useful information whatsoever about them.
-
-### Data
-Stats responses generally arrive in an object like so:
-
-```js
-{
-  resource: "boxscore",
-  parameters: Object, 
-  resultSets: Array
-}
-```
-
-The `resultSets` property has the data. Some requests have a single `resultSet` (i.e. `resultSets.length === 1`). Others have many. A typical item in the `resultSets` array looks like:
-
-```js
-{
-  headers: Array,
-  name: "PlayerStats"
-  rowSet: Array
-}
-```
-
-The API serves data in an efficient, though tricky to use, manner. In a typical JSON response, the keys of each object may be repeated many times. Indeed, repeated keys might make up a substantial percentage of the size of the response. The NBA's API instead returns an array of header values and an array of rows, which need to be combined by index to produce objects. `util.js` contains a "collectify" function which turns an array of headers, and an array of rows (a two-dimensional array) into a collection of objects. All data received in this way from NBA is transformed before being passed out of the API wrapper.
-
-### Included JSON?
-Players, teams, and games are identified by a unique ID assigned by the NBA. Unfortunately, as far as I can tell, there isn't a way to make queries based on a player's (or team's) name. This wrapper allows queries based on names, but at a cost: it needs an internal list of teams and players to locate the correct ID. The `dist` folder includes two versions of the wrapper: `nba.js` and `nba-light.js`. The `nba.js` file has these lists bundled into the source code. The light version issues requests for these lists when it is loaded (or required). The `nba.ready()` method is provided to give users a way to execute code once these lists are prepared. In the light version, this code is run once both requests return.
-
-```js
-nba.ready(function () {
-  // lists of players and teams are available.
-});
-```
-Whether you use the light or full version depends on your use case -- the full version is _substantially_ larger.
-
-## SportVu Data
-The NBA's player tracking system, SportVu, provides data in a totally different form. More info on this to come.
+##

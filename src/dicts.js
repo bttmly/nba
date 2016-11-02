@@ -1,8 +1,7 @@
+const translateKeys = require("./util/translate-keys");
 const blank = require("./util/blank");
 const invert = require("lodash.invert");
 
-const mapOfOnes = arr => arr.reduce((obj, k) => (obj[k] = 1, obj), {});
-const pipe = (...fns) => arg => fns.reduce((last, fn) => fn(last), arg);
 const nbaToJsMap = blank({
   "Season": "season",
   "SeasonType": "seasonType",
@@ -53,16 +52,22 @@ const nbaToJsMap = blank({
   "pageNo": "pageNo",
   "rowsPerPage": "rowsPerPage",
   "SeasonID": "seasonId",
+  "PtMeasureType": "ptMeasureType",
+  "StatType": "statType",
+  "PlayerScope": "playerScope",
+  "ClutchTime": "clutchTime",
+  "AheadBehind": "aheadBehind",
+  "PointDiff": "pointDiff",
 });
 
-
 const jsToNbaMap = blank(invert(nbaToJsMap));
-const nbaParams = blank(mapOfOnes(Object.keys(nbaToJsMap)));
-const jsParams = blank(mapOfOnes(Object.keys(jsToNbaMap)));
+
+const translateToNba = target => translateKeys(jsToNbaMap, target);
+const translateFromNba = target => translateToNba(nbaToJsMap, target);
 
 module.exports = {
-  nbaParams,
-  jsParams,
+  translateToNba,
+  translateFromNba,
   jsToNbaMap,
   nbaToJsMap,
 };

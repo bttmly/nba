@@ -1,39 +1,34 @@
 const {interpolate} = require("./util/string");
+const {general} = require("./transforms");
 const endpoints = require("./sport-vu-endpoints");
+const getJson = require("./get-json");
 
-let transport = require("./get-json");
+function getTransform (endpoint) { return general; }
 
-const sportVu = Object.create({
-  setTransport (_transport) {
-    transport = _transport;
-  },
-});
-
-Object.keys(endpoints).forEach(key => {
-  sportVu[key] = makeSportVuMethod(endpoints[key]);
-});
-
-function makeSportVuMethod (endpoint) {
+function makeSportVuMethod (endpoint, transport) {
   const makeUrl = interpolate(endpoint.url);
+  const transform = getTransform(endpoint);
 
-  return function sportVuMethod (options, callback) {
-    if (process.browser) {
-      throw new Error("SportVu does not support JSONP");
-    }
+  function sportVuMethod (options = {}) {
+    options = Object.assign({}, endpoint.defaults, options);
+    return transport(makeUrl(options), {}).then(transform);
+  }
 
-    if (typeof options === "function") {
-      callback = options;
-      options = {};
-    }
+  sportVuMethod.defaults = endpoint.defaults;
+  sportVuMethod.params = endpoint.params ?
+    endpoint.params :
+    Object.keys(endpoint.defaults);
 
-    if (typeof callback !== "function") {
-      throw new TypeError("Must pass a callback function.");
-    }
-
-    options = {...endpoint.defaults, ...options};
-
-    transport(makeUrl(options), {}, callback);
-  };
+  return sportVuMethod;
 }
 
-module.exports = sportVu;
+function makeSportVuClient (transport) {
+  const client = {};
+  endpoints.forEach(endpoint => {
+    client[endpoint.name] = makeSportVuMethod(endpoint, transport);
+  });
+  client.withTransport = makeSportVuClient;
+  return client;
+}
+
+module.exports = makeSportVuClient(getJson);
