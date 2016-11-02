@@ -69,7 +69,7 @@ function updatePlayers () {
 }
 
 function updateTeams () {
-  return getTeamsInfo.then(function (data) {
+  return getTeamsInfo().then(function (data) {
     nba.teams = data;
     return data;
   });
