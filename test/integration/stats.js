@@ -32,14 +32,16 @@ const stats = Object.keys(nba.stats).reduce((prox, k) => {
 // stub for now, will add response shape verification for self-documenting responses
 const verifyShape = shape => response => response;
 
-const callMethod = (name, params = {}, shape) => () =>
-  stats[name](params).then(r => global.StatsData[name] = r);
+const callMethod = (name, params = {}, shape) => () => {
+  params.Season = "2016-17";
+  return stats[name](params).then(r => global.StatsData[name] = r);
+};
 
 const _steph = 201939;
 const _dubs = 1610612744;
-const steph = {playerId: _steph};
-const dubs = {teamId: _dubs};
-const game = {gameId: "0021401082"};
+const steph = {PlayerID: _steph};
+const dubs = {TeamID: _dubs};
+const game = {GameID: "0021401082"};
 
 // these tests merely ensure that valid stats API calls don't error.
 // more comprehensive tests are coming soon.
@@ -54,19 +56,19 @@ describe("nba stats methods", function () {
   it("#teamYears", callMethod("teamYears"));
   it("#playerSplits", callMethod("playerSplits", steph));
   it("#shots", callMethod("shots", dubs));
-  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"}));
+  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"})); // response says "GameDate is required" but it doesn't seem to work with uppercase first letter unlike every other parameter -- WTF.
   it("#playByPlay", callMethod("playByPlay", game));
-  it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {teamId: _dubs, seasonId: "20078"}));
+  it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {TeamID: _dubs, SeasonID: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
   it("#commonTeamRoster", callMethod("commonTeamRoster", dubs));
-  it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {teamId: _dubs, seasonType: "Regular Season"}));
+  it("#teamPlayerDashboard", callMethod("teamPlayerDashboard", {TeamID: _dubs, SeasonType: "Regular Season"}));
   it("#lineups", callMethod("lineups"));
-  it("#playerTracking", callMethod("playerTracking", {ptMeasureType: "CatchShoot"}));
-  it("#homepageV2", callMethod("homepageV2", {statType: "Traditional", gameScope: "Season", playerScope: "All Players"}));
+  it("#playerTracking", callMethod("playerTracking", {PtMeasureType: "CatchShoot"}));
+  it("#homepageV2", callMethod("homepageV2", {StatType: "Traditional", GameScope: "Season", PlayerScope: "All Players"}));
   it("#assistTracker", callMethod("assistTracker"));
   it("#playerStats", callMethod("playerStats"));
-  it("#playerClutch", callMethod("playerClutch", {clutchTime: "Last 5 Minutes", aheadBehind: "Ahead or Behind", pointDiff: 5}));
-  it("#teamClutch", callMethod("teamClutch", {clutchTime: "Last 5 Minutes", aheadBehind: "Ahead or Behind", pointDiff: 5}));
+  it("#playerClutch", callMethod("playerClutch", {ClutchTime: "Last 5 Minutes", AheadBehind: "Ahead or Behind", PointDiff: 5}));
+  it("#teamClutch", callMethod("teamClutch", {ClutchTime: "Last 5 Minutes", AheadBehind: "Ahead or Behind", PointDiff: 5}));
   it("#playerShooting", callMethod("playerShooting"));
   it("#teamShooting", callMethod("teamShooting"));
 

@@ -24,10 +24,11 @@ function createGetJson () {
 
     return fetch(urlStr, options)
       .then(resp => {
-        if (resp.status !== 200) {
-          throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
-        }
-        return resp.json();
+        if (resp.ok) return resp.json();
+        
+        return resp.text().then(function (text) {
+          throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
+        });
       });
   };
 }

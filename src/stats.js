@@ -3,12 +3,7 @@ const qs = require("querystring");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
 
-const dicts = require("./dicts");
-const translateKeys = require("./util/translate-keys");
-
 const { general, players, base, lineups } = require("./transforms");
-
-const translate = query => translateKeys(dicts.jsToNbaMap, query);
 
 const paramMap = {};
 template.parameters.forEach(function (param) {
@@ -55,8 +50,7 @@ function makeStatsMethod (endpoint, transport) {
   // }
 
   function statsMethod (query = {}, options = {}) {
-    const translated = translate(query);
-    const reqParams = Object.assign({}, defaults, translated);
+    const reqParams = Object.assign({}, defaults, query);
 
     return transport(endpoint.url, reqParams).then(function (response) {
       if (response == null) return;

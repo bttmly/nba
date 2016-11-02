@@ -15,11 +15,13 @@ global.SynergyData = {};
 // stub for now, will add response shape verification for self-documenting responses
 const verifyShape = shape => response => response;
 
-const callMethod = (name, params = {}, shape) => () =>
-  nba.synergy[name](params)
+const callMethod = (name, params = {}, shape) => () => {
+  params.season = 2016;
+  return nba.synergy[name](params)
     .then(function (resp) {
       writeData(`${name}-${params.category}`, resp);
     });
+};
 
 describe("nba synergy API", function () {
   const categories = [
