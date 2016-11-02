@@ -1,5 +1,5 @@
 const qs = require("querystring");
-
+const debug = require("debug")("nba");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
 
@@ -52,6 +52,7 @@ function makeStatsMethod (endpoint, transport) {
   function statsMethod (query = {}, options = {}) {
     const reqParams = Object.assign({}, defaults, query);
 
+    debug("stats request", endpoint.url, reqParams);
     return transport(endpoint.url, reqParams).then(function (response) {
       if (response == null) return;
 

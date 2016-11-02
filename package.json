@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "camel-case": "^3.0.0",
+    "debug": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
     "jsonp": "^0.2.0",
     "lodash.assign": "^3.2.0",
@@ -28,7 +29,7 @@
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
     "minimist": "^1.2.0",
-    "nba-client-template": "^2.0.2",
+    "nba-client-template": "^3.0.0",
     "pify": "^2.3.0"
   },
   "devDependencies": {

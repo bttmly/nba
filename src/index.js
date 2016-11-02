@@ -1,5 +1,4 @@
 const getTeamsInfo = require("./team-info");
-const getPlayersInfo = require("./player-info");
 
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
@@ -62,7 +61,7 @@ function searchPlayers (str) {
 }
 
 function updatePlayers () {
-  return getPlayersInfo().then(function (data) {
+  return nba.stats.playersInfo().then(function (data) {
     nba.players = data;
     return data;
   });

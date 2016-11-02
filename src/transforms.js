@@ -28,6 +28,7 @@ function players (resp) {
       firstName: names[0].trim(),
       lastName: (names[1] ? names[1] : "").trim(),
       playerId: player.personId,
+      teamId: player.teamId,
     };
   });
 }
