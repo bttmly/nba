@@ -25,7 +25,7 @@ function createGetJson () {
     return fetch(urlStr, options)
       .then(resp => {
         if (resp.ok) return resp.json();
-        
+
         return resp.text().then(function (text) {
           throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
         });

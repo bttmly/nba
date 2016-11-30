@@ -29,7 +29,7 @@
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
     "minimist": "^1.2.0",
-    "nba-client-template": "^3.0.0",
+    "nba-client-template": "^3.2.1",
     "pify": "^2.3.0"
   },
   "devDependencies": {

@@ -71,6 +71,10 @@ describe("nba stats methods", function () {
   it("#teamClutch", callMethod("teamClutch", {ClutchTime: "Last 5 Minutes", AheadBehind: "Ahead or Behind", PointDiff: 5}));
   it("#playerShooting", callMethod("playerShooting"));
   it("#teamShooting", callMethod("teamShooting"));
+  it("#boxScoreSummary", callMethod("boxScoreSummary", game));
+  it("#boxScore", callMethod("boxScore", game));
+  it("#leagueGameLog", callMethod("leagueGameLog", {PlayerOrTeam: "T"}));
+  it("#leagueLeaders", callMethod("leagueLeaders"));
 
   after(function () {
     return Promise.all(Object.keys(global.StatsData).map(k =>
@@ -84,5 +88,13 @@ describe("nba stats methods", function () {
 });
 
 describe("tested all methods", function () {
-  it("did test all methods", () => assert.deepEqual(tested, methods));
+  it("did test all methods", () => {
+    try {
+      assert.deepEqual(tested, methods)
+    } catch (e) {
+      const untested = Object.keys(methods).filter(m => !Object.keys(tested).includes(m));
+      console.log("UNTESTED METHODS:", untested);
+      throw e;
+    }
+  });
 });

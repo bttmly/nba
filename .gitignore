@@ -5,3 +5,4 @@ responses
 
 test/browser/sport-vu-browserified.js
 test/browser/stats-browserified.js
+.DS_Store
