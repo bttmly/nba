@@ -1,6 +1,6 @@
 {
   "name": "nba",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "A Node.js wrapper around the NBA's API",
   "repository": "https://github.com/nickb1080/nba.git",
   "main": "index.js",
@@ -29,7 +29,7 @@
     "lodash.partial": "^3.1.0",
     "lodash.pick": "^3.1.0",
     "minimist": "^1.2.0",
-    "nba-client-template": "^3.2.1",
+    "nba-client-template": "^3.3.0",
     "pify": "^2.3.0"
   },
   "devDependencies": {
