@@ -44,7 +44,7 @@ const dubs = {TeamID: _dubs};
 const game = {GameID: "0021401082"};
 
 // these tests merely ensure that valid stats API calls don't error.
-// more comprehensive tests are coming soon.
+// more comprehensive tests are coming... eventually :/
 
 describe("nba stats methods", function () {
 
@@ -75,6 +75,10 @@ describe("nba stats methods", function () {
   it("#boxScore", callMethod("boxScore", game));
   it("#leagueGameLog", callMethod("leagueGameLog", {PlayerOrTeam: "T"}));
   it("#leagueLeaders", callMethod("leagueLeaders"));
+  it("#playerHustleLeaders", callMethod("playerHustleLeaders"));
+  it("#teamHustleLeaders", callMethod("teamHustleLeaders"));
+  it("#playerHustle", callMethod("playerHustle"));
+  it("#teamHustle", callMethod("teamHustle"));
 
   after(function () {
     return Promise.all(Object.keys(global.StatsData).map(k =>
