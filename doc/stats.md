@@ -352,6 +352,7 @@
 - `GameSegment: ""`
 - `Period: "0"`
 - `LastNGames: "0"`
+- `Season Type: "Regular Season"`
 
 
 
