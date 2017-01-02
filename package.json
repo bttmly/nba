@@ -19,7 +19,6 @@
     "isomorphic-fetch": "^2.2.1",
     "jsonp": "^0.2.0",
     "lodash.assign": "^3.2.0",
-    "lodash.contains": "^2.4.1",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
     "lodash.get": "^4.4.2",
