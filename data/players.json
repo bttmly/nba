@@ -139,7 +139,7 @@
   },
   {
     "firstName": "Wade",
-    "lastName": "Baldwin",
+    "lastName": "Baldwin IV",
     "playerId": 1627735,
     "teamId": 1610612763
   },
@@ -228,7 +228,7 @@
     "teamId": 1610612766
   },
   {
-    "firstName": "DeAndre",
+    "firstName": "DeAndre'",
     "lastName": "Bembry",
     "playerId": 1627761,
     "teamId": 1610612737
@@ -345,7 +345,7 @@
     "firstName": "Anthony",
     "lastName": "Brown",
     "playerId": 1626148,
-    "teamId": 1610612740
+    "teamId": 0
   },
   {
     "firstName": "Bobby",
@@ -642,6 +642,18 @@
     "teamId": 1610612750
   },
   {
+    "firstName": "Spencer",
+    "lastName": "Dinwiddie",
+    "playerId": 203915,
+    "teamId": 1610612751
+  },
+  {
+    "firstName": "Toney",
+    "lastName": "Douglas",
+    "playerId": 201962,
+    "teamId": 0
+  },
+  {
     "firstName": "Goran",
     "lastName": "Dragic",
     "playerId": 201609,
@@ -702,16 +714,16 @@
     "teamId": 1610612755
   },
   {
-    "firstName": "James",
-    "lastName": "Ennis",
-    "playerId": 203516,
-    "teamId": 1610612763
-  },
-  {
     "firstName": "Tyler",
     "lastName": "Ennis",
     "playerId": 203898,
     "teamId": 1610612745
+  },
+  {
+    "firstName": "James",
+    "lastName": "Ennis III",
+    "playerId": 203516,
+    "teamId": 1610612763
   },
   {
     "firstName": "Tyreke",
@@ -771,7 +783,7 @@
     "firstName": "Yogi",
     "lastName": "Ferrell",
     "playerId": 1627812,
-    "teamId": 1610612751
+    "teamId": 0
   },
   {
     "firstName": "Dorian",
@@ -861,7 +873,7 @@
     "firstName": "Jonathan",
     "lastName": "Gibson",
     "playerId": 1626780,
-    "teamId": 1610612742
+    "teamId": 0
   },
   {
     "firstName": "Taj",
@@ -1236,6 +1248,12 @@
     "teamId": 1610612738
   },
   {
+    "firstName": "Pierre",
+    "lastName": "Jackson",
+    "playerId": 203510,
+    "teamId": 1610612742
+  },
+  {
     "firstName": "Reggie",
     "lastName": "Jackson",
     "playerId": 202704,
@@ -1443,7 +1461,7 @@
     "firstName": "Nicolas",
     "lastName": "Laprovittola",
     "playerId": 1627879,
-    "teamId": 1610612759
+    "teamId": 0
   },
   {
     "firstName": "Joffrey",
@@ -1939,7 +1957,7 @@
   },
   {
     "firstName": "Kelly",
-    "lastName": "Oubre",
+    "lastName": "Oubre Jr.",
     "playerId": 1626162,
     "teamId": 1610612764
   },
@@ -2638,6 +2656,12 @@
     "lastName": "Williams",
     "playerId": 2590,
     "teamId": 1610612739
+  },
+  {
+    "firstName": "Reggie",
+    "lastName": "Williams",
+    "playerId": 202130,
+    "teamId": 0
   },
   {
     "firstName": "Troy",
