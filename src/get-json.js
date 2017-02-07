@@ -5,6 +5,7 @@ const template = require("nba-client-template");
 const HEADERS = {
   "user-agent": template.user_agent,
   referer: template.referrer,
+  connection: "keep-alive",
 };
 
 function createUrlString (_url, query) {
