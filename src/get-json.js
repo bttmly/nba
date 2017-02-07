@@ -10,7 +10,6 @@ const HEADERS = {
   Referer: template.referrer,
   Connection: "keep-alive",
   "Cache-Control": "no-cache",
-  Host: "stats.nba.com",
 };
 
 function createUrlString (_url, query) {
