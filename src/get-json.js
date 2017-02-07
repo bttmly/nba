@@ -6,6 +6,8 @@ const HEADERS = {
   "user-agent": template.user_agent,
   referer: template.referrer,
   connection: "keep-alive",
+  "accept-encoding": "gzip, deflate",
+  "cache-control": "no-cache",
 };
 
 function createUrlString (_url, query) {
