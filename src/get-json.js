@@ -5,11 +5,11 @@ const template = require("nba-client-template");
 const HEADERS = {
   "Accept-Encoding": "gzip, deflate",
   "Accept-Language": "en-US",
-  "User-Agent": template.user_agent,
+  Accept: "*/*",
+  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Postman/4.4.2 Chrome/51.0.2704.103 Electron/1.2.5 Safari/537.36",
   Referer: template.referrer,
   Connection: "keep-alive",
   "Cache-Control": "no-cache",
-  Accept: "*/*",
   Host: "stats.nba.com",
 };
 
