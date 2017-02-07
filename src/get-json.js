@@ -3,11 +3,14 @@ const qs = require("querystring");
 const template = require("nba-client-template");
 
 const HEADERS = {
-  "user-agent": template.user_agent,
-  referer: template.referrer,
-  connection: "keep-alive",
-  "accept-encoding": "gzip, deflate",
-  "cache-control": "no-cache",
+  "Accept-Encoding": "gzip, deflate",
+  "Accept-Language": "en-US",
+  "User-Agent": template.user_agent,
+  Referer: template.referrer,
+  Connection: "keep-alive",
+  "Cache-Control": "no-cache",
+  Accept: "*/*",
+  Host: "stats.nba.com",
 };
 
 function createUrlString (_url, query) {
