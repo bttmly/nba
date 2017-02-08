@@ -6,7 +6,7 @@ const HEADERS = {
   "Accept-Encoding": "gzip, deflate",
   "Accept-Language": "en-US",
   Accept: "*/*",
-  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Postman/4.4.2 Chrome/51.0.2704.103 Electron/1.2.5 Safari/537.36",
+  "User-Agent": template.user_agent,
   Referer: template.referrer,
   Connection: "keep-alive",
   "Cache-Control": "no-cache",
@@ -19,8 +19,8 @@ function createUrlString (_url, query) {
 }
 
 function createGetJson () {
-  require("isomorphic-fetch");
-
+  const fetch = require("node-fetch");
+  
   return function getJson (_url, query, _options = {}) {
     const urlStr = createUrlString(_url, query);
 
