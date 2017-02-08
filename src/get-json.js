@@ -3,9 +3,13 @@ const qs = require("querystring");
 const template = require("nba-client-template");
 
 const HEADERS = {
-  "user-agent": template.user_agent,
-  referer: template.referrer,
-  connection: "keep-alive",
+  "Accept-Encoding": "gzip, deflate",
+  "Accept-Language": "en-US",
+  Accept: "*/*",
+  "User-Agent": template.user_agent,
+  Referer: template.referrer,
+  Connection: "keep-alive",
+  "Cache-Control": "no-cache",
 };
 
 function createUrlString (_url, query) {
@@ -15,8 +19,8 @@ function createUrlString (_url, query) {
 }
 
 function createGetJson () {
-  require("isomorphic-fetch");
-
+  const fetch = require("node-fetch");
+  
   return function getJson (_url, query, _options = {}) {
     const urlStr = createUrlString(_url, query);
 
