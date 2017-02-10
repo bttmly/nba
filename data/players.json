@@ -876,6 +876,12 @@
     "teamId": 1610612754
   },
   {
+    "firstName": "Marcus",
+    "lastName": "Georges-Hunt",
+    "playerId": 1627875,
+    "teamId": 1610612748
+  },
+  {
     "firstName": "Jonathan",
     "lastName": "Gibson",
     "playerId": 1626780,
@@ -2409,7 +2415,7 @@
     "firstName": "Lance",
     "lastName": "Stephenson",
     "playerId": 202362,
-    "teamId": 0
+    "teamId": 1610612750
   },
   {
     "firstName": "Jarnell",
@@ -2571,7 +2577,7 @@
     "firstName": "Anderson",
     "lastName": "Varejao",
     "playerId": 2760,
-    "teamId": 1610612744
+    "teamId": 0
   },
   {
     "firstName": "Greivis",
@@ -2703,7 +2709,7 @@
     "firstName": "Derrick",
     "lastName": "Williams",
     "playerId": 202682,
-    "teamId": 0
+    "teamId": 1610612739
   },
   {
     "firstName": "Lou",
