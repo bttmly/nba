@@ -1,6 +1,6 @@
 {
   "name": "nba",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "JavaScript client for the NBA's stats API",
   "repository": "https://github.com/nickb1080/nba.git",
   "main": "index.js",
@@ -10,7 +10,11 @@
   },
   "author": "Nick Bottomley",
   "license": "MIT",
-  "keywords": [ "basketball", "nba", "sports" ],
+  "keywords": [
+    "basketball",
+    "nba",
+    "sports"
+  ],
   "bugs": {
     "url": "https://github.com/nickb1080/nba/issues"
   },
