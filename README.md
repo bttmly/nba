@@ -6,6 +6,12 @@
 ## NBA API
 The [stats.nba.com](http://stats.nba.com) uses a large number of undocumented JSON endpoints to provide the statistics tables and charts displayed on that website. This library provides a JavaScript client for interacting with many of those API endpoints.
 
+## Getting Started
+
+`NBA.findPlayer(str)` will return an object with a player's name, their ID, and their team information. This method is built into the package.
+
+All methods in the `NBA.stats` namespace require an object to be passed in as a parameter. The keys to the object are in the docs for the `stats` namespace [here](stats.md)
+
 ## Stability Warning
 This is a client for an unstable and undocumented API. While I try to follow [semver](http://semver.org/) for changes to the JavaScript API this library exposes, the underlying HTTP API can (and has) changed without warning. In particular, the NBA has repeatedly deprecated endpoints, or added certain required headers without which requests will fail. Further, this library comes bundled with a (relatively) up-to-date list of current NBA players which is subject to change at any time -- the specific contents of it should not be considered part of this library's API contract.
 
