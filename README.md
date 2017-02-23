@@ -13,14 +13,23 @@ The [stats.nba.com](http://stats.nba.com) uses a large number of undocumented JS
 All methods in the `NBA.stats` namespace require an object to be passed in as a parameter. The keys to the object are in the docs for the `stats` namespace [here](doc/stats.md)
 
 ```js
+const NBA = require("nba");
 const curry = NBA.findPlayer('Stephen Curry');
 console.log(curry);
-let curryShoot = NBA.stats.playerStats(curry.playerId);
-
-curryShoot.then(function(stats) {
-  console.log(stats);
-});
+/* logs the following:
+{
+  firstName: 'Stephen',
+  lastName: 'Curry',
+  playerId: 201939,
+  teamId: 1610612744,
+  fullName: 'Stephen Curry',
+  downcaseName: 'stephen curry'
+}
+*/
+NBA.stats.playerInfo({ PlayerID: curry.playerId }).then(console.log);
 ```
+
+For more example API calls, see `/test/integration/stats.js`
 
 ## Stability Warning
 This is a client for an unstable and undocumented API. While I try to follow [semver](http://semver.org/) for changes to the JavaScript API this library exposes, the underlying HTTP API can (and has) changed without warning. In particular, the NBA has repeatedly deprecated endpoints, or added certain required headers without which requests will fail. Further, this library comes bundled with a (relatively) up-to-date list of current NBA players which is subject to change at any time -- the specific contents of it should not be considered part of this library's API contract.
