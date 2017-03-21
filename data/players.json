@@ -63,7 +63,7 @@
     "firstName": "Chris",
     "lastName": "Andersen",
     "playerId": 2365,
-    "teamId": 1610612739
+    "teamId": 0
   },
   {
     "firstName": "Alan",
@@ -75,7 +75,7 @@
     "firstName": "Justin",
     "lastName": "Anderson",
     "playerId": 1626147,
-    "teamId": 1610612742
+    "teamId": 1610612755
   },
   {
     "firstName": "Kyle",
@@ -171,7 +171,7 @@
     "firstName": "Matt",
     "lastName": "Barnes",
     "playerId": 2440,
-    "teamId": 1610612758
+    "teamId": 1610612744
   },
   {
     "firstName": "Will",
@@ -252,6 +252,12 @@
     "teamId": 0
   },
   {
+    "firstName": "Ben",
+    "lastName": "Bentil",
+    "playerId": 1627791,
+    "teamId": 0
+  },
+  {
     "firstName": "Davis",
     "lastName": "Bertans",
     "playerId": 202722,
@@ -291,13 +297,13 @@
     "firstName": "Bojan",
     "lastName": "Bogdanovic",
     "playerId": 202711,
-    "teamId": 1610612751
+    "teamId": 1610612764
   },
   {
     "firstName": "Andrew",
     "lastName": "Bogut",
     "playerId": 101106,
-    "teamId": 1610612742
+    "teamId": 0
   },
   {
     "firstName": "Joel",
@@ -333,7 +339,7 @@
     "firstName": "Corey",
     "lastName": "Brewer",
     "playerId": 201147,
-    "teamId": 1610612745
+    "teamId": 1610612747
   },
   {
     "firstName": "Malcolm",
@@ -351,7 +357,7 @@
     "firstName": "Anthony",
     "lastName": "Brown",
     "playerId": 1626148,
-    "teamId": 1610612753
+    "teamId": 0
   },
   {
     "firstName": "Bobby",
@@ -405,7 +411,7 @@
     "firstName": "Jose",
     "lastName": "Calderon",
     "playerId": 101181,
-    "teamId": 1610612747
+    "teamId": 1610612737
   },
   {
     "firstName": "Kentavious",
@@ -447,7 +453,7 @@
     "firstName": "Omri",
     "lastName": "Casspi",
     "playerId": 201956,
-    "teamId": 1610612758
+    "teamId": 1610612750
   },
   {
     "firstName": "Willie",
@@ -498,6 +504,12 @@
     "teamId": 1610612747
   },
   {
+    "firstName": "Norris",
+    "lastName": "Cole",
+    "playerId": 202708,
+    "teamId": 1610612760
+  },
+  {
     "firstName": "Darren",
     "lastName": "Collison",
     "playerId": 201954,
@@ -522,10 +534,16 @@
     "teamId": 1610612757
   },
   {
+    "firstName": "Quinn",
+    "lastName": "Cook",
+    "playerId": 1626188,
+    "teamId": 1610612740
+  },
+  {
     "firstName": "DeMarcus",
     "lastName": "Cousins",
     "playerId": 202326,
-    "teamId": 1610612758
+    "teamId": 1610612740
   },
   {
     "firstName": "Robert",
@@ -544,6 +562,12 @@
     "lastName": "Crawford",
     "playerId": 2037,
     "teamId": 1610612746
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Crawford",
+    "playerId": 202348,
+    "teamId": 1610612740
   },
   {
     "firstName": "Jae",
@@ -657,7 +681,7 @@
     "firstName": "Toney",
     "lastName": "Douglas",
     "playerId": 201962,
-    "teamId": 1610612763
+    "teamId": 0
   },
   {
     "firstName": "Goran",
@@ -696,6 +720,12 @@
     "teamId": 1610612744
   },
   {
+    "firstName": "Jarell",
+    "lastName": "Eddie",
+    "playerId": 204067,
+    "teamId": 1610612756
+  },
+  {
     "firstName": "Henry",
     "lastName": "Ellenson",
     "playerId": 1627740,
@@ -723,7 +753,7 @@
     "firstName": "Tyler",
     "lastName": "Ennis",
     "playerId": 203898,
-    "teamId": 1610612745
+    "teamId": 1610612747
   },
   {
     "firstName": "James",
@@ -735,7 +765,7 @@
     "firstName": "Tyreke",
     "lastName": "Evans",
     "playerId": 201936,
-    "teamId": 1610612740
+    "teamId": 1610612758
   },
   {
     "firstName": "Dante",
@@ -837,7 +867,7 @@
     "firstName": "Langston",
     "lastName": "Galloway",
     "playerId": 204038,
-    "teamId": 1610612740
+    "teamId": 1610612758
   },
   {
     "firstName": "Marc",
@@ -876,12 +906,6 @@
     "teamId": 1610612754
   },
   {
-    "firstName": "Marcus",
-    "lastName": "Georges-Hunt",
-    "playerId": 1627875,
-    "teamId": 1610612748
-  },
-  {
     "firstName": "Jonathan",
     "lastName": "Gibson",
     "playerId": 1626780,
@@ -891,7 +915,7 @@
     "firstName": "Taj",
     "lastName": "Gibson",
     "playerId": 201959,
-    "teamId": 1610612741
+    "teamId": 1610612760
   },
   {
     "firstName": "Manu",
@@ -909,7 +933,7 @@
     "firstName": "Archie",
     "lastName": "Goodwin",
     "playerId": 203462,
-    "teamId": 0
+    "teamId": 1610612751
   },
   {
     "firstName": "Aaron",
@@ -1014,6 +1038,12 @@
     "teamId": 1610612757
   },
   {
+    "firstName": "Justin",
+    "lastName": "Harper",
+    "playerId": 202712,
+    "teamId": 0
+  },
+  {
     "firstName": "Montrezl",
     "lastName": "Harrell",
     "playerId": 1626149,
@@ -1036,6 +1066,12 @@
     "lastName": "Harris",
     "playerId": 203925,
     "teamId": 1610612751
+  },
+  {
+    "firstName": "Manny",
+    "lastName": "Harris",
+    "playerId": 202412,
+    "teamId": 1610612742
   },
   {
     "firstName": "Tobias",
@@ -1107,13 +1143,13 @@
     "firstName": "Roy",
     "lastName": "Hibbert",
     "playerId": 201579,
-    "teamId": 1610612749
+    "teamId": 1610612743
   },
   {
     "firstName": "Buddy",
     "lastName": "Hield",
     "playerId": 1627741,
-    "teamId": 1610612740
+    "teamId": 1610612758
   },
   {
     "firstName": "Nene",
@@ -1185,7 +1221,7 @@
     "firstName": "Danuel",
     "lastName": "House",
     "playerId": 1627863,
-    "teamId": 1610612764
+    "teamId": 0
   },
   {
     "firstName": "Dwight",
@@ -1197,7 +1233,7 @@
     "firstName": "Marcelo",
     "lastName": "Huertas",
     "playerId": 1626273,
-    "teamId": 1610612747
+    "teamId": 0
   },
   {
     "firstName": "Josh",
@@ -1221,7 +1257,7 @@
     "firstName": "Serge",
     "lastName": "Ibaka",
     "playerId": 201586,
-    "teamId": 1610612753
+    "teamId": 1610612761
   },
   {
     "firstName": "Andre",
@@ -1233,7 +1269,7 @@
     "firstName": "Ersan",
     "lastName": "Ilyasova",
     "playerId": 101141,
-    "teamId": 1610612755
+    "teamId": 1610612737
   },
   {
     "firstName": "Joe",
@@ -1252,6 +1288,12 @@
     "lastName": "Irving",
     "playerId": 202681,
     "teamId": 1610612739
+  },
+  {
+    "firstName": "Jarrett",
+    "lastName": "Jack",
+    "playerId": 101127,
+    "teamId": 0
   },
   {
     "firstName": "Demetrius",
@@ -1299,7 +1341,7 @@
     "firstName": "Brandon",
     "lastName": "Jennings",
     "playerId": 201943,
-    "teamId": 1610612752
+    "teamId": 1610612764
   },
   {
     "firstName": "Jonas",
@@ -1371,7 +1413,7 @@
     "firstName": "Terrence",
     "lastName": "Jones",
     "playerId": 203093,
-    "teamId": 1610612740
+    "teamId": 1610612749
   },
   {
     "firstName": "Tyus",
@@ -1413,7 +1455,7 @@
     "firstName": "Ryan",
     "lastName": "Kelly",
     "playerId": 203527,
-    "teamId": 0
+    "teamId": 1610612737
   },
   {
     "firstName": "Michael",
@@ -1479,7 +1521,7 @@
     "firstName": "Joffrey",
     "lastName": "Lauvergne",
     "playerId": 203530,
-    "teamId": 1610612760
+    "teamId": 1610612741
   },
   {
     "firstName": "Ty",
@@ -1558,6 +1600,12 @@
     "lastName": "Livingston",
     "playerId": 2733,
     "teamId": 1610612744
+  },
+  {
+    "firstName": "Shawn",
+    "lastName": "Long",
+    "playerId": 1627848,
+    "teamId": 1610612755
   },
   {
     "firstName": "Kevon",
@@ -1656,12 +1704,6 @@
     "teamId": 1610612744
   },
   {
-    "firstName": "Ray",
-    "lastName": "McCallum",
-    "playerId": 203492,
-    "teamId": 1610612766
-  },
-  {
     "firstName": "Patrick",
     "lastName": "McCaw",
     "playerId": 1627775,
@@ -1680,7 +1722,7 @@
     "teamId": 1610612757
   },
   {
-    "firstName": "TJ",
+    "firstName": "T.J.",
     "lastName": "McConnell",
     "playerId": 204456,
     "teamId": 1610612755
@@ -1689,19 +1731,19 @@
     "firstName": "Chris",
     "lastName": "McCullough",
     "playerId": 1626191,
-    "teamId": 1610612751
+    "teamId": 1610612764
   },
   {
     "firstName": "KJ",
     "lastName": "McDaniels",
     "playerId": 203909,
-    "teamId": 1610612745
+    "teamId": 1610612751
   },
   {
     "firstName": "Doug",
     "lastName": "McDermott",
     "playerId": 203926,
-    "teamId": 1610612741
+    "teamId": 1610612760
   },
   {
     "firstName": "JaVale",
@@ -1725,7 +1767,7 @@
     "firstName": "Jordan",
     "lastName": "McRae",
     "playerId": 203895,
-    "teamId": 1610612739
+    "teamId": 0
   },
   {
     "firstName": "Josh",
@@ -1815,7 +1857,7 @@
     "firstName": "Anthony",
     "lastName": "Morrow",
     "playerId": 201627,
-    "teamId": 1610612760
+    "teamId": 1610612741
   },
   {
     "firstName": "Donatas",
@@ -1881,7 +1923,7 @@
     "firstName": "Gary",
     "lastName": "Neal",
     "playerId": 202390,
-    "teamId": 1610612737
+    "teamId": 0
   },
   {
     "firstName": "Jameer",
@@ -1905,7 +1947,7 @@
     "firstName": "Andrew",
     "lastName": "Nicholson",
     "playerId": 203094,
-    "teamId": 1610612764
+    "teamId": 1610612751
   },
   {
     "firstName": "Joakim",
@@ -1917,7 +1959,7 @@
     "firstName": "Nerlens",
     "lastName": "Noel",
     "playerId": 203457,
-    "teamId": 1610612755
+    "teamId": 1610612742
   },
   {
     "firstName": "Lucas",
@@ -1941,13 +1983,19 @@
     "firstName": "Jusuf",
     "lastName": "Nurkic",
     "playerId": 203994,
-    "teamId": 1610612743
+    "teamId": 1610612757
+  },
+  {
+    "firstName": "David",
+    "lastName": "Nwaba",
+    "playerId": 1628021,
+    "teamId": 1610612747
   },
   {
     "firstName": "Johnny",
     "lastName": "O'Bryant III",
     "playerId": 203948,
-    "teamId": 1610612743
+    "teamId": 1610612766
   },
   {
     "firstName": "Kyle",
@@ -2031,7 +2079,7 @@
     "firstName": "Lamar",
     "lastName": "Patterson",
     "playerId": 203934,
-    "teamId": 1610612737
+    "teamId": 0
   },
   {
     "firstName": "Patrick",
@@ -2055,7 +2103,7 @@
     "firstName": "Cameron",
     "lastName": "Payne",
     "playerId": 1626166,
-    "teamId": 1610612760
+    "teamId": 1610612741
   },
   {
     "firstName": "Elfrid",
@@ -2085,7 +2133,7 @@
     "firstName": "Mason",
     "lastName": "Plumlee",
     "playerId": 203486,
-    "teamId": 1610612757
+    "teamId": 1610612743
   },
   {
     "firstName": "Miles",
@@ -2107,7 +2155,7 @@
   },
   {
     "firstName": "Otto",
-    "lastName": "Porter",
+    "lastName": "Porter Jr.",
     "playerId": 203490,
     "teamId": 1610612764
   },
@@ -2157,7 +2205,7 @@
     "firstName": "Chasson",
     "lastName": "Randle",
     "playerId": 1626184,
-    "teamId": 1610612755
+    "teamId": 1610612752
   },
   {
     "firstName": "Julius",
@@ -2214,16 +2262,16 @@
     "teamId": 1610612766
   },
   {
-    "firstName": "Glenn",
-    "lastName": "Robinson",
-    "playerId": 203922,
-    "teamId": 1610612754
-  },
-  {
     "firstName": "Thomas",
     "lastName": "Robinson",
     "playerId": 203080,
     "teamId": 1610612747
+  },
+  {
+    "firstName": "Glenn",
+    "lastName": "Robinson III",
+    "playerId": 203922,
+    "teamId": 1610612754
   },
   {
     "firstName": "Sergio",
@@ -2247,7 +2295,7 @@
     "firstName": "Terrence",
     "lastName": "Ross",
     "playerId": 203082,
-    "teamId": 1610612761
+    "teamId": 1610612753
   },
   {
     "firstName": "Terry",
@@ -2286,6 +2334,12 @@
     "teamId": 1610612760
   },
   {
+    "firstName": "Larry",
+    "lastName": "Sanders",
+    "playerId": 202336,
+    "teamId": 1610612739
+  },
+  {
     "firstName": "Dario",
     "lastName": "Saric",
     "playerId": 203967,
@@ -2307,19 +2361,25 @@
     "firstName": "Luis",
     "lastName": "Scola",
     "playerId": 2449,
-    "teamId": 1610612751
+    "teamId": 0
   },
   {
     "firstName": "Mike",
     "lastName": "Scott",
     "playerId": 203118,
-    "teamId": 1610612737
+    "teamId": 0
   },
   {
     "firstName": "Thabo",
     "lastName": "Sefolosha",
     "playerId": 200757,
     "teamId": 1610612737
+  },
+  {
+    "firstName": "Wayne",
+    "lastName": "Selden",
+    "playerId": 1627782,
+    "teamId": 1610612763
   },
   {
     "firstName": "Kevin",
@@ -2403,7 +2463,7 @@
     "firstName": "Tiago",
     "lastName": "Splitter",
     "playerId": 201168,
-    "teamId": 1610612737
+    "teamId": 1610612755
   },
   {
     "firstName": "Nik",
@@ -2415,7 +2475,7 @@
     "firstName": "Lance",
     "lastName": "Stephenson",
     "playerId": 202362,
-    "teamId": 1610612750
+    "teamId": 0
   },
   {
     "firstName": "Jarnell",
@@ -2439,13 +2499,19 @@
     "firstName": "Jared",
     "lastName": "Sullinger",
     "playerId": 203096,
-    "teamId": 1610612761
+    "teamId": 0
   },
   {
     "firstName": "Edy",
     "lastName": "Tavares",
     "playerId": 204002,
     "teamId": 0
+  },
+  {
+    "firstName": "Isaiah",
+    "lastName": "Taylor",
+    "playerId": 1627819,
+    "teamId": 1610612745
   },
   {
     "firstName": "Jeff",
@@ -2505,19 +2571,25 @@
     "firstName": "Marcus",
     "lastName": "Thornton",
     "playerId": 201977,
-    "teamId": 1610612764
+    "teamId": 0
   },
   {
     "firstName": "Mike",
     "lastName": "Tobey",
     "playerId": 1627861,
-    "teamId": 1610612766
+    "teamId": 0
   },
   {
     "firstName": "Anthony",
     "lastName": "Tolliver",
     "playerId": 201229,
     "teamId": 1610612758
+  },
+  {
+    "firstName": "Axel",
+    "lastName": "Toupane",
+    "playerId": 1626253,
+    "teamId": 0
   },
   {
     "firstName": "Karl-Anthony",
@@ -2529,7 +2601,7 @@
     "firstName": "PJ",
     "lastName": "Tucker",
     "playerId": 200782,
-    "teamId": 1610612756
+    "teamId": 1610612761
   },
   {
     "firstName": "Evan",
@@ -2554,6 +2626,12 @@
     "lastName": "Ulis",
     "playerId": 1627755,
     "teamId": 1610612756
+  },
+  {
+    "firstName": "Jarrod",
+    "lastName": "Uthoff",
+    "playerId": 1627784,
+    "teamId": 1610612742
   },
   {
     "firstName": "Jonas",
@@ -2640,7 +2718,7 @@
     "teamId": 1610612756
   },
   {
-    "firstName": "CJ",
+    "firstName": "C.J.",
     "lastName": "Watson",
     "playerId": 201228,
     "teamId": 1610612753
@@ -2649,7 +2727,7 @@
     "firstName": "Briante",
     "lastName": "Weber",
     "playerId": 1627362,
-    "teamId": 1610612744
+    "teamId": 1610612766
   },
   {
     "firstName": "David",
@@ -2703,7 +2781,7 @@
     "firstName": "Deron",
     "lastName": "Williams",
     "playerId": 101114,
-    "teamId": 1610612742
+    "teamId": 1610612739
   },
   {
     "firstName": "Derrick",
@@ -2715,7 +2793,7 @@
     "firstName": "Lou",
     "lastName": "Williams",
     "playerId": 101150,
-    "teamId": 1610612747
+    "teamId": 1610612745
   },
   {
     "firstName": "Marvin",
@@ -2733,7 +2811,7 @@
     "firstName": "Troy",
     "lastName": "Williams",
     "playerId": 1627786,
-    "teamId": 1610612763
+    "teamId": 1610612745
   },
   {
     "firstName": "Kyle",
