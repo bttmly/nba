@@ -19,8 +19,8 @@ function createUrlString (_url, query) {
 }
 
 function createGetJson () {
-  const fetch = require("node-fetch");
-  
+  const fetch = require("isomorphic-fetch");
+
   return function getJson (_url, query, _options = {}) {
     const urlStr = createUrlString(_url, query);
 
