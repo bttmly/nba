@@ -1,4 +1,4 @@
-# nba [![Build Status](https://travis-ci.org/nickb1080/nba.svg?branch=master)](https://travis-ci.org/nickb1080/nba) [![Coverage Status](https://coveralls.io/repos/nickb1080/nba/badge.svg?branch=master&service=github)](https://coveralls.io/github/nickb1080/nba?branch=master)
+# nba [![Build Status](https://travis-ci.org/bttmly/nba.svg?branch=master)](https://travis-ci.org/bttmly/nba) [![Coverage Status](https://coveralls.io/repos/bttmly/nba/badge.svg?branch=master&service=github)](https://coveralls.io/github/bttmly/nba?branch=master)
 *The NBA's stats API for the browser or Node*
 
 `npm install nba`
@@ -40,11 +40,11 @@ To put it nicely, the NBA's API endpoints are a little clunky to work with. This
 ## Documentation
 There are four primary parts of this library
 - *Top-level methods*
-- *`stats` namespace* &mdash; [docs](https://github.com/nickb1080/nba/blob/master/doc/stats.md)
+- *`stats` namespace* &mdash; [docs](https://github.com/bttmly/nba/blob/master/doc/stats.md)
 - *`sportVu` namespace*
 - *`synergy` namespace*
 
 ## "I don't use Node.js"
-Please take a look at [nba-client-template](http://github.com/nickb1080/nba-client-template). The relevant part of the repo is a single JSON document from which many programming languages can dynamically generate an API client. The repo contains (sloppy) examples in [Ruby](https://github.com/nickb1080/nba-client-template/blob/master/example-clients/simple-client.rb) and [Python](https://github.com/nickb1080/nba-client-template/blob/master/example-clients/simple-client.py). Compiled languages can use code generation techniques to the same effect -- there's a (again, sloppy) example in [Go](https://github.com/nickb1080/nba-client-template/tree/master/example-clients/golang). If you'd like me to publish it to a specific registry so you can install it with your language's package manager, please [open an issue](http://github.com/nickb1080/nba-client-template/issues). Please note, however, that package only includes  the endpoints exposed by this library under the `stats` namespace -- `sportvu` and `synergy` endpoints aren't yet included in it. I also plan to add a command-line interface to this library so that it can be easily driven as a child process by another program.
+Please take a look at [nba-client-template](http://github.com/bttmly/nba-client-template). The relevant part of the repo is a single JSON document from which many programming languages can dynamically generate an API client. The repo contains (sloppy) examples in [Ruby](https://github.com/bttmly/nba-client-template/blob/master/example-clients/simple-client.rb) and [Python](https://github.com/bttmly/nba-client-template/blob/master/example-clients/simple-client.py). Compiled languages can use code generation techniques to the same effect -- there's a (again, sloppy) example in [Go](https://github.com/bttmly/nba-client-template/tree/master/example-clients/golang). If you'd like me to publish it to a specific registry so you can install it with your language's package manager, please [open an issue](http://github.com/bttmly/nba-client-template/issues). Please note, however, that package only includes  the endpoints exposed by this library under the `stats` namespace -- `sportvu` and `synergy` endpoints aren't yet included in it. I also plan to add a command-line interface to this library so that it can be easily driven as a child process by another program.
 
 ##
