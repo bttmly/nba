@@ -1,8 +1,8 @@
 .PHONY: test coverage
 
 build-browser-test: build
-	./node_modules/.bin/browserify ./test/integration/stats.js -t babelify -o ./test/browser/stats-browserified.js
-	./node_modules/.bin/browserify ./test/integration/sport-vu.js -t babelify -o ./test/browser/sport-vu-browserified.js
+	./node_modules/.bin/browserify --ignore node-fetch ./test/integration/stats.js -t babelify -o ./test/browser/stats-browserified.js
+	./node_modules/.bin/browserify --ignore node-fetch ./test/integration/sport-vu.js -t babelify -o ./test/browser/sport-vu-browserified.js
 
 browser-test:
 	@make build-browser-test

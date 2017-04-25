@@ -10,6 +10,7 @@ const HEADERS = {
   Referer: template.referrer,
   Connection: "keep-alive",
   "Cache-Control": "no-cache",
+  Origin: "http://stats.nba.com",
 };
 
 function createUrlString (_url, query) {
@@ -20,7 +21,7 @@ function createUrlString (_url, query) {
 
 function createGetJson () {
   const fetch = require("node-fetch");
-  
+
   return function getJson (_url, query, _options = {}) {
     const urlStr = createUrlString(_url, query);
 
