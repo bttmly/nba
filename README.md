@@ -3,6 +3,9 @@
 
 `npm install nba`
 
+## IMPORTANT NOTE:
+It appears as though the NBA has blacklisted certain blocks of IP addresses, specifically those of cloud hosting providers including AWS. As such, you may hit a situation where an application using this package works fine on your local machine, but doesn't work at all when deployed to a cloud server. Annoyingly, requests from these IPs seem to just hang. More information [here](https://github.com/bttmly/nba/issues/41) and [here](https://github.com/seemethere/nba_py/issues/88) -- the second issue has a `curl` command somewhere which will quickly tell you if NBA is accepting requests from your IP.
+
 ## NBA API
 The [stats.nba.com](http://stats.nba.com) uses a large number of undocumented JSON endpoints to provide the statistics tables and charts displayed on that website. This library provides a JavaScript client for interacting with many of those API endpoints.
 
