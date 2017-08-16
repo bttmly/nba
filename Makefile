@@ -44,4 +44,4 @@ preversion:
 	@make update-players
 	@make update-teams
 	@make lint
-	@make test
+	# @make test
