@@ -24,9 +24,14 @@ coverage: build
 lint:
 	./node_modules/.bin/eslint ./src
 
-build:
+build: build-browser
 	rm -rf ./lib
 	./node_modules/.bin/babel src --out-dir lib --stage 0
+
+build-browser:
+	rm -rf ./dist
+	mkdir ./dist
+	./node_modules/.bin/browserify --ignore node-fetch ./index.js -t babelify -o ./dist/nba.js --standalone nba
 
 update-players:
 	node ./scripts/players.js

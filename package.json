@@ -4,6 +4,7 @@
   "description": "JavaScript client for the NBA's stats API",
   "repository": "https://github.com/bttmly/nba.git",
   "main": "index.js",
+  "browser": "./dist/nba.js",
   "scripts": {
     "test": "make test",
     "preversion": "make preversion"
