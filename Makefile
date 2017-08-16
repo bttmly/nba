@@ -40,8 +40,8 @@ update-teams:
 	node ./scripts/teams.js
 
 preversion:
-	@make build
 	@make update-players
 	@make update-teams
 	@make lint
+	@make build
 	# @make test
