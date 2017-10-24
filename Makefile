@@ -25,8 +25,6 @@ lint:
 	./node_modules/.bin/eslint ./src
 
 build: build-browser
-	rm -rf ./lib
-	./node_modules/.bin/babel src --out-dir lib --stage 0
 
 build-browser:
 	rm -rf ./dist
