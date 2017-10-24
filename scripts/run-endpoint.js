@@ -1,4 +1,4 @@
-var nba = require("../").usePromises();
+var nba = require("../");
 var endpoint = process.argv[2];
 
 var props = process.argv.slice(3).reduce(function (o, s) {

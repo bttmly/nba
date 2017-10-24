@@ -3,7 +3,7 @@
 var fs = require("fs");
 var path = require("path");
 
-var updateTeams = require("../lib").updateTeams;
+var updateTeams = require("../src").updateTeams;
 
 updateTeams(function (err, teams) {
   var filePath = path.join(__dirname, "../data/teams.json");

@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 var path = require("path");
-var nba = require("../lib");
+var nba = require("../src");
 
 nba.stats.playersInfo()
   .then(function (players) {
