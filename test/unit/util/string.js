@@ -1,6 +1,6 @@
 "use strict";
 
-var string = require("../../../lib/util/string");
+var string = require("../../../src/util/string");
 var expect = require("expect");
 
 describe("string.downCaseFirst()", function () {

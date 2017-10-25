@@ -5,7 +5,7 @@ process.env.NODE_ENV = "testing";
 const expect = require("expect");
 const noop = () => {};
 
-let stats = require("../../lib").stats;
+let stats = require("../../").stats;
 
 let lastSettings;
 let lastUrl;

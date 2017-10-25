@@ -1,5 +1,5 @@
 const expect = require("expect");
-const nba = require("../../lib");
+const nba = require("../../");
 
 describe("searching methods", () => {
 

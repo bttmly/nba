@@ -1,4 +1,4 @@
-const nba = require("../../lib");
+const nba = require("../../");
 
 const path = require("path");
 const pify = require("pify");

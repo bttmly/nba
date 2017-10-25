@@ -1,6 +1,6 @@
 "use strict";
 
-const nba = require("../../lib");
+const nba = require("../../");
 const fs = require("fs");
 const path = require("path");
 const pify = require("pify");
