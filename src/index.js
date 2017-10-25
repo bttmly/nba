@@ -5,7 +5,9 @@ const stats = require("./stats");
 const synergy = require("./synergy");
 
 const teams = require("../data/teams.json");
-const players = require("./util/build-players")(require("../data/players.json"));
+const buildPlayers = require("./util/build-players");
+
+const players = buildPlayers(require("../data/players.json"));
 
 const nba = {
   // namespaces for NBA API endpoints
@@ -62,7 +64,7 @@ function searchPlayers (str) {
 
 function updatePlayers () {
   return nba.stats.playersInfo().then(function (data) {
-    nba.players = data;
+    nba.players = buildPlayers(data);
     return data;
   });
 }
