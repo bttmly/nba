@@ -76,4 +76,11 @@ function updateTeams () {
   });
 }
 
+function updateStandings () {
+  return nba.stats.leagueStandings().then(function (data) {
+    nba.standings = data
+    return data;
+  });
+}
+
 module.exports = nba;
