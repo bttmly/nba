@@ -2,13 +2,16 @@ const qs = require("querystring");
 const debug = require("debug")("nba");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
-
-const { general, players, base, lineups } = require("./transforms");
+const standingsEndpoint = require('./standings-endpoint')
+const { general, players, base, lineups, standings} = require("./transforms");
 
 const paramMap = {};
 template.parameters.forEach(function (param) {
   paramMap[param.name] = param;
 });
+
+template.stats_endpoints = template.stats_endpoints.concat(standingsEndpoint)
+
 
 const transformMap = {
   playerProfile:  general,
@@ -21,6 +24,7 @@ const transformMap = {
   shots: general,
   scoreboard: general,
   playByPlay: general,
+  leagueStandings: standings,
   teamHistoricalLeaders: general,
   teamInfoCommon: general,
   commonTeamRoster: general,
@@ -42,16 +46,15 @@ function makeStatsMethod (endpoint, transport) {
   endpoint.parameters.forEach(function (param) {
     defaults[param] = paramMap[param].default;
   });
-
   const ccName = camelCase(endpoint.name);
   const transform = transformMap[ccName];
+
+
   // if (transform == null) {
   //   throw new Error(`No transform found for ${ccName}`);
   // }
-
   function statsMethod (query = {}, options = {}) {
     const reqParams = Object.assign({}, defaults, query);
-
     debug("stats request", endpoint.url, reqParams);
     return transport(endpoint.url, reqParams).then(function (response) {
       if (response == null) return;
@@ -76,5 +79,6 @@ function makeStatsClient (transport) {
   client.withTransport = makeStatsClient;
   return client;
 }
+
 
 module.exports = makeStatsClient(require("./get-json"));

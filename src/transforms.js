@@ -42,6 +42,25 @@ function lineups (resp) {
   return general(resp).lineups.map(makeLineup);
 }
 
+function standings (resp) {
+  let temp = general(resp) 
+  let teamsByConfAndDiv = {west: [], east: [],
+    atlantic: [],
+    central: [],
+    southeast: [],
+    northwest: [],
+    pacific: [],
+    southwest: []
+  }
+  temp['standings'].sort((a, b) => {
+    return (b.winPCT - a.winPCT)
+  }).forEach((team) => {
+    teamsByConfAndDiv[downcaseFirst(team.conference)].push(team)
+    teamsByConfAndDiv[downcaseFirst(team.division)].push(team)
+  })
+  return teamsByConfAndDiv
+}
+
 function sportVu (resp) {
   let temp = general(resp);
 
@@ -52,4 +71,4 @@ function sportVu (resp) {
   return indexBy(temp[0], "playerId");
 }
 
-module.exports = { base, general, players, lineups };
+module.exports = { base, general, players, lineups, standings };

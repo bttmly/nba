@@ -425,3 +425,9 @@
 - `GameScope: ""`
 
 
+
+## `nba.stats.leagueStandings(params) -> Promise`
+#### Parameters & Default Values:
+- `Season: "2017-18"`
+- `LeagueID: "00"`
+- `SeasonType: "Regular Season"`

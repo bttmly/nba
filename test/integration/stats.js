@@ -79,6 +79,7 @@ describe("nba stats methods", function () {
   it("#teamHustleLeaders", callMethod("teamHustleLeaders"));
   it("#playerHustle", callMethod("playerHustle"));
   it("#teamHustle", callMethod("teamHustle"));
+  it("#leagueStandings", callMethod("leagueStandings", {Season: '2015-16'}));
 
   after(function () {
     return Promise.all(Object.keys(global.StatsData).map(k =>
