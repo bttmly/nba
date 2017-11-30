@@ -33,7 +33,7 @@ const stats = Object.keys(nba.stats).reduce((prox, k) => {
 const verifyShape = shape => response => response;
 
 const callMethod = (name, params = {}, shape) => () => {
-  params.Season = "2016-17";
+  params.Season = "2017-18";
   return stats[name](params).then(r => global.StatsData[name] = r);
 };
 
