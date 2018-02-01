@@ -35,7 +35,11 @@ const parameters = [
   },
   {
     name: "season",
-    default: 2015,
+    default: 2017,
+  },
+  {
+    name: "limit",
+    default: 50,
   },
 ];
 
