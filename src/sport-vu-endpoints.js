@@ -1,5 +1,5 @@
 
-const defaults = { season: 2015 };
+const defaults = { season: 2017 };
 
 module.exports = [
   {
