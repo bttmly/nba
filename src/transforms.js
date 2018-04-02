@@ -52,4 +52,4 @@ function sportVu (resp) {
   return indexBy(temp[0], "playerId");
 }
 
-module.exports = { base, general, players, lineups };
+module.exports = { base, general, players, lineups, sportVu };

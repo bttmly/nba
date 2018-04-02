@@ -1,5 +1,5 @@
 const http = require("http");
-const qs = require("querystring");
+const qs = require("qs");
 
 const nba = require("..");
 

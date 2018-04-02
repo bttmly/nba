@@ -1,4 +1,3 @@
-const qs = require("querystring");
 const debug = require("debug")("nba");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
@@ -49,7 +48,7 @@ function makeStatsMethod (endpoint, transport) {
   //   throw new Error(`No transform found for ${ccName}`);
   // }
 
-  function statsMethod (query = {}, options = {}) {
+  function statsMethod (query = {}) {
     const reqParams = Object.assign({}, defaults, query);
 
     debug("stats request", endpoint.url, reqParams);

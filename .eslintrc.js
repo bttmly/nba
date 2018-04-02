@@ -1,10 +1,10 @@
-{
+module.exports = {
   "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
     "es6": true,
-    "mocha": true
+    "mocha": true,
   },
   "rules": {
     "quotes": [ 2 ],
@@ -17,5 +17,6 @@
     "no-dupe-keys": 2,
     "no-duplicate-case": 2,
     "no-func-assign": 2,
+    "no-unused-vars": 2,
   },
-}
+};

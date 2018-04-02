@@ -1,5 +1,4 @@
 const url = require("url");
-const qs = require("querystring");
 const template = require("nba-client-template");
 
 const HEADERS = {

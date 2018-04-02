@@ -3,7 +3,7 @@ const {general} = require("./transforms");
 const endpoints = require("./sport-vu-endpoints");
 const getJson = require("./get-json");
 
-function getTransform (endpoint) { return general; }
+function getTransform () { return general; }
 
 function makeSportVuMethod (endpoint, transport) {
   const makeUrl = interpolate(endpoint.url);
