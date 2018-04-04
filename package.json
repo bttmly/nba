@@ -1,6 +1,6 @@
 {
   "name": "nba",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "JavaScript client for the NBA's stats API",
   "repository": "https://github.com/bttmly/nba.git",
   "main": "index.js",
