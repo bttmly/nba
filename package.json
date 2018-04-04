@@ -32,7 +32,8 @@
     "minimist": "^1.2.0",
     "nba-client-template": "3.5.0",
     "node-fetch": "^1.6.3",
-    "pify": "^2.3.0"
+    "pify": "^2.3.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
