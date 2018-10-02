@@ -2437,9 +2437,9 @@ nan@^2.3.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.4.0.tgz#fb3c59d45fe4effe215f0b890f8adf6eb32d2232"
 
-nba-client-template@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-3.5.0.tgz#7566e71b6f6c98ea068ab708d8820a2a5d1ad8f3"
+nba-client-template@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-4.0.0.tgz#46af91222c27ab4e4de1db2d973563a5aacf3187"
 
 no-case@^2.2.0:
   version "2.3.0"
