@@ -48,6 +48,8 @@
     "must": "^0.12.0",
     "node-static": "^0.7.7",
     "openurl": "^1.1.0",
-    "sinon": "^1.10.3"
+    "sinon": "^1.10.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
