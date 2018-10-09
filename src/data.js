@@ -12,12 +12,11 @@ module.exports = {
     let dateStr = date;
     if (date instanceof Date) {
       dateStr = [
-        String(d.getDate()).padStart(2, 0),
-        String(d.getMonth() + 1).padStart(2, 0),
-        d.getFullYear(),
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, 0),
+        String(date.getDate()).padStart(2, 0),
       ].join("");
     }
-
     return getJson(util.format(SCOREBOARD_URL, dateStr));
   },
 };
