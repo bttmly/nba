@@ -3,6 +3,7 @@ const getTeamsInfo = require("./team-info");
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
 const synergy = require("./synergy");
+const data = require("./data"); 
 
 const teams = require("../data/teams.json");
 const buildPlayers = require("./util/build-players");
@@ -14,6 +15,7 @@ const nba = {
   stats,
   sportVu,
   synergy,
+  data,
 
   // in-memory data to help with constructing queries
   players,
