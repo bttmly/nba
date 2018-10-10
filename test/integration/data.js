@@ -11,4 +11,12 @@ describe("nba data methods", function () {
       await nba.data.scoreboard(new Date(1539056100872));
     });
   });
+
+  it("#boxScore", async () => {
+    await nba.data.boxScore("20181009", "0011800055");
+  });
+
+  it("#playByPlay", async () => {
+    await nba.data.playByPlay("20181009", "0011800055");
+  });
 });

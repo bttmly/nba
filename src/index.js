@@ -65,16 +65,16 @@ function searchPlayers (str) {
 }
 
 function updatePlayers () {
-  return nba.stats.playersInfo().then(function (data) {
-    nba.players = buildPlayers(data);
-    return data;
+  return nba.stats.playersInfo().then(function (result) {
+    nba.players = buildPlayers(result);
+    return result;
   });
 }
 
 function updateTeams () {
-  return getTeamsInfo().then(function (data) {
-    nba.teams = data;
-    return data;
+  return getTeamsInfo().then(function (result) {
+    nba.teams = result;
+    return result;
   });
 }
 
