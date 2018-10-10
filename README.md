@@ -1,4 +1,4 @@
-# nba [![Build Status](https://travis-ci.org/bttmly/nba.svg?branch=master)](https://travis-ci.org/bttmly/nba) [![Coverage Status](https://coveralls.io/repos/bttmly/nba/badge.svg?branch=master&service=github)](https://coveralls.io/github/bttmly/nba?branch=master)
+# nba
 *The NBA's stats API for the browser or Node*
 
 `npm install nba`
