@@ -27,10 +27,12 @@ function run (args) {
 
   if (args.docs) {
     if (fn.defaults) {
-      console.log(`${method} default parameters:`);
-      Object.keys(fn.defaults).forEach(key => {
-        console.log(`• ${key}: ${fn.defaults[key]}`);
-      });
+      console.log(`${method} parameters and default values:`);
+      for (const [ key, value ] of Object.entries(fn.defaults)) {
+        console.log(`• ${key}: ${JSON.stringify(value)}`);
+      }
+    } else {
+      console.log(`No docs found for ${method} – open an issue or a pull request: https://github.com/bttmly/nba`);
     }
     return;
   }

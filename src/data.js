@@ -10,19 +10,14 @@ const playByPlayURL = interpolate("http://data.nba.com/data/5s/json/cms/noseason
 // NOTE: the 'date' argument should be a string in format like "20181008" (which indicates Oct 8 2018)
 // You *can* pass a Date object but beware of timezone weirdness!
 
-module.exports = {
-  scoreboard (date) {
-    return getJson(scoreboardURL({ date: dateToYYYYMMDD(date) }));
-  },
+const scoreboard = date => getJson(scoreboardURL({ date: dateToYYYYMMDD(date) }));
+scoreboard.defaults = { date: null };
 
-  boxScore (date, gameId) {
-    return getJson(boxScoreURL({ date: dateToYYYYMMDD(date), gameId }));
-  },
+const boxScore = (date, gameId) => getJson(boxScoreURL({ date: dateToYYYYMMDD(date), gameId }));
+boxScore.defaults = { date: null, gameId: null };
 
-  playByPlay (date, gameId) {
-    return getJson(playByPlayURL({ date: dateToYYYYMMDD(date), gameId }));
-  },
-};
+const playByPlay = (date, gameId) => getJson(playByPlayURL({ date: dateToYYYYMMDD(date), gameId }));
+playByPlay.defaults = { date: null, gameId: null };
 
 function dateToYYYYMMDD (date) {
   if (date instanceof Date) {
@@ -34,6 +29,12 @@ function dateToYYYYMMDD (date) {
   }
 
   // TODO: better checking here?
-  
+
   return date;
 }
+
+module.exports = {
+  scoreboard,
+  boxScore,
+  playByPlay,
+};

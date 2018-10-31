@@ -1,34 +1,33 @@
-const {interpolate} = require("./util/string");
-const {general} = require("./transforms");
-const endpoints = require("./sport-vu-endpoints");
-const getJson = require("./get-json");
+const defaults = { season: 2017 };
 
-function getTransform () { return general; }
+const endpoints = [
+  { name: "speed", defaults },
+  { name: "touches", defaults },
+  { name: "passing", defaults },
+  { name: "defense", defaults },
+  { name: "rebounding", defaults },
+  { name: "drives", defaults },
+  { name: "shooting", defaults },
+  { name: "catchShoot", defaults },
+  { name: "pullUpShoot", defaults },
+];
 
-function makeSportVuMethod (endpoint, transport) {
-  const makeUrl = interpolate(endpoint.url);
-  const transform = getTransform(endpoint);
-
-  function sportVuMethod (options = {}) {
-    options = Object.assign({}, endpoint.defaults, options);
-    return transport(makeUrl(options), {}).then(transform);
+function makeSportVuMethod (endpoint) {
+  function sportVuMethod () {
+    Promise.reject(new Error("NBA.com has removed the sportVu endpoints."));
   }
-
   sportVuMethod.defaults = endpoint.defaults;
-  sportVuMethod.params = endpoint.params ?
-    endpoint.params :
-    Object.keys(endpoint.defaults);
-
+  sportVuMethod.params = Object.keys(endpoint.defaults);
   return sportVuMethod;
 }
 
-function makeSportVuClient (transport) {
+function makeSportVuClient () {
   const client = {};
   endpoints.forEach(endpoint => {
-    client[endpoint.name] = makeSportVuMethod(endpoint, transport);
+    client[endpoint.name] = makeSportVuMethod(endpoint);
   });
   client.withTransport = makeSportVuClient;
   return client;
 }
 
-module.exports = makeSportVuClient(getJson);
+module.exports = makeSportVuClient();

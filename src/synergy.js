@@ -61,6 +61,9 @@ function makeSynergyMethod (endpoint, transport) {
         return response;
       });
   }
+
+  synergyMethod.defaults = defaults;
+
   return synergyMethod;
 }
 
