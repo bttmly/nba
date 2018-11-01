@@ -14,7 +14,7 @@ const endpoints = [
 
 function makeSportVuMethod (endpoint) {
   function sportVuMethod () {
-    Promise.reject(new Error("NBA.com has removed the sportVu endpoints."));
+    return Promise.reject(new Error("NBA.com has removed the sportVu endpoints."));
   }
   sportVuMethod.defaults = endpoint.defaults;
   sportVuMethod.params = Object.keys(endpoint.defaults);

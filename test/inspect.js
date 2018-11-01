@@ -1,18 +1,18 @@
-require("babel/register")({stage: 0});
+const path = require("path");
+const { REPLServer } = require("repl");
 
-var fs = require("fs");
-var path = require("path");
-var {REPLServer} = require("repl");
-
-var Mocha = require("mocha");
-var mocha = new Mocha({ timeout: 30000 });
+const Mocha = require("mocha");
+const mocha = new Mocha({ timeout: 30000 });
 
 mocha.addFile(path.join(__dirname, "integration/stats.js"));
 mocha.addFile(path.join(__dirname, "integration/sport-vu.js"));
 
-const repl = new REPLServer()
+const repl = new REPLServer();
 
-mocha.run(function (failures) {
+mocha.run((failures) => {
+  if (failures) {
+    console.log("failures:", failures);
+  }
   console.log("responses are loaded into global `StatsData` and `SportVuData` objects... Enjoy!");
   repl.start({ prompt: "🏀  > " });
 });

@@ -18,5 +18,6 @@ module.exports = {
     "no-duplicate-case": 2,
     "no-func-assign": 2,
     "no-unused-vars": 2,
+    "no-undef": 2,
   },
 };

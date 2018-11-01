@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "camel-case": "^3.0.0",
+    "content-type": "^1.0.4",
     "debug": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
     "jsonp": "^0.2.0",
@@ -36,19 +37,20 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
     "browserify": "^9.0.3",
     "coveralls": "^2.11.4",
     "eslint": "^1.3.1",
-    "expect": "^1.20.2",
+    "expect": "^23.6.0",
     "istanbul": "^0.3.19",
+    "koa": "^2.6.1",
     "mocha": "^1.21.4",
     "must": "^0.12.0",
     "node-static": "^0.7.7",
     "openurl": "^1.1.0",
     "sinon": "^1.10.3",
+    "supertest": "^3.3.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   }

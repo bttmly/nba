@@ -1,19 +1,28 @@
-"use strict";
-
 const nba = require("../../");
 const fs = require("fs");
 const path = require("path");
 const pify = require("pify");
+const expect = require("expect");
 
 // for interactive inspection
 global.SportVuData = {};
 
-const verifyShape = shape => response => response;
+const getError = async (p) => {
+  try {
+    await p;
+    throw new Error("Expected to reject but fulfilled");
+  } catch (err) {
+    return err;
+  }
+};
 
-const callMethod = (name, shape) => () =>
-  nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
+const callMethod = (name) => async () => {
+  expect(nba.sportVu[name]).toBeInstanceOf(Function);
+  const { message } = await getError(nba.sportVu[name]());
+  expect(message).toBe("NBA.com has removed the sportVu endpoints.");
+};
 
-describe("sport vu methods", function () {
+describe.only("sport vu methods", function () {
   it("#speed", callMethod("speed"));
   it("#touches", callMethod("touches"));
   it("#passing", callMethod("passing"));
