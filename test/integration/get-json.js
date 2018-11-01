@@ -21,23 +21,35 @@ describe("getJson", () => {
 
   it("works with JSON errors", async () => {
     const err = await getError(getJson("http://localhost:3030/json_failure"));
-    console.log(err);
+    expect(err.message).toBe("Request error – 400 Bad Request");
+    expect(err.body).toEqual({ success: false });
+    expect(err.status).toBe(400);
+    testErrorProps(err);
   });
 
   it("errors with good message on non-JSON successes", async () => {
-    const { message, body, status } = await getError(getJson("http://localhost:3030/html_success"));
-    expect(message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
-    expect(body).toBe(htmlResp(200));
-    expect(status).toBe(200);
+    const err = await getError(getJson("http://localhost:3030/html_success"));
+    expect(err.message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
+    expect(err.body).toBe(htmlResp(200));
+    expect(err.status).toBe(200);
+    testErrorProps(err);
   });
 
   it("errors with good message on non-JSON failures", async () => {
-    const { message, body, status } = await getError(getJson("http://localhost:3030/html_failure"));
-    expect(message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
-    expect(body).toBe(htmlResp(400));
-    expect(status).toBe(400);
+    const err = await getError(getJson("http://localhost:3030/html_failure"));
+    expect(err.message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
+    expect(err.body).toBe(htmlResp(400));
+    expect(err.status).toBe(400);
+    testErrorProps(err);
   });
 });
+
+function testErrorProps (err) {
+  expect(typeof err.status).toBe("number");
+  expect(err.url).toContain("http://localhost");
+  expect(err.body).toBeTruthy();
+  expect(err.fetchOptions).toHaveProperty("headers");
+}
 
 async function getError (p) {
   try {
