@@ -19,7 +19,7 @@ function createUrlString (_url, query) {
   return urlObj.format();
 }
 
-function createGetJson (defaultHeaders) {
+function createGetJson () {
   const fetch = require("node-fetch");
 
   return function getJson (_url, query, _options = {}) {

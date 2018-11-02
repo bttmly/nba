@@ -10,19 +10,19 @@ browser-test:
 	./node_modules/.bin/static --cache 0
 
 test: build
-	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/setup.js ./test/unit ./test/integration
+	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/unit ./test/integration
 
 test-bail: build
-	./node_modules/.bin/mocha --bail --recursive --timeout 60000 ./test/setup.js ./test/unit ./test/integration
+	./node_modules/.bin/mocha --bail --recursive --timeout 60000 ./test/unit ./test/integration
 
 test-integration: build
-	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/setup.js ./test/integration
+	./node_modules/.bin/mocha --recursive --timeout 60000 ./test/integration
 
 test-unit: build
-	./node_modules/.bin/mocha --recursive ./test/setup.js ./test/unit/
+	./node_modules/.bin/mocha --recursive ./test/unit/
 
 coverage: build
-	./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive --timeout 60000 ./test/setup.js ./test/unit/ ./test/integration
+	./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive --timeout 60000 ./test/unit/ ./test/integration
 
 lint:
 	./node_modules/.bin/eslint ./src

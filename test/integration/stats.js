@@ -1,9 +1,6 @@
-"use strict";
-
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
-const pify = require("pify");
 
 const nba = require("../../");
 
@@ -14,39 +11,34 @@ const methods = {};
 
 const blacklist = ["withTransport"];
 
-const set = (a, b, c) => (a[b] = c, a);
-
 const stats = Object.keys(nba.stats).reduce((prox, k) => {
   if (!blacklist.includes(k)) {
     methods[k] = true;
   }
 
-  prox[k] = function () {
+  prox[k] = (...args) => {
     tested[k] = true;
-    return nba.stats[k].apply(nba.stats, arguments);
+    return nba.stats[k](...args);
   };
 
   return prox;
 }, {});
 
-// stub for now, will add response shape verification for self-documenting responses
-const verifyShape = shape => response => response;
-
-const callMethod = (name, params = {}, shape) => () => {
+const callMethod = (name, params = {}) => () => {
   params.Season = "2017-18";
   return stats[name](params).then(r => global.StatsData[name] = r);
 };
 
 const _steph = 201939;
 const _dubs = 1610612744;
-const steph = {PlayerID: _steph};
-const dubs = {TeamID: _dubs};
-const game = {GameID: "0021401082"};
+const steph = { PlayerID: _steph };
+const dubs = { TeamID: _dubs };
+const game = { GameID: "0021401082" };
 
 // these tests merely ensure that valid stats API calls don't error.
 // more comprehensive tests are coming... eventually :/
 
-describe("nba stats methods", function () {
+describe("nba stats methods", () => {
 
   it("#playerProfile", callMethod("playerProfile", steph));
   it("#playerInfo", callMethod("playerInfo", steph));
@@ -81,18 +73,21 @@ describe("nba stats methods", function () {
   it("#teamHustle", callMethod("teamHustle", { TeamID: _dubs }));
   it("#leagueStandings", callMethod("leagueStandings"));
 
-  after(function () {
-    return Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(
-        path.join(__dirname, "../../responses", `stats-${k}.json`),
-        JSON.stringify(global.StatsData[k], null, 2)
-      )
-    ))
-    .catch(console.error);
+  after(async () => {
+    try {
+      for (const value of Object.values(global.StatsData)) {
+        fs.writeFileSync(
+          path.join(__dirname, "../../responses", `stats-${k}.json`),
+          JSON.stringify(value, null, 2)
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    }
   });
 });
 
-describe("tested all methods", function () {
+describe("tested all methods", () => {
   it("did test all methods", () => {
     try {
       assert.deepEqual(tested, methods);

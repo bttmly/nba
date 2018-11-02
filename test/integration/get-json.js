@@ -2,6 +2,7 @@ const getJson = require("../../src/get-json");
 const Koa = require("koa");
 const http = require("http");
 const expect = require("expect");
+const { getError } = require("../util");
 
 describe("getJson", () => {
 
@@ -17,7 +18,6 @@ describe("getJson", () => {
     const data = await getJson("http://localhost:3030/json_success");
     expect(data).toEqual({ success: true });
   });
-
 
   it("works with JSON errors", async () => {
     const err = await getError(getJson("http://localhost:3030/json_failure"));
@@ -51,42 +51,33 @@ function testErrorProps (err) {
   expect(err.fetchOptions).toHaveProperty("headers");
 }
 
-async function getError (p) {
-  try {
-    await p;
-    throw new Error("Expected to reject but fulfilled");
-  } catch (err) {
-    return err;
-  }
-};
-
 function createServer () {
   const app = new Koa();
   app.use(async (ctx, next) => {
-    if (ctx.path === "/json_success") {
-      ctx.status = 200;
-      ctx.body = { success: true };
-      return;
-    }
+    switch (ctx.path) {
+      case "/json_success":
+        ctx.status = 200;
+        ctx.body = { success: true };
+        return;
 
-    if (ctx.path === "/json_failure") {
-      ctx.status = 400;
-      ctx.body = { success: false };
-      return;
-    }
+      case "/json_failure":
+        ctx.status = 400;
+        ctx.body = { success: false };
+        return;
 
-    if (ctx.path === "/html_success") {
-      ctx.type = "text/html";
-      ctx.status = 200;
-      ctx.body = htmlResp(200);
-      return;
-    }
+      case "/html_success":
+        ctx.type = "text/html";
+        ctx.status = 200;
+        ctx.body = htmlResp(200);
+        return;
 
-    if (ctx.path === "/html_failure") {
-      ctx.type = "text/html";
-      ctx.status = 400;
-      ctx.body = htmlResp(400);
-      return;
+      case "/html_failure":
+        ctx.type = "text/html";
+        ctx.status = 400;
+        ctx.body = htmlResp(400);
+        return;
+
+      default: break;
     }
 
     return next();

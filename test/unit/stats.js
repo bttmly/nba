@@ -1,9 +1,4 @@
-"use strict";
-
-process.env.NODE_ENV = "testing";
-
 const expect = require("expect");
-const noop = () => {};
 
 let stats = require("../../").stats;
 
@@ -13,9 +8,7 @@ let lastUrl;
 function jsonStub (url, settings) {
   lastUrl = url;
   lastSettings = settings;
-  return new Promise(function (resolve) {
-    setTimeout(resolve, 1);
-  });
+  return new Promise(resolve => setTimeout(resolve, 1));
 }
 
 function lastCalledWithOption (prop, val) {

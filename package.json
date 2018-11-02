@@ -33,6 +33,7 @@
     "minimist": "^1.2.0",
     "nba-client-template": "4.0.0",
     "node-fetch": "2.2.0",
+    "p-try": "^2.0.0",
     "pify": "^2.3.0",
     "url": "^0.11.0"
   },

@@ -12,18 +12,13 @@ function writeData (name, data) {
 
 global.SynergyData = {};
 
-// stub for now, will add response shape verification for self-documenting responses
-const verifyShape = shape => response => response;
-
-const callMethod = (name, params = {}, shape) => () => {
+const callMethod = (name, params = {}) => async () => {
   params.season = 2016;
-  return nba.synergy[name](params)
-    .then(function (resp) {
-      writeData(`${name}-${params.category}`, resp);
-    });
+  const resp = await nba.synergy[name](params);
+  return writeData(`${name}-${params.category}`, resp);
 };
 
-describe("nba synergy API", function () {
+describe("nba synergy API", () => {
   const categories = [
     "Transition",
     "PRBallHandler",
@@ -37,7 +32,7 @@ describe("nba synergy API", function () {
     "Misc",
   ];
 
-  categories.forEach(function (c) {
+  categories.forEach((c) => {
     it(`category ${c}`, callMethod("playerPlayType", {category: c}));
   });
 });

@@ -1,14 +1,12 @@
 var DELAY = 10;
 
-function jsonStub (url, settings) {
-  return new Promise(function (resolve) {
-    setTimeout(() => resolve(), DELAY);
-  });
+function jsonStub () {
+  return new Promise(resolve => setTimeout(resolve, DELAY));
 }
 
-function jsonFailStub (url, settings, callback) {
-  return new Promise(function (__, reject) {
-    setTimeout(() => reject(new Error()), DELAY)
+function jsonFailStub () {
+  return new Promise((__, reject) => {
+    setTimeout(() => reject(new Error("Kaboom")), DELAY);
   });
 }
 
