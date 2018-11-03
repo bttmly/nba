@@ -1,10 +1,10 @@
 async function getError (p) {
   try {
     await p;
-    throw new Error("Expected to reject but fulfilled");
   } catch (err) {
     return err;
   }
+  throw new Error("Expected to reject but fulfilled");
 };
 
 module.exports = { getError };
