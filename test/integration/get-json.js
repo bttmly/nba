@@ -29,7 +29,7 @@ describe("getJson", () => {
 
   it("errors with good message on non-JSON successes", async () => {
     const err = await getError(getJson("http://localhost:3030/html_success"));
-    expect(err.message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
+    expect(err.message).toBe("Received non-JSON response with content type 'text/html'");
     expect(err.body).toBe(htmlResp(200));
     expect(err.status).toBe(200);
     testErrorProps(err);
@@ -37,7 +37,7 @@ describe("getJson", () => {
 
   it("errors with good message on non-JSON failures", async () => {
     const err = await getError(getJson("http://localhost:3030/html_failure"));
-    expect(err.message).toBe("Received non-JSON response with content type text/html; charset=utf-8");
+    expect(err.message).toBe("Received non-JSON response with content type 'text/html'");
     expect(err.body).toBe(htmlResp(400));
     expect(err.status).toBe(400);
     testErrorProps(err);
