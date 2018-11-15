@@ -26,13 +26,13 @@ function createGetJson () {
     const urlStr = createUrlString(_url, query);
 
     const options = Object.assign({}, _options);
-    options.headers = Object.assign((options.headers || {}), HEADERS);
+    options.headers = Object.assign({}, options.headers, HEADERS);
 
     return fetch(urlStr, options)
       .then(res => {
         const { type } = getContentType(res);
         if (type !== "application/json") {
-          return decorateErr(new Error(`Received non-JSON response with content type ${res.headers.get("content-type")}`));
+          return decorateErr(new Error(`Received non-JSON response with content type '${type}'`));
         }
 
         if (res.ok) return res.json();
