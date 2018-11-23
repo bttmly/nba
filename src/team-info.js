@@ -9,7 +9,7 @@ const TWO_WORD_TEAMS = blank({
 });
 
 // adds location city and short name (i.e. 'Warriors') data to team objects.
-function addExtraTeamData (team) {
+function addExtraTeamData(team) {
   team.teamName = team.teamName.trim();
   const splitted = team.teamName.split(" ");
   if (TWO_WORD_TEAMS[team.teamName]) {
@@ -21,12 +21,12 @@ function addExtraTeamData (team) {
   return team;
 }
 
-function teamInfo () {
-  return Promise.all([
-    stats.teamStats(),
-    stats.teamYears(),
-  ]).then(function ([teamStats, teamYears]) {
-    return mergeCollections("teamId", teamStats, teamYears).map(function (d) {
+function teamInfo() {
+  return Promise.all([stats.teamStats(), stats.teamYears()]).then(function([
+    teamStats,
+    teamYears,
+  ]) {
+    return mergeCollections("teamId", teamStats, teamYears).map(function(d) {
       return addExtraTeamData(pick(d, "teamId", "abbreviation", "teamName"));
     });
   });

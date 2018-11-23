@@ -5,12 +5,12 @@ const camelCase = require("camel-case");
 const { general, players, base, lineups } = require("./transforms");
 
 const paramMap = {};
-template.parameters.forEach(function (param) {
+template.parameters.forEach(function(param) {
   paramMap[param.name] = param;
 });
 
 const transformMap = {
-  playerProfile:  general,
+  playerProfile: general,
   playerInfo: general,
   playersInfo: players,
   teamStats: base,
@@ -35,10 +35,9 @@ const transformMap = {
   teamShooting: general,
 };
 
-function makeStatsMethod (endpoint, transport) {
-
+function makeStatsMethod(endpoint, transport) {
   const defaults = {};
-  endpoint.parameters.forEach(function (param) {
+  endpoint.parameters.forEach(function(param) {
     defaults[param] = paramMap[param].default;
   });
 
@@ -48,11 +47,11 @@ function makeStatsMethod (endpoint, transport) {
   //   throw new Error(`No transform found for ${ccName}`);
   // }
 
-  function statsMethod (query = {}) {
+  function statsMethod(query = {}) {
     const reqParams = Object.assign({}, defaults, query);
 
     debug("stats request", endpoint.url, reqParams);
-    return transport(endpoint.url, reqParams).then(function (response) {
+    return transport(endpoint.url, reqParams).then(function(response) {
       if (response == null) return;
 
       // response is something like "GameID is required"
@@ -67,9 +66,9 @@ function makeStatsMethod (endpoint, transport) {
   return statsMethod;
 }
 
-function makeStatsClient (transport) {
+function makeStatsClient(transport) {
   const client = {};
-  template.stats_endpoints.forEach(function (endpoint) {
+  template.stats_endpoints.forEach(function(endpoint) {
     client[camelCase(endpoint.name)] = makeStatsMethod(endpoint, transport);
   });
   client.withTransport = makeStatsClient;

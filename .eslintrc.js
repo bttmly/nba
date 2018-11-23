@@ -1,5 +1,4 @@
 module.exports = {
-  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
@@ -18,5 +17,6 @@ module.exports = {
     "no-duplicate-case": 2,
     "no-func-assign": 2,
     "no-unused-vars": 2,
+    "no-undef": "error",
   },
 };

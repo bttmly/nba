@@ -12,8 +12,8 @@ const endpoints = [
   { name: "pullUpShoot", defaults },
 ];
 
-function makeSportVuMethod (endpoint) {
-  function sportVuMethod () {
+function makeSportVuMethod(endpoint) {
+  function sportVuMethod() {
     Promise.reject(new Error("NBA.com has removed the sportVu endpoints."));
   }
   sportVuMethod.defaults = endpoint.defaults;
@@ -21,7 +21,7 @@ function makeSportVuMethod (endpoint) {
   return sportVuMethod;
 }
 
-function makeSportVuClient () {
+function makeSportVuClient() {
   const client = {};
   endpoints.forEach(endpoint => {
     client[endpoint.name] = makeSportVuMethod(endpoint);

@@ -12,40 +12,39 @@ const HEADERS = {
   Origin: "http://stats.nba.com",
 };
 
-function createUrlString (_url, query) {
+function createUrlString(_url, query) {
   const urlObj = url.parse(_url);
   urlObj.query = query;
   return urlObj.format();
 }
 
-function createGetJson () {
+function createGetJson() {
   const fetch = require("node-fetch");
 
-  return function getJson (_url, query, _options = {}) {
+  return function getJson(_url, query, _options = {}) {
     const urlStr = createUrlString(_url, query);
 
     const options = Object.assign({}, _options);
-    options.headers = Object.assign((options.headers || {}), HEADERS);
+    options.headers = Object.assign(options.headers || {}, HEADERS);
 
-    return fetch(urlStr, options)
-      .then(resp => {
-        if (resp.ok) return resp.json();
+    return fetch(urlStr, options).then(resp => {
+      if (resp.ok) return resp.json();
 
-        return resp.text().then(function (text) {
-          throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
-        });
+      return resp.text().then(function(text) {
+        throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
       });
+    });
   };
 }
 
-function createGetJsonp () {
+function createGetJsonp() {
   const jsonp = require("jsonp");
 
-  return function getJsonp (_url, query, options = {}) {
-    return new Promise(function (resolve, reject) {
+  return function getJsonp(_url, query, options = {}) {
+    return new Promise(function(resolve, reject) {
       const urlStr = createUrlString(_url, query);
 
-      jsonp(urlStr, {timeout: options.timeout}, function (err, data) {
+      jsonp(urlStr, { timeout: options.timeout }, function(err, data) {
         // for compatibility with timeouts from request module
         if (err && err.message === "Timeout") err.code = "ETIMEDOUT";
         if (err) return reject(err);
@@ -55,5 +54,5 @@ function createGetJsonp () {
   };
 }
 
-module.exports = typeof window === "undefined" ?
-  createGetJson() : createGetJsonp();
+module.exports =
+  typeof window === "undefined" ? createGetJson() : createGetJsonp();

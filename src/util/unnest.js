@@ -5,7 +5,7 @@ stats always end up with a thing like:
 }
 */
 
-function unnest (obj) {
+function unnest(obj) {
   const keys = Object.keys(obj);
   if (keys.length !== 1) {
     console.error("unnest() only works on objects with a single key");
