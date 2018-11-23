@@ -1,9 +1,13 @@
 # nba
-*The NBA's stats API for the browser or Node*
+*Node.js client for nba.com API endpoints*
 
 `npm install nba`
 
-## IMPORTANT NOTE:
+## NOTES:
+### BROWSER USAGE
+This package can't be used from the browser because of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) restrictions imposed by nba.com. Currently the hostnames are hardcoded so this package can't be used with a proxy host but if you want support for this use case please [open an issue!](https://github.com/bttmly/nba/issues)
+
+### BLACKLISTED IP ADDRESSES:
 It appears as though the NBA has blacklisted certain blocks of IP addresses, specifically those of cloud hosting providers including AWS. As such, you may hit a situation where an application using this package works fine on your local machine, but doesn't work at all when deployed to a cloud server. Annoyingly, requests from these IPs seem to just hang. More information [here](https://github.com/bttmly/nba/issues/41) and [here](https://github.com/seemethere/nba_py/issues/88) -- the second issue has a `curl` command somewhere which will quickly tell you if NBA is accepting requests from your IP. (Incidentally, this is also the same reason the TravisCI build is always "broken" but tests all pass locally). There is a simple pass-through server in `scripts/proxy` that can be used to get around this restriction; you can put the proxy server somewhere that can reach NBA.com (e.g. not on AWS or Heroku or similar) and host your actual application on a cloud provider.
 
 ## NBA API
