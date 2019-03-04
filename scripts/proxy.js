@@ -21,12 +21,12 @@ const server = http.createServer(async (req, res) => {
   try {
     switch (namespace) {
       case "stats":
-        return statsHandler(res, method, query);
+        return await statsHandler(res, method, query);
       case "synergy":
-        return synergyHandler(res, method, query);
+        return await synergyHandler(res, method, query);
       case "sportvu":
       case "sportVu":
-        return sportVuHandler(res, method, query);
+        return await sportVuHandler(res, method, query);
       default: {
         res.writeHead(400);
         res.end(`Invalid namespace: ${namespace}`);
