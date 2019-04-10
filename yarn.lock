@@ -4100,10 +4100,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-nba-client-template@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-4.0.0.tgz#46af91222c27ab4e4de1db2d973563a5aacf3187"
-  integrity sha512-k8ejuv4RvoAy3n3MS2xX1lqFzyf9SBj/3QD85gLiDF82pTD5WgPgcKNEiPe3Kd5Hiiso5Kbkv34E90EYkC7bzg==
+nba-client-template@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-4.1.0.tgz#5a660025953596123f425ddf9da2e82b19431deb"
+  integrity sha512-HPTLSw5RJWvsaVwaS+hMvScpsBkqBeilwE7z6q2u402YtBn+wdzNTHGiKX/iDiDn1qEYUVudlqS8+3iuvN86zw==
 
 needle@^2.2.1:
   version "2.2.4"
