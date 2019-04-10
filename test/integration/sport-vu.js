@@ -1,17 +1,19 @@
-"use strict";
-
+const expect = require("expect");
 const nba = require("../../");
-const fs = require("fs");
-const path = require("path");
-const pify = require("pify");
 
-// for interactive inspection
-global.SportVuData = {};
+const getRejection = async p => {
+  try {
+    await p;
+  } catch (err) {
+    return err;
+  }
+  throw new Error("Expected promise to reject but it fulfilled");
+};
 
-const verifyShape = shape => response => response;
-
-const callMethod = (name, shape) => () =>
-  nba.sportVu[name]().then(verifyShape(shape)).then(response => global.SportVuData[name] = response);
+const callMethod = (name) => async () => {
+  const err = await getRejection(nba.sportVu[name]());
+  expect(err.message).toBe("NBA.com has removed the sportVu endpoints.");
+};
 
 describe("sport vu methods", function () {
   it("#speed", callMethod("speed"));
@@ -23,14 +25,4 @@ describe("sport vu methods", function () {
   it("#shooting", callMethod("shooting"));
   it("#catchShoot", callMethod("catchShoot"));
   it("#pullUpShoot", callMethod("pullUpShoot"));
-
-  after(function () {
-    return Promise.all(Object.keys(global.SportVuData).map(k =>
-      pify(fs.writeFile)(
-        path.join(__dirname, "../../responses", `sportvu-${k}.json`),
-        JSON.stringify(global.SportVuData[k], null, 2)
-      )
-    ))
-    .catch(console.error);
-  });
 });
