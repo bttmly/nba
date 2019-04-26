@@ -33,6 +33,8 @@ const transformMap = {
   teamClutch: general,
   playerShooting: general,
   teamShooting: general,
+  teamPlayerOnOffDetails: general,
+  playerCompare: general,
 };
 
 function makeStatsMethod (endpoint, transport) {
