@@ -17,7 +17,6 @@ const teamStatsRankingsURL = interpolate("http://data.nba.com/data/10s/prod/v1/_
 const coachesURL = interpolate("http://data.nba.com/data/10s/prod/v1/__season__/coaches.json");
 
 
-
 // NOTE: the 'date' argument should be a string in format like "20181008" (which indicates Oct 8 2018)
 // You *can* pass a Date object but beware of timezone weirdness!
 
