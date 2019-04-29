@@ -80,6 +80,9 @@ describe("nba stats methods", function () {
   it("#playerHustle", callMethod("playerHustle"));
   it("#teamHustle", callMethod("teamHustle", { TeamID: _dubs }));
   it("#leagueStandings", callMethod("leagueStandings"));
+  it("#teamPlayerOnOffDetails", callMethod("teamPlayerOnOffDetails", { TeamID: _dubs }));
+  it("#playerCompare", callMethod("playerCompare", { PlayerIDList: _steph, VsPlayerIDList: _steph }));
+
 
   after(function () {
     return Promise.all(Object.keys(global.StatsData).map(k =>

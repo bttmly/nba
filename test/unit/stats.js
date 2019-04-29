@@ -102,6 +102,16 @@ describe("stats methods", function () {
     it("should issue a request with the correct params", () => stats.teamPlayerDashboard({TeamID: 10}).then(() => expect(lastCalledWithOption("TeamID", 10)).toEqual(true)));
   });
 
+  describe("#teamPlayerOnOffDetails()", () => {
+    it("should issue a request to the correct URL", () => stats.teamPlayerOnOffDetails({TeamID: 11}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/teamplayeronoffdetails")).toEqual(true)));
+    it("should issue a request with the correct params", () => stats.teamPlayerOnOffDetails({TeamID: 11}).then(() => expect(lastCalledWithOption("TeamID", 11)).toEqual(true)));
+  });
+
+  describe("#playerCompare()", () => {
+    it("should issue a request to the correct URL", () => stats.playerCompare({PlayerIDList: 12, VsPlayerIDList: 13}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playercompare")).toEqual(true)));
+    it("should issue a request with the correct params", () => stats.playerCompare({PlayerIDList: 12, VsPlayerIDList: 13}).then(() => expect(lastCalledWithOption("PlayerIDList", 12)).toEqual(true)));
+  });
+
 });
 
 // describe("all endpoints", () => {
