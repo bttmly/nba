@@ -18,10 +18,10 @@
     "url": "https://github.com/bttmly/nba/issues"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "camel-case": "^3.0.0",
     "debug": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
-    "jsonp": "^0.2.0",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
     "lodash.get": "^4.4.2",
@@ -31,7 +31,6 @@
     "lodash.pick": "^3.1.0",
     "minimist": "^1.2.0",
     "nba-client-template": "4.2.0",
-    "node-fetch": "2.2.0",
     "pify": "^2.3.0",
     "url": "^0.11.0"
   },

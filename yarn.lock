@@ -212,6 +212,14 @@ aws4@^1.2.1:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.4.1.tgz#fde7d5292466d230e5ee0f4e038d9dfaab08fc61"
   integrity sha1-/efVKSRm0jDl7g9OA42d+qsI/GE=
 
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
+
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
@@ -508,19 +516,19 @@ debug@2.0.0:
   dependencies:
     ms "0.6.2"
 
-debug@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.1.3.tgz#ce8ab1b5ee8fbee2bfa3b633cab93d366b63418e"
-  integrity sha1-zoqxte6PvuK/o7Yzyrk9NmtjQY4=
-  dependencies:
-    ms "0.7.0"
-
 debug@^2.1.1, debug@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   integrity sha1-+HBX6ZWxofauaklgZkE3vFbwOdo=
   dependencies:
     ms "0.7.1"
+
+debug@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
+  integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
+  dependencies:
+    ms "^2.1.1"
 
 debug@^4.1.0, debug@^4.1.1:
   version "4.1.1"
@@ -898,6 +906,13 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
+follow-redirects@^1.3.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
+  integrity sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
+  dependencies:
+    debug "^3.2.6"
+
 foreach@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
@@ -1225,6 +1240,11 @@ is-buffer@^1.0.2:
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.4.tgz#cfc86ccd5dc5a52fa80489111c6920c457e2d98b"
   integrity sha1-z8hszV3FpS+oBIkRHGkgxFfi2Ys=
 
+is-buffer@^1.1.5:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
+  integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
+
 is-callable@^1.0.4, is-callable@^1.1.1, is-callable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.3.tgz#86eb75392805ddc33af71c92a0eedf74ee7604b2"
@@ -1492,13 +1512,6 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
-
-jsonp@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.0.tgz#95fcd751cf0a67adb9a5a9c4628ffeb97bec63e8"
-  integrity sha1-lfzXUc8KZ625panEYo/+uXvsY+g=
-  dependencies:
-    debug "2.1.3"
 
 jsonpointer@^4.0.0:
   version "4.0.0"
@@ -2072,11 +2085,6 @@ ms@0.6.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.6.2.tgz#d89c2124c6fdc1353d65a8b77bf1aac4b193708c"
   integrity sha1-2JwhJMb9wTU9Zai3e/GqxLGTcIw=
 
-ms@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.0.tgz#865be94c2e7397ad8a57da6a633a6e2f30798b83"
-  integrity sha1-hlvpTC5zl62KV9pqYzpuLzB5i4M=
-
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -2118,11 +2126,6 @@ no-case@^2.2.0:
   integrity sha1-yiglzLdrGOb3nVc9z78erOM90WQ=
   dependencies:
     lower-case "^1.1.1"
-
-node-fetch@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
-  integrity sha512-OayFWziIxiHY8bCUyLX6sTpDH8Jsbp4FfYd1j1f7vZyfgkcOnAyM4oQR16f8a0s7Gl/viMGRey8eScYk4V4EZA==
 
 node-fetch@^1.0.1:
   version "1.6.3"
