@@ -1,5 +1,6 @@
 const url = require("url");
 const template = require("nba-client-template");
+const fetch = require("node-fetch");
 
 const HEADERS = {
   "Accept-Encoding": "gzip, deflate",
@@ -18,42 +19,20 @@ function createUrlString (_url, query) {
   return urlObj.format();
 }
 
-function createGetJson () {
-  const fetch = require("node-fetch");
+module.exports = function getJson (_url, query, _options = {}) {
+  const urlStr = createUrlString(_url, query);
 
-  return function getJson (_url, query, _options = {}) {
-    const urlStr = createUrlString(_url, query);
+  const options = Object.assign({}, _options);
+  options.headers = Object.assign((options.headers || {}), HEADERS);
 
-    const options = Object.assign({}, _options);
-    options.headers = Object.assign((options.headers || {}), HEADERS);
+  return fetch(urlStr, options)
+    .then(resp => {
+      if (resp.ok) return resp.json();
 
-    return fetch(urlStr, options)
-      .then(resp => {
-        if (resp.ok) return resp.json();
-
-        return resp.text().then(function (text) {
-          throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
-        });
-      });
-  };
-}
-
-function createGetJsonp () {
-  const jsonp = require("jsonp");
-
-  return function getJsonp (_url, query, options = {}) {
-    return new Promise(function (resolve, reject) {
-      const urlStr = createUrlString(_url, query);
-
-      jsonp(urlStr, {timeout: options.timeout}, function (err, data) {
-        // for compatibility with timeouts from request module
-        if (err && err.message === "Timeout") err.code = "ETIMEDOUT";
-        if (err) return reject(err);
-        return resolve(data);
+      return resp.text().then(function (text) {
+        throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
       });
     });
-  };
-}
+};
 
-module.exports = typeof window === "undefined" ?
-  createGetJson() : createGetJsonp();
+
