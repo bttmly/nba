@@ -14,27 +14,27 @@ const methods = {};
 
 const blacklist = ["withTransport"];
 
-const set = (a, b, c) => (a[b] = c, a);
-
 const stats = Object.keys(nba.stats).reduce((prox, k) => {
   if (!blacklist.includes(k)) {
     methods[k] = true;
   }
 
-  prox[k] = function () {
+  prox[k] = (...args) => {
     tested[k] = true;
-    return nba.stats[k].apply(nba.stats, arguments);
+    return nba.stats[k](...args);
   };
 
   return prox;
 }, {});
 
 // stub for now, will add response shape verification for self-documenting responses
-const verifyShape = shape => response => response;
+const verifyShape = (shape, response) => response;
 
-const callMethod = (name, params = {}, shape) => () => {
+const callMethod = (name, params = {}, shape) => async () => {
   params.Season = "2017-18";
-  return stats[name](params).then(r => global.StatsData[name] = r);
+  const r = await stats[name](params);
+  verifyShape(shape, r);
+  global.StatsData[name] = r;
 };
 
 const _steph = 201939;
