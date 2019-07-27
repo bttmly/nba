@@ -46,14 +46,9 @@ function makeStatsMethod (endpoint, transport) {
 
   const ccName = camelCase(endpoint.name);
   const transform = transformMap[ccName];
-  // if (transform == null) {
-  //   throw new Error(`No transform found for ${ccName}`);
-  // }
 
   function statsMethod (query = {}) {
     const reqParams = Object.assign({}, defaults, query);
-
-    debug("stats request", endpoint.url, reqParams);
     return transport(endpoint.url, reqParams).then(function (response) {
       if (response == null) return;
 
@@ -71,7 +66,7 @@ function makeStatsMethod (endpoint, transport) {
 
 function makeStatsClient (transport) {
   const client = {};
-  template.stats_endpoints.forEach(function (endpoint) {
+  template.stats_endpoints.forEach((endpoint) => {
     client[camelCase(endpoint.name)] = makeStatsMethod(endpoint, transport);
   });
   client.withTransport = makeStatsClient;
