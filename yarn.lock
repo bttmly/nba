@@ -2374,12 +2374,7 @@ lodash.restparam@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
   integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
-lodash@^4.17.11:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
-
-lodash@^4.17.13, lodash@^4.17.4:
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.4:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -2640,10 +2635,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-nba-client-template@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-4.3.1.tgz#3f1cf3b21897dc78492f147cc8fca17f546e4439"
-  integrity sha512-uJMrm8JGtnVtPQc+C/Z31QI4fGjGoj83G1Cum25vdm1bpLw3pJjQfzhFlgyv1VvMOh3BnifPZ+Sk99RT6JH5LQ==
+nba-client-template@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-4.4.0.tgz#009b640a8696569ed8c4775524884593ae51f961"
+  integrity sha512-Utltirj1+o6R1PMqAFTo8+PfPCOldGa2nh5Lybgg+KjlbFYWcPHPqag06QKE/vmZ7BwrG0i+Xwu86zQoUISizg==
 
 needle@^2.2.1:
   version "2.4.0"

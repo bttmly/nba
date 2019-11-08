@@ -22,8 +22,10 @@ function createUrlString (_url, query) {
 module.exports = function getJson (_url, query, _options = {}) {
   const urlStr = createUrlString(_url, query);
 
-  const options = Object.assign({}, _options);
-  options.headers = Object.assign((options.headers || {}), HEADERS);
+  const options = {
+    ..._options,
+    headers: { ..._options.headers, ... HEADERS },
+  };
 
   return fetch(urlStr, options)
     .then(resp => {
