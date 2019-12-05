@@ -10,6 +10,8 @@ const buildPlayers = require("./util/build-players");
 
 const players = buildPlayers(require("../data/players.json"));
 
+const { allTimePlayers, allTimeTeams } = require('./all-time')
+
 const nba = {
   // namespaces for NBA API endpoints
   stats,
@@ -30,6 +32,10 @@ const nba = {
   // update in-memory data
   updatePlayers,
   updateTeams,
+
+  // dynamic data parsed from https://stats.nba.com/js/data/ptsd/stats_ptsd.js
+  allTimePlayers,
+  allTimeTeams,
 };
 
 function teamIdFromName (name) {
