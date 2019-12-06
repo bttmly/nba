@@ -17,9 +17,21 @@ export const teams: {
     teamName: string;
 }[];
 
-export function allTimePlayers(): any;
+export function allTimePlayers(): {
+    playerId: number;
+    fullName: string;
+    activeBetween: number[];
+    firstName: string;
+    lastName: string;
+}[];
 
-export function allTimeTeams(): any;
+export function allTimeTeams(): {
+    teamId: number;
+    abbreviation: string;
+    simpleName: string;
+    location: string;
+    teamName: string;
+}[];
 
 export function findPlayer(str: any): any;
 
