@@ -49,7 +49,15 @@ function makeStatsMethod (endpoint, transport) {
 
   function statsMethod (query = {}) {
     const reqParams = Object.assign({}, defaults, query);
-    return transport(endpoint.url, reqParams).then(function (response) {
+
+    const options = {
+      headers: {
+        "x-nba-stats-origin": "stats",
+        "x-nba-stats-token": "true",
+      },
+    };
+
+    return transport(endpoint.url, reqParams, options).then(function (response) {
       if (response == null) return;
 
       // response is something like "GameID is required"
