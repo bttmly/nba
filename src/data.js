@@ -15,6 +15,10 @@ const playoffsBracketURL = interpolate("http://data.nba.com/data/10s/prod/v1/__s
 const teamLeadersURL = interpolate("http://data.nba.com/data/10s/prod/v1/__season__/teams/__teamId__/leaders.json");
 const teamStatsRankingsURL = interpolate("http://data.nba.com/data/10s/prod/v1/__season__/team_stats_rankings.json");
 const coachesURL = interpolate("http://data.nba.com/data/10s/prod/v1/__season__/coaches.json");
+const teamsURL = interpolate("http://data.nba.net/data/10s/prod/v1/__year__/teams.json");
+
+const calendarURL = "http://data.nba.net/data/10s/prod/v1/calendar.json";
+const standingsURL = "http://data.nba.net/data/10s/prod/v1/current/standings_all.json";
 
 const withTransport = (newTransport) => {
   transport = newTransport;
@@ -61,6 +65,15 @@ teamStatsRankings.defaults = { season: null };
 const coaches = (season) => transport(coachesURL({ season }));
 coaches.defaults = { season: null };
 
+const teams = (year = "2019") => transport(teamsURL({ year }));
+teams.defaults = { year: null };
+
+const calendar = () => transport(calendarURL);
+calendar.defaults = {};
+
+const standings = () => transport(standingsURL);
+standings.defaults = {};
+
 function dateToYYYYMMDD (date) {
   if (date instanceof Date) {
     return [
@@ -88,5 +101,8 @@ module.exports = {
   teamLeaders,
   teamStatsRankings,
   coaches,
+  teams,
+  calendar,
+  standings,
   withTransport,
 };

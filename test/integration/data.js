@@ -56,6 +56,17 @@ describe("nba data methods", function () {
     log(await nba.data.coaches("2018"));
   });
 
+  it("#teams", async () => {
+    log(await nba.data.teams());
+  });
+
+  it("#calendar", async () => {
+    log(await nba.data.calendar());
+  });
+
+  it("#standings", async () => {
+    log(await nba.data.standings());
+  });
 });
 
 function log (...args) {
