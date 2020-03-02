@@ -24,7 +24,7 @@ module.exports = function getJson (_url, query, _options = {}) {
 
   const options = {
     ..._options,
-    headers: { ..._options.headers, ... HEADERS },
+    headers: { ..._options.headers, ...HEADERS },
   };
 
   return fetch(urlStr, options)
