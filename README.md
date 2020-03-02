@@ -56,7 +56,7 @@ There are four primary parts of this library
 ## Transport Layer
 In some cases you will want to use a different transport layer to handle HTTP requests. Perhaps you have an HTTP client library you like better than what I used here. Better yet, you want to get stats for the WNBA or the G League. The following code snippet shows how to use the `withTransport` method to create a new client with your own transport function.
 
-```
+```js
 // here we are getting stats for the WNBA!
 
 const nba = require("nba");
