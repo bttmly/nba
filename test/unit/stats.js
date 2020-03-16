@@ -78,7 +78,7 @@ describe("stats methods", function () {
   });
 
   describe("#playByPlay()", () => {
-    it("should issue a request to the correct URL", () => stats.playByPlay({GameID: 1}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playbyplay")).toEqual(true)));
+    it("should issue a request to the correct URL", () => stats.playByPlay({GameID: 1}).then(() => expect(lastUrlEq("http://stats.nba.com/stats/playbyplayv2")).toEqual(true)));
     it("should issue a request with the correct params", () => stats.playByPlay({GameID: 1}).then(() => expect(lastCalledWithOption("GameID", 1)).toEqual(true)));
   });
 
