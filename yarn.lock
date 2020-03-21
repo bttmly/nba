@@ -2622,14 +2622,6 @@ lodash._basefindindex@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._basefindindex/-/lodash._basefindindex-3.6.0.tgz#f083360a1b022418ed81bc899beb312e21e74a4f"
   integrity sha1-8IM2ChsCJBjtgbyJm+sxLiHnSk8=
 
-lodash._baseflatten@^3.0.0:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/lodash._baseflatten/-/lodash._baseflatten-3.1.4.tgz#0770ff80131af6e34f3b511796a7ba5214e65ff7"
-  integrity sha1-B3D/gBMa9uNPO1EXlqe6UhTmX/c=
-  dependencies:
-    lodash.isarguments "^3.0.0"
-    lodash.isarray "^3.0.0"
-
 lodash._basefor@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/lodash._basefor/-/lodash._basefor-3.0.3.tgz#7550b4e9218ef09fad24343b612021c79b4c20c2"
@@ -2644,34 +2636,10 @@ lodash._baseisequal@^3.0.0:
     lodash.istypedarray "^3.0.0"
     lodash.keys "^3.0.0"
 
-lodash._baseismatch@^3.0.0:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/lodash._baseismatch/-/lodash._baseismatch-3.1.3.tgz#0728fc48efa11699d3d5f2d73049f2ab13c40fd5"
-  integrity sha1-Byj8SO+hFpnT1fLXMEnyqxPED9U=
-  dependencies:
-    lodash._baseisequal "^3.0.0"
-
-lodash._basematches@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/lodash._basematches/-/lodash._basematches-3.2.0.tgz#f47e03f07ec20784ab0968d0cb6cb597e2101158"
-  integrity sha1-9H4D8H7CB4SrCWjQy2y1l+IQEVg=
-  dependencies:
-    lodash._baseismatch "^3.0.0"
-    lodash.pairs "^3.0.0"
-
 lodash._bindcallback@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
   integrity sha1-5THCdkTPi1epnhftlbNcdIeJOS4=
-
-lodash._createaggregator@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/lodash._createaggregator/-/lodash._createaggregator-3.0.0.tgz#d66cbf39949b050d87df53461f0d059dfb08dc9f"
-  integrity sha1-1my/OZSbBQ2H31NGHw0FnfsI3J8=
-  dependencies:
-    lodash._basecallback "^3.0.0"
-    lodash._baseeach "^3.0.0"
-    lodash.isarray "^3.0.0"
 
 lodash._getnative@^3.0.0:
   version "3.9.1"
@@ -2683,20 +2651,7 @@ lodash._isiterateecall@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz#5203ad7ba425fae842460e696db9cf3e6aac057c"
   integrity sha1-UgOte6Ql+uhCRg5pbbnPPmqsBXw=
 
-lodash._pickbyarray@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash._pickbyarray/-/lodash._pickbyarray-3.0.2.tgz#1f898d9607eb560b0e167384b77c7c6d108aa4c5"
-  integrity sha1-H4mNlgfrVgsOFnOEt3x8bRCKpMU=
-
-lodash._pickbycallback@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/lodash._pickbycallback/-/lodash._pickbycallback-3.0.0.tgz#ff61b9a017a7b3af7d30e6c53de28afa19b8750a"
-  integrity sha1-/2G5oBens699MObFPeKK+hm4dQo=
-  dependencies:
-    lodash._basefor "^3.0.0"
-    lodash.keysin "^3.0.0"
-
-lodash.find@^3.0.0, lodash.find@^3.2.0:
+lodash.find@^3.2.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/lodash.find/-/lodash.find-3.2.1.tgz#046e319f3ace912ac6c9246c7f683c5ec07b36ad"
   integrity sha1-BG4xnzrOkSrGySRsf2g8XsB7Nq0=
@@ -2708,26 +2663,10 @@ lodash.find@^3.0.0, lodash.find@^3.2.0:
     lodash.isarray "^3.0.0"
     lodash.keys "^3.0.0"
 
-lodash.findwhere@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lodash.findwhere/-/lodash.findwhere-3.1.0.tgz#7937d34f3eac818dec7fa94e8ca5e26fdba1cfc1"
-  integrity sha1-eTfTTz6sgY3sf6lOjKXib9uhz8E=
-  dependencies:
-    lodash._basematches "^3.0.0"
-    lodash.find "^3.0.0"
-
 lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
-
-lodash.indexby@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.indexby/-/lodash.indexby-3.1.1.tgz#f2caab0ff279837858147730d863cdd80c1c042e"
-  integrity sha1-8sqrD/J5g3hYFHcw2GPN2AwcBC4=
-  dependencies:
-    lodash._createaggregator "^3.0.0"
-    lodash.keys "^3.0.0"
 
 lodash.invert@^3.0.0:
   version "3.0.1"
@@ -2761,14 +2700,6 @@ lodash.keys@^3.0.0:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
-lodash.keysin@^3.0.0:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.keysin/-/lodash.keysin-3.0.8.tgz#22c4493ebbedb1427962a54b445b2c8a767fb47f"
-  integrity sha1-IsRJPrvtsUJ5YqVLRFssinZ/tH8=
-  dependencies:
-    lodash.isarguments "^3.0.0"
-    lodash.isarray "^3.0.0"
-
 lodash.mapkeys@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/lodash.mapkeys/-/lodash.mapkeys-3.8.0.tgz#4fe8bec18c18b0520a178b2fcf59794b5548eb84"
@@ -2784,22 +2715,6 @@ lodash.pairs@^3.0.0:
   integrity sha1-u+CNV4bu6qCaFckevw3LfSvjJqk=
   dependencies:
     lodash.keys "^3.0.0"
-
-lodash.pick@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-3.1.0.tgz#f252a855b2046b61bcd3904b26f76bd2efc65550"
-  integrity sha1-8lKoVbIEa2G805BLJvdr0u/GVVA=
-  dependencies:
-    lodash._baseflatten "^3.0.0"
-    lodash._bindcallback "^3.0.0"
-    lodash._pickbyarray "^3.0.0"
-    lodash._pickbycallback "^3.0.0"
-    lodash.restparam "^3.0.0"
-
-lodash.restparam@^3.0.0:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
-  integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
 lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4:
   version "4.17.15"
@@ -3505,11 +3420,6 @@ pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
-
-pify@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
-  integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
 pinkie-promise@^2.0.0:
   version "2.0.1"

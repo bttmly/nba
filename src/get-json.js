@@ -1,17 +1,6 @@
 const url = require("url");
-const template = require("nba-client-template");
 const fetch = require("node-fetch");
-
-const HEADERS = {
-  "Accept-Encoding": "gzip, deflate",
-  "Accept-Language": "en-US",
-  Accept: "*/*",
-  "User-Agent": template.user_agent,
-  Referer: template.referrer,
-  Connection: "keep-alive",
-  "Cache-Control": "no-cache",
-  Origin: "http://stats.nba.com",
-};
+const headers = require("./headers");
 
 function createUrlString (_url, query) {
   const urlObj = url.parse(_url);
@@ -19,22 +8,23 @@ function createUrlString (_url, query) {
   return urlObj.format();
 }
 
-module.exports = function getJson (_url, query, _options = {}) {
+module.exports = async function getJson (_url, query, _options = {}) {
   const urlStr = createUrlString(_url, query);
-
   const options = {
     ..._options,
-    headers: { ..._options.headers, ...HEADERS },
+    headers: { ...headers, ..._options.headers },
   };
 
-  return fetch(urlStr, options)
-    .then(resp => {
-      if (resp.ok) return resp.json();
+  const resp = await fetch(urlStr, options);
+  const contentType = resp.headers.get("content-type");
+  if (!contentType.includes("application/json")) {
+    throw new Error(`Got non-JSON response – content type: ${contentType}`);
+  }
 
-      return resp.text().then(function (text) {
-        throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
-      });
-    });
+  if (resp.ok) return resp.json();
+
+  const text = await resp.text();
+  throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
 };
 
 

@@ -1,52 +1,47 @@
-"use strict";
-
-const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
-const pify = require("pify");
 
 const nba = require("../../");
-
-// for interactive inspection, particularly in browser
-global.StatsData = {};
+const get = require("lodash.get");
+const responses = {};
 const tested = {};
-const methods = {};
-
-const blacklist = ["withTransport"];
-
-const stats = Object.keys(nba.stats).reduce((prox, k) => {
-  if (!blacklist.includes(k)) {
-    methods[k] = true;
-  }
-
-  prox[k] = (...args) => {
-    tested[k] = true;
-    return nba.stats[k](...args);
-  };
-
-  return prox;
-}, {});
+const notTested = ["withTransport"];
 
 // stub for now, will add response shape verification for self-documenting responses
 const verifyShape = (shape, response) => response;
 
 const callMethod = (name, params = {}, shape) => async () => {
-  params.Season = "2017-18";
-  const r = await stats[name](params);
+  tested[name] = true;
+  const method = nba.stats[name];
+  const r = await method(params);
   verifyShape(shape, r);
-  global.StatsData[name] = r;
+
+  // special case, maximum call stack size exceeded
+  const items = get(r, ["resultSets", 0, "rowSet"]);
+  if (items && items.length > 500) {
+    r.resultSets[0].rowSet = items.slice(0, 500);
+  }
+
+  responses[name] = r;
 };
 
 const _steph = 201939;
 const _dubs = 1610612744;
-const steph = {PlayerID: _steph};
-const dubs = {TeamID: _dubs};
-const game = {GameID: "0021401082"};
+const steph = { PlayerID: _steph };
+const dubs = { TeamID: _dubs };
+const game = { GameID: "0021401082" };
 
 // these tests merely ensure that valid stats API calls don't error.
-// more comprehensive tests are coming... eventually :/
+
+const delay = ms => new Promise(r => setTimeout(r, ms));
 
 describe("nba stats methods", function () {
+
+  // it seems like we get throttled or blacklisted if we send these requests too quickly
+  afterEach(async () => {
+    console.log("delay 3s");
+    await delay(3000);
+  });
 
   it("#playerProfile", callMethod("playerProfile", steph));
   it("#playerInfo", callMethod("playerInfo", steph));
@@ -84,25 +79,31 @@ describe("nba stats methods", function () {
   it("#playerCompare", callMethod("playerCompare", { PlayerIDList: _steph, VsPlayerIDList: _steph }));
 
 
-  after(function () {
-    return Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(
-        path.join(__dirname, "../../responses", `stats-${k}.json`),
-        JSON.stringify(global.StatsData[k], null, 2)
-      )
-    ))
-    .catch(console.error);
+  after(() => {
+    if (!process.env.WRITE_RESPONSES) return;
+    try {
+      fs.mkdirSync(path.join(__dirname, "../responses"));
+    } catch (err) {}
+
+    for (const [method, response] of Object.entries(responses)) {
+      fs.writeFileSync(
+        path.join(__dirname, "../responses", `stats_${method}.json`),
+        JSON.stringify(response, null, 2),
+      );
+    }
   });
 });
 
 describe("tested all methods", function () {
   it("did test all methods", () => {
-    try {
-      assert.deepEqual(tested, methods);
-    } catch (e) {
-      const untested = Object.keys(methods).filter(m => !Object.keys(tested).includes(m));
+    const untested = [];
+    for (const method of Object.keys(nba.stats)) {
+      if (notTested.includes(method)) continue;
+      if (!tested[method]) untested.push(method);
+    }
+    if (untested.length) {
       console.log("UNTESTED METHODS:", untested);
-      throw e;
+      throw new Error("didn't test all stats methods");
     }
   });
 });

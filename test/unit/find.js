@@ -34,10 +34,10 @@ describe("searching methods", () => {
       const ids = players.map(p => p.playerId);
 
       // james harden
-      expect(ids.indexOf(201935)).toNotEqual(-1);
+      expect(ids.indexOf(201935)).not.toEqual(-1);
 
       // lebron james
-      expect(ids.indexOf(2544)).toNotEqual(-1);
+      expect(ids.indexOf(2544)).not.toEqual(-1);
     });
   });
 

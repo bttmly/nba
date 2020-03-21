@@ -1,5 +1,3 @@
-const indexBy = require("lodash.indexby");
-
 const collectify = require("./util/collectify");
 const {
   jsify,
@@ -42,14 +40,4 @@ function lineups (resp) {
   return general(resp).lineups.map(makeLineup);
 }
 
-function sportVu (resp) {
-  let temp = general(resp);
-
-  if (temp.length !== 1) {
-    throw new Error("Expected sportVu response to have a single result set");
-  }
-
-  return indexBy(temp[0], "playerId");
-}
-
-module.exports = { base, general, players, lineups, sportVu };
+module.exports = { base, general, players, lineups };

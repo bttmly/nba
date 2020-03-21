@@ -1,35 +1,44 @@
-const mergeCollections = require("./util/merge-collections");
-const blank = require("./util/blank");
 const stats = require("./stats");
 
-const pick = require("lodash.pick");
-
-const TWO_WORD_TEAMS = blank({
+const TWO_WORD_TEAMS = {
   "Portland Trail Blazers": true,
-});
+};
 
 // adds location city and short name (i.e. 'Warriors') data to team objects.
-function addExtraTeamData (team) {
-  team.teamName = team.teamName.trim();
-  const splitted = team.teamName.split(" ");
-  if (TWO_WORD_TEAMS[team.teamName]) {
-    team.simpleName = splitted.splice(-2, 2).join(" ");
-  } else {
-    team.simpleName = splitted.splice(-1, 1).join();
-  }
-  team.location = splitted.join(" ");
-  return team;
+function formatTeam ({ teamId, abbreviation, teamName: rawTeamName }) {
+  const teamName = rawTeamName.trim();
+  const splitted = teamName.split(" ");
+  const simpleName = TWO_WORD_TEAMS[rawTeamName] ?
+    splitted.splice(-2, 2).join(" ") :
+    splitted.splice(-1, 1).join();
+  const location = splitted.join(" ");
+
+  return {
+    teamId,
+    abbreviation,
+    teamName,
+    simpleName,
+    location,
+  };
 }
 
-function teamInfo () {
-  return Promise.all([
+async function teamInfo () {
+  const [teamStats, teamYears] = await Promise.all([
     stats.teamStats(),
     stats.teamYears(),
-  ]).then(function ([teamStats, teamYears]) {
-    return mergeCollections("teamId", teamStats, teamYears).map(function (d) {
-      return addExtraTeamData(pick(d, "teamId", "abbreviation", "teamName"));
-    });
-  });
+  ]);
+
+  const result = mergeCollections("teamId", teamStats, teamYears)
+    .map(formatTeam);
+  return result;
 }
 
 module.exports = teamInfo;
+
+// any items in B without a corresponding A will be dropped
+function mergeCollections (idProp, listA, listB) {
+  return listA.map(function (itemA) {
+    const itemB = listB.find(it => it[idProp] === itemA[idProp]);
+    return { ...itemA, ...itemB };
+  });
+};

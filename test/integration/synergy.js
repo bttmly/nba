@@ -1,26 +1,10 @@
 const nba = require("../../");
 
-const path = require("path");
-const pify = require("pify");
-const writeFile = pify(require("fs").writeFile);
+const delay = ms => new Promise(r => setTimeout(r, ms));
 
-const dir = path.join(__dirname, "../../responses");
-function writeData (name, data) {
-  const str = JSON.stringify(data, null, 2);
-  return writeFile(path.join(dir, `synergy-${name}.json`), str);
-}
-
-global.SynergyData = {};
-
-// stub for now, will add response shape verification for self-documenting responses
-const verifyShape = shape => response => response;
-
-const callMethod = (name, params = {}, shape) => () => {
-  params.season = 2016;
-  return nba.synergy[name](params)
-    .then(function (resp) {
-      writeData(`${name}-${params.category}`, resp);
-    });
+const callMethod = (name, params = {}) => () => {
+  params.season = 201;
+  return nba.synergy[name](params);
 };
 
 describe("nba synergy API", function () {
@@ -36,6 +20,12 @@ describe("nba synergy API", function () {
     "OffRebound",
     "Misc",
   ];
+
+  // it seems like we get throttled or blacklisted if we send these requests too quickly
+  afterEach(async () => {
+    console.log("delay 3s");
+    await delay(3000);
+  });
 
   categories.forEach(function (c) {
     it(`category ${c}`, callMethod("playerPlayType", {category: c}));

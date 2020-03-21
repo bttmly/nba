@@ -20,7 +20,7 @@ const teamsURL = interpolate("http://data.nba.net/data/10s/prod/v1/__year__/team
 const calendarURL = "http://data.nba.net/data/10s/prod/v1/calendar.json";
 const standingsURL = "http://data.nba.net/data/10s/prod/v1/current/standings_all.json";
 
-async function createDeleteInternalTransport (transport) {
+function createDeleteInternalTransport (transport) {
   return async function (...args) {
     const result = await transport(...args);
     if (result == null) return; // ?
@@ -29,14 +29,14 @@ async function createDeleteInternalTransport (transport) {
   };
 }
 
-// NOTE: the 'date' argument should be a string in format like "20181008" (which indicates Oct 8 2018)
+// NOTE: the 'date' argument should be a string or number in YYYYMMDD
+// format like "20181008" (which indicates Oct 8 2018)
 // You *can* pass a Date object but beware of timezone weirdness!
 
 // NOTE: the 'season' argument is the first year of the NBA season e.g. "2018" for the 2018-19 season
-
 const DEFAULT_SEASON = "2019";
 
-function createDataEndpoints () {
+function createDataEndpoints (transport) {
   const scoreboard = date => transport(scoreboardURL({ date: dateToYYYYMMDD(date) }));
   scoreboard.defaults = { date: null };
 
@@ -104,20 +104,27 @@ function createDataEndpoints () {
   };
 }
 
-
 function dateToYYYYMMDD (date) {
   if (date instanceof Date) {
     return [
       date.getFullYear(),
-      String(date.getMonth() + 1).padStart(2, 0),
-      String(date.getDate()).padStart(2, 0),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0"),
     ].join("");
   }
 
-  // TODO: better checking here?
+  if (typeof date === "number") date = String(date);
+
+  if (typeof date !== "string") {
+    throw new Error(`date argument must be a Date object, or a YYYYMMDD string or number, got: ${date}`);
+  }
+
+  if (date.length !== 8) {
+    throw new Error(`date argument must be in YYYYMMDD format, got: ${date}`);
+  }
 
   return date;
 }
 
-const transport = createDeleteInternalTransport(baseTransport);
-module.exports = createDataEndpoints(transport);
+const defaultTransport = createDeleteInternalTransport(baseTransport);
+module.exports = createDataEndpoints(defaultTransport);

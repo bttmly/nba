@@ -1,4 +1,3 @@
-const debug = require("debug")("nba");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
 
@@ -48,7 +47,7 @@ function makeStatsMethod (endpoint, transport) {
   const transform = transformMap[ccName];
 
   function statsMethod (query = {}) {
-    const reqParams = Object.assign({}, defaults, query);
+    const reqParams = { ...defaults, ...query };
 
     const options = {
       headers: {
@@ -66,6 +65,13 @@ function makeStatsMethod (endpoint, transport) {
       return transform ? transform(response) : response;
     });
   }
+
+  Object.defineProperty(statsMethod, "name", {
+    value: ccName,
+    writable: false,
+    enumerable: false,
+    configurable: true,
+  });
 
   statsMethod.parameters = endpoint.parameters;
   statsMethod.defaults = defaults;

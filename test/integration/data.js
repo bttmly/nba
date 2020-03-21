@@ -8,6 +8,9 @@ const responses = {};
 describe("nba data methods", function () {
   after(() => {
     if (process.env.WRITE_RESPONSES) {
+      try {
+        fs.mkdirSync(path.join(__dirname, "../responses"));
+      } catch (err) {}
       console.log("writing responses to disk");
       for (const [method, result] of Object.entries(responses)) {
         const fileName = `data_${method}.json`;
