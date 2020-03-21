@@ -12,9 +12,6 @@ test-integration:
 test-unit:
 	./node_modules/.bin/mocha --recursive ./test/unit/
 
-coverage:
-	./node_modules/.bin/nyc ./node_modules/.bin/_mocha --timeout 60000 ./test/unit/ ./test/integration
-
 lint:
 	./node_modules/.bin/eslint ./src
 

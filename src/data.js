@@ -20,16 +20,13 @@ const teamsURL = interpolate("http://data.nba.net/data/10s/prod/v1/__year__/team
 const calendarURL = "http://data.nba.net/data/10s/prod/v1/calendar.json";
 const standingsURL = "http://data.nba.net/data/10s/prod/v1/current/standings_all.json";
 
-// TODO: this leaks! it needs to be in a closure
-const withTransport = (newTransport) => {
-  baseTransport = newTransport;
-};
-
-async function transport (...args) {
-  const result = await baseTransport(...args);
-  if (result == null) return; // ?
-  delete result._internal;
-  return result;
+async function createDeleteInternalTransport (transport) {
+  return async function (...args) {
+    const result = await transport(...args);
+    if (result == null) return; // ?
+    delete result._internal;
+    return result;
+  };
 }
 
 // NOTE: the 'date' argument should be a string in format like "20181008" (which indicates Oct 8 2018)
@@ -39,50 +36,74 @@ async function transport (...args) {
 
 const DEFAULT_SEASON = "2019";
 
-const scoreboard = date => transport(scoreboardURL({ date: dateToYYYYMMDD(date) }));
-scoreboard.defaults = { date: null };
+function createDataEndpoints () {
+  const scoreboard = date => transport(scoreboardURL({ date: dateToYYYYMMDD(date) }));
+  scoreboard.defaults = { date: null };
 
-const boxScore = (date, gameId) => transport(boxScoreURL({ date: dateToYYYYMMDD(date), gameId }));
-boxScore.defaults = { date: null, gameId: null };
+  const boxScore = (date, gameId) => transport(boxScoreURL({ date: dateToYYYYMMDD(date), gameId }));
+  boxScore.defaults = { date: null, gameId: null };
 
-const playByPlay = (date, gameId) => transport(playByPlayURL({ date: dateToYYYYMMDD(date), gameId }));
-playByPlay.defaults = { date: null, gameId: null };
+  const playByPlay = (date, gameId) => transport(playByPlayURL({ date: dateToYYYYMMDD(date), gameId }));
+  playByPlay.defaults = { date: null, gameId: null };
 
-const schedule = (season = DEFAULT_SEASON) => transport(scheduleURL({ season }));
-schedule.defaults = { season: null };
+  const schedule = (season = DEFAULT_SEASON) => transport(scheduleURL({ season }));
+  schedule.defaults = { season: null };
 
-const teamSchedule = (season = DEFAULT_SEASON, teamId) => transport(teamScheduleURL({ season, teamId }));
-teamSchedule.defaults = { season: null, teamId: null };
+  const teamSchedule = (season = DEFAULT_SEASON, teamId) => transport(teamScheduleURL({ season, teamId }));
+  teamSchedule.defaults = { season: null, teamId: null };
 
-const previewArticle = (date, gameId) => transport(previewArticleURL({date: dateToYYYYMMDD(date), gameId }));
-previewArticle.defaults = { date: null, gameId: null };
+  const previewArticle = (date, gameId) => transport(previewArticleURL({date: dateToYYYYMMDD(date), gameId }));
+  previewArticle.defaults = { date: null, gameId: null };
 
-const recapArticle = (date, gameId) => transport(recapArticleURL({date: dateToYYYYMMDD(date), gameId }));
-recapArticle.defaults = { date: null, gameId: null };
+  const recapArticle = (date, gameId) => transport(recapArticleURL({date: dateToYYYYMMDD(date), gameId }));
+  recapArticle.defaults = { date: null, gameId: null };
 
-const leadTracker = (date, gameId, period) => transport(leadTrackerURL({date: dateToYYYYMMDD(date), gameId, period }));
-leadTracker.defaults = { date: null, gameId: null, period: null };
+  const leadTracker = (date, gameId, period) => transport(leadTrackerURL({date: dateToYYYYMMDD(date), gameId, period }));
+  leadTracker.defaults = { date: null, gameId: null, period: null };
 
-const playoffsBracket = (season = DEFAULT_SEASON) => transport(playoffsBracketURL({ season }));
-playoffsBracket.defaults = { season: null };
+  const playoffsBracket = (season = DEFAULT_SEASON) => transport(playoffsBracketURL({ season }));
+  playoffsBracket.defaults = { season: null };
 
-const teamLeaders = (season = DEFAULT_SEASON, teamId) => transport(teamLeadersURL({ season, teamId }));
-teamLeaders.defaults = { season: null, teamId: null };
+  const teamLeaders = (season = DEFAULT_SEASON, teamId) => transport(teamLeadersURL({ season, teamId }));
+  teamLeaders.defaults = { season: null, teamId: null };
 
-const teamStatsRankings = (season = DEFAULT_SEASON) => transport(teamStatsRankingsURL({ season }));
-teamStatsRankings.defaults = { season: null };
+  const teamStatsRankings = (season = DEFAULT_SEASON) => transport(teamStatsRankingsURL({ season }));
+  teamStatsRankings.defaults = { season: null };
 
-const coaches = (season = DEFAULT_SEASON) => transport(coachesURL({ season }));
-coaches.defaults = { season: null };
+  const coaches = (season = DEFAULT_SEASON) => transport(coachesURL({ season }));
+  coaches.defaults = { season: null };
 
-const teams = (year = DEFAULT_SEASON) => transport(teamsURL({ year }));
-teams.defaults = { year: null };
+  const teams = (year = DEFAULT_SEASON) => transport(teamsURL({ year }));
+  teams.defaults = { year: null };
 
-const calendar = () => transport(calendarURL);
-calendar.defaults = {};
+  const calendar = () => transport(calendarURL);
+  calendar.defaults = {};
 
-const standings = () => transport(standingsURL);
-standings.defaults = {};
+  const standings = () => transport(standingsURL);
+  standings.defaults = {};
+
+  const withTransport = (newTransport) => createDataEndpoints(newTransport);
+
+  return {
+    scoreboard,
+    boxScore,
+    playByPlay,
+    schedule,
+    teamSchedule,
+    previewArticle,
+    recapArticle,
+    leadTracker,
+    playoffsBracket,
+    teamLeaders,
+    teamStatsRankings,
+    coaches,
+    teams,
+    calendar,
+    standings,
+    withTransport,
+  };
+}
+
 
 function dateToYYYYMMDD (date) {
   if (date instanceof Date) {
@@ -98,21 +119,5 @@ function dateToYYYYMMDD (date) {
   return date;
 }
 
-module.exports = {
-  scoreboard,
-  boxScore,
-  playByPlay,
-  schedule,
-  teamSchedule,
-  previewArticle,
-  recapArticle,
-  leadTracker,
-  playoffsBracket,
-  teamLeaders,
-  teamStatsRankings,
-  coaches,
-  teams,
-  calendar,
-  standings,
-  withTransport,
-};
+const transport = createDeleteInternalTransport(baseTransport);
+module.exports = createDataEndpoints(transport);

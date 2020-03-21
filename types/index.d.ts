@@ -32,6 +32,11 @@ export interface NBA {
 export type LooseDate = Date | string | number;
 export type Numberish = string | number;
 
+type Dict<T> = { [key: string]: T }
+type Query = string | null | Dict<string | string[]>
+
+export type Transport = (url: string, query: Query, options?: Dict<unknown>) => Promise<any>
+
 // note: gameId needs to be string because it has leading zeroes
 
 export interface Data {
