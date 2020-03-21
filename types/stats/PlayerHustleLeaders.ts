@@ -1,37 +1,62 @@
 export default interface PlayerHustleLeaders {
-  resource: string;
-  parameters: Parameters;
-  resultSets?: (ResultSetsEntity)[] | null;
+  playerContestedShotsLeaders?: (PlayerContestedShotsLeadersEntity)[] | null;
+  playerChargesDrawnLeaders?: (PlayerChargesDrawnLeadersEntity)[] | null;
+  playerDeflectionsLeaders?: (PlayerDeflectionsLeadersEntity)[] | null;
+  playerLooseBallLeaders?: (PlayerLooseBallLeadersEntity)[] | null;
+  playerScreenAssistLeaders?: (PlayerScreenAssistLeadersEntity)[] | null;
+  table5?: (Table5Entity)[] | null;
 }
-export interface Parameters {
-  PerMode: string;
-  LeagueID: string;
-  Season: string;
-  SeasonType: string;
-  PORound?: null;
-  Outcome?: null;
-  Location?: null;
-  Month?: null;
-  SeasonSegment?: null;
-  DateFrom?: null;
-  DateTo?: null;
-  OpponentTeamID?: null;
-  VsConference?: null;
-  VsDivision?: null;
-  TeamID?: null;
-  Conference?: null;
-  Division?: null;
-  PlayerExperience?: null;
-  PlayerPosition?: null;
-  DraftYear?: null;
-  DraftPick?: null;
-  College?: null;
-  Country?: null;
-  Height?: null;
-  Weight?: null;
+export interface PlayerContestedShotsLeadersEntity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  contestedShots: number;
 }
-export interface ResultSetsEntity {
-  name: string;
-  headers?: (string)[] | null;
-  rowSet?: ((number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string)[] | null)[] | null;
+export interface PlayerChargesDrawnLeadersEntity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  chargesDrawn: number;
+}
+export interface PlayerDeflectionsLeadersEntity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  deflections: number;
+}
+export interface PlayerLooseBallLeadersEntity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  looseBallsRecovered: number;
+}
+export interface PlayerScreenAssistLeadersEntity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  screenAssists: number;
+}
+export interface Table5Entity {
+  playerId: number;
+  playerName: string;
+  teamId: number;
+  teamAbbreviation: string;
+  age: number;
+  rank: number;
+  boxOuts: number;
 }

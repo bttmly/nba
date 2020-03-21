@@ -34,6 +34,16 @@ const transformMap = {
   teamShooting: general,
   teamPlayerOnOffDetails: general,
   playerCompare: general,
+
+  boxScoreSummary: general,
+  boxScore: general,
+  leagueGameLog: general,
+  // leagueLeaders: general,
+  leagueStandings: general,
+  playerHustleLeaders: general,
+  teamHustleLeaders: general,
+  playerHustle: general,
+  teamHustle: general,
 };
 
 function makeStatsMethod (endpoint, transport) {
@@ -45,6 +55,7 @@ function makeStatsMethod (endpoint, transport) {
 
   const ccName = camelCase(endpoint.name);
   const transform = transformMap[ccName];
+  if (transform == null) console.log(ccName);
 
   function statsMethod (query = {}) {
     const reqParams = { ...defaults, ...query };

@@ -1,37 +1,51 @@
 export default interface TeamHustleLeaders {
-  resource: string;
-  parameters: Parameters;
-  resultSets?: (ResultSetsEntity)[] | null;
+  teamContestedShotsLeaders?: (TeamContestedShotsLeadersEntity)[] | null;
+  teamChargesDrawnLeaders?: (TeamChargesDrawnLeadersEntity)[] | null;
+  teamDeflectionsLeaders?: (TeamDeflectionsLeadersEntity)[] | null;
+  teamLooseBallLeaders?: (TeamLooseBallLeadersEntity)[] | null;
+  teamScreenAssistLeaders?: (TeamScreenAssistLeadersEntity)[] | null;
+  table5?: (Table5EntityOrTable6Entity)[] | null;
+  table6?: (Table5EntityOrTable6Entity)[] | null;
 }
-export interface Parameters {
-  PerMode: string;
-  LeagueID: string;
-  Season: string;
-  SeasonType: string;
-  PORound?: null;
-  Outcome?: null;
-  Location?: null;
-  Month?: null;
-  SeasonSegment?: null;
-  DateFrom?: null;
-  DateTo?: null;
-  OpponentTeamID?: null;
-  VsConference?: null;
-  VsDivision?: null;
-  TeamID?: null;
-  Conference?: null;
-  Division?: null;
-  PlayerExperience?: null;
-  PlayerPosition?: null;
-  DraftYear?: null;
-  DraftPick?: null;
-  College?: null;
-  Country?: null;
-  Height?: null;
-  Weight?: null;
+export interface TeamContestedShotsLeadersEntity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  contestedShots: number;
 }
-export interface ResultSetsEntity {
-  name: string;
-  headers?: (string)[] | null;
-  rowSet?: ((number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string | number | string)[] | null)[] | null;
+export interface TeamChargesDrawnLeadersEntity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  chargesDrawn: number;
+}
+export interface TeamDeflectionsLeadersEntity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  deflections: number;
+}
+export interface TeamLooseBallLeadersEntity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  looseBallsRecovered: number;
+}
+export interface TeamScreenAssistLeadersEntity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  screenAssists: number;
+}
+export interface Table5EntityOrTable6Entity {
+  teamId: number;
+  teamName: string;
+  teamAbbreviation: string;
+  rank: number;
+  boxOuts: number;
 }

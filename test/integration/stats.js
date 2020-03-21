@@ -86,6 +86,7 @@ describe("nba stats methods", function () {
     } catch (err) {}
 
     for (const [method, response] of Object.entries(responses)) {
+      console.log("WRITE:", method);
       fs.writeFileSync(
         path.join(__dirname, "../responses", `stats_${method}.json`),
         JSON.stringify(response, null, 2),
