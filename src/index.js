@@ -3,7 +3,7 @@ const getTeamsInfo = require("./team-info");
 const sportVu = require("./sport-vu");
 const stats = require("./stats");
 const synergy = require("./synergy");
-const data = require("./data"); 
+const data = require("./data");
 
 const teams = require("../data/teams.json");
 const buildPlayers = require("./util/build-players");
@@ -52,27 +52,25 @@ function playerIdFromName (name) {
 
 function findPlayer (str) {
   str = str.toLowerCase();
-  return nba.players.find(function (p) {
-    return p.fullName.toLowerCase().includes(str);
-  });
+  return nba.players.find((p) =>
+    p.fullName.toLowerCase().includes(str)) || null;
 }
 
 function searchPlayers (str) {
   str = str.toLowerCase();
-  return nba.players.filter(function (p) {
-    return p.fullName.toLowerCase().includes(str);
-  });
+  return nba.players.filter((p) =>
+    p.downcaseName.includes(str));
 }
 
 function updatePlayers () {
-  return nba.stats.playersInfo().then(function (result) {
+  return nba.stats.playersInfo().then((result) => {
     nba.players = buildPlayers(result);
     return result;
   });
 }
 
 function updateTeams () {
-  return getTeamsInfo().then(function (result) {
+  return getTeamsInfo().then((result) => {
     nba.teams = result;
     return result;
   });

@@ -29,6 +29,8 @@ const withTransport = (newTransport) => {
 
 // NOTE: the 'season' argument is the first year of the NBA season e.g. "2018" for the 2018-19 season
 
+const DEFAULT_SEASON = "2019";
+
 const scoreboard = date => transport(scoreboardURL({ date: dateToYYYYMMDD(date) }));
 scoreboard.defaults = { date: null };
 
@@ -38,10 +40,10 @@ boxScore.defaults = { date: null, gameId: null };
 const playByPlay = (date, gameId) => transport(playByPlayURL({ date: dateToYYYYMMDD(date), gameId }));
 playByPlay.defaults = { date: null, gameId: null };
 
-const schedule = (season) => transport(scheduleURL({ season }));
+const schedule = (season = DEFAULT_SEASON) => transport(scheduleURL({ season }));
 schedule.defaults = { season: null };
 
-const teamSchedule = (season, teamId) => transport(teamScheduleURL({ season, teamId }));
+const teamSchedule = (season = DEFAULT_SEASON, teamId) => transport(teamScheduleURL({ season, teamId }));
 teamSchedule.defaults = { season: null, teamId: null };
 
 const previewArticle = (date, gameId) => transport(previewArticleURL({date: dateToYYYYMMDD(date), gameId }));
@@ -53,19 +55,19 @@ recapArticle.defaults = { date: null, gameId: null };
 const leadTracker = (date, gameId, period) => transport(leadTrackerURL({date: dateToYYYYMMDD(date), gameId, period }));
 leadTracker.defaults = { date: null, gameId: null, period: null };
 
-const playoffsBracket = (season) => transport(playoffsBracketURL({ season }));
+const playoffsBracket = (season = DEFAULT_SEASON) => transport(playoffsBracketURL({ season }));
 playoffsBracket.defaults = { season: null };
 
-const teamLeaders = (season, teamId) => transport(teamLeadersURL({ season, teamId }));
+const teamLeaders = (season = DEFAULT_SEASON, teamId) => transport(teamLeadersURL({ season, teamId }));
 teamLeaders.defaults = { season: null, teamId: null };
 
-const teamStatsRankings = (season) => transport(teamStatsRankingsURL({ season }));
+const teamStatsRankings = (season = DEFAULT_SEASON) => transport(teamStatsRankingsURL({ season }));
 teamStatsRankings.defaults = { season: null };
 
-const coaches = (season) => transport(coachesURL({ season }));
+const coaches = (season = DEFAULT_SEASON) => transport(coachesURL({ season }));
 coaches.defaults = { season: null };
 
-const teams = (year = "2019") => transport(teamsURL({ year }));
+const teams = (year = DEFAULT_SEASON) => transport(teamsURL({ year }));
 teams.defaults = { year: null };
 
 const calendar = () => transport(calendarURL);

@@ -1,75 +1,101 @@
 const nba = require("../../");
+const fs = require("fs");
+const path = require("path");
+const expect = require("expect");
+
+const responses = {};
 
 describe("nba data methods", function () {
+  after(() => {
+    if (process.env.WRITE_RESPONSES) {
+      console.log("writing responses to disk");
+      for (const [method, result] of Object.entries(responses)) {
+        const fileName = `data_${method}.json`;
+        const content = JSON.stringify([result], null, 2);
+        fs.writeFileSync(path.join(__dirname, "../responses", fileName), content);
+      }
+    }
+  });
+
+
   describe("#scoreboard", async () => {
     it("works with a direct date string", async () => {
-      log(await nba.data.scoreboard("20181008"));
+      return callMethod("scoreboard", "20181008");
     });
 
     it("works with a date object", async () => {
       // pinned to the time I wrote this test
-      log(await nba.data.scoreboard(new Date(1539056100872)));
+      return callMethod("scoreboard", new Date(1539056100872));
+    });
+
+    it("accepts a number", async () => {
+      const withStr = await nba.data.scoreboard("20181008");
+      const withNum = await nba.data.scoreboard(20181008);
+      expect(withStr).toEqual(withNum);
     });
   });
 
   it("#boxScore", async () => {
-    log(await nba.data.boxScore("20181009", "0011800055"));
+    return callMethod("boxScore", "20181009", "0011800055");
   });
 
   it("#playByPlay", async () => {
-    log(await nba.data.playByPlay("20181009", "0011800055"));
+    return callMethod("playByPlay", "20181009", "0011800055");
   });
 
   it("#schedule", async () => {
-    log(await nba.data.schedule("2018"));
+    return callMethod("schedule", "2018");
   });
 
   it("#teamSchedule", async () => {
-    log(await nba.data.teamSchedule("2018", 1610612752));
+    return callMethod("teamSchedule", "2018", 1610612752);
   });
 
   it("#previewArticle", async () => {
-    log(await nba.data.previewArticle("20190425", "0041800156"));
+    return callMethod("previewArticle", "20190425", "0041800156");
   });
 
   it("#recapArticle", async () => {
-    log(await nba.data.recapArticle("20190425", "0041800156"));
+    return callMethod("recapArticle", "20190425", "0041800156");
   });
 
   it("#leadTracker", async () => {
-    log(await nba.data.leadTracker("20190425", "0041800156", 1));
+    return callMethod("leadTracker", "20190425", "0041800156", 1);
   });
 
   it("#playoffsBracket", async () => {
-    log(await nba.data.playoffsBracket("2018"));
+    return callMethod("playoffsBracket", "2018");
   });
 
   it("#teamLeaders", async () => {
-    log(await nba.data.teamLeaders("2018", 1610612752));
+    return callMethod("teamLeaders", "2018", 1610612752);
   });
 
   it("#teamStatsRankings", async () => {
-    log(await nba.data.teamStatsRankings("2018"));
+    return callMethod("teamStatsRankings", "2018");
   });
 
   it("#coaches", async () => {
-    log(await nba.data.coaches("2018"));
+    return callMethod("coaches", "2018");
   });
 
   it("#teams", async () => {
-    log(await nba.data.teams());
+    return callMethod("teams");
   });
 
   it("#calendar", async () => {
-    log(await nba.data.calendar());
+    return callMethod("calendar");
   });
 
   it("#standings", async () => {
-    log(await nba.data.standings());
+    return callMethod("standings");
   });
 });
 
-function log (...args) {
-  if (!process.env.WITH_LOGS) return;
-  console.log(...args);
-}
+const callMethod = async (name, ...args) => {
+  const r = await nba.data[name](...args);
+  delete r._internal;
+  responses[name] = r;
+  if (process.env.WITH_LOGS) console.log(r);
+  return r;
+};

@@ -1,13 +1,13 @@
-function buildPlayers (_players) {
-  const players = [..._players];
+function buildPlayers (players) {
+  return players.map((player) => ({
+    ...player,
+    fullName: fullName(player),
+    downcaseName: fullName(player).toLowerCase(),
+  }));
+}
 
-  players.forEach(function (player) {
-    player.fullName = player.firstName +
-      (player.lastName ? " " + player.lastName : "");
-    player.downcaseName = player.fullName.toLowerCase();
-  });
-  
-  return players;
+function fullName (player) {
+  return player.firstName + (player.lastName ? " " + player.lastName : "");
 }
 
 module.exports = buildPlayers;
