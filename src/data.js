@@ -1,6 +1,6 @@
 // this includes endpoints at data.nba.com
 
-let transport = require("./get-json");
+let baseTransport = require("./get-json");
 const { interpolate } = require("./util/string");
 
 const scoreboardURL = interpolate("http://data.nba.com/data/5s/json/cms/noseason/scoreboard/__date__/games.json");
@@ -20,9 +20,17 @@ const teamsURL = interpolate("http://data.nba.net/data/10s/prod/v1/__year__/team
 const calendarURL = "http://data.nba.net/data/10s/prod/v1/calendar.json";
 const standingsURL = "http://data.nba.net/data/10s/prod/v1/current/standings_all.json";
 
+// TODO: this leaks! it needs to be in a closure
 const withTransport = (newTransport) => {
-  transport = newTransport;
+  baseTransport = newTransport;
 };
+
+async function transport (...args) {
+  const result = await baseTransport(...args);
+  if (result == null) return; // ?
+  delete result._internal;
+  return result;
+}
 
 // NOTE: the 'date' argument should be a string in format like "20181008" (which indicates Oct 8 2018)
 // You *can* pass a Date object but beware of timezone weirdness!
