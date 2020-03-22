@@ -5,8 +5,11 @@ const {
 } = require("./util/string");
 
 function base (resp) {
-  var data = resp.resultSets[0];
-  var headers = data.headers.map(jsify);
+  const data = resp.resultSet || (resp.resultSets && resp.resultSets[0]);
+  if (data == null) {
+    throw new Error(`Expected 'resultSet' or 'resultSets', found: ${Object.keys(resp)}`);
+  }
+  const headers = data.headers.map(jsify);
   return collectify(headers, data.rowSet);
 }
 

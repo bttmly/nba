@@ -38,7 +38,7 @@ const transformMap = {
   boxScoreSummary: general,
   boxScore: general,
   leagueGameLog: general,
-  // leagueLeaders: general,
+  leagueLeaders: base,
   leagueStandings: general,
   playerHustleLeaders: general,
   teamHustleLeaders: general,
@@ -57,13 +57,15 @@ function makeStatsMethod (endpoint, transport) {
   const transform = transformMap[ccName];
   if (transform == null) console.log(ccName);
 
-  function statsMethod (query = {}) {
+  function statsMethod (query = {}, opts = {}) {
     const reqParams = { ...defaults, ...query };
 
     const options = {
+      ...opts,
       headers: {
         "x-nba-stats-origin": "stats",
         "x-nba-stats-token": "true",
+        ...opts.headers ,
       },
     };
 

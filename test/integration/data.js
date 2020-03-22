@@ -1,25 +1,12 @@
 const nba = require("../../");
-const fs = require("fs");
-const path = require("path");
 const expect = require("expect");
-
-const responses = {};
+const ResponseRecorder = require("../recorder");
+const recorder = new ResponseRecorder("data");
 
 describe("nba data methods", function () {
   after(() => {
-    if (process.env.WRITE_RESPONSES) {
-      try {
-        fs.mkdirSync(path.join(__dirname, "../responses"));
-      } catch (err) {}
-      console.log("writing responses to disk");
-      for (const [method, result] of Object.entries(responses)) {
-        const fileName = `data_${method}.json`;
-        const content = JSON.stringify([result], null, 2);
-        fs.writeFileSync(path.join(__dirname, "../responses", fileName), content);
-      }
-    }
+    recorder.write();
   });
-
 
   describe("#scoreboard", async () => {
     it("works with a direct date string", async () => {
@@ -97,8 +84,8 @@ describe("nba data methods", function () {
 
 const callMethod = async (name, ...args) => {
   const r = await nba.data[name](...args);
-  delete r._internal;
-  responses[name] = r;
+  delete r._internal; // not putting these in types
+  recorder.record(name, r);
   if (process.env.WITH_LOGS) console.log(r);
   return r;
 };

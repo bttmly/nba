@@ -1,10 +1,15 @@
 const nba = require("../../");
+const ResponseRecorder = require("../recorder");
+const recorder = new ResponseRecorder("synergy");
 
 const delay = ms => new Promise(r => setTimeout(r, ms));
 
-const callMethod = (name, params = {}) => () => {
+
+const callMethod = (name, params = {}) => async () => {
   params.season = 201;
-  return nba.synergy[name](params);
+  const result = await nba.synergy[name](params);
+  recorder.record(name, result);
+  return result;
 };
 
 describe("nba synergy API", function () {
@@ -29,5 +34,10 @@ describe("nba synergy API", function () {
 
   categories.forEach(function (c) {
     it(`category ${c}`, callMethod("playerPlayType", {category: c}));
+  });
+
+  after(() => {
+    console.log("WRITE");
+    recorder.write();
   });
 });

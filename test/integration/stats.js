@@ -1,20 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-
 const nba = require("../../");
 const get = require("lodash.get");
-const responses = {};
 const tested = {};
 const notTested = ["withTransport"];
 
-// stub for now, will add response shape verification for self-documenting responses
-const verifyShape = (shape, response) => response;
+const ResponseRecorder = require("../recorder");
+const recorder = new ResponseRecorder("stats");
 
-const callMethod = (name, params = {}, shape) => async () => {
+const callMethod = (name, params = {}) => async () => {
   tested[name] = true;
   const method = nba.stats[name];
   const r = await method(params);
-  verifyShape(shape, r);
 
   // special case, maximum call stack size exceeded
   const items = get(r, ["resultSets", 0, "rowSet"]);
@@ -22,7 +17,7 @@ const callMethod = (name, params = {}, shape) => async () => {
     r.resultSets[0].rowSet = items.slice(0, 500);
   }
 
-  responses[name] = r;
+  recorder.record(name, r);
 };
 
 const _steph = 201939;
@@ -80,18 +75,7 @@ describe("nba stats methods", function () {
 
 
   after(() => {
-    if (!process.env.WRITE_RESPONSES) return;
-    try {
-      fs.mkdirSync(path.join(__dirname, "../responses"));
-    } catch (err) {}
-
-    for (const [method, response] of Object.entries(responses)) {
-      console.log("WRITE:", method);
-      fs.writeFileSync(
-        path.join(__dirname, "../responses", `stats_${method}.json`),
-        JSON.stringify(response, null, 2),
-      );
-    }
+    recorder.write();
   });
 });
 
