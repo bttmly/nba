@@ -80,21 +80,21 @@ export type Transport = (url: string, query: Query, options?: Dict<unknown>) => 
 // note: gameId needs to be string because it has leading zeroes
 
 export interface Data {
-  scoreboard (date: LooseDate): Promise<DataScoreboard>
-  boxScore (date: LooseDate, gameId: string): Promise<DataBoxScore>
-  playByPlay (date: LooseDate, gameId: string): Promise<DataPlayByPlay>
-  schedule (season: Numberish): Promise<Schedule>
-  teamSchedule (season: Numberish, teamId: Numberish): Promise<TeamSchedule>
-  previewArticle (date: LooseDate, gameId: string): Promise<PreviewArticle>
-  recapArticle (date: LooseDate, gameId: string): Promise<RecapArticle>
-  leadTracker (date: LooseDate, gameId: string, period: Numberish): Promise<LeadTracker>
-  playoffsBracket (season: Numberish): Promise<PlayoffsBracket>
-  teamLeaders (season: Numberish, teamId: Numberish): Promise<TeamLeaders>
-  teamStatsRankings (season: Numberish): Promise<TeamStatsRankings>
-  coaches (season: Numberish): Promise<Coaches>
-  teams (): Promise<Teams>
-  calendar (): Promise<Calendar>
-  standings (): Promise<Standings>
+  scoreboard (date: LooseDate): Promise<DataEndpointTypes.Scoreboard>
+  boxScore (date: LooseDate, gameId: string): Promise<DataEndpointTypes.BoxScore>
+  playByPlay (date: LooseDate, gameId: string): Promise<DataEndpointTypes.PlayByPlay>
+  schedule (season: Numberish): Promise<DataEndpointTypes.Schedule>
+  teamSchedule (season: Numberish, teamId: Numberish): Promise<DataEndpointTypes.TeamSchedule>
+  previewArticle (date: LooseDate, gameId: string): Promise<DataEndpointTypes.PreviewArticle>
+  recapArticle (date: LooseDate, gameId: string): Promise<DataEndpointTypes.RecapArticle>
+  leadTracker (date: LooseDate, gameId: string, period: Numberish): Promise<DataEndpointTypes.LeadTracker>
+  playoffsBracket (season: Numberish): Promise<DataEndpointTypes.PlayoffsBracket>
+  teamLeaders (season: Numberish, teamId: Numberish): Promise<DataEndpointTypes.TeamLeaders>
+  teamStatsRankings (season: Numberish): Promise<DataEndpointTypes.TeamStatsRankings>
+  coaches (season: Numberish): Promise<DataEndpointTypes.Coaches>
+  teams (): Promise<DataEndpointTypes.Teams>
+  calendar (): Promise<DataEndpointTypes.Calendar>
+  standings (): Promise<DataEndpointTypes.Standings>
   withTransport (transport: Transport): Data
 }
 
@@ -102,40 +102,40 @@ export interface Data {
 export type Params = Dict<Primitive>
 
 export interface Stats {
-  playerProfile (params: Params): Promise<PlayerProfile>
-  playerInfo (params: Params): Promise<PlayerInfo>
-  playersInfo (params: Params): Promise<PlayersInfo>
-  teamStats (params: Params): Promise<TeamStats>
-  teamSplits (params: Params): Promise<TeamSplits>
-  teamYears (params: Params): Promise<TeamYears>
-  playerSplits (params: Params): Promise<PlayerSplits>
-  shots (params: Params): Promise<Shots>
-  scoreboard (params: Params): Promise<StatsScoreboard>
-  boxScoreSummary (params: Params): Promise<BoxScoreSummary>
-  boxScore (params: Params): Promise<StatsBoxScore>
-  playByPlay (params: Params): Promise<StatsPlayByPlay>
-  teamHistoricalLeaders (params: Params): Promise<TeamHistoricalLeaders>
-  teamInfoCommon (params: Params): Promise<TeamInfoCommon>
-  commonTeamRoster (params: Params): Promise<CommonTeamRoster>
-  teamPlayerDashboard (params: Params): Promise<TeamPlayerDashboard>
-  lineups (params: Params): Promise<Lineups>
-  playerTracking (params: Params): Promise<PlayerTracking>
-  homepageV2 (params: Params): Promise<HomepageV2>
-  assistTracker (params: Params): Promise<AssistTracker>
-  playerStats (params: Params): Promise<PlayerStats>
-  playerClutch (params: Params): Promise<PlayerClutch>
-  teamClutch (params: Params): Promise<TeamClutch>
-  playerShooting (params: Params): Promise<PlayerShooting>
-  teamShooting (params: Params): Promise<TeamShooting>
-  leagueGameLog (params: Params): Promise<LeagueGameLog>
-  leagueLeaders (params: Params): Promise<LeagueLeaders>
-  leagueStandings (params: Params): Promise<LeagueStandings>
-  playerHustleLeaders (params: Params): Promise<PlayerHustleLeaders>
-  teamHustleLeaders (params: Params): Promise<TeamHustleLeaders>
-  playerHustle (params: Params): Promise<PlayerHustle>
-  teamHustle (params: Params): Promise<TeamHustle>
-  teamPlayerOnOffDetails (params: Params): Promise<TeamPlayerOnOffDetails>
-  playerCompare (params: Params): Promise<PlayerCompare>
+  playerProfile (params: Params): Promise<StatsEndpointTypes.PlayerProfile>
+  playerInfo (params: Params): Promise<StatsEndpointTypes.PlayerInfo>
+  playersInfo (params: Params): Promise<StatsEndpointTypes.PlayersInfo>
+  teamStats (params: Params): Promise<StatsEndpointTypes.TeamStats>
+  teamSplits (params: Params): Promise<StatsEndpointTypes.TeamSplits>
+  teamYears (params: Params): Promise<StatsEndpointTypes.TeamYears>
+  playerSplits (params: Params): Promise<StatsEndpointTypes.PlayerSplits>
+  shots (params: Params): Promise<StatsEndpointTypes.Shots>
+  scoreboard (params: Params): Promise<StatsEndpointTypes.Scoreboard>
+  boxScoreSummary (params: Params): Promise<StatsEndpointTypes.BoxScoreSummary>
+  boxScore (params: Params): Promise<StatsEndpointTypes.BoxScore>
+  playByPlay (params: Params): Promise<StatsEndpointTypes.PlayByPlay>
+  teamHistoricalLeaders (params: Params): Promise<StatsEndpointTypes.TeamHistoricalLeaders>
+  teamInfoCommon (params: Params): Promise<StatsEndpointTypes.TeamInfoCommon>
+  commonTeamRoster (params: Params): Promise<StatsEndpointTypes.CommonTeamRoster>
+  teamPlayerDashboard (params: Params): Promise<StatsEndpointTypes.TeamPlayerDashboard>
+  lineups (params: Params): Promise<StatsEndpointTypes.Lineups>
+  playerTracking (params: Params): Promise<StatsEndpointTypes.PlayerTracking>
+  homepageV2 (params: Params): Promise<StatsEndpointTypes.HomepageV2>
+  assistTracker (params: Params): Promise<StatsEndpointTypes.AssistTracker>
+  playerStats (params: Params): Promise<StatsEndpointTypes.PlayerStats>
+  playerClutch (params: Params): Promise<StatsEndpointTypes.PlayerClutch>
+  teamClutch (params: Params): Promise<StatsEndpointTypes.TeamClutch>
+  playerShooting (params: Params): Promise<StatsEndpointTypes.PlayerShooting>
+  teamShooting (params: Params): Promise<StatsEndpointTypes.TeamShooting>
+  leagueGameLog (params: Params): Promise<StatsEndpointTypes.LeagueGameLog>
+  leagueLeaders (params: Params): Promise<StatsEndpointTypes.LeagueLeaders>
+  leagueStandings (params: Params): Promise<StatsEndpointTypes.LeagueStandings>
+  playerHustleLeaders (params: Params): Promise<StatsEndpointTypes.PlayerHustleLeaders>
+  teamHustleLeaders (params: Params): Promise<StatsEndpointTypes.TeamHustleLeaders>
+  playerHustle (params: Params): Promise<StatsEndpointTypes.PlayerHustle>
+  teamHustle (params: Params): Promise<StatsEndpointTypes.TeamHustle>
+  teamPlayerOnOffDetails (params: Params): Promise<StatsEndpointTypes.TeamPlayerOnOffDetails>
+  playerCompare (params: Params): Promise<StatsEndpointTypes.PlayerCompare>
   withTransport (transport: Transport): Stats;
 }
 

@@ -56,10 +56,7 @@ parameters.forEach(function (param) {
 function makeSynergyMethod (endpoint, transport) {
   function synergyMethod (query = {}) {
     const reqParams = { ...defaults, ...query };
-    return transport(endpoint.url, reqParams)
-      .then(function (response) {
-        return response;
-      });
+    return transport(endpoint.url, reqParams);
   }
 
   synergyMethod.defaults = defaults;

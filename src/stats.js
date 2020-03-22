@@ -55,7 +55,7 @@ function makeStatsMethod (endpoint, transport) {
 
   const ccName = camelCase(endpoint.name);
   const transform = transformMap[ccName];
-  if (transform == null) console.log(ccName);
+  // if (transform == null) console.log(ccName);
 
   function statsMethod (query = {}, opts = {}) {
     const reqParams = { ...defaults, ...query };
