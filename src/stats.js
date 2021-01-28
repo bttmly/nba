@@ -1,4 +1,3 @@
-const debug = require("debug")("nba");
 const template = require("nba-client-template");
 const camelCase = require("camel-case");
 

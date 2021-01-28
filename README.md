@@ -4,11 +4,12 @@
 `npm install nba`
 
 ## NOTES:
-### BROWSER USAGE
-This package can't be used from the browser because of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) restrictions imposed by nba.com. Currently the hostnames are hardcoded so this package can't be used with a proxy host but if you want support for this use case please [open an issue!](https://github.com/bttmly/nba/issues)
 
 ### BLACKLISTED IP ADDRESSES:
 It appears as though the NBA has blacklisted certain blocks of IP addresses, specifically those of cloud hosting providers including AWS. As such, you may hit a situation where an application using this package works fine on your local machine, but doesn't work at all when deployed to a cloud server. Annoyingly, requests from these IPs seem to just hang. More information [here](https://github.com/bttmly/nba/issues/41) and [here](https://github.com/seemethere/nba_py/issues/88) -- the second issue has a `curl` command somewhere which will quickly tell you if NBA is accepting requests from your IP. (Incidentally, this is also the same reason the TravisCI build is always "broken" but tests all pass locally). There is a simple pass-through server in `scripts/proxy` that can be used to get around this restriction; you can put the proxy server somewhere that can reach NBA.com (e.g. not on AWS or Heroku or similar) and host your actual application on a cloud provider.
+
+### CORS restrictions on browser usage
+This package can't be used directly from the browser because of [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) restrictions imposed by nba.com. If you run some sort of intermediate server which relays requests to NBA.com, you can change the host the client points to by following the instructions in the *Transport Layer* section
 
 ## NBA API
 The [stats.nba.com](http://stats.nba.com) uses a large number of undocumented JSON endpoints to provide the statistics tables and charts displayed on that website. This library provides a JavaScript client for interacting with many of those API endpoints.
@@ -36,7 +37,7 @@ console.log(curry);
 NBA.stats.playerInfo({ PlayerID: curry.playerId }).then(console.log);
 ```
 
-For more example API calls, see `/test/integration/stats.js`
+For more example API calls, see `/test/integration/stats.js` and other test files.
 
 ## Stability Warning
 This is a client for an unstable and undocumented API. While I try to follow [semver](http://semver.org/) for changes to the JavaScript API this library exposes, the underlying HTTP API can (and has) changed without warning. In particular, the NBA has repeatedly deprecated endpoints, or added certain required headers without which requests will fail. Further, this library comes bundled with a (relatively) up-to-date list of current NBA players which is subject to change at any time -- the specific contents of it should not be considered part of this library's API contract.
@@ -50,8 +51,9 @@ _still lots to do here..._
 There are four primary parts of this library
 - *Top-level methods*
 - *`stats` namespace* &mdash; [docs](https://github.com/bttmly/nba/blob/master/doc/stats.md)
-- *`sportVu` namespace*
-- *`synergy` namespace*
+- *`synergy` namespace* [see tests](https://github.com/bttmly/nba/blob/master/test/integration/synergy.js)
+– *`data` namespace* [see tests](https://github.com/bttmly/nba/blob/master/test/integration/data.js)
+- *~`sportVu` namespace*~ NBA has removed sportVu endpoints. the methods exist here for backwards compatibility but they throw errors
 
 ## Transport Layer
 In some cases you will want to use a different transport layer to handle HTTP requests. Perhaps you have an HTTP client library you like better than what I used here. Better yet, you want to get stats for the WNBA or the G League. The following code snippet shows how to use the `withTransport` method to create a new client with your own transport function.

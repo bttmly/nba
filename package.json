@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "camel-case": "^3.0.0",
-    "debug": "^2.2.0",
     "lodash.find": "^3.2.0",
     "lodash.findwhere": "^3.1.0",
     "lodash.get": "^4.4.2",
@@ -33,15 +32,10 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "babel-cli": "^6.26.0",
     "eslint": "^6.0.1",
     "expect": "^1.20.2",
     "mocha": "^6.1.4",
     "node-static": "^0.7.11",
-    "nyc": "^14.0.0",
-    "openurl": "^1.1.0",
     "pify": "^4.0.1",
     "rollup": "^1.19.3",
     "sinon": "^1.10.3"
