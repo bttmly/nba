@@ -234,6 +234,12 @@
     "teamId": 1610612750
   },
   {
+    "firstName": "Jordan",
+    "lastName": "Bell",
+    "playerId": 1628395,
+    "teamId": 1610612764
+  },
+  {
     "firstName": "DeAndre'",
     "lastName": "Bembry",
     "playerId": 1627761,
@@ -574,12 +580,6 @@
     "lastName": "Claxton",
     "playerId": 1629651,
     "teamId": 1610612751
-  },
-  {
-    "firstName": "Chris",
-    "lastName": "Clemons",
-    "playerId": 1629598,
-    "teamId": 1610612745
   },
   {
     "firstName": "Amir",
@@ -1635,7 +1635,7 @@
     "firstName": "Alex",
     "lastName": "Len",
     "playerId": 203458,
-    "teamId": 0
+    "teamId": 1610612764
   },
   {
     "firstName": "Kawhi",
@@ -2283,7 +2283,7 @@
     "firstName": "Kevin",
     "lastName": "Porter Jr.",
     "playerId": 1629645,
-    "teamId": 1610612739
+    "teamId": 1610612745
   },
   {
     "firstName": "Michael",
@@ -2734,6 +2734,12 @@
     "lastName": "Tucker",
     "playerId": 200782,
     "teamId": 1610612745
+  },
+  {
+    "firstName": "Rayjon",
+    "lastName": "Tucker",
+    "playerId": 1629730,
+    "teamId": 1610612755
   },
   {
     "firstName": "Myles",

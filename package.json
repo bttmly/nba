@@ -34,7 +34,7 @@
   "devDependencies": {
     "eslint": "^6.0.1",
     "expect": "^1.20.2",
-    "mocha": "^6.1.4",
+    "mocha": "8",
     "node-static": "^0.7.11",
     "pify": "^4.0.1",
     "rollup": "^1.19.3",
