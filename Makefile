@@ -1,7 +1,7 @@
 .PHONY: test coverage
 
 test:
-	./node_modules/.bin/mocha --recursive --timeout 10000 --parallel --exit ./test/unit ./test/integration
+	./node_modules/.bin/mocha --recursive --timeout 10000 --exit ./test/unit ./test/integration
 
 test-bail:
 	./node_modules/.bin/mocha --bail --recursive --timeout 10000 ./test/unit ./test/integration
