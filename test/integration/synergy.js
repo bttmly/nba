@@ -7,15 +7,15 @@ const writeFile = pify(require("fs").writeFile);
 const dir = path.join(__dirname, "../../responses");
 function writeData (name, data) {
   const str = JSON.stringify(data, null, 2);
-  return writeFile(path.join(dir, `synergy-${name}.json`), str);
+  return writeFile(path.join(dir, `synergy-${name}.json`), str).catch(() => {});
 }
 
 global.SynergyData = {};
 
 // stub for now, will add response shape verification for self-documenting responses
-const verifyShape = shape => response => response;
+// const verifyShape = shape => response => response;
 
-const callMethod = (name, params = {}, shape) => () => {
+const callMethod = (name, params = {}) => () => {
   params.season = 2016;
   return nba.synergy[name](params)
     .then(function (resp) {

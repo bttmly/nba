@@ -1,7 +1,7 @@
 const nba = require("../../");
 
 describe("nba data methods", function () {
-  describe("#scoreboard", async () => {
+  describe("#scoreboard", () => {
     it("works with a direct date string", async () => {
       log(await nba.data.scoreboard("20181008"));
     });

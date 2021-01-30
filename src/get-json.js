@@ -1,16 +1,16 @@
 const url = require("url");
 const template = require("nba-client-template");
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 const HEADERS = {
-  "Accept-Encoding": "gzip, deflate",
-  "Accept-Language": "en-US",
-  Accept: "*/*",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Accept-Language": "en,en-US;q=0.9",
+  Accept: "application/json, text/plain, */*",
   "User-Agent": template.user_agent,
-  Referer: template.referrer,
+  Referer: "www.nba.com",
   Connection: "keep-alive",
   "Cache-Control": "no-cache",
-  Origin: "http://stats.nba.com",
+  Origin: "https://www.nba.com",
 };
 
 function createUrlString (_url, query) {
@@ -19,22 +19,23 @@ function createUrlString (_url, query) {
   return urlObj.format();
 }
 
-module.exports = function getJson (_url, query, _options = {}) {
-  const urlStr = createUrlString(_url, query);
-
+async function getJsonAxios (_url, params, _options = {}) {
   const options = {
     ..._options,
-    headers: { ..._options.headers, ...HEADERS },
+    headers: { ...HEADERS, ..._options.headers  },
   };
 
-  return fetch(urlStr, options)
-    .then(resp => {
-      if (resp.ok) return resp.json();
-
-      return resp.text().then(function (text) {
-        throw new Error(`${resp.status} ${resp.statusText} – ${text}`);
-      });
-    });
+  const urlStr = createUrlString(_url, params);
+  try {
+    const res = await axios.get(urlStr, options);
+    return res.data;
+  } catch (err) {
+    const { response } = err;
+    if (response) {
+      throw new Error(`${response.status} ${response.data}`);
+    }
+    throw new Error(`Unknown HTTP error for ${url}`);
+  }
 };
 
-
+module.exports = getJsonAxios;
