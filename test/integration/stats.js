@@ -6,8 +6,6 @@ const pify = require("pify");
 
 const nba = require("../../");
 
-// for interactive inspection, particularly in browser
-global.StatsData = {};
 const tested = {};
 const methods = {};
 
@@ -33,7 +31,7 @@ const callMethod = (name, params = {}, shape) => async () => {
   params.Season = "2017-18";
   const r = await stats[name](params);
   verifyShape(shape, r);
-  global.StatsData[name] = r;
+  await writeResponse(name, r);
 };
 
 const _steph = 201939;
@@ -81,13 +79,6 @@ describe("nba stats methods", function () {
   it("#leagueStandings", callMethod("leagueStandings"));
   it("#teamPlayerOnOffDetails", callMethod("teamPlayerOnOffDetails", { TeamID: _dubs }));
   it("#playerCompare", callMethod("playerCompare", { PlayerIDList: _steph, VsPlayerIDList: _steph }));
-
-
-  after(async () => {
-    for (const [key, value] of Object.entries(global.StatsData)) {
-        await writeResponse(key, value);
-    }
-  });
 });
 
 const writeFile = pify(fs.writeFile);

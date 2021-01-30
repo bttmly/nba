@@ -10,7 +10,7 @@ test-integration:
 	./node_modules/.bin/mocha --recursive --timeout 10000 --exit ./test/integration
 
 test-stats:
-	./node_modules/.bin/mocha --timeout 10000 --exit ./test/integration/stats.js
+	./node_modules/.bin/mocha --timeout 30000 ./test/integration/stats.js
 
 test-data:
 	./node_modules/.bin/mocha --timeout 60000 --exit --bail ./test/integration/data.js
