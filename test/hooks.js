@@ -3,9 +3,9 @@ const p = require("../src/PuppeteerTransport");
 
 exports.mochaHooks = {
   beforeAll () {
-    // setDefaultTransport(p.transport);
+    setDefaultTransport(p.transport);
   },
   async afterAll () {
-    // await p.closeTransport();
+    await p.closeTransport();
   },
 };
