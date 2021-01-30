@@ -8,7 +8,6 @@ const delay = (ms) => new Promise(r => setTimeout(r, ms));
 class PuppeteerTransport {
   static async create () {
     const browser = await puppeteer.launch({
-      headless: false,
       handleSIGINT: false,
       handleSIGTERM: false,
       args: [
