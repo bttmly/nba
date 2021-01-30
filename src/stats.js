@@ -46,13 +46,14 @@ function makeStatsMethod (endpoint, transport) {
   const ccName = camelCase(endpoint.name);
   const transform = transformMap[ccName];
 
-  function statsMethod (query = {}) {
-    const reqParams = Object.assign({}, defaults, query);
+  async function statsMethod (query = {}) {
+    const reqParams = { ...defaults, ...query };
 
     const options = {
       headers: {
-        "x-nba-stats-origin": "stats",
-        "x-nba-stats-token": "true",
+        // "x-nba-stats-origin": "stats",
+        // "x-nba-stats-token": "true",
+        // "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
       },
     };
 
@@ -80,4 +81,7 @@ function makeStatsClient (transport) {
   return client;
 }
 
-module.exports = makeStatsClient(require("./get-json"));
+const { defaultTransport } = require("./transport");
+
+module.exports = makeStatsClient(defaultTransport);
+

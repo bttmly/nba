@@ -83,16 +83,22 @@ describe("nba stats methods", function () {
   it("#playerCompare", callMethod("playerCompare", { PlayerIDList: _steph, VsPlayerIDList: _steph }));
 
 
-  after(function () {
-    return Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(
-        path.join(__dirname, "../../responses", `stats-${k}.json`),
-        JSON.stringify(global.StatsData[k], null, 2)
-      )
-    ))
-    .catch(console.error);
+  after(async () => {
+    for (const [key, value] of Object.entries(global.StatsData)) {
+        await writeResponse(key, value);
+    }
   });
 });
+
+const writeFile = pify(fs.writeFile);
+async function writeResponse (key, value) {
+  try {
+    await writeFile(
+      path.join(__dirname, "../../responses", `stats-${key}.json`),
+      JSON.stringify(value, null, 2)
+    );
+  } catch (e) {}
+}
 
 // describe("tested all methods", function () {
 //   it("did test all methods", () => {
