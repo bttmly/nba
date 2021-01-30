@@ -4,10 +4,19 @@ test:
 	./node_modules/.bin/mocha --recursive --timeout 10000 --exit ./test/unit ./test/integration
 
 test-bail:
-	./node_modules/.bin/mocha --bail --recursive --timeout 10000 ./test/unit ./test/integration
+	./node_modules/.bin/mocha --bail --recursive --timeout 10000 --exit ./test/unit ./test/integration
 
 test-integration:
-	./node_modules/.bin/mocha --recursive --timeout 10000 ./test/integration
+	./node_modules/.bin/mocha --recursive --timeout 10000 --exit ./test/integration
+
+test-stats:
+	./node_modules/.bin/mocha --timeout 30000 ./test/integration/stats.js
+
+test-data:
+	./node_modules/.bin/mocha --timeout 60000 --exit --bail ./test/integration/data.js
+
+test-synergy:
+	./node_modules/.bin/mocha --timeout 10000 --exit --bail ./test/integration/synergy.js
 
 test-unit:
 	./node_modules/.bin/mocha --recursive ./test/unit/

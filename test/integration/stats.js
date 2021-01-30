@@ -6,8 +6,6 @@ const pify = require("pify");
 
 const nba = require("../../");
 
-// for interactive inspection, particularly in browser
-global.StatsData = {};
 const tested = {};
 const methods = {};
 
@@ -33,7 +31,7 @@ const callMethod = (name, params = {}, shape) => async () => {
   params.Season = "2017-18";
   const r = await stats[name](params);
   verifyShape(shape, r);
-  global.StatsData[name] = r;
+  await writeResponse(name, r);
 };
 
 const _steph = 201939;
@@ -81,18 +79,17 @@ describe("nba stats methods", function () {
   it("#leagueStandings", callMethod("leagueStandings"));
   it("#teamPlayerOnOffDetails", callMethod("teamPlayerOnOffDetails", { TeamID: _dubs }));
   it("#playerCompare", callMethod("playerCompare", { PlayerIDList: _steph, VsPlayerIDList: _steph }));
-
-
-  after(function () {
-    return Promise.all(Object.keys(global.StatsData).map(k =>
-      pify(fs.writeFile)(
-        path.join(__dirname, "../../responses", `stats-${k}.json`),
-        JSON.stringify(global.StatsData[k], null, 2)
-      )
-    ))
-    .catch(console.error);
-  });
 });
+
+const writeFile = pify(fs.writeFile);
+async function writeResponse (key, value) {
+  try {
+    await writeFile(
+      path.join(__dirname, "../../responses", `stats-${key}.json`),
+      JSON.stringify(value, null, 2)
+    );
+  } catch (e) {}
+}
 
 // describe("tested all methods", function () {
 //   it("did test all methods", () => {
