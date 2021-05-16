@@ -1199,10 +1199,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-nba-client-template@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/nba-client-template/-/nba-client-template-4.5.0.tgz#664809d7fb6f864cefbc53953dd7815bf632d231"
-  integrity sha512-7g2BWC4JhwhTyxBM6HAoAV4+Ax1dcO4MSiaZFWstTaaphM/17X+H1lS8q3YkctIW1h4QlGc+NS96C5/ZeyLsuQ==
+nba-client-template@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/nba-client-template/-/nba-client-template-5.1.0.tgz#e6ce3ca3263cb29f6d7ef258e35af1316cbb4c45"
+  integrity sha512-9M0/jZi9EwDulYQO72ZTv+etEoC0gWp5gXVU1degqHrZzkPhZo/NiUl9lhxHCU6srdILgSz8S4VwmV642f0PIA==
 
 nice-try@^1.0.4:
   version "1.0.5"

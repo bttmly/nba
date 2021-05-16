@@ -30,7 +30,7 @@ const stats = Object.keys(nba.stats).reduce((prox, k) => {
 const verifyShape = (shape, response) => response;
 
 const callMethod = (name, params = {}, shape) => async () => {
-  params.Season = "2017-18";
+  params.Season = "2020-21";
   const r = await stats[name](params);
   verifyShape(shape, r);
   global.StatsData[name] = r;
@@ -38,9 +38,9 @@ const callMethod = (name, params = {}, shape) => async () => {
 
 const _steph = 201939;
 const _dubs = 1610612744;
-const steph = {PlayerID: _steph};
-const dubs = {TeamID: _dubs};
-const game = {GameID: "0021401082"};
+const steph = { PlayerID: _steph };
+const dubs = { TeamID: _dubs };
+const game = { GameID: "0021401082" };
 
 // these tests merely ensure that valid stats API calls don't error.
 // more comprehensive tests are coming... eventually :/
@@ -55,7 +55,7 @@ describe("nba stats methods", function () {
   it("#teamYears", callMethod("teamYears"));
   it("#playerSplits", callMethod("playerSplits", steph));
   it("#shots", callMethod("shots", dubs));
-  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2015"})); // response says "GameDate is required" but it doesn't seem to work with uppercase first letter unlike every other parameter -- WTF.
+  it("#scoreboard", callMethod("scoreboard", {gameDate: "03/27/2021"})); // response says "GameDate is required" but it doesn't seem to work with uppercase first letter unlike every other parameter -- WTF.
   it("#playByPlay", callMethod("playByPlay", game));
   it("#teamHistoricalLeaders", callMethod("teamHistoricalLeaders", {TeamID: _dubs, SeasonID: "20078"}));
   it("#teamInfoCommon", callMethod("teamInfoCommon", dubs));
