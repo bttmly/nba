@@ -27,6 +27,7 @@
     "lodash.mapkeys": "^3.8.0",
     "lodash.pick": "^3.1.0",
     "minimist": "^1.2.0",
+    "mocha": "^8.4.0",
     "nba-client-template": "4.5.0",
     "node-fetch": "2.6.1",
     "url": "^0.11.0"
@@ -34,7 +35,6 @@
   "devDependencies": {
     "eslint": "^6.0.1",
     "expect": "^1.20.2",
-    "mocha": "8",
     "node-static": "^0.7.11",
     "pify": "^4.0.1",
     "rollup": "^1.19.3",
