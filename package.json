@@ -29,7 +29,7 @@
     "minimist": "^1.2.0",
     "mocha": "^8.4.0",
     "nba-client-template": "5.1.0",
-    "node-fetch": "2.6.1",
+    "node-fetch": "2.6.7",
     "url": "^0.11.0"
   },
   "devDependencies": {
